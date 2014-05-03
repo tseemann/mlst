@@ -66,7 +66,7 @@ sub find_mlst {
     my @x = split m/\t/;
 #    print STDERR "### @x";
     if ($x[0] == $x[14]) {
-      my($g,$n) = split m/[-_]/, $x[13];
+      my($g,$n) = split m/-/, $x[13];
       $match{$g} = $n;
       print STDERR "MATCH! $x[13] $g $n\n" if $verbose;
     }
