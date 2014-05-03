@@ -10,8 +10,9 @@ use FindBin;
 
 my $NONE = '-';
 my $SEP = '/';
+my $OUTSEP = "\t";
 
-my(@Options, $verbose, $datadir, $list, $scheme);
+my(@Options, $verbose, $datadir, $list, $scheme, $noheader, $csv);
 setOptions();
 
 my @sc = schemes();
@@ -33,17 +34,19 @@ if (! @ARGV) {
   die "Please provide some FASTA files to determine the MLST of";
 }
 
+$OUTSEP = ',' if $csv;
+
 my $st = load_scheme($scheme);
 #print STDERR Dumper($st) if $verbose;
 
 #$SIG{'INT'} = sub { File::Path->rmtree($st->{TMPDIR}) };
 
-print join("\t", "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n";
+print join($OUTSEP, "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n" unless $noheader;
 for my $fname (@ARGV) {
   my($mlst,$sig) = find_mlst($st, $fname);
   if ($mlst) {
     my @allele = split m{$SEP}, $sig ;
-    print join("\t", $fname, $st->{SCHEME}, $mlst, @allele),"\n";
+    print join($OUTSEP, $fname, $st->{SCHEME}, $mlst, @allele),"\n";
   }
 }
 
@@ -131,6 +134,8 @@ sub setOptions {
     {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db", DESC=>"Downloaded PubMLST data"},
     {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST schemes"},
     {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
+    {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
+    {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
   );
 
 #  (!@ARGV) && (usage());
