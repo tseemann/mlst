@@ -1,0 +1,165 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+use List::MoreUtils qw(none);
+use File::Temp qw(tempdir);
+use File::Path;
+use Data::Dumper;
+use Bio::SeqIO;
+
+my $NONE = '---';
+my $SEP = '/';
+
+my(@Options, $verbose, $datadir, $list, $scheme);
+setOptions();
+
+my @sc = schemes();
+
+if ($list) {
+  print join( "\t", @sc ), "\n";
+  exit(0);
+}
+
+if (! $scheme) {
+  die "Please specify a --scheme. Use --list to see available schemes.";
+}
+
+if ( none { $_ eq $scheme } @sc ) {
+  die "Invalid scheme: $scheme";
+} 
+
+if (! @ARGV) {
+  die "Please provide some FASTA files to determine the MLST of";
+}
+
+my $st = load_scheme($scheme);
+print STDERR Dumper($st) if $verbose;
+
+#$SIG{'INT'} = sub { File::Path->rmtree($st->{TMPDIR}) };
+
+print join("\t", "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n";
+for my $fname (@ARGV) {
+  my($mlst,$sig) = find_mlst($st, $fname);
+  if ($mlst) {
+    my @allele = split m{$SEP}, $sig ;
+    print join("\t", $fname, $st->{SCHEME}, $mlst, @allele),"\n";
+  }
+}
+
+#----------------------------------------------------------------------
+
+sub find_mlst {
+  my($st, $fname) = @_;
+
+  -r $fname or die "can not open file: $fname";
+  my $ref = $st->{TMPDIR}."/ref.fasta";
+  system("zcat -f '$fname' > '$ref'");
+
+  my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=100 -noTrimA /dev/stdout 2> /dev/null";
+  print STDERR "Running: $cmd\n" if $verbose;
+  open PSL, "$cmd |";
+
+  my %match;
+  while (<PSL>) {
+    next unless m/^\d+/;
+    my @x = split m/\t/;
+#    print STDERR "### @x";
+    if ($x[0] == $x[14]) {
+      my($g,$n) = split m/[-_]/, $x[13];
+      $match{$g} = $n;
+      print STDERR "MATCH! $x[13] $g $n\n" if $verbose;
+    }
+  }
+  close PSL;
+  
+  my $sig = join( '/', map { $match{$_} || $NONE } @{$st->{GENES}} );
+#  print STDERR "@{$st->{GENES}} => $sig\n";
+  return ($st->{TYPE}{$sig} || $NONE, $sig);
+}
+
+#----------------------------------------------------------------------
+
+sub schemes {
+  my @s = qx(ls $datadir/);
+  chomp @s;
+  return @s;
+}
+
+#----------------------------------------------------------------------
+
+#sub revcom {
+#  my $x = shift;
+#  $x =~ tr/ATCGatcg/TAGCtagc/;
+#  $x = reverse $x;
+#  return $x;
+#}
+
+#----------------------------------------------------------------------
+
+sub load_scheme {
+  my($scheme) = @_;
+  my %st;
+  $st{TMPDIR} = tempdir("mlst-XXXXXX", DIR=>=>File::Spec->tmpdir(), CLEANUP=>1);
+  print STDERR "Temp dir: $st{TMPDIR}\n" if $verbose;
+  $st{FASTA} = $st{TMPDIR}."/genes.fasta";
+  $st{SCHEME} = $scheme;
+  open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
+  my @gene;
+  while (<TSV>) {
+    chomp;
+    my @x = split m/\t/;
+    if ($. == 1) {
+      @gene = grep { $_ ne 'ST' and $_ ne 'clonal_complex'  } @x;
+      $st{GENES} = [ @gene ];
+      print "Allelles: @gene\n";
+    }
+    else {
+      my $sig = join( $SEP, @x[1..@gene] );
+      $st{TYPE}{$sig} = $x[0];
+    }
+  }
+  close TSV;
+  
+  for my $gene (@gene) {
+    system("cat '$datadir/$scheme/$gene.tfa' >> '$st{FASTA}'");
+  }
+  printf STDERR "Sequence types: %d\n", scalar keys %{$st->{TYPE}};
+  return \%st;
+}
+
+#----------------------------------------------------------------------
+# Option setting routines
+
+sub setOptions {
+  use Getopt::Long;
+
+  @Options = (
+    {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
+    {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output"},
+    {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST schemes"},
+    {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"List available MLST schemes"},
+    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>'/bio/data/PubMLST/pubmlst', DESC=>"Downloaded PubMLST data"},
+  );
+
+#  (!@ARGV) && (usage());
+
+  &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
+
+  # Now setup default values.
+  foreach (@Options) {
+    if (defined($_->{DEFAULT}) && !defined(${$_->{VAR}})) {
+      ${$_->{VAR}} = $_->{DEFAULT};
+    }
+  }
+}
+
+sub usage {
+  print "Usage: $0 [options] --scheme XXX <contigs.fasta>\n";
+  foreach (@Options) {
+    printf "  --%-13s %s%s.\n",$_->{OPT},$_->{DESC},
+           defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
+  }
+  exit(1);
+}
+ 
+#----------------------------------------------------------------------

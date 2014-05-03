@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+OUTDIR=pubmlst
+
+for URL in $(grep '<url>' dbases.xml); do
+#  echo $URL
+  URL=${URL//<url>}
+  URL=${URL//<\/url>}
+#  echo ${URL: -4}
+  if [ ${URL:(-4)} = ".txt" ]; then
+    PROFILE=$(basename $URL .txt)
+    echo "# $PROFILE "
+    PROFILEDIR="$OUTDIR/$PROFILE"
+    echo "mkdir -p '$PROFILEDIR'"
+    echo "(cd '$PROFILEDIR' && wget '$URL')"
+  elif [ ${URL:(-4)} = ".tfa" ]; then
+    echo "(cd '$PROFILEDIR' && wget '$URL')"
+  fi 
+done
