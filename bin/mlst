@@ -8,7 +8,7 @@ use Data::Dumper;
 use Bio::SeqIO;
 use FindBin;
 
-my $NONE = '---';
+my $NONE = '-';
 my $SEP = '/';
 
 my(@Options, $verbose, $datadir, $list, $scheme);
