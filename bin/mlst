@@ -34,7 +34,7 @@ if (! @ARGV) {
 }
 
 my $st = load_scheme($scheme);
-print STDERR Dumper($st) if $verbose;
+#print STDERR Dumper($st) if $verbose;
 
 #$SIG{'INT'} = sub { File::Path->rmtree($st->{TMPDIR}) };
 
@@ -112,7 +112,7 @@ sub load_scheme {
     if ($. == 1) {
       @gene = grep { $_ ne 'ST' and $_ ne 'clonal_complex'  } @x;
       $st{GENES} = [ @gene ];
-      print "Allelles: @gene\n";
+      print "Allelles: @gene\n" if $verbose;
     }
     else {
       my $sig = join( $SEP, @x[1..@gene] );
@@ -124,7 +124,7 @@ sub load_scheme {
   for my $gene (@gene) {
     system("cat '$datadir/$scheme/$gene.tfa' >> '$st{FASTA}'");
   }
-  printf STDERR "Sequence types: %d\n", scalar keys %{$st->{TYPE}};
+  printf STDERR "Sequence types: %d\n", scalar keys %{$st{TYPE}} if $verbose;
   return \%st;
 }
 
