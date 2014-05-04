@@ -17,11 +17,13 @@ my $OUTSEP = "\t";
 #..............................................................................
 # Command line options
 
-my(@Options, $verbose, $datadir, $list, $scheme, $noheader, $csv);
+my(@Options, $verbose, $datadir, $list, $longlist, $scheme, $noheader, $csv);
 setOptions();
 
 #..............................................................................
 # Option parsing
+
+$OUTSEP = ',' if $csv;  # default is tab
 
 # check if 'blat' installed
 my($blat)=qx(blat);
@@ -34,13 +36,18 @@ if ($list) {
   exit(0);
 }
 
-$scheme or die "Please specify a --scheme. Use --list to see available schemes.";
+if ($longlist) {
+  for my $sc (@sc) {
+    print join( $OUTSEP, $sc, scheme_alleles($sc) ), "\n";
+  }
+  exit(0);
+}
+
+$scheme or die "Please specify a --scheme. Use --list or --longlist to see available schemes.";
 
 die "Invalid scheme: $scheme" unless ( grep { $_ eq $scheme } @sc );
 
 die "Please provide some FASTA files to determine the MLST of" unless @ARGV;
-
-$OUTSEP = ',' if $csv;  # default is tab
 
 #..............................................................................
 # Load MLST data set
@@ -101,6 +108,18 @@ sub schemes {
 
 #----------------------------------------------------------------------
 
+sub scheme_alleles {
+  my($scheme) = @_;
+  open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
+  my $header = <TSV>;
+  chomp $header;
+  my @x = split m/\t/, $header;
+  pop(@x) if $x[-1] eq 'clonal_complex';
+  return @x[1 .. $#x];
+}
+
+#----------------------------------------------------------------------
+
 sub load_scheme {
   my($scheme) = @_;
   my %st;
@@ -142,7 +161,8 @@ sub setOptions {
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
     {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output"},
     {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db", DESC=>"Downloaded PubMLST data"},
-    {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST schemes"},
+    {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
+    {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
     {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
     {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
