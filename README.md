@@ -2,6 +2,35 @@
 
 Scan contig files against PubMLST typing schemes.
 
+##Installation
+
+The main Perl script and the included databases:
+
+    % cd $HOME
+    % git clone https://github.com/Victorian-Bioinformatics-Consortium/mlst.git
+    
+The only external dependency is the BLAT tools written by Jim Kent: http://genome.ucsc.edu/FAQ/FAQblat.html#blat3
+    
+    % cd $HOME/mlst/bin
+    
+    # Linux:
+    % wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/blat
+    # MacOSX:
+    % wget http://hgdownload.cse.ucsc.edu/admin/exe/macOSX.x86_64/blat
+    
+    % chmod +x blat
+
+Add it to your PATH:
+
+    % echo "export PATH=$PATH:$HOME/mlst/bin" >> $HOME/.bashrc
+
+Now log out, and log back in, and test that it works:
+
+    % mlst -h
+    % blat
+
+Success!
+    
 ##Usage
 
 ###Available schemes
@@ -62,14 +91,18 @@ against the contig sequences. Only full-length, 100% identity matches
 to an allelle are considered matches. If any allelles are not found,
 a "-" will be present in the allele column, as well as the ST column.
 
-
 ##Bugs
 
-Please submit bugs to the github Issues form.
+Please submit via the Github Issues page: 
+https://github.com/Victorian-Bioinformatics-Consortium/mlst/issues
+
+##Licence
+
+GPLv2
 
 ##Author
 
-Torsten Seemann
+Torsten Seemann - http://vicbioinformatics.com/
 
 
 
