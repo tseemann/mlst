@@ -5,7 +5,6 @@ use List::MoreUtils qw(none);
 use File::Temp qw(tempdir);
 use File::Path;
 use Data::Dumper;
-use Bio::SeqIO;
 use FindBin;
 
 my $NONE = '-';
