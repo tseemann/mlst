@@ -3,7 +3,7 @@
 use warnings;
 use strict;
 use File::Temp qw(tempdir);
-use File::Path;
+use File::Spec;
 use Data::Dumper;
 use FindBin;
 
@@ -17,7 +17,7 @@ my $OUTSEP = "\t";
 #..............................................................................
 # Command line options
 
-my(@Options, $verbose, $datadir, $list, $longlist, $scheme, $noheader, $csv);
+my(@Options, $verbose, $datadir, $list, $longlist, $scheme, $noheader, $csv, $nopath);
 setOptions();
 
 #..............................................................................
@@ -63,6 +63,9 @@ for my $fname (@ARGV) {
   my($mlst,$sig) = find_mlst($st, $fname);
   if ($mlst) {
     my @allele = split m{$SEP}, $sig ;
+    if ($nopath) {
+      (undef,undef,$fname) = File::Spec->splitpath($fname);
+    }
     print join($OUTSEP, $fname, $st->{SCHEME}, $mlst, @allele),"\n";
   }
 }
@@ -166,6 +169,7 @@ sub setOptions {
     {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
     {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
+    {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
   );
 
   &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
