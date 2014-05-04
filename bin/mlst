@@ -30,7 +30,7 @@ $blat or die "Could not run 'blat'. Please install or add to PATH.";
 my @sc = schemes();
 
 if ($list) { 
-  print join( "\t", @sc ), "\n";
+  print join( " ", @sc ), "\n";
   exit(0);
 }
 
