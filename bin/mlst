@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+
 use warnings;
 use strict;
 use File::Temp qw(tempdir);
@@ -6,38 +7,49 @@ use File::Path;
 use Data::Dumper;
 use FindBin;
 
+#..............................................................................
+# Globals
+
 my $NONE = '-';
 my $SEP = '/';
 my $OUTSEP = "\t";
 
+#..............................................................................
+# Command line options
+
 my(@Options, $verbose, $datadir, $list, $scheme, $noheader, $csv);
 setOptions();
 
+#..............................................................................
+# Option parsing
 
+# check if 'blat' installed
+my($blat)=qx(blat);
+$blat or die "Could not run 'blat'. Please install or add to PATH.";
 
 my @sc = schemes();
 
-if ($list) {
+if ($list) { 
   print join( "\t", @sc ), "\n";
   exit(0);
 }
 
-if (! $scheme) {
-  die "Please specify a --scheme. Use --list to see available schemes.";
-}
+$scheme or die "Please specify a --scheme. Use --list to see available schemes.";
 
-unless ( grep { $_ eq $scheme } @sc ) {
-  die "Invalid scheme: $scheme";
-} 
+die "Invalid scheme: $scheme" unless ( grep { $_ eq $scheme } @sc );
 
-if (! @ARGV) {
-  die "Please provide some FASTA files to determine the MLST of";
-}
+die "Please provide some FASTA files to determine the MLST of" unless @ARGV;
 
-$OUTSEP = ',' if $csv;
+$OUTSEP = ',' if $csv;  # default is tab
+
+#..............................................................................
+# Load MLST data set
 
 my $st = load_scheme($scheme) or die "Could not load MLST scheme: $scheme";
 #print STDERR Dumper($st) if $verbose;
+
+#..............................................................................
+# Output results
 
 print join($OUTSEP, "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n" unless $noheader;
 for my $fname (@ARGV) {
@@ -135,8 +147,6 @@ sub setOptions {
     {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
   );
-
-#  (!@ARGV) && (usage());
 
   &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
 
