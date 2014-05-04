@@ -2,6 +2,35 @@
 
 Scan contig files against PubMLST typing schemes.
 
+##Installation
+
+The main Perl script and the included databases:
+
+    % cd $HOME
+    % git clone https://github.com/Victorian-Bioinformatics-Consortium/mlst.git
+    
+The only external dependency is the BLAT tools written by Jim Kent: http://genome.ucsc.edu/FAQ/FAQblat.html#blat3
+    
+    % cd $HOME/mlst/bin
+    
+    # Linux:
+    % wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/blat
+    # MacOSX:
+    % wget http://hgdownload.cse.ucsc.edu/admin/exe/macOSX.x86_64/blat
+    
+    % chmod +x blat
+
+Add it to your PATH:
+
+    % echo "export PATH=$PATH:$HOME/mlst/bin" >> $HOME/.bashrc
+
+Now log out, and log back in, and test that it works:
+
+    % mlst -h
+    % blat
+
+Success!
+    
 ##Usage
 
 ###Available schemes
@@ -30,6 +59,10 @@ for the FASTA file. The "ST" column is the MLST type, and the subsequent
 columns are the allele variants for each of the locii within the scheme.
 In this case, the USA300 genome is *Staphylococcus aureus* ST8.
 
+Only full-length, 100% identity matches to an allelle are considered matches. 
+If any allelles are not found, a "-" will be present in the allele column, 
+as well as in the ST column.
+
 ###Genotyping many genomes
 
 The software supports multiple genome FASTA files, even compressed ones. 
@@ -52,24 +85,28 @@ The output is TSV (tab-separated values). This makes it easy to parse
 and manipulate with Unix utilities like cut and sort etc. For example, 
 if you only want the filename and ST you can do the following:
 
-    % mlst --scheme abaumanii AB*.fasta | cut -f1,3 > ST.csv
+    % mlst --scheme abaumanii AB*.fasta | cut -f1,3 > ST.tsv
 
+If you don't want the header line use the `--noheader` option:
 
-##How does it work?
+    % mlst --scheme leptospira --noheader L550.fa
+    
+If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` option:
 
-The software uses BLAT to search all the alleles for the given scheme
-against the contig sequences. Only full-length, 100% identity matches
-to an allelle are considered matches. If any allelles are not found,
-a "-" will be present in the allele column, as well as the ST column.
-
+    % mlst --scheme hpylori --csv Peptobismol.fna.gz > mlst.csv
 
 ##Bugs
 
-Please submit bugs to the github Issues form.
+Please submit via the Github Issues page: 
+https://github.com/Victorian-Bioinformatics-Consortium/mlst/issues
+
+##Licence
+
+GPLv2
 
 ##Author
 
-Torsten Seemann
+Torsten Seemann - http://vicbioinformatics.com/
 
 
 
