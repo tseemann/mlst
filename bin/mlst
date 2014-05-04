@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 use warnings;
 use strict;
-use List::MoreUtils qw(none);
 use File::Temp qw(tempdir);
 use File::Path;
 use Data::Dumper;
@@ -14,6 +13,8 @@ my $OUTSEP = "\t";
 my(@Options, $verbose, $datadir, $list, $scheme, $noheader, $csv);
 setOptions();
 
+
+
 my @sc = schemes();
 
 if ($list) {
@@ -25,7 +26,7 @@ if (! $scheme) {
   die "Please specify a --scheme. Use --list to see available schemes.";
 }
 
-if ( none { $_ eq $scheme } @sc ) {
+unless ( grep { $_ eq $scheme } @sc ) {
   die "Invalid scheme: $scheme";
 } 
 
@@ -35,7 +36,7 @@ if (! @ARGV) {
 
 $OUTSEP = ',' if $csv;
 
-my $st = load_scheme($scheme) or die "Could not load MLST scheme: $scheme" 
+my $st = load_scheme($scheme) or die "Could not load MLST scheme: $scheme";
 #print STDERR Dumper($st) if $verbose;
 
 print join($OUTSEP, "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n" unless $noheader;
