@@ -36,10 +36,8 @@ if (! @ARGV) {
 
 $OUTSEP = ',' if $csv;
 
-my $st = load_scheme($scheme);
+my $st = load_scheme($scheme) or die "Could not load MLST scheme: $scheme" 
 #print STDERR Dumper($st) if $verbose;
-
-#$SIG{'INT'} = sub { File::Path->rmtree($st->{TMPDIR}) };
 
 print join($OUTSEP, "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n" unless $noheader;
 for my $fname (@ARGV) {
