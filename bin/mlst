@@ -27,7 +27,12 @@ $OUTSEP = ',' if $csv;  # default is tab
 
 # check if 'blat' installed
 my($blat)=qx(blat);
-$blat or die "Could not run 'blat'. Please install or add to PATH.";
+$blat or die "Could not run 'blat'. Please install it.";
+
+# check if 'gzip' installed
+my($gzip)=qx(gzip --version);
+$gzip && $gzip =~ m/gzip/ or die "Could not run 'gzip'. Please install it.";
+
 
 my @sc = schemes();
 
@@ -76,8 +81,9 @@ sub find_mlst {
   my($st, $fname) = @_;
 
   -r $fname or die "can not open file: $fname";
-  my $ref = $st->{TMPDIR}."/ref.fasta";
-  system("zcat -f '$fname' > '$ref'");
+  my $ref = $st->{TMPDIR}."/ref.fasta";  
+  # force decompress to stdout
+  system("gzip -f -d -c '$fname' > '$ref'"); 
 
   my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=100 -noTrimA /dev/stdout 2> /dev/null";
   print STDERR "Running: $cmd\n" if $verbose;
