@@ -26,13 +26,16 @@ setOptions();
 $OUTSEP = ',' if $csv;  # default is tab
 
 # check if 'blat' installed
-my($blat)=qx(blat);
-$blat or die "Could not run 'blat'. Please install it.";
+my($blat)=qx(blat 2> /dev/null);
+$blat && $blat =~ m/blat/ or die "Could not run 'blat'. Please install it.";
 
 # check if 'gzip' installed
-my($gzip)=qx(gzip --version);
-$gzip && $gzip =~ m/gzip/ or die "Could not run 'gzip'. Please install it.";
-
+my $zcat='gzip -d -c -f';
+my($gzip)=qx(zgzip --version 2> /dev/null);
+if (!$gzip or $gzip !~ m/gzip/) {
+  print STDERR "WARNING: could not find 'gzip'. Compressed files can't be read. Pressing on.\n";
+  $zcat='cat';  # if they don't have this things are really messed up!
+}
 
 my @sc = schemes();
 
@@ -83,7 +86,7 @@ sub find_mlst {
   -r $fname or die "can not open file: $fname";
   my $ref = $st->{TMPDIR}."/ref.fasta";  
   # force decompress to stdout
-  system("gzip -f -d -c '$fname' > '$ref'"); 
+  system("$zcat '$fname' > '$ref'"); 
 
   my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=100 -noTrimA /dev/stdout 2> /dev/null";
   print STDERR "Running: $cmd\n" if $verbose;
