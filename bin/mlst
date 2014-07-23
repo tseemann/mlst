@@ -100,7 +100,10 @@ sub find_mlst {
     my @x = split m/\t/;
 #    print STDERR "### @x";
     if ($x[0] == $x[14]) {
-      my($g,$n) = split m/-/, $x[13];
+      # this can't work because genes have -/_ as sep AND in names sometimes
+      # my($g,$n) = split m/-/, $x[13];
+      $x[13] =~ m/^(.+?).(\d+)$/ or die "can't parse gene: $x[13]";
+      my($g,$n) = ($1,$2);
       $match{$g} = $n;
       print STDERR "MATCH! $x[13] $g $n\n" if $verbose;
     }
