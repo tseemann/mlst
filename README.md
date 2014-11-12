@@ -16,7 +16,7 @@ The only external dependency is the BLAT tools written by Jim Kent: http://genom
     # Linux:
     % wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/blat
     # MacOSX:
-    % wget http://hgdownload.cse.ucsc.edu/admin/exe/macOSX.x86_64/blat
+    % wget http://hgdownload.cse.ucsc.edu/admin/exe/macOSX.x86_64/blat/blat
     
     % chmod +x blat
 
