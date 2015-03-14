@@ -10,6 +10,7 @@ The main Perl script and the included databases:
     % git clone https://github.com/Victorian-Bioinformatics-Consortium/mlst.git
     
 The only external dependency is the BLAT tools written by Jim Kent: http://genome.ucsc.edu/FAQ/FAQblat.html#blat3
+Try typing "blat" to see if you have it. If not, do the following:
     
     % cd $HOME/mlst/bin
     
@@ -20,7 +21,7 @@ The only external dependency is the BLAT tools written by Jim Kent: http://genom
     
     % chmod +x blat
 
-Add it to your PATH:
+Add everything to your PATH:
 
     % echo "export PATH=$PATH:$HOME/mlst/bin" >> $HOME/.bashrc
 
@@ -106,7 +107,8 @@ GPLv2
 
 ##Author
 
-Torsten Seemann - http://vicbioinformatics.com/
+Torsten Seemann (@torstenseemann)
+
 
 
 
