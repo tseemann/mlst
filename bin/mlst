@@ -119,7 +119,8 @@ sub find_mlst {
 
 sub schemes {
   # use special 'ls' options and syntax to only list DIRECTORIES
-  my @s = qx(ls -d $datadir/*/);
+#  my @s = qx(ls -d $datadir/*/);
+  my @s = qx(ls $datadir);
   chomp @s;
   return @s;
 }
