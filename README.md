@@ -2,12 +2,29 @@
 
 Scan contig files against PubMLST typing schemes.
 
+By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)
+
+##Quick Start
+
+```
+% mlst --scheme efaecium VRE_Aus0085.fasta
+FILE             SCHEME	        ST	AtpA	Ddl	Gdh	PurK	Gyd	PstS	Adk
+VRE_Aus0085.fasta efaecium	203	15	1	1	1	1	20	1
+```
+
 ##Installation
 
-The main Perl script and the included databases:
+###Brew
+If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
+
+    brew tap homebrew/science
+    brew tap tseemann/homebrew-bioinformatics-linux
+    brew install mlst
+
+###Source
 
     % cd $HOME
-    % git clone https://github.com/Victorian-Bioinformatics-Consortium/mlst.git
+    % git clone https://github.com/tseemann/mlst.git
     
 The only external dependency is the BLAT tools written by Jim Kent: http://genome.ucsc.edu/FAQ/FAQblat.html#blat3
 Try typing "blat" to see if you have it. If not, do the following:
@@ -21,17 +38,6 @@ Try typing "blat" to see if you have it. If not, do the following:
     
     % chmod +x blat
 
-Add everything to your PATH:
-
-    % echo "export PATH=$PATH:$HOME/mlst/bin" >> $HOME/.bashrc
-
-Now log out, and log back in, and test that it works:
-
-    % mlst -h
-    % blat
-
-Success!
-    
 ##Usage
 
 ###Available schemes
@@ -104,17 +110,4 @@ https://github.com/Victorian-Bioinformatics-Consortium/mlst/issues
 ##Licence
 
 GPLv2
-
-##Author
-
-Torsten Seemann (@torstenseemann)
-
-
-
-
-
-
-
-
-
 
