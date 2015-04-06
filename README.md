@@ -2,7 +2,7 @@
 
 Scan contig files against PubMLST typing schemes.
 
-By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)
+_By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)_
 
 ##Quick Start
 
@@ -103,9 +103,9 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 
 ##Bugs
 
-Please submit via the Github Issues page: https://github.com/Victorian-Bioinformatics-Consortium/mlst/issues
+Please submit via the Github Issues page: https://github.com/tseemann/mlst/issues
 
 ##Licence
 
-GPLv2: https://raw.githubusercontent.com/Victorian-Bioinformatics-Consortium/mlst/master/LICENSE
+GPLv2: https://raw.githubusercontent.com/tseemann/mlst/master/LICENSE
 
