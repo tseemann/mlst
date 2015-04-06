@@ -8,8 +8,8 @@ By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [bl
 
 ```
 % mlst --scheme efaecium VRE_Aus0085.fasta
-FILE             SCHEME	        ST	AtpA	Ddl	Gdh	PurK	Gyd	PstS	Adk
-VRE_Aus0085.fasta efaecium	203	15	1	1	1	1	20	1
+FILE              SCHEME    ST  AtpA Ddl Gdh PurK Gyd PstS Adk
+VRE_Aus0085.fasta efaecium	203 15   1   1   1    1   20   1
 ```
 
 ##Installation
@@ -18,7 +18,6 @@ VRE_Aus0085.fasta efaecium	203	15	1	1	1	1	20	1
 If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
     brew tap homebrew/science
-    brew tap tseemann/homebrew-bioinformatics-linux
     brew install mlst
 
 ###Source
@@ -26,7 +25,7 @@ If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/l
     % cd $HOME
     % git clone https://github.com/tseemann/mlst.git
     
-The only external dependency is the BLAT tools written by Jim Kent: http://genome.ucsc.edu/FAQ/FAQblat.html#blat3
+The only external dependency is [Jim Kent's BLAT](http://genome.ucsc.edu/FAQ/FAQblat.html#blat3)
 Try typing "blat" to see if you have it. If not, do the following:
     
     % cd $HOME/mlst/bin
@@ -104,10 +103,9 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 
 ##Bugs
 
-Please submit via the Github Issues page: 
-https://github.com/Victorian-Bioinformatics-Consortium/mlst/issues
+Please submit via the Github Issues page: https://github.com/Victorian-Bioinformatics-Consortium/mlst/issues
 
 ##Licence
 
-GPLv2
+GPLv2: https://raw.githubusercontent.com/Victorian-Bioinformatics-Consortium/mlst/master/LICENSE
 
