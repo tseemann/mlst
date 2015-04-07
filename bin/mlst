@@ -154,7 +154,7 @@ sub load_scheme {
     chomp;
     my @x = split m/\t/;
     if ($. == 1) {
-      @gene = grep { $_ ne 'ST' and $_ ne 'clonal_complex'  } @x;
+      @gene = grep { $_ !~ m/(^ST|complex|clade)/  } @x;
       $st{GENES} = [ @gene ];
       print "Allelles: @gene\n" if $verbose;
     }
