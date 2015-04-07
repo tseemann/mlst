@@ -10,7 +10,7 @@ use FindBin;
 #..............................................................................
 # Globals
 
-my $VERSION = "1.1";
+my $VERSION = "1.2";
 
 my $NONE = '-';
 my $SEP = '/';
@@ -35,7 +35,7 @@ $blat && $blat =~ m/blat/ or die "Could not run 'blat'. Please install it.";
 
 # check if 'gzip' installed
 my $zcat='gzip -d -c -f';
-my($gzip)=qx(gzip --version 2> /dev/null);
+my($gzip)=qx(gzip --version 2>&1);
 if (!$gzip or $gzip !~ m/gzip/) {
   print STDERR "WARNING: could not find 'gzip'. Compressed files can't be read. Pressing on.\n";
   $zcat='cat';  # if they don't have this things are really messed up!
