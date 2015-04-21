@@ -153,6 +153,10 @@ sub load_scheme {
   while (<TSV>) {
     chomp;
     my @x = split m/\t/;
+    if (@x < 2) {
+      print STDERR "Skipping bad line: $_\n" if $verbose;
+      next;
+    }
     if ($. == 1) {
       @gene = grep { $_ !~ m/(^ST|complex|clade)/  } @x;
       $st{GENES} = [ @gene ];
