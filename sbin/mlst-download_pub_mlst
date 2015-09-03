@@ -1,8 +1,13 @@
 #!/bin/bash
 
+echo "Prints the commands to download the MLST databases."
+echo "Usage: bash $0 | bash"
+
 set -e
 
 OUTDIR=pubmlst
+
+wget --update 'http://pubmlst.org/data/dbases.xml' >&2
 
 for URL in $(grep '<url>' dbases.xml); do
 #  echo $URL
