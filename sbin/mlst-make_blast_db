@@ -1,0 +1,20 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+MLSTDIR="$DIR/../db"
+BLASTDIR="$DIR/../blastdb"
+BLASTFILE="$BLASTDIR/mlst.fa"
+
+mkdir -p "$BLASTDIR"
+rm -f "$BLASTFILE"
+
+for N in $(find $MLSTDIR -maxdepth 1 | grep -v '_2$'); do
+  SCHEME=$(basename $N)
+  echo "Adding: $SCHEME"
+  cat "$MLSTDIR"/$SCHEME/*.tfa | sed -e "s/^>/>$SCHEME./" >> "$BLASTFILE"
+done
+
+makeblastdb -hash_index -in "$BLASTFILE" -dbtype nucl -title "PubMLST" -parse_seqids
+
+echo "Created BLAST database for $BLASTFILE"
+
