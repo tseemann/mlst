@@ -90,6 +90,7 @@ sub find_mlst {
   -r $fname or die "can not open file: $fname";
   my $ref = $st->{TMPDIR}."/ref.fasta";  
   # force decompress to stdout
+  print STDERR "Scanning: $fname\n";
   system("$zcat '$fname' > '$ref'"); 
 
   my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=100 -noTrimA /dev/stdout 2> /dev/null";
@@ -99,6 +100,7 @@ sub find_mlst {
   my %match;
   while (<PSL>) {
     next unless m/^\d+/;
+    chomp;
     my @x = split m/\t/;
 #    print STDERR "### @x";
     if ($x[0] == $x[14]) {
@@ -106,8 +108,8 @@ sub find_mlst {
       # my($g,$n) = split m/-/, $x[13];
       $x[13] =~ m/^(.+?).(\d+)$/ or die "can't parse gene: $x[13]";
       my($g,$n) = ($1,$2);
-      $match{$g} = $n;
-      print STDERR "MATCH! $x[13] $g $n\n" if $verbose;
+      $match{$g} ||= $n;
+      print STDERR "MATCH: $x[13] | @x\n" if $verbose;
     }
   }
   close PSL;
