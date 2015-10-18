@@ -1,0 +1,214 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+use File::Temp qw(tempdir);
+use File::Spec;
+use Data::Dumper;
+use FindBin;
+
+#..............................................................................
+# Globals
+
+my $NONE = '-';
+my $SEP = '/';
+my $OUTSEP = "\t";
+
+#..............................................................................
+# Command line options
+
+my(@Options, $verbose, $blastdb, $datadir,
+             $list, $longlist, $scheme, 
+             $noheader, $csv, $nopath);
+setOptions();
+
+#..............................................................................
+# Option parsing
+
+$OUTSEP = ',' if $csv;  # default is tab
+
+# check if 'blastn' installed
+my $blastn = "blastn";
+my($blast)=qx($blastn -version 2> /dev/null);
+$blast && $blast =~ m/$blastn/ or die "Could not run '$blastn'. Please install it.";
+
+# check if 'gzip' installed
+my $zcat='gzip -d -c -f';
+my($gzip)=qx(gzip --version 2> /dev/null);
+if (!$gzip or $gzip !~ m/gzip/) {
+  print STDERR "WARNING: could not find 'gzip'. Compressed files can't be read. Pressing on.\n";
+  $zcat='cat';  # if they don't have this things are really messed up!
+}
+
+if ($list or $longlist) {
+  my @sc = schemes();
+  if ($list) { 
+    print join( " ", @sc ), "\n";
+  }
+  elsif ($longlist) {
+    for my $sc (@sc) {
+      print join( $OUTSEP, $sc, scheme_alleles($sc) ), "\n";
+    }
+  }
+  exit(0);
+}
+
+#$scheme or die "Please specify a --scheme. Use --list or --longlist to see available schemes.";
+#die "Invalid scheme: $scheme" unless ( grep { $_ eq $scheme } @sc );
+
+die "Please provide some FASTA files to determine the MLST of" unless @ARGV;
+
+#..............................................................................
+# Load MLST data set
+
+#my $st = load_scheme($scheme) or die "Could not load MLST scheme: $scheme";
+#print STDERR Dumper($st) if $verbose;
+
+#..............................................................................
+# Output results
+
+#print join($OUTSEP, "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n" unless $noheader;
+for my $fname (@ARGV) {
+  my($scheme,$mlst,$sig) = find_mlst($fname);
+  if ($mlst) {
+    my @allele = split m{$SEP}, $sig ;
+    if ($nopath) {
+      (undef,undef,$fname) = File::Spec->splitpath($fname);
+    }
+    print join($OUTSEP, $fname, $scheme, $mlst, @allele),"\n";
+  }
+}
+
+#----------------------------------------------------------------------
+
+sub find_mlst {
+  my($fname) = @_;
+#  $ENV{SHELL} = '/bin/bash';
+#  my $cmd = "$blastn -query <($zcat \Q$fname\E) -db \Q$blastdb\E "
+  my $cmd = "$blastn -query \Q$fname\E -db \Q$blastdb\E "
+           ." -evalue 1E-20 -num_threads 1 -culling_limit 1 "
+           ." -ungapped -perc_identity 100 -outfmt '6 sseqid slen length'";
+  print STDERR "Running: $cmd\n" if $verbose;
+  my @hit = qx($cmd);
+  my %res;
+  foreach (@hit) {
+    chomp;
+    my($name, $hlen, $alen) = split m/\t/;
+    next unless $hlen == $alen;  # need full length hits
+    $name =~ m/^(\w+)\.(\w+)[_-](\d+)$/ or die "Bad allele: $name";
+    my($scheme,$gene,$num) = ($1,$2,$3);
+    print STDERR "$scheme $gene $num [$name]\n" if $verbose;
+    $res{$scheme}{$gene} = $num;
+  }
+  
+  print STDERR Dumper(\%res) if $verbose;
+  
+  # can get multiple schemes
+  my @sig;
+  my $sc;
+  for my $scheme (sort { scalar(keys($res{$b})) <=> scalar(keys($res{$a})) } keys %res) {
+    $sc = load_scheme($scheme);
+    @sig = ();
+    for my $g (@{$sc->{GENES}}) {
+      push @sig, $res{$scheme}{$g} || '-';
+    }
+#    print Dumper($st);
+  }
+  my $sig = join($SEP, @sig);
+  return ( $sc->{SCHEME}, $sc->{TYPE}{$sig}, $sig );
+}
+
+#----------------------------------------------------------------------
+
+sub schemes {
+  # use special 'ls' options and syntax to only list DIRECTORIES
+#  my @s = qx(ls -d $datadir/*/);
+  my @s = qx(ls $datadir);
+  chomp @s;
+  return @s;
+}
+
+#----------------------------------------------------------------------
+
+sub scheme_alleles {
+  my($scheme) = @_;
+  open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
+  my $header = <TSV>;
+  chomp $header;
+  my @x = split m/\t/, $header;
+  pop(@x) if $x[-1] eq 'clonal_complex';
+  return @x[1 .. $#x];
+}
+
+#----------------------------------------------------------------------
+
+sub load_scheme {
+  my($scheme) = @_;
+  my %st;
+#  $st{TMPDIR} = tempdir("mlst-XXXXXX", DIR=>=>File::Spec->tmpdir(), CLEANUP=>1);
+#  print STDERR "Temp dir: $st{TMPDIR}\n" if $verbose;
+#  $st{FASTA} = $st{TMPDIR}."/genes.fasta";
+  $st{SCHEME} = $scheme;
+  open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
+  my @gene;
+  while (<TSV>) {
+    chomp;
+    my @x = split m/\t/;
+    if ($. == 1) {
+      @gene = grep { $_ ne 'ST' and $_ ne 'clonal_complex'  } @x;
+      $st{GENES} = [ @gene ];
+      print "Loading '$scheme', allelles: @gene\n" if $verbose;
+    }
+    else {
+      my $sig = join( $SEP, @x[1..@gene] );
+      $st{TYPE}{$sig} = $x[0];
+    }
+  }
+  close TSV;
+  
+#  for my $gene (@gene) {
+#    system("cat '$datadir/$scheme/$gene.tfa' >> '$st{FASTA}'");
+#  }
+  printf STDERR "Sequence types: %d\n", scalar keys %{$st{TYPE}} if $verbose;
+  return \%st;
+}
+
+#----------------------------------------------------------------------
+# Option setting routines
+
+sub setOptions {
+  use Getopt::Long;
+
+  @Options = (
+    {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
+    {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../blastdb/mlst.fa", DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db", DESC=>"PubMLST data"},
+    {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
+    {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
+#    {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
+    {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
+    {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
+    {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
+  );
+
+  &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
+
+  # Now setup default values.
+  foreach (@Options) {
+    if (defined($_->{DEFAULT}) && !defined(${$_->{VAR}})) {
+      ${$_->{VAR}} = $_->{DEFAULT};
+    }
+  }
+}
+
+sub usage {
+  print "Usage: $0 [options] <contigs.fasta> ... \n";
+  foreach (@Options) {
+    printf "  --%-13s %s%s.\n",$_->{OPT},$_->{DESC},
+           defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
+  }
+  exit(1);
+}
+ 
+#----------------------------------------------------------------------
