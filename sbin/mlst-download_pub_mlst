@@ -3,6 +3,8 @@
 set -e
 
 OUTDIR=pubmlst
+mkdir -p "$OUTDIR"
+wget --no-clobber -P "$OUTDIR" http://pubmlst.org/data/dbases.xml 
 
 for URL in $(grep '<url>' dbases.xml); do
 #  echo $URL
