@@ -7,3 +7,4 @@ ST	Che_aspA	Che_atpA	Che_glnA	Che_gltA	Che_glyA	Che_pgm	Che_tkt	clonal_complex
 6	5	3	3	3	6	4	2	
 7	6	4	4	1	7	2	1	
 8	7	5	5	4	8	5	2	
+9	7	6	6	1	9	6	2	
