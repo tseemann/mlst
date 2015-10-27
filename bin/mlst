@@ -137,7 +137,8 @@ sub scheme_alleles {
   my $header = <TSV>;
   chomp $header;
   my @x = split m/\t/, $header;
-  pop(@x) if $x[-1] eq 'clonal_complex';
+  pop(@x) if $x[-1] =~ m/species/;
+  pop(@x) if $x[-1] =~ m/clonal_complex/;
   return @x[1 .. $#x];
 }
 
@@ -160,7 +161,7 @@ sub load_scheme {
       next;
     }
     if ($. == 1) {
-      @gene = grep { $_ !~ m/(^ST|complex|clade)/  } @x;
+      @gene = grep { $_ !~ m/(^ST|complex|clade|species)/  } @x;
       $st{GENES} = [ @gene ];
       print "Allelles: @gene\n" if $verbose;
     }
