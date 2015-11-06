@@ -65,9 +65,11 @@ for the FASTA file. The "ST" column is the MLST type, and the subsequent
 columns are the allele variants for each of the locii within the scheme.
 In this case, the USA300 genome is *Staphylococcus aureus* ST8.
 
-Only full-length, 100% identity matches to an allelle are considered matches. 
-If any allelles are not found, a "-" will be present in the allele column, 
-as well as in the ST column.
+Only full-length, 100% identity matches to an allele are considered matches. 
+If a close match to an existing allele is found, but not an exact match, a "~N"
+will be shown which means "close to allele N". If the allele isn't remotely
+present  "-" will be printed. The ST column will have a "-" if there any of
+the alleles are absent or novel.
 
 ###Genotyping many genomes
 
@@ -81,9 +83,10 @@ The software supports multiple genome FASTA files, even compressed ones.
     VAN_327	efaecium	417  5    7	   5  7  	2	1	 1
     VAN_332	efaecium	38	 2    5	   3  5	    4	4	 1
     VAN_335	efaecium	417	 5    7	   5  7	    2	1	 1
-    VAN_342	efaecium	22	 2    3	   1  2	    1	1	 1
+    VAN_342	efaecium	-	 2    3	   1  2	    -	~1	 1
     VAN_345	efaecium	38	 2    5	   3  5	    4	4	 1
     VAN_476	efaecium	785	 2	  3	   1  67	1	86	 1
+    VAN_512	efaecium	-	 ~2	  3	   1  67	1	86	 1
     
 ###Tweaking the output
 

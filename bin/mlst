@@ -10,17 +10,18 @@ use FindBin;
 #..............................................................................
 # Globals
 
-my $VERSION = "1.3";
+my $VERSION = "1.4-dev";
 
 my $NONE = '-';
+my $NOVEL = '~';
 my $SEP = '/';
 my $OUTSEP = "\t";
 
 #..............................................................................
 # Command line options
 
-my(@Options, $verbose, $datadir, 
-             $list, $longlist, $scheme, 
+my(@Options, $verbose, $debug, $datadir, $minid,
+             $list, $longlist, $scheme,  
              $noheader, $csv, $nopath);
 setOptions();
 
@@ -93,24 +94,26 @@ sub find_mlst {
   print STDERR "Scanning: $fname\n";
   system("$zcat '$fname' > '$ref'"); 
 
-  my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=100 -noTrimA /dev/stdout 2> /dev/null";
+  my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=$minid -noTrimA /dev/stdout 2> /dev/null";
   print STDERR "Running: $cmd\n" if $verbose;
-  open PSL, "$cmd |";
-
+  open PSL, '-|', "$cmd | sort -k1nr";
+  
   my %match;
   while (<PSL>) {
+    # PSL format: http://asia.ensembl.org/info/website/upload/psl.html
     next unless m/^\d+/;
     chomp;
     my @x = split m/\t/;
-#    print STDERR "### @x";
-    if ($x[0] == $x[14]) {
+#    print STDERR "### @x" if $verbose;
+#    if ($x[0] == $x[14]) {   # does 'matches' == 'tSize' ?
       # this can't work because genes have -/_ as sep AND in names sometimes
       # my($g,$n) = split m/-/, $x[13];
       $x[13] =~ m/^(.+?).(\d+)$/ or die "can't parse gene: $x[13]";
       my($g,$n) = ($1,$2);
-      $match{$g} ||= $n;
-      print STDERR "MATCH: $x[13] | @x\n" if $verbose;
-    }
+      my $symbol = ($x[0] == $x[14] ? $n : "$NOVEL$n");
+      $match{$g} ||= $symbol;
+      print STDERR "MATCH $symbol $x[13] | @x\n" if $debug;
+#    }
   }
   close PSL;
   
@@ -137,8 +140,12 @@ sub scheme_alleles {
   my $header = <TSV>;
   chomp $header;
   my @x = split m/\t/, $header;
-  pop(@x) if $x[-1] =~ m/species/;
-  pop(@x) if $x[-1] =~ m/clonal_complex/;
+  # remove non-allele columns
+  while ($x[-1] =~ m/(complex|clade|species|lineage|^CC$)/i) {
+    pop(@x);
+  }
+#  pop(@x) if $x[-1] =~ m/species/;
+#  pop(@x) if $x[-1] =~ m/clonal_complex/;
   return @x[1 .. $#x];
 }
 
@@ -161,7 +168,7 @@ sub load_scheme {
       next;
     }
     if ($. == 1) {
-      @gene = grep { $_ !~ m/(^ST|complex|clade|species)/  } @x;
+      @gene = grep { $_ !~ m/(^ST|complex|clade|species|lineage|^CC)/i  } @x;
       $st{GENES} = [ @gene ];
       print "Allelles: @gene\n" if $verbose;
     }
@@ -194,6 +201,7 @@ sub setOptions {
 
   @Options = (
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
+    {OPT=>"debug!",  VAR=>\$debug, DEFAULT=>0, DESC=>"Debugging output"},
     {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output"},
     {OPT=>"version!",  VAR=>\&version, DESC=>"Print version and exit"},
     {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db", DESC=>"Downloaded PubMLST data"},
@@ -202,6 +210,7 @@ sub setOptions {
     {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
     {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
+    {OPT=>"minid=i",  VAR=>\$minid, DEFAULT=>95, DESC=>"Minumum identity to report as ? allele"},
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
   );
 
