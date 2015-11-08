@@ -1,4 +1,4 @@
-Genus	Species	Scheme
+#Genus	Species	Scheme
 Acinetobacter	baumannii	abaumannii
 #Acinetobacter	baumannii	abaumannii_2
 Achromobacter		achromobacter
@@ -16,7 +16,7 @@ Bacillus	licheniformis	blicheniformis
 Bordetella	pertussis	bordetella
 Brachyspira	pilosicoli	bpilosicoli
 Burkholderia 	pseudomallei	bpseudomallei
-Brachyspira	brachyspira	brachyspira
+Brachyspira		brachyspira
 Candida	albicans	calbicans
 Campylobacter	jejuni	campylobacter
 Campylobacter	coli	campylobacter
@@ -29,7 +29,7 @@ Corynebacterium	diphtheriae	cdiphtheriae
 Campylobacter	fetus	cfetus
 Candida	glabrata	cglabrata
 Campylobacter	helveticus	chelveticus
-chlamydiales	chlamydiales	chlamydiales
+Chlamydia		chlamydiales
 Campylobacter	hyointestinalis	chyointestinalis
 Campylobacter	insulaenigrae	cinsulaenigrae
 Candida	krusei	ckrusei
@@ -37,7 +37,7 @@ Campylobacter	lanienae	clanienae
 Campylobacter	lari	clari
 Cryptococcus	neoformans	cneoformans
 Cronobacter		cronobacter
-Clostridium	csepticum	csepticum
+Clostridium	septicum	csepticum
 Clonorchis	sinensis	csinensis
 Campylobacter	sputorum	csputorum
 Candida	tropicalis	ctropicalis
@@ -45,7 +45,7 @@ Campylobacter	upsaliensis	cupsaliensis
 Enterobacter	cloacae	ecloacae
 Escherichia 		ecoli
 Shigella		ecoli
-#ecoli_2	ecoli_2	ecoli_2
+#Escherichia		ecoli_2
 Enterococcus 	faecalis	efaecalis
 Enterococcus 	faecium	efaecium
 Flavobacterium	psychrophilum	fpsychrophilum
@@ -57,9 +57,9 @@ Haematopinus	suis	hsuis
 Klebsiella	oxytoca	koxytoca
 Klebsiella	pneumoniae	kpneumoniae
 Lactobacillus	casei	lcasei
-Legionella	legionella	legionella
-Leptospira	leptospira	leptospira
-#leptospira_2	leptospira_2	leptospira_2
+Legionella		legionella
+Leptospira		leptospira
+#leptospira_2		leptospira_2
 Listeria 	monocytogenes	lmonocytogenes
 Lactobacillus	salivarius	lsalivarius
 Mycobacterium	abscessus	mabscessus
@@ -75,7 +75,7 @@ Pseudomonas 	aeruginosa	paeruginosa
 Pantoea	agglomerans	pagglomerans
 Pseudomonas 	fluorescens	pfluorescens
 Propionibacterium	freudenreichii	pfreudenreichii
-Porphrymonas 	gingivalis	pgingivalis
+Porphyromonas 	gingivalis	pgingivalis
 Pasteurella	multocida	pmultocida_multihost
 #pmultocida_rirdc	pmultocida_rirdc	pmultocida_rirdc
 Pediococcus	pentosaceus	ppentosaceus
@@ -95,9 +95,9 @@ Staphylococcus	pseudintermedius	spseudintermedius
 Streptococcus	pyogenes	spyogenes
 Streptococcus	suis	ssuis
 Streptococcus	thermophilus	sthermophilus
-Streptomyces	streptomyces	streptomyces
+Streptomyces		streptomyces
 Streptococcus	uberis	suberis
-Streptococcus	zooepidemicus	szooepidemicus
+Streptococcus	equi	szooepidemicus
 Taylorella		taylorella
 Vibrio	cholerae	vcholerae
 Vibrio		vibrio
@@ -106,6 +106,6 @@ Vibrio	tapetis	vtapetis
 Vibrio	vulnificus	vvulnificus
 Wolbachia		wolbachia
 Xylella	fastidiosa	xfastidiosa
-Yersinia	yersinia	yersinia
+Yersinia		yersinia
 Yersinia	pseudotuberculosis	ypseudotuberculosis
 Yersinia	ruckeri	yruckeri
