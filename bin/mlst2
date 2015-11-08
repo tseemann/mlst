@@ -1,8 +1,5 @@
 #!/usr/bin/env perl
-
-use warnings;
 use strict;
-use File::Temp qw(tempdir);
 use File::Spec;
 use Data::Dumper;
 use FindBin;
@@ -53,9 +50,6 @@ if ($list or $longlist) {
   exit(0);
 }
 
-#$scheme or die "Please specify a --scheme. Use --list or --longlist to see available schemes.";
-#die "Invalid scheme: $scheme" unless ( grep { $_ eq $scheme } @sc );
-
 die "Please provide some FASTA files to determine the MLST of" unless @ARGV;
 
 #..............................................................................
@@ -87,18 +81,20 @@ sub find_mlst {
 #  my $cmd = "$blastn -query <($zcat \Q$fname\E) -db \Q$blastdb\E "
   my $cmd = "$blastn -query \Q$fname\E -db \Q$blastdb\E "
            ." -evalue 1E-20 -num_threads 1 -culling_limit 1 "
-           ." -ungapped -perc_identity 100 -outfmt '6 sseqid slen length'";
+           ." -ungapped -perc_identity 95 -outfmt '6 sseqid slen length nident sseq'";
   print STDERR "Running: $cmd\n" if $verbose;
   my @hit = qx($cmd);
   my %res;
   foreach (@hit) {
     chomp;
-    my($name, $hlen, $alen) = split m/\t/;
-    next unless $hlen == $alen;  # need full length hits
-    $name =~ m/^(\w+)\.(\w+)[_-](\d+)$/ or die "Bad allele: $name";
-    my($scheme,$gene,$num) = ($1,$2,$3);
-    print STDERR "$scheme $gene $num [$name]\n" if $verbose;
-    $res{$scheme}{$gene} = $num;
+    print STDERR "HIT> $_\n" if $verbose;
+    my($name, $hlen, $alen, $nident, $sseq) = split m/\t/;
+    if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
+      $name =~ m/^(\w+)\.(\w+)[_-](\d+)$/ or die "Bad allele: $name";
+      my($scheme,$gene,$num) = ($1,$2,$3);
+      print STDERR "$scheme $gene $num [$name]\n" if $verbose;
+      $res{$scheme}{$gene} = $num;
+    }
   }
   
   print STDERR Dumper(\%res) if $verbose;
@@ -106,6 +102,8 @@ sub find_mlst {
   # can get multiple schemes
   my @sig;
   my $sc;
+  # choose the scheme with the most matched allelles? 
+  # but 6/6 is better than 6/7 ?
   for my $scheme (sort { scalar(keys($res{$b})) <=> scalar(keys($res{$a})) } keys %res) {
     $sc = load_scheme($scheme);
     @sig = ();
@@ -113,9 +111,16 @@ sub find_mlst {
       push @sig, $res{$scheme}{$g} || '-';
     }
 #    print Dumper($st);
+    last;
   }
-  my $sig = join($SEP, @sig);
-  return ( $sc->{SCHEME}, $sc->{TYPE}{$sig}, $sig );
+  print STDERR "RESULT> @sig\n" if $verbose;
+  if (@sig) {
+    my $sig = join($SEP, @sig);
+    return ( $sc->{SCHEME}, $sc->{TYPE}{$sig}, $sig );
+  }
+  else {
+    return ( 'none', '-' );
+  }
 }
 
 #----------------------------------------------------------------------
@@ -145,9 +150,6 @@ sub scheme_alleles {
 sub load_scheme {
   my($scheme) = @_;
   my %st;
-#  $st{TMPDIR} = tempdir("mlst-XXXXXX", DIR=>=>File::Spec->tmpdir(), CLEANUP=>1);
-#  print STDERR "Temp dir: $st{TMPDIR}\n" if $verbose;
-#  $st{FASTA} = $st{TMPDIR}."/genes.fasta";
   $st{SCHEME} = $scheme;
   open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
   my @gene;
@@ -169,7 +171,7 @@ sub load_scheme {
 #  for my $gene (@gene) {
 #    system("cat '$datadir/$scheme/$gene.tfa' >> '$st{FASTA}'");
 #  }
-  printf STDERR "Sequence types: %d\n", scalar keys %{$st{TYPE}} if $verbose;
+  printf STDERR "load_scheme($scheme): found %d types\n", scalar keys %{$st{TYPE}} if $verbose;
   return \%st;
 }
 
@@ -182,8 +184,8 @@ sub setOptions {
   @Options = (
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
     {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output"},
-    {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../blastdb/mlst.fa", DESC=>"BLAST database"},
-    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db", DESC=>"PubMLST data"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
     {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
 #    {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
