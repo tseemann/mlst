@@ -97,28 +97,35 @@ sub find_mlst {
   my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=$minid -noTrimA /dev/stdout 2> /dev/null";
   print STDERR "Running: $cmd\n" if $verbose;
   open PSL, '-|', "$cmd | sort -k1nr";
-  
+   
+#  my %best_frac = (map { ($_ => 0) } @{$st->{GENES}});
+  my @hit;
   my %match;
   while (<PSL>) {
     # PSL format: http://asia.ensembl.org/info/website/upload/psl.html
     next unless m/^\d+/;
     chomp;
-    my @x = split m/\t/;
-#    print STDERR "### @x" if $verbose;
-#    if ($x[0] == $x[14]) {   # does 'matches' == 'tSize' ?
-      # this can't work because genes have -/_ as sep AND in names sometimes
-      # my($g,$n) = split m/-/, $x[13];
-      $x[13] =~ m/^(.+?).(\d+)$/ or die "can't parse gene: $x[13]";
-      my($g,$n) = ($1,$2);
-      my $symbol = ($x[0] == $x[14] ? $n : "$NOVEL$n");
-      $match{$g} ||= $symbol;
-      print STDERR "MATCH $symbol $x[13] | @x\n" if $debug;
-#    }
+    my @x = split ' ';  # fields are SPACE separated?
+    # 13 tName - Target sequence name
+    $x[13] =~ m/^(.+?).(\d+)$/ or die "can't parse gene: $x[13]"; 
+    my($g,$n) = ($1,$2);
+    # 0  matches - Number of matching bases that aren't repeats.
+    # 14 tSize - Target sequence size.
+    my $frac = $x[0] / $x[14];
+    my $symbol = $x[0]==$x[14] ? "$n" : "$NOVEL$n";
+    push @hit, [ $g, $symbol, $frac ];
+    print STDERR "### $g-$n $symbol $frac | @x\n" if $debug;
   }
   close PSL;
   
+  # sort by $frac
+  @hit = reverse sort { $a->[2] <=> $b->[2] } @hit;
+  for my $hit (@hit) {
+    $match{ $hit->[0] } ||= $hit->[1];  # keep best $frac
+  }
+  
   my $sig = join( '/', map { $match{$_} || $NONE } @{$st->{GENES}} );
-#  print STDERR "@{$st->{GENES}} => $sig\n";
+  print STDERR "Determined MLST: $scheme | @{$st->{GENES}} | $sig\n";
   return ($st->{TYPE}{$sig} || $NONE, $sig);
 }
 
@@ -234,3 +241,31 @@ sub usage {
 }
  
 #----------------------------------------------------------------------
+
+__DATA__
+
+http://asia.ensembl.org/info/website/upload/psl.html
+PSL File Format - Definition and supported options
+Fields are space-separated, and all 21 are required.
+
+ 0  matches - Number of matching bases that aren't repeats.
+ 1 misMatches - Number of bases that don't match.
+ 2 repMatches - Number of matching bases that are part of repeats.
+ 3 nCount - Number of 'N' bases.
+ 4 qNumInsert - Number of inserts in query.
+ 5 qBaseInsert - Number of bases inserted into query.
+ 6 tNumInsert - Number of inserts in target.
+ 7 tBaseInsert - Number of bases inserted into target.
+ 8 strand - defined as + (forward) or - (reverse) for query strand.
+ 9 qName - Query sequence name.
+10 qSize - Query sequence size.
+11 qStart - Alignment start position in query.
+12 qEnd - Alignment end position in query.
+13 tName - Target sequence name.
+14 tSize - Target sequence size.
+15 tStart - Alignment start position in query.
+16 tEnd - Alignment end position in query.
+17 blockCount - Number of blocks in the alignment.
+18 blockSizes - Comma-separated list of sizes of each block.
+19 qStarts - Comma-separated list of start position of each block in query.
+20 tStarts - Comma-separated list of start position of each block in target.
