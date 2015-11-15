@@ -68,7 +68,7 @@ for my $fname (@ARGV)
 sub find_mlst {
   my($fname) = @_;
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E"
-           ." -ungapped -dust no -evalue 1E-9 -num_threads $threads -culling_limit 3"
+           ." -ungapped -dust no -evalue 1E-9 -num_threads $threads"
            ." -perc_identity $minid -outfmt '6 sseqid slen length nident'";
   msg("Running: $cmd") if $verbose;
 
