@@ -13,6 +13,7 @@ use MLST::Requirements qw(require_exe);
 #..............................................................................
 # Globals
 
+my $VERSION = "1.4-dev";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -112,6 +113,14 @@ sub find_mlst {
 }
 
 #----------------------------------------------------------------------
+
+sub show_version {
+  my(undef,undef,$exe) = File::Spec->splitpath($0);
+  print "$exe $VERSION\n";
+  exit(0);
+}
+
+#----------------------------------------------------------------------
 # Option setting routines
 
 sub setOptions {
@@ -120,6 +129,7 @@ sub setOptions {
   @Options = (
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
     {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output to"},
+    {OPT=>"version!",  VAR=>\&show_version, ESC=>"Print version and exit"},
     {OPT=>"quiet!",  VAR=>\$quiet, DEFAULT=>0, DESC=>"Quiet - no stderr output"},
     {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
     {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
