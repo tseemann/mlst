@@ -56,8 +56,8 @@ for my $fname (@ARGV)
 {
   msg("Scanning: $fname");
   my($scheme, $ST, $sig) = find_mlst($fname);
-  my @gene = @{ $scheme{$scheme}->genes };
-  my @code = split m{$SEP}, $sig ;
+  my @gene = $scheme eq '-' ? () : @{ $scheme{$scheme}->genes };
+  my @code = $scheme eq '-' ? () : split m{$SEP}, $sig ;
   my @allele = pairwise { "$a($b)" } @gene, @code;
   (undef,undef,$fname) = File::Spec->splitpath($fname) if $nopath;
   print join($OUTSEP, $fname, $scheme, $ST, @allele),"\n";
