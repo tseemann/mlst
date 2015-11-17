@@ -3,12 +3,14 @@ use strict;
 use File::Spec;
 use Data::Dumper;
 use List::MoreUtils qw(pairwise);
+use File::Temp qw(tempfile);
 use FindBin;
 use lib "$FindBin::Bin/../perl5";
 use MLST::PubMLST;
 use MLST::Scheme;
 use MLST::Logger qw(err msg);
 use MLST::Requirements qw(require_exe);
+use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 
 #..............................................................................
 # Globals
@@ -52,16 +54,39 @@ require_exe("blastn");
 
 #..............................................................................
 # Output results
+ 
 
-for my $fname (@ARGV) 
+for my $argv (@ARGV) 
 {
-  msg("Scanning: $fname");
-  my($scheme, $ST, $sig) = find_mlst($fname);
+  my @temp;
+  my $infile = $argv;
+  
+  if ( is_gzipped($argv) ) {
+    (undef,$infile) = tempfile(UNLINK=>1);
+    msg("Decompressing: $argv'");
+    gunzip_file($argv, $infile);
+    push @temp, $infile;
+  }
+  if ( is_genbank($infile) ) {
+    my $orig = $infile;
+    (undef,$infile) = tempfile(UNLINK=>1);
+    msg("Converting to FASTA: $argv");
+    genbank_to_fasta($orig, $infile);
+    push @temp, $infile;
+  }
+
+  msg("Scanning: $argv [$infile]");  
+  my($scheme, $ST, $sig) = find_mlst($infile);
   my @gene = $scheme eq '-' ? () : @{ $scheme{$scheme}->genes };
   my @code = $scheme eq '-' ? () : split m{$SEP}, $sig ;
   my @allele = pairwise { "$a($b)" } @gene, @code;
-  (undef,undef,$fname) = File::Spec->splitpath($fname) if $nopath;
-  print join($OUTSEP, $fname, $scheme, $ST, @allele),"\n";
+
+  (undef,undef,$argv) = File::Spec->splitpath($argv) if $nopath;
+  print join($OUTSEP, $argv, $scheme, $ST, @allele),"\n";
+  if (@temp) {
+    msg("Deleting temporary files: @temp");
+    unlink @temp;
+  }
 }
 
 #----------------------------------------------------------------------
@@ -152,7 +177,7 @@ sub setOptions {
 }
 
 sub usage {
-  print "Usage: $0 [options] <contigs.fasta> ... \n";
+  print "Usage: $0 [options] <contigs.fa[.gz] | file.gbk[.gz]> ... \n";
   foreach (@Options) {
     printf "  --%-13s %s%s.\n",$_->{OPT},$_->{DESC},
            defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
