@@ -154,7 +154,7 @@ sub setOptions {
   @Options = (
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
     {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output to"},
-    {OPT=>"version!",  VAR=>\&show_version, ESC=>"Print version and exit"},
+    {OPT=>"version!",  VAR=>\&show_version, DESC=>"Print version and exit"},
     {OPT=>"quiet!",  VAR=>\$quiet, DEFAULT=>0, DESC=>"Quiet - no stderr output"},
     {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
     {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
