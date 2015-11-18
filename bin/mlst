@@ -57,7 +57,11 @@ require_exe("blastn");
 
 #..............................................................................
 # Output results
- 
+
+# output the header for the old style syntax 
+if ($scheme) {
+  print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
+}
 
 for my $argv (@ARGV) 
 {
@@ -79,6 +83,7 @@ for my $argv (@ARGV)
   }
 
   msg("Scanning: $argv [$infile]");  
+
   my($sch, $ST, $sig) = find_mlst($infile);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
   
