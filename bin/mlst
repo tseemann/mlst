@@ -1,203 +1,167 @@
 #!/usr/bin/env perl
-
-use warnings;
 use strict;
-use File::Temp qw(tempdir);
 use File::Spec;
 use Data::Dumper;
+use List::MoreUtils qw(pairwise);
+use File::Temp qw(tempfile);
 use FindBin;
+use lib "$FindBin::Bin/../perl5";
+use MLST::PubMLST;
+use MLST::Scheme;
+use MLST::Logger qw(err msg);
+use MLST::Requirements qw(require_exe);
+use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 
 #..............................................................................
 # Globals
 
 my $VERSION = "1.4-dev";
-
-my $NONE = '-';
-my $NOVEL = '~';
 my $SEP = '/';
 my $OUTSEP = "\t";
 
 #..............................................................................
 # Command line options
 
-my(@Options, $verbose, $debug, $datadir, $minid,
-             $list, $longlist, $scheme,  
-             $noheader, $csv, $nopath);
+my(@Options, $verbose, $quiet, $blastdb, $datadir, $threads,
+             $list, $longlist, $scheme, $minid, $csv, $nopath);
 setOptions();
 
 #..............................................................................
 # Option parsing
 
+MLST::Logger->quiet($quiet);
+
 $OUTSEP = ',' if $csv;  # default is tab
 
-# check if 'blat' installed
-my($blat)=qx(blat 2> /dev/null);
-$blat && $blat =~ m/blat/ or die "Could not run 'blat'. Please install it.";
+my $pubmlst = MLST::PubMLST->new( dir => $datadir );
+my %scheme = (map { ($_->name => $_) } @{$pubmlst->schemes});
 
-# check if 'gzip' installed
-my $zcat='gzip -d -c -f';
-my($gzip)=qx(gzip --version 2>&1);
-if (!$gzip or $gzip !~ m/gzip/) {
-  print STDERR "WARNING: could not find 'gzip'. Compressed files can't be read. Pressing on.\n";
-  $zcat='cat';  # if they don't have this things are really messed up!
-}
+# in case user is forcing a scheme on us (legacy mode)
+$scheme && ! exists $scheme{$scheme} and err("Invalid --scheme '$scheme'. Check using --list");
 
-my @sc = schemes();
-
-if ($list) { 
-  print join( " ", @sc ), "\n";
-  exit(0);
-}
-
-if ($longlist) {
-  for my $sc (@sc) {
-    print join( $OUTSEP, $sc, scheme_alleles($sc) ), "\n";
+if ($list or $longlist) {
+  if ($list) { 
+    print join( " ", $pubmlst->names ), "\n";
+  }
+  elsif ($longlist) {
+    for my $s (@{ $pubmlst->schemes }) {
+      print join( $OUTSEP, $s->name, @{$s->genes} ), "\n";
+    }
   }
   exit(0);
 }
 
-$scheme or die "Please specify a --scheme. Use --list or --longlist to see available schemes.";
+@ARGV or err("Please provide some FASTA files to determine the MLST of");
 
-die "Invalid scheme: $scheme" unless ( grep { $_ eq $scheme } @sc );
-
-die "Please provide some FASTA files to determine the MLST of" unless @ARGV;
-
-#..............................................................................
-# Load MLST data set
-
-my $st = load_scheme($scheme) or die "Could not load MLST scheme: $scheme";
-#print STDERR Dumper($st) if $verbose;
+require_exe("blastn");
 
 #..............................................................................
 # Output results
+ 
 
-print join($OUTSEP, "FILE", "SCHEME", "ST", @{$st->{GENES}}), "\n" unless $noheader;
-for my $fname (@ARGV) {
-  my($mlst,$sig) = find_mlst($st, $fname);
-  if ($mlst) {
-    my @allele = split m{$SEP}, $sig ;
-    if ($nopath) {
-      (undef,undef,$fname) = File::Spec->splitpath($fname);
-    }
-    print join($OUTSEP, $fname, $st->{SCHEME}, $mlst, @allele),"\n";
+for my $argv (@ARGV) 
+{
+  my @temp;
+  my $infile = $argv;
+  
+  if ( is_gzipped($argv) ) {
+    (undef,$infile) = tempfile(UNLINK=>1);
+    msg("Decompressing: $argv'");
+    gunzip_file($argv, $infile);
+    push @temp, $infile;
+  }
+  if ( is_genbank($infile) ) {
+    my $orig = $infile;
+    (undef,$infile) = tempfile(UNLINK=>1);
+    msg("Converting to FASTA: $argv");
+    genbank_to_fasta($orig, $infile);
+    push @temp, $infile;
+  }
+
+  msg("Scanning: $argv [$infile]");  
+  my($sch, $ST, $sig) = find_mlst($infile);
+  $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
+  
+  (undef,undef,$argv) = File::Spec->splitpath($argv) if $nopath;
+  my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
+  
+  if ($scheme) {
+    # old style "one scheme" layout
+    print join($OUTSEP, $argv, $sch, $ST, @code),"\n";
+  } 
+  else {
+    # new style "autodetect" layout
+    my @gene = $sch eq '-' ? () : @{ $scheme{$sch}->genes };
+    my @allele = pairwise { "$a($b)" } @gene, @code;
+    print join($OUTSEP, $argv, $sch, $ST, @allele),"\n";
+  }
+  
+  if (@temp) {
+    msg("Deleting temporary files: @temp");
+    unlink @temp;
   }
 }
 
 #----------------------------------------------------------------------
 
 sub find_mlst {
-  my($st, $fname) = @_;
+  my($fname) = @_;
+  my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
+           ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
+           ." -perc_identity $minid -outfmt '6 sseqid slen length nident'";
+  msg("Running: $cmd") if $verbose;
 
-  -r $fname or die "can not open file: $fname";
-  my $ref = $st->{TMPDIR}."/ref.fasta";  
-  # force decompress to stdout
-  print STDERR "Scanning: $fname\n";
-  system("$zcat '$fname' > '$ref'"); 
-
-  my $cmd = "blat '$st->{FASTA}' '$ref' -minIdentity=$minid -noTrimA /dev/stdout 2> /dev/null";
-  print STDERR "Running: $cmd\n" if $verbose;
-  open PSL, '-|', "$cmd | sort -k1nr";
-   
-#  my %best_frac = (map { ($_ => 0) } @{$st->{GENES}});
-  my @hit;
-  my %match;
-  while (<PSL>) {
-    # PSL format: http://asia.ensembl.org/info/website/upload/psl.html
-    next unless m/^\d+/;
-    chomp;
-    my @x = split ' ';  # fields are SPACE separated?
-    # 13 tName - Target sequence name
-    $x[13] =~ m/^(.+?).(\d+)$/ or die "can't parse gene: $x[13]"; 
-    my($g,$n) = ($1,$2);
-    # 0  matches - Number of matching bases that aren't repeats.
-    # 14 tSize - Target sequence size.
-    my $frac = $x[0] / $x[14];
-    my $symbol = $x[0]==$x[14] ? "$n" : "$NOVEL$n";
-    push @hit, [ $g, $symbol, $frac ];
-    print STDERR "### $g-$n $symbol $frac | @x\n" if $debug;
-  }
-  close PSL;
+  my @hit = qx($cmd);
+  # FIXME: we should /sort/ the hits here in case logic below is dodgy?
   
-  # sort by $frac
-  @hit = reverse sort { $a->[2] <=> $b->[2] } @hit;
-  for my $hit (@hit) {
-    $match{ $hit->[0] } ||= $hit->[1];  # keep best $frac
-  }
-  
-  my $sig = join( '/', map { $match{$_} || $NONE } @{$st->{GENES}} );
-  print STDERR "Determined MLST: $scheme | @{$st->{GENES}} | $sig\n";
-  return ($st->{TYPE}{$sig} || $NONE, $sig);
-}
-
-#----------------------------------------------------------------------
-
-sub schemes {
-  # use special 'ls' options and syntax to only list DIRECTORIES
-#  my @s = qx(ls -d $datadir/*/);
-  my @s = qx(ls $datadir);
-  chomp @s;
-  return @s;
-}
-
-#----------------------------------------------------------------------
-
-sub scheme_alleles {
-  my($scheme) = @_;
-  open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
-  my $header = <TSV>;
-  chomp $header;
-  my @x = split m/\t/, $header;
-  # remove non-allele columns
-  while ($x[-1] =~ m/(complex|clade|species|lineage|^CC$)/i) {
-    pop(@x);
-  }
-#  pop(@x) if $x[-1] =~ m/species/;
-#  pop(@x) if $x[-1] =~ m/clonal_complex/;
-  return @x[1 .. $#x];
-}
-
-#----------------------------------------------------------------------
-
-sub load_scheme {
-  my($scheme) = @_;
-  my %st;
-  $st{TMPDIR} = tempdir("mlst-XXXXXX", DIR=>=>File::Spec->tmpdir(), CLEANUP=>1);
-  print STDERR "Temp dir: $st{TMPDIR}\n" if $verbose;
-  $st{FASTA} = $st{TMPDIR}."/genes.fasta";
-  $st{SCHEME} = $scheme;
-  open TSV, '<', "$datadir/$scheme/$scheme.txt" or die "Corrupt scheme: $scheme";
-  my @gene;
-  while (<TSV>) {
-    chomp;
-    my @x = split m/\t/;
-    if (@x < 2) {
-      print STDERR "Skipping bad line: $_\n" if $verbose;
+  my %res;
+  my $res_count=0;
+  foreach (@hit) {
+    next unless m/ ^ (\w+)\.(\w+)[_-](\d+) \t (\d+) \t (\d+) \t (\d+) $ /x;
+    my($sch, $gene, $num, $hlen, $alen, $nident) = ($1, $2, $3, $4, $5, $6);
+    $res_count++;
+    next unless $nident/$hlen > $minid/100 ;
+    msg("[$res_count] $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen") if $verbose;
+    if ($scheme and $sch ne $scheme) {
+      msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
       next;
     }
-    if ($. == 1) {
-      @gene = grep { $_ !~ m/(^ST|complex|clade|species|lineage|^CC)/i  } @x;
-      $st{GENES} = [ @gene ];
-      print "Allelles: @gene\n" if $verbose;
+    if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
+      if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/~/) {
+        msg("WARNING: found addtional exact allele match $sch.$gene-$num");
+        $res{$sch}{$gene} .= ",$num";
+      }
+      else {
+        $res{$sch}{$gene} = "$num";
+      }
     }
     else {
-      my $sig = join( $SEP, @x[1..@gene] );
-      $st{TYPE}{$sig} = $x[0];
+      $res{$sch}{$gene} ||= "~$num";
     }
   }
-  close TSV;
-  
-  for my $gene (@gene) {
-    system("cat '$datadir/$scheme/$gene.tfa' >> '$st{FASTA}'");
+
+  # find the signature with the fewest missing/approximate alleles  
+  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-')x7) ] );  # sentinel
+  for my $name (keys %res) {
+    my $sig = $scheme{$name}->signature_of($res{$name});
+    my $ST = $scheme{$name}->sequence_type($sig);
+    push @sig, [ $name, $ST, $sig ];
   }
-  printf STDERR "Sequence types: %d\n", scalar keys %{$st{TYPE}} if $verbose;
-  return \%st;
+  @sig = sort { 
+    ($a->[2] =~ tr/-~/-~/) <=> ($b->[2] =~ tr/-~/-~/)    # choose less missings
+    or $a->[1] <=> $b->[1]   # if same, prefer scheme with 'older' number
+  } @sig;
+  print STDERR Dumper(@sig) if $verbose;
+  # take the top scorer
+  return @{ $sig[0] };
 }
 
 #----------------------------------------------------------------------
 
-sub version {
-  print "$FindBin::RealScript $VERSION\n";
-  exit;
+sub show_version {
+  my(undef,undef,$exe) = File::Spec->splitpath($0);
+  print "$exe $VERSION\n";
+  exit(0);
 }
 
 #----------------------------------------------------------------------
@@ -208,16 +172,17 @@ sub setOptions {
 
   @Options = (
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
-    {OPT=>"debug!",  VAR=>\$debug, DEFAULT=>0, DESC=>"Debugging output"},
-    {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output"},
-    {OPT=>"version!",  VAR=>\&version, DESC=>"Print version and exit"},
-    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"Downloaded PubMLST data"},
+    {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output to"},
+    {OPT=>"version!",  VAR=>\&show_version, DESC=>"Print version and exit"},
+    {OPT=>"quiet!",  VAR=>\$quiet, DEFAULT=>0, DESC=>"Quiet - no stderr output"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
+    {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
     {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Use this typing scheme"},
-    {OPT=>"noheader!",  VAR=>\$noheader, DEFAULT=>0, DESC=>"Suppress column header row"},
+    {OPT=>"minid=f",  VAR=>\$minid, DEFAULT=>95, DESC=>"DNA %identity to consider 'similar'"},
+    {OPT=>"threads=i",  VAR=>\$threads, DEFAULT=>1, DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
-    {OPT=>"minid=i",  VAR=>\$minid, DEFAULT=>95, DESC=>"Minumum identity to report as ? allele"},
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
   );
 
@@ -232,7 +197,7 @@ sub setOptions {
 }
 
 sub usage {
-  print "Usage: $0 [options] --scheme XXX <contigs.fasta> ... \n";
+  print "Usage: $0 [options] <contigs.fa[.gz] | file.gbk[.gz]> ... \n";
   foreach (@Options) {
     printf "  --%-13s %s%s.\n",$_->{OPT},$_->{DESC},
            defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
@@ -241,31 +206,3 @@ sub usage {
 }
  
 #----------------------------------------------------------------------
-
-__DATA__
-
-http://asia.ensembl.org/info/website/upload/psl.html
-PSL File Format - Definition and supported options
-Fields are space-separated, and all 21 are required.
-
- 0  matches - Number of matching bases that aren't repeats.
- 1 misMatches - Number of bases that don't match.
- 2 repMatches - Number of matching bases that are part of repeats.
- 3 nCount - Number of 'N' bases.
- 4 qNumInsert - Number of inserts in query.
- 5 qBaseInsert - Number of bases inserted into query.
- 6 tNumInsert - Number of inserts in target.
- 7 tBaseInsert - Number of bases inserted into target.
- 8 strand - defined as + (forward) or - (reverse) for query strand.
- 9 qName - Query sequence name.
-10 qSize - Query sequence size.
-11 qStart - Alignment start position in query.
-12 qEnd - Alignment end position in query.
-13 tName - Target sequence name.
-14 tSize - Target sequence size.
-15 tStart - Alignment start position in query.
-16 tEnd - Alignment end position in query.
-17 blockCount - Number of blocks in the alignment.
-18 blockSizes - Comma-separated list of sizes of each block.
-19 qStarts - Comma-separated list of start position of each block in query.
-20 tStarts - Comma-separated list of start position of each block in target.
