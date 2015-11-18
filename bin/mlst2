@@ -93,8 +93,8 @@ for my $argv (@ARGV)
 
 sub find_mlst {
   my($fname) = @_;
-  my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E"
-           ." -ungapped -dust no -evalue 1E-9 -num_threads $threads"
+  my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
+           ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
            ." -perc_identity $minid -outfmt '6 sseqid slen length nident'";
   msg("Running: $cmd") if $verbose;
 
@@ -102,11 +102,13 @@ sub find_mlst {
   # FIXME: we should /sort/ the hits here in case logic below is dodgy
   
   my %res;
+  my $res_count=0;
   foreach (@hit) {
     next unless m/ ^ (\w+)\.(\w+)[_-](\d+) \t (\d+) \t (\d+) \t (\d+) $ /x;
     my($scheme, $gene, $num, $hlen, $alen, $nident) = ($1, $2, $3, $4, $5, $6);
+    $res_count++;
     next unless $nident/$hlen > $minid/100 ;
-    msg("$scheme $gene $num | id=$nident/$alen | cov=$alen/$hlen") if $verbose;
+    msg("[$res_count] $scheme $gene $num | id=$nident/$alen | cov=$alen/$hlen") if $verbose;
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
       if (exists $res{$scheme}{$gene} and $res{$scheme}{$gene} !~ m/~/) {
         msg("WARNING: found addtional exact allele match $scheme.$gene-$num");
@@ -160,7 +162,7 @@ sub setOptions {
     {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
     {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"minid=f",  VAR=>\$minid, DEFAULT=>90, DESC=>"DNA %identity to consider 'similar'"},
+    {OPT=>"minid=f",  VAR=>\$minid, DEFAULT=>95, DESC=>"DNA %identity to consider 'similar'"},
     {OPT=>"threads=i",  VAR=>\$threads, DEFAULT=>1, DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
