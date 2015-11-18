@@ -22,7 +22,7 @@ my $OUTSEP = "\t";
 #..............................................................................
 # Command line options
 
-my(@Options, $verbose, $quiet, $blastdb, $datadir, $threads,
+my(@Options, $debug, $quiet, $blastdb, $datadir, $threads,
              $list, $longlist, $scheme, $minid, $csv, $nopath);
 setOptions();
 
@@ -109,7 +109,7 @@ sub find_mlst {
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
            ." -perc_identity $minid -outfmt '6 sseqid slen length nident'";
-  msg("Running: $cmd") if $verbose;
+  msg("Running: $cmd") if $debug;
 
   my @hit = qx($cmd);
   # FIXME: we should /sort/ the hits here in case logic below is dodgy?
@@ -121,7 +121,7 @@ sub find_mlst {
     my($sch, $gene, $num, $hlen, $alen, $nident) = ($1, $2, $3, $4, $5, $6);
     $res_count++;
     next unless $nident/$hlen > $minid/100 ;
-    msg("[$res_count] $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen") if $verbose;
+    msg("[$res_count] $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen") if $debug;
     if ($scheme and $sch ne $scheme) {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
       next;
@@ -151,7 +151,7 @@ sub find_mlst {
     ($a->[2] =~ tr/-~/-~/) <=> ($b->[2] =~ tr/-~/-~/)    # choose less missings
     or $a->[1] <=> $b->[1]   # if same, prefer scheme with 'older' number
   } @sig;
-  print STDERR Dumper(@sig) if $verbose;
+  print STDERR Dumper(@sig) if $debug;
   # take the top scorer
   return @{ $sig[0] };
 }
@@ -172,7 +172,7 @@ sub setOptions {
 
   @Options = (
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
-    {OPT=>"verbose!",  VAR=>\$verbose, DEFAULT=>0, DESC=>"Verbose output to"},
+    {OPT=>"debug!",  VAR=>\$debug, DEFAULT=>0, DESC=>"Verbose debug output to stderr"},
     {OPT=>"version!",  VAR=>\&show_version, DESC=>"Print version and exit"},
     {OPT=>"quiet!",  VAR=>\$quiet, DEFAULT=>0, DESC=>"Quiet - no stderr output"},
     {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
