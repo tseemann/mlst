@@ -1,8 +1,6 @@
 #mlst
 
-Scan contig files against PubMLST typing schemes.
-
-_By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)_
+Scan contig files against PubMLST typing schemes - Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)
 
 ##Quick Start
 
@@ -15,15 +13,26 @@ _By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [b
 If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
     brew tap homebrew/science
+    brew update
     brew install mlst
+
+Or if you already have the old version installed:
+
+    brew update
+    brew upgrade mlst
 
 ###Source
 
     % cd $HOME
     % git clone https://github.com/tseemann/mlst.git
     
-The only external dependency is [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/). 
-Most bioinformatics computers should have `blastn` already installed.
+###Dependencies
+* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
+  * You probably have `blastn` already installed already.
+* Perl modules *Moo* and *List::MoreUtils*
+  * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl`
+  * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils`
+  * Most Unix: `sudo cpan Moo List::MoreUtils`
 
 ##Usage
 
@@ -60,7 +69,7 @@ it will print a fixed tabular output with a heading containing allele names spec
     NM099.fa  neisseria  1287  2     3    4    17       8     4    6
     NM110.fa  neisseria  11    2     3    4     3       8     4    6
 
-###Available schemes
+##Available schemes
 
 To see which PubMLST schemes are supported:
 
