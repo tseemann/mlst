@@ -1,8 +1,6 @@
 #mlst
 
-Scan contig files against PubMLST typing schemes.
-
-_By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)_
+Scan contig files against PubMLST typing schemes - Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)
 
 ##Quick Start
 
@@ -28,8 +26,13 @@ Or if you already have the old version installed:
     % cd $HOME
     % git clone https://github.com/tseemann/mlst.git
     
-The only external dependency is [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/). 
-Most bioinformatics computers should have `blastn` already installed.
+###Dependencies
+* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
+  * You probably have `blastn` already installed already.
+* Perl modules *Moo* and *List::MoreUtils*
+  * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl`
+  * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils`
+  * Most Unix: `sudo cpan Moo List::MoreUtils`
 
 ##Usage
 
