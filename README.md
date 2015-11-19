@@ -69,7 +69,7 @@ it will print a fixed tabular output with a heading containing allele names spec
     NM099.fa  neisseria  1287  2     3    4    17       8     4    6
     NM110.fa  neisseria  11    2     3    4     3       8     4    6
 
-###Available schemes
+##Available schemes
 
 To see which PubMLST schemes are supported:
 
