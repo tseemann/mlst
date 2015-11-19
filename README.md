@@ -27,8 +27,10 @@ Or if you already have the old version installed:
     % git clone https://github.com/tseemann/mlst.git
     
 ###Dependencies
+
 * [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
   * You probably have `blastn` already installed already.
+  * If you use Brew, this will install the `blast` package for you.
 * Perl modules *Moo* and *List::MoreUtils*
   * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl`
   * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils`
@@ -36,7 +38,7 @@ Or if you already have the old version installed:
 
 ##Usage
 
-Simply just give it a contigs file!
+Simply just give it a genome file in FASTA or GenBank file!
 
     % mlst contigs.fa
     contigs.fa  neisseria  11149  abcZ(672)  adk(3)  aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
