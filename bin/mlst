@@ -5,7 +5,7 @@ use Data::Dumper;
 use List::MoreUtils qw(pairwise);
 use File::Temp qw(tempfile);
 use FindBin;
-use lib "$FindBin::Bin/../perl5";
+use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
 use MLST::Scheme;
 use MLST::Logger qw(err msg);
