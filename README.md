@@ -6,11 +6,8 @@ _By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [b
 
 ##Quick Start
 
-```
-% mlst --scheme efaecium VRE_Aus0085.fasta
-FILE              SCHEME    ST  AtpA Ddl Gdh PurK Gyd PstS Adk
-VRE_Aus0085.fasta efaecium	203 15   1   1   1    1   20   1
-```
+    % mlst contigs.fa
+    contigs.fa  neisseria  11149  abcZ(672)  adk(3)  aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
 
 ##Installation
 
@@ -28,7 +25,7 @@ If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/l
 The only external dependency is [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/). 
 Most bioinformatics computers should have `blastn` already installed.
 
-##Quick Start
+##Usage
 
 Simply just give it a contigs file!
 
