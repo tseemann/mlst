@@ -15,7 +15,13 @@ _By Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [b
 If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
     brew tap homebrew/science
+    brew update
     brew install mlst
+
+Or if you already have the old version installed:
+
+    brew update
+    brew upgrade mlst
 
 ###Source
 
