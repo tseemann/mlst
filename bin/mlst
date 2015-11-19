@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.0";
+my $VERSION = "2.1";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -132,7 +132,7 @@ sub find_mlst {
       next;
     }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
-      if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/~/) {
+      if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/[~?]/) {
         msg("WARNING: found addtional exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} .= ",$num";
       }
