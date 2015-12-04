@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-MLSTDIR="$DIR/../db"
-BLASTDIR="$DIR/../blastdb"
+MLSTDIR="$DIR/../db/pubmlst"
+BLASTDIR="$DIR/../db/blast"
 BLASTFILE="$BLASTDIR/mlst.fa"
 
 mkdir -p "$BLASTDIR"
