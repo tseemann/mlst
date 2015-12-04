@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.1";
+my $VERSION = "2.2-dev";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -113,7 +113,8 @@ sub find_mlst {
   my($fname) = @_;
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
-           ." -perc_identity $minid -outfmt '6 sseqid slen length nident'";
+           ." -perc_identity $minid"
+           ." -outfmt '6 sseqid slen length nident qseqid qstart qend'";
   msg("Running: $cmd") if $debug;
 
   my @hit = qx($cmd);
@@ -122,10 +123,12 @@ sub find_mlst {
   my %res;
   my $res_count=0;
   foreach (@hit) {
-    next unless m/ ^ (\w+)\.(\w+)[_-](\d+) \t (\d+) \t (\d+) \t (\d+) $ /x;
-    my($sch, $gene, $num, $hlen, $alen, $nident) = ($1, $2, $3, $4, $5, $6);
+    next unless m/ ^ (\w+)\.(\w+)[_-](\d+) 
+                   \t (\d+) \t (\d+) \t (\d+) 
+                   \t (\S+) \t (\d+) \t (\d+) /x;
+    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend) = ($1, $2, $3, $4, $5, $6, $7, $8, $9);
     $res_count++;
-    msg("[$res_count] $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen") if $debug;
+    print STDERR "[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen\n" if $debug;
 #    next unless $nident/$hlen > $minid/100 ;
     if ($scheme and $sch ne $scheme) {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
@@ -137,6 +140,7 @@ sub find_mlst {
         $res{$sch}{$gene} .= ",$num";
       }
       else {
+        msg("Found exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} = "$num";
       }
     }
