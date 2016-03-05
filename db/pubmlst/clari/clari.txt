@@ -27,3 +27,7 @@ ST	Cla_adk	Cla_atpA	Cla_glnA	Cla_glyA	Cla_pgi	Cla_pgm	Cla_tkt	clonal_complex
 26	5	65	1	1	1	1	37	
 27	4	4	1	1	1	55	33	
 28	2	4	1	1	1	1	33	
+29	58	69	55	55	65	56	39	
+30	60	68	56	56	67	58	41	
+31	59	66	19	16	64	59	40	
+32	61	67	54	54	66	57	38	

@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.4";
+my $VERSION = "2.5";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -23,7 +23,7 @@ my $OUTSEP = "\t";
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads,
-             $list, $longlist, $scheme, $minid, $csv, $nopath);
+             $list, $longlist, $scheme, $minid, $csv, $nopath, $novel);
 setOptions();
 
 #..............................................................................
@@ -35,6 +35,7 @@ $OUTSEP = ',' if $csv;  # default is tab
 
 my $pubmlst = MLST::PubMLST->new( dir => $datadir );
 my %scheme = (map { ($_->name => $_) } @{$pubmlst->schemes});
+my %novel;  # keep track of novel alleles 
 
 # in case user is forcing a scheme on us (legacy mode)
 $scheme && ! exists $scheme{$scheme} and err("Invalid --scheme '$scheme'. Check using --list");
@@ -107,6 +108,17 @@ for my $argv (@ARGV)
   }
 }
 
+if ($novel) {
+  my $newones = 0;
+  open FASTA, '>', $novel;
+  for my $seq (keys %novel) {
+    next unless $novel{$seq} =~ m/~/;
+    print FASTA ">", $novel{$seq}, "\n", $seq, "\n";
+    $newones++;
+  }
+  msg("Found $newones novel intact alleles, wrote them to $novel");
+}
+
 #----------------------------------------------------------------------
 
 sub find_mlst {
@@ -114,7 +126,7 @@ sub find_mlst {
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
            ." -perc_identity $minid"
-           ." -outfmt '6 sseqid slen length nident qseqid qstart qend'";
+           ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
   msg("Running: $cmd") if $debug;
 
   my @hit = qx($cmd);
@@ -122,13 +134,14 @@ sub find_mlst {
   
   my %res;
   my $res_count=0;
+
   foreach (@hit) {
     next unless m/ ^ (\w+)\.(\w+)[_-](\d+) 
                    \t (\d+) \t (\d+) \t (\d+) 
-                   \t (\S+) \t (\d+) \t (\d+) /x;
-    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend) = ($1, $2, $3, $4, $5, $6, $7, $8, $9);
+                   \t (\S+) \t (\d+) \t (\d+) \t (\S+) /x;
+    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
     $res_count++;
-    print STDERR "[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen\n" if $debug;
+    print STDERR "[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq\n" if $debug;
 #    next unless $nident/$hlen > $minid/100 ;
     if ($scheme and $sch ne $scheme) {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
@@ -143,10 +156,16 @@ sub find_mlst {
         msg("Found exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} = "$num";
       }
+      # force update of hash with our exact match (see below for inexact behavior
+      $novel{$qseq} = "$sch.$gene-$num $fname";
     }
-    else {
+    else { # either 100% length (with some SNPs) or partial coverage
       my $label = ($alen == $hlen) ? "~$num" : "${num}?";
       $res{$sch}{$gene} ||= $label;
+      if ($novel and $alen==$hlen) {
+        # only update hash if we haven't seen a good version yet
+        $novel{$qseq} ||= "$sch.$gene$label $fname"; 
+      }
     }
   }
 
@@ -162,8 +181,11 @@ sub find_mlst {
     or $a->[1] <=> $b->[1]   # if same, prefer scheme with 'older' number
   } @sig;
   print STDERR Dumper(@sig) if $debug;
+
   # take the top scorer
-  return @{ $sig[0] };
+  my @best = @{ $sig[0] };
+
+  return @best;
 }
 
 #----------------------------------------------------------------------
@@ -194,6 +216,7 @@ sub setOptions {
     {OPT=>"threads=i",  VAR=>\$threads, DEFAULT=>1, DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
+    {OPT=>"novel=s",  VAR=>\$novel, DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
   );
 
   &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();

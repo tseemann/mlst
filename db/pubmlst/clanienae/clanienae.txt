@@ -144,3 +144,5 @@ ST	Cln_aspA	Cln_atpA	Cln_glnA	Cln_gltA	Cln_glyA	Cln_pgm	Cln_tkt	clonal_complex
 143	79	38	77	31	70	74	42	
 144	80	34	78	67	52	75	91	
 145	81	30	39	49	84	59	83	
+146	31	14	16	14	18	76	17	
+147	33	22	24	20	30	77	30	
