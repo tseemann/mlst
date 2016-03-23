@@ -38,7 +38,7 @@ sub _build_genes {
   my $header = <$fh>;
   chomp $header;
   my @row = split m/\t/, $header;
-  return [ grep { ! m/^(ST|clonal_complex|species|CC|Lineage)$/ } @row ];
+  return [ grep { ! m/^(ST|clade|clonal_complex|species|CC|Lineage)$/ } @row ];
 }
 
 has genotypes => (
