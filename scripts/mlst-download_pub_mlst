@@ -6,7 +6,7 @@ OUTDIR=pubmlst
 mkdir -p "$OUTDIR"
 wget --no-clobber -P "$OUTDIR" http://pubmlst.org/data/dbases.xml 
 
-for URL in $(grep '<url>' dbases.xml); do
+for URL in $(grep '<url>' $OUTDIR/dbases.xml); do
 #  echo $URL
   URL=${URL//<url>}
   URL=${URL//<\/url>}
