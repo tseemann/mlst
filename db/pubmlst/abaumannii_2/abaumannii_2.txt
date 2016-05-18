@@ -828,3 +828,10 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 827	23	20	23	16	25	18	44		Acinetobacter pittii
 828	3	3	2	2	135	8	12		
 829	1	56	124	1	5	1	1		
+830	41	6	56	5	8	69	8		
+831	40	1	2	2	137	35	4		
+832	125	76	46	67	20	66	20		
+833	45	58	44	10	20	18	116		
+834	33	33	34	23	80	18	70		
+835	34	29	37	1	5	6	36		
+836	26	2	2	1	29	4	5		

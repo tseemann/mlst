@@ -381,5 +381,6 @@ ST	atpA	dnaE	dnaK	fusA	leuA	odhA	rpoB	clonal_complex
 380	48	44	88	1	60	1	6	
 381	49	4	9	53	3	5	13	
 382	50	2	89	6	3	3	2	
+383	2	2	90	4	18	53	45	
 395	4	1	20	4	3	16	2	
 402	5	4	4	2	3	3	2	
