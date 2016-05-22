@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.5";
+my $VERSION = "2.6";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -23,7 +23,7 @@ my $OUTSEP = "\t";
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads,
-             $list, $longlist, $scheme, $minid, $csv, $nopath, $novel);
+             $list, $longlist, $scheme, $minid, $mincov, $csv, $nopath, $novel);
 setOptions();
 
 #..............................................................................
@@ -141,8 +141,10 @@ sub find_mlst {
                    \t (\S+) \t (\d+) \t (\d+) \t (\S+) /x;
     my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
     $res_count++;
-    print STDERR "[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq\n" if $debug;
-#    next unless $nident/$hlen > $minid/100 ;
+    msg("[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq") if $debug;
+
+    next unless $nident/$hlen >= $mincov/100 ; # need min-cov to reach minid
+
     if ($scheme and $sch ne $scheme) {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
       next;
@@ -170,14 +172,21 @@ sub find_mlst {
   }
 
   # find the signature with the fewest missing/approximate alleles  
-  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-')x7) ] );  # sentinel
+  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-')x7), -666 ] );  # sentinel
+
   for my $name (keys %res) {
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
-    push @sig, [ $name, $ST, $sig ];
+    my $score = 0;
+    $score -= 1*($sig =~ tr/~/~/);
+    $score -= 2*($sig =~ tr/?/?/);
+    $score -= 3*($sig =~ tr/-/-/);
+    push @sig, [ $name, $ST, $sig, $score ];
+    msg("SCORE=$score\t$name\t$ST\t$sig") if $debug;
   }
+
   @sig = sort { 
-    ($a->[2] =~ tr/-~/-~/) <=> ($b->[2] =~ tr/-~/-~/)    # choose less missings
+       $b->[3] <=> $a->[3]   # choose highest score
     or $a->[1] <=> $b->[1]   # if same, prefer scheme with 'older' number
   } @sig;
   print STDERR Dumper(@sig) if $debug;
@@ -212,7 +221,8 @@ sub setOptions {
     {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
     {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"minid=f",  VAR=>\$minid, DEFAULT=>95, DESC=>"DNA %identity to consider 'similar'"},
+    {OPT=>"minid=f",  VAR=>\$minid, DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
+    {OPT=>"mincov=f",  VAR=>\$mincov, DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
     {OPT=>"threads=i",  VAR=>\$threads, DEFAULT=>1, DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
