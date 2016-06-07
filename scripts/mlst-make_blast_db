@@ -8,7 +8,8 @@ BLASTFILE="$BLASTDIR/mlst.fa"
 mkdir -p "$BLASTDIR"
 rm -f "$BLASTFILE"
 
-for N in $(find $MLSTDIR -maxdepth 1 | grep -v '_2$'); do
+#for N in $(find $MLSTDIR -maxdepth 1 | grep -v '_2$'); do
+for N in $(find $MLSTDIR -type d -maxdepth 1); do
   SCHEME=$(basename $N)
   echo "Adding: $SCHEME"
   cat "$MLSTDIR"/$SCHEME/*.tfa | sed -e "s/^>/>$SCHEME./" >> "$BLASTFILE"
