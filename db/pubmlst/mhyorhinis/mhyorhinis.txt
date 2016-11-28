@@ -68,3 +68,4 @@ ST	dnaA	rpoB	gyrB	gltX	adk	gmk	clonal_complex
 67	1	2	1	1	1	3	
 68	11	1	4	1	1	3	
 69	13	1	2	1	1	3	
+70	1	1	6	1	1	3	
