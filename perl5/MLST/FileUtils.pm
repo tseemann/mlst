@@ -7,7 +7,7 @@ use base Exporter;
 
 sub is_gzipped {
   my($infile) = @_;
-  my($magic) = qx(file \Q$infile\E);
+  my($magic) = qx(file --brief --dereference \Q$infile\E);
   return $magic =~ m/gzip/ ? 1 : 0;
 #  open my $in, '<', $infile;
 #  my $magic;
