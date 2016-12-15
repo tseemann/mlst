@@ -2,8 +2,10 @@
 use strict;
 use File::Spec;
 use Data::Dumper;
+use List::Util qw(min max);
 use List::MoreUtils qw(pairwise);
 use File::Temp qw(tempfile);
+use File::Basename qw(basename);
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
@@ -23,7 +25,7 @@ my $OUTSEP = "\t";
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads,
-             $list, $longlist, $scheme, $minid, $mincov, $csv, $nopath, $novel);
+             $list, $longlist, $scheme, $minid, $mincov, $csv, $nopath, $novel, $gff);
 setOptions();
 
 #..............................................................................
@@ -132,7 +134,8 @@ sub find_mlst {
   my @hit = qx($cmd);
   # FIXME: we should /sort/ the hits here in case logic below is dodgy?
   
-  my %res;
+  my %res;  # schema => {locus => allele, locus => allele, ...}
+  my %feat; # schema => {locus => gff tab-delimited line, ... }
   my $res_count=0;
 
   foreach (@hit) {
@@ -145,6 +148,9 @@ sub find_mlst {
 
     next unless $nident/$hlen >= $mincov/100 ; # need min-cov to reach minid
 
+    my $strand=($qstart < $qend)?"+":"-";
+    my $gffLine=join("\t",$qid, basename($0)."_v$VERSION", "gene", min($qstart,$qend), max($qstart,$qend), sprintf("%0.0f", $nident/$alen), $strand, "ID=MLST_".$gene);
+
     if ($scheme and $sch ne $scheme) {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
       next;
@@ -153,10 +159,12 @@ sub find_mlst {
       if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/[~?]/) {
         msg("WARNING: found addtional exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} .= ",$num";
+        #$feat{$sch}{$gene}.= $gffLine; # might yield spurious annotations
       }
       else {
         msg("Found exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} = "$num";
+        $feat{$sch}{$gene}= $gffLine.";Name=".$gene."_".$num;
       }
       # force update of hash with our exact match (see below for inexact behavior
       $novel{$qseq} = "$sch.$gene-$num $fname";
@@ -164,6 +172,7 @@ sub find_mlst {
     else { # either 100% length (with some SNPs) or partial coverage
       my $label = ($alen == $hlen) ? "~$num" : "${num}?";
       $res{$sch}{$gene} ||= $label;
+      $feat{$sch}{$gene}||= $gffLine.";Name=".$gene."_".$label;
       if ($novel and $alen==$hlen) {
         # only update hash if we haven't seen a good version yet
         $novel{$qseq} ||= "$sch.$gene$label $fname"; 
@@ -194,10 +203,31 @@ sub find_mlst {
   # take the top scorer
   my @best = @{ $sig[0] };
 
+  makeGff($gff,$feat{$best[0]}) if($gff);
+
   return @best;
 }
 
 #----------------------------------------------------------------------
+
+sub makeGff{
+  my($gff,$feat)=@_;
+
+  # Sort by contig, and start site
+  my @feat=sort{
+    my(@a)=split(/\t/,$a);
+    my(@b)=split(/\t/,$b);
+    $a[0] cmp $b[0] or
+    $a[3] <=> $b[3];
+  } values(%$feat);
+
+  open(my $gffFh, ">", $gff) or die "ERROR: could not write to $gff: $!";
+  print $gffFh "##gff-version 3\n";
+  for my $f(@feat){
+    print $gffFh $f."\n";
+  }
+  close $gffFh;
+}
 
 sub show_version {
   my(undef,undef,$exe) = File::Spec->splitpath($0);
@@ -227,6 +257,7 @@ sub setOptions {
     {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
     {OPT=>"novel=s",  VAR=>\$novel, DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
+    {OPT=>"gff=s",    VAR=>\$gff,   DEFAULT=>'', DESC=>"Output a GFF file"},
   );
 
   &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
