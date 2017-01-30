@@ -15,14 +15,14 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.6";
+my $VERSION = "2.7-dev";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
 #..............................................................................
 # Command line options
 
-my(@Options, $debug, $quiet, $blastdb, $datadir, $threads,
+my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
              $list, $longlist, $scheme, $minid, $mincov, $csv, $nopath, $novel);
 setOptions();
 
@@ -55,6 +55,10 @@ if ($list or $longlist) {
 @ARGV or err("Please provide some FASTA files to determine the MLST of");
 
 require_exe("blastn");
+
+# build a hash of schemes to ignore from the CSV string
+my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
+msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
 
 #..............................................................................
 # Output results
@@ -149,6 +153,10 @@ sub find_mlst {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
       next;
     }
+    if ($exclude{$sch}) {
+      msg("Excluding $sch.$gene.$num due to --exclude option");
+      next;
+    }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
       if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/[~?]/) {
         msg("WARNING: found addtional exact allele match $sch.$gene-$num");
@@ -212,21 +220,22 @@ sub setOptions {
   use Getopt::Long;
 
   @Options = (
-    {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
-    {OPT=>"debug!",  VAR=>\$debug, DEFAULT=>0, DESC=>"Verbose debug output to stderr"},
-    {OPT=>"version!",  VAR=>\&show_version, DESC=>"Print version and exit"},
-    {OPT=>"quiet!",  VAR=>\$quiet, DEFAULT=>0, DESC=>"Quiet - no stderr output"},
-    {OPT=>"blastdb=s",  VAR=>\$blastdb, DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
-    {OPT=>"datadir=s",  VAR=>\$datadir, DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
-    {OPT=>"scheme=s",  VAR=>\$scheme, DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
-    {OPT=>"list!",  VAR=>\$list, DEFAULT=>0, DESC=>"List available MLST scheme names"},
-    {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0, DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"minid=f",  VAR=>\$minid, DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
-    {OPT=>"mincov=f",  VAR=>\$mincov, DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
-    {OPT=>"threads=i",  VAR=>\$threads, DEFAULT=>1, DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
-    {OPT=>"csv!",  VAR=>\$csv, DEFAULT=>0, DESC=>"Output CSV instead of TSV"},
-    {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
-    {OPT=>"novel=s",  VAR=>\$novel, DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
+    {OPT=>"help",       VAR=>\&usage,                 DESC=>"This help"},
+    {OPT=>"version!",   VAR=>\&show_version,          DESC=>"Print version and exit"},
+    {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
+    {OPT=>"quiet!",     VAR=>\$quiet,    DEFAULT=>0,  DESC=>"Quiet - no stderr output"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
+    {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
+    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
+    {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
+    {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
+    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
+    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
+    {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
+    {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
+    {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
+    {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
   );
 
   &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
