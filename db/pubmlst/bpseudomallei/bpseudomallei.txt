@@ -1502,3 +1502,5 @@ ST	ace	gltB	gmhD	lepA	lipA	narK	ndh	clonal_complex
 1501	1	167	133	2	6	27	1	
 1502	1	18	3	1	1	22	1	
 1503	3	1	36	1	5	3	3	
+1504	8	2	13	2	1	8	1	
+1505	1	7	13	21	15	9	1	

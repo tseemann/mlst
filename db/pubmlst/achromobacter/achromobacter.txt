@@ -341,3 +341,4 @@ ST	nusA	rpoB	eno	gltB	lepA	nuoL	nrdA	clonal_complex
 340	77	93	100	88	120	95	7	
 341	6	105	8	5	59	8	4	
 342	6	26	2	2	59	8	2	
+343	34	15	101	31	121	96	29	

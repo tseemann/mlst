@@ -944,3 +944,8 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 943	1	5	15	5	9	1	4		Acinetobacter baumannii
 944	8	5	5	26	7	1	2		Acinetobacter baumannii
 945	3	3	2	4	7	4	4		Acinetobacter baumannii
+946	1	2	2	2	18	1	4		Acinetobacter baumannii
+947	104	20	46	35	72	18	108		Acinetobacter pittii
+948	22	26	47	14	26	16	23		A. nosocomialis
+949	22	26	27	14	21	16	23		A. nosocomialis
+950	149	141	112	36	152	59	139		A. pittii
