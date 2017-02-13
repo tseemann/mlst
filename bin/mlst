@@ -58,6 +58,7 @@ require_exe("blastn");
 
 # build a hash of schemes to ignore from the CSV string
 my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
+%exclude = () if $scheme;   # don't exclude anything is specific scheme provided
 msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
 
 #..............................................................................
