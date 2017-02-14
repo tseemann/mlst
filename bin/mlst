@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.7";
+my $VERSION = "2.7b";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -129,8 +129,8 @@ if ($novel) {
 sub find_mlst {
   my($fname) = @_;
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
-           ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
-           ." -perc_identity $minid"
+           ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
+           ." -perc_identity $minid -evalue 1E-20"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
   msg("Running: $cmd") if $debug;
 
