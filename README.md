@@ -90,12 +90,12 @@ It attempts to tell you as much as possible about what it found using the
 notation below:
 
 Symbol | Meaning | Length | Identity
---- | --- | --- | ---
-n   | exact intact allele                   | 100%            | 100%
-~n  | novel full length allele similar to n | 100%            | &ge; `--minid`
-n?  | partial match to known allele         | &ge; `--mincov` | &ge; `--minid`
--   | allele missing                        | &lt; `--mincov` | &lt; `--minid`
-n,m | multiple alleles                      |                 |
+---   | --- | --- | ---
+`n`   | exact intact allele                   | 100%            | 100%
+`~n`  | novel full length allele similar to n | 100%            | &ge; `--minid`
+`n?`  | partial match to known allele         | &ge; `--mincov` | &ge; `--minid`
+`-`   | allele missing                        | &lt; `--mincov` | &lt; `--minid`
+`n,m` | multiple alleles                      | &nbsp;          | &nbsp;
 
 ### Tweaking the output
 
