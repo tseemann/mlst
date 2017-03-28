@@ -89,13 +89,13 @@ MLST 2.0 does not just look for exact matches to full length alleles.
 It attempts to tell you as much as possible about what it found using the
 notation below:
 
-Symbol | Meaning
---- | ---
-n | exact intact allele
-~n | novel full length allele similar to n (`--minid`)
-n? | partial match to known allele (`--mincov`)
-n,m | multiple alleles
- - | allele missing
+Symbol | Meaning | Length | Identity
+--- | --- | --- | ---
+n   | exact intact allele                   | 100%            | 100%
+~n  | novel full length allele similar to n | 100%            | &ge; `--minid`
+n?  | partial match to known allele         | &ge; `--mincov` | &ge; `--minid`
+ -  | allele missing                        | &lt; `--mincov  | &lt; `--minid`
+n,m | multiple alleles                      |                 |
 
 ### Tweaking the output
 
@@ -113,7 +113,7 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 
 Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issues)
 
-##Licence
+## Licence
 
 [GPL v2](https://raw.githubusercontent.com/tseemann/mlst/master/LICENSE)
 
