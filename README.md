@@ -1,15 +1,15 @@
-#mlst
+# mlst
 
-Scan contig files against PubMLST typing schemes - Torsten Seemann | [@torstenseemann](https://twitter.com/torstenseemann) | [blog](http://thegenomefactory.blogspot.com/)
+Scan contig files against PubMLST typing schemes
 
-##Quick Start
+## Quick Start
 
     % mlst contigs.fa
     contigs.fa  neisseria  11149  abcZ(672)  adk(3)  aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
 
-##Installation
+## Installation
 
-###Brew
+### Brew
 If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
     brew tap homebrew/science
@@ -21,12 +21,12 @@ Or if you already have the old version installed:
     brew update
     brew upgrade mlst
 
-###Source
+### Source
 
     % cd $HOME
     % git clone https://github.com/tseemann/mlst.git
     
-###Dependencies
+### Dependencies
 
 * [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
   * You probably have `blastn` already installed already.
@@ -36,7 +36,7 @@ Or if you already have the old version installed:
   * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils`
   * Most Unix: `sudo cpan Moo List::MoreUtils`
 
-##Usage
+## Usage
 
 Simply just give it a genome file in FASTA or GenBank file!
 
@@ -57,7 +57,7 @@ You can give it multiple files at once, and they can be in FASTA or GenBank form
     genomes/NC_002973.gbk   lmonocytogenes    1  abcZ(3)   bglA(1)   cat(1)    dapE(1)   dat(3)    ldh(1)    lhkA(3)
     genomes/L550.gbk.gz     leptospira      152  glmU(26)  pntA(30)  sucA(28)  tpiA(35)  pfkB(39)  mreA(29)  caiB(29)
 
-##Without auto-detection
+## Without auto-detection
 
 You can make `mlst 2.0` behave like previous versions by simply providing the `--scheme XXXX` parameter. In that case
 it will print a fixed tabular output with a heading containing allele names specific to that scheme:
@@ -71,7 +71,7 @@ it will print a fixed tabular output with a heading containing allele names spec
     NM099.fa  neisseria  1287  2     3    4    17       8     4    6
     NM110.fa  neisseria  11    2     3    4     3       8     4    6
 
-##Available schemes
+## Available schemes
 
 To see which PubMLST schemes are supported:
 
@@ -83,7 +83,7 @@ To see which PubMLST schemes are supported:
 
 The above list is shortened. You can get more details using `mlst --longlist`.
 
-##Missing data
+## Missing data
 
 MLST 2.0 does not just look for exact matches to full length alleles. 
 It attempts to tell you as much as possible about what it found using the
@@ -92,12 +92,12 @@ notation below:
 Symbol | Meaning
 --- | ---
 n | exact intact allele
-~n | novel allele similar to n
-n? | partial match to known allele
+~n | novel full length allele similar to n (`--minid`)
+n? | partial match to known allele (`--mincov`)
 n,m | multiple alleles
-- | allele missing
+ - | allele missing
 
-###Tweaking the output
+### Tweaking the output
 
 The output is TSV (tab-separated values). This makes it easy to parse 
 and manipulate with Unix utilities like cut and sort etc. For example, 
@@ -109,11 +109,18 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 
     % mlst --csv Peptobismol.fna.gz > mlst.csv
 
-##Bugs
+## Bugs
 
-Please submit via the Github Issues page: https://github.com/tseemann/mlst/issues
+Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issues)
 
 ##Licence
 
-GPLv2: https://raw.githubusercontent.com/tseemann/mlst/master/LICENSE
+[GPL v2](https://raw.githubusercontent.com/tseemann/mlst/master/LICENSE)
+
+## Author
+
+* Torsten Seemann
+* Web: https://tseemann.github.io/
+* Twitter: [@torstenseemann](https://twitter.com/torstenseemann)
+* Blog: [The Genome Factory](https://thegenomefactory.blogspot.com/)
 
