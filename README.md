@@ -91,10 +91,10 @@ notation below:
 
 Symbol | Meaning | Length | Identity
 --- | --- | --- | ---
-n   | exact intact allele                   | `100%`          | `100%`
-~n  | novel full length allele similar to n | `100%`          | &ge; `--minid`
+n   | exact intact allele                   | 100%            | 100%
+~n  | novel full length allele similar to n | 100%            | &ge; `--minid`
 n?  | partial match to known allele         | &ge; `--mincov` | &ge; `--minid`
- -  | allele missing                        | &lt; `--mincov` | &lt; `--minid`
+-   | allele missing                        | &lt; `--mincov` | &lt; `--minid`
 n,m | multiple alleles                      |                 |
 
 ### Tweaking the output
