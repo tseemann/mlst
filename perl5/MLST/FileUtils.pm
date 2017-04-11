@@ -9,9 +9,6 @@ sub is_gzipped {
   my($infile) = @_;
   my($magic) = qx(file --brief --dereference \Q$infile\E);
   return $magic =~ m/gzip/ ? 1 : 0;
-#  open my $in, '<', $infile;
-#  my $magic;
-#  read $in, $buffer, 2;  
 }
 
 #----------------------------------------------------------------------
@@ -46,6 +43,7 @@ sub genbank_to_fasta {
     chomp;
     if (m{^//}) {
       print $out ">gi|$gi|gb|$acc| $def [$org]\n$dna";
+#      print STDERR "[genbank_to_fasta] $gi $acc $def $org\n";
       $in_seq = 0;
       $dna = $gi = $acc = $org = $def = '';
       next;

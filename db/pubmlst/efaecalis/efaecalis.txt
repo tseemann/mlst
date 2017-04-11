@@ -757,3 +757,4 @@ ST	gdh	gyd	pstS	gki	aroE	xpt	yqiL	clonal_complex
 762	1	7	16	1	1	1	1	
 763	19	1	24	22	10	45	14	
 764	94	5	91	91	40	73	79	
+765	1	34	92	3	14	2	1	

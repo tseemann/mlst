@@ -17,15 +17,17 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.6";
+my $VERSION = "2.8";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
 #..............................................................................
 # Command line options
 
-my(@Options, $debug, $quiet, $blastdb, $datadir, $threads,
-             $list, $longlist, $scheme, $minid, $mincov, $csv, $nopath, $novel, $gff);
+my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
+             $list, $longlist, $scheme, 
+             $minid, $mincov, $minscore,
+             $csv, $nopath, $novel);
 setOptions();
 
 #..............................................................................
@@ -57,6 +59,11 @@ if ($list or $longlist) {
 @ARGV or err("Please provide some FASTA files to determine the MLST of");
 
 require_exe("blastn");
+
+# build a hash of schemes to ignore from the CSV string
+my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
+%exclude = () if $scheme;   # don't exclude anything is specific scheme provided
+msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
 
 #..............................................................................
 # Output results
@@ -126,8 +133,8 @@ if ($novel) {
 sub find_mlst {
   my($fname) = @_;
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
-           ." -ungapped -dust no -evalue 1E-20 -word_size 32 -max_target_seqs 10000 -culling_limit 2"
-           ." -perc_identity $minid"
+           ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
+           ." -perc_identity $minid -evalue 1E-20"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
   msg("Running: $cmd") if $debug;
 
@@ -153,6 +160,10 @@ sub find_mlst {
 
     if ($scheme and $sch ne $scheme) {
       msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
+      next;
+    }
+    if ($exclude{$sch}) {
+      msg("Excluding $sch.$gene.$num due to --exclude option");
       next;
     }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
@@ -181,17 +192,21 @@ sub find_mlst {
   }
 
   # find the signature with the fewest missing/approximate alleles  
-  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-')x7), -666 ] );  # sentinel
+  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-')x7), 0 ] );  # sentinel
 
   for my $name (keys %res) {
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
-    my $score = 0;
-    $score -= 1*($sig =~ tr/~/~/);
-    $score -= 2*($sig =~ tr/?/?/);
-    $score -= 3*($sig =~ tr/-/-/);
-    push @sig, [ $name, $ST, $sig, $score ];
-    msg("SCORE=$score\t$name\t$ST\t$sig") if $debug;
+    my $nlocii = $scheme{$name}->num_genes;
+    # score is out of 100
+    # penalties are given as below for inexact alleles
+    my $score = $nlocii;
+    $score -= 0.2*($sig =~ tr/~/~/);
+    $score -= 0.5*($sig =~ tr/?/?/);
+    $score -= 1.0*($sig =~ tr/-/-/);
+    $score = int($score * 100 / $nlocii);
+    msg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)") if $debug;
+    push @sig, [ $name, $ST, $sig, $score ] if $score > $minscore;
   }
 
   @sig = sort { 
@@ -242,6 +257,7 @@ sub setOptions {
   use Getopt::Long;
 
   @Options = (
+<<<<<<< HEAD
     {OPT=>"help",    VAR=>\&usage,             DESC=>"This help"},
     {OPT=>"debug!",  VAR=>\$debug, DEFAULT=>0, DESC=>"Verbose debug output to stderr"},
     {OPT=>"version!",  VAR=>\&show_version, DESC=>"Print version and exit"},
@@ -258,6 +274,25 @@ sub setOptions {
     {OPT=>"nopath!",  VAR=>\$nopath, DEFAULT=>0, DESC=>"Strip filename paths from FILE column"},
     {OPT=>"novel=s",  VAR=>\$novel, DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
     {OPT=>"gff=s",    VAR=>\$gff,   DEFAULT=>'', DESC=>"Output a GFF file"},
+=======
+    {OPT=>"help",       VAR=>\&usage,                 DESC=>"This help"},
+    {OPT=>"version!",   VAR=>\&show_version,          DESC=>"Print version and exit"},
+    {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
+    {OPT=>"quiet!",     VAR=>\$quiet,    DEFAULT=>0,  DESC=>"Quiet - no stderr output"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
+    {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
+    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
+    {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
+    {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
+    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
+    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
+    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>20, DESC=>"Minumum score out of 100 to match a scheme"},
+    {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
+    {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
+    {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
+    {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
+>>>>>>> 39d28d370fbebcd9fe2929a7407f150c1e8ce350
   );
 
   &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();

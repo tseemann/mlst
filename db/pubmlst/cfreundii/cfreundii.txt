@@ -116,3 +116,5 @@ ST	aspC	clpX	fadD	mdh	arcA	dnaG	lysP	clonal_complex
 115	63	62	71	7	1	1	57	
 116	16	12	7	10	5	55	5	
 117	26	53	20	15	5	6	58	
+118	64	63	33	6	5	22	14	
+119	64	63	33	13	5	22	14	

@@ -194,3 +194,5 @@ ST	Bhy_adh	Bhy_alp	Bhy_est	Bhy_gdh	Bhy_glpK	Bhy_pgm	Bhy_thi	clonal_complex
 193	17	13	3	6	8	2	14	
 194	2	13	5	4	12	2	3	
 195	2	32	5	4	12	2	3	
+196	2	33	5	6	9	2	3	
+197	2	12	3	1	12	2	3	
