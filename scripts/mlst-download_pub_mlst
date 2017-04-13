@@ -10,7 +10,6 @@ for URL in $(grep '<url>' $OUTDIR/dbases.xml); do
 #  echo $URL
   URL=${URL//<url>}
   URL=${URL//<\/url>}
-#  echo ${URL: -4}
   if [ ${URL:(-4)} = ".txt" ]; then
     PROFILE=$(basename $URL .txt)
     echo "# $PROFILE "
