@@ -54,7 +54,7 @@ if ($list or $longlist) {
   exit(0);
 }
 
-@ARGV or err("Please provide some FASTA files to determine the MLST of");
+@ARGV or err("Please provide some FASTA/Genbank files to genotype (can be .gz)");
 
 require_exe("blastn");
 
