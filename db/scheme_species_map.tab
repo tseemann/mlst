@@ -1,0 +1,133 @@
+#SCHEME	GENUS	SPECIES
+abaumannii	Acinetobacter	baumannii
+abaumannii_2	Acinetobacter	baumannii
+achromobacter	Achromobacter	
+aeromonas	Aeromonas	
+afumigatus	Aspergillus	afumigatus
+aphagocytophilum	Anaplasma	aphagocytophilum
+arcobacter	Arcobacter	
+bburgdorferi	Borrelia	burgdorferi
+bcc	Burkholderia	cepacia
+bcereus	Bacillus	cereus
+bhampsonii	Brachyspira	hampsonii
+bhenselae	Bartonella	henselae
+bhyodysenteriae	Brachyspira	hyodysenteriae
+bifidobacterium	Bifidobacterium	bifidobacterium
+bintermedia	Brachyspira	intermedia
+blicheniformis	Bacillus	licheniformis
+bordetella	Bordetella	pertussis
+borrelia	Borrelia	
+bpilosicoli	Brachyspira	pilosicoli
+bpseudomallei	Burkholderia 	pseudomallei
+brachyspira	Brachyspira	
+bsubtilis	Bacillus	subtilis
+calbicans	Candida	albicans
+campylobacter	Campylobacter	coli
+campylobacter	Campylobacter	jejuni
+cbotulinum	Clostridium	botulinum
+cconcisus	Campylobacter	concisus
+cdifficile	Clostridium 	difficile
+cdifficile	Peptoclostridium	difficile
+cdifficile_2	Clostridium 	difficile
+cdiphtheriae	Corynebacterium	diphtheriae
+cfetus	Campylobacter	fetus
+cfreundii	Citrobacter	freundii
+cglabrata	Candida	glabrata
+chelveticus	Campylobacter	helveticus
+chlamydiales	Chlamydia	
+chyointestinalis	Campylobacter	hyointestinalis
+cinsulaenigrae	Campylobacter	insulaenigrae
+ckrusei	Candida	krusei
+clanienae	Campylobacter	lanienae
+clari	Campylobacter	lari
+cmaltaromaticum	Carnobacterium	maltaromaticum
+cneoformans	Cryptococcus	neoformans
+cronobacter	Cronobacter	
+csepticum	Clostridium	septicum
+csinensis	Clonorchis	sinensis
+csputorum	Campylobacter	sputorum
+ctropicalis	Candida	tropicalis
+cupsaliensis	Campylobacter	upsaliensis
+ecloacae	Enterobacter	cloacae
+ecoli	Escherichia 	
+ecoli	Shigella	
+ecoli_2	Escherichia	
+edwardsiella	Edwardsiella	tarda
+efaecalis	Enterococcus 	faecalis
+efaecium	Enterococcus 	faecium
+fpsychrophilum	Flavobacterium	psychrophilum
+haemophilus	Haemophilus	
+hcinaedi	Helicobacter	cinaedi
+hinfluenzae	Haemophilus	influenzae
+hparasuis	Haemophilus	parasuis
+hpylori	Helicobacter	pylori
+hsuis	Haematopinus	suis
+kkingae	Kingella	kingae
+koxytoca	Klebsiella	oxytoca
+kpneumoniae	Klebsiella	pneumoniae
+kseptempunctata	Kudoa	septempunctata
+lcasei	Lactobacillus	casei
+legionella	Legionella	
+leptospira	Leptospira	
+leptospira_2	Leptospira	
+leptospira_3	Leptospira	
+lmonocytogenes	Listeria 	monocytogenes
+lsalivarius	Lactobacillus	salivarius
+mabscessus	Mycobacterium	abscessus
+magalactiae	Mycoplasma	agalactiae
+mbovis	Mycoplasma	bovis
+mcatarrhalis	Moraxells	catarrhalis
+mhaemolytica	Mannheimia	haemolytica
+mhyorhinis	Mycoplasma	hyorhinis
+mmassiliense	Mycobacterium	massiliense
+mplutonius	Melissococcus	plutonius
+neisseria	Neisseria	
+orhinotracheale	Ornithobacterium	rhinotracheale
+otsutsugamushi	Orientia	tsutsugamushi
+pacnes	Propionibacterium	acnes
+paeruginosa	Pseudomonas 	aeruginosa
+pagglomerans	Pantoea	agglomerans
+pfluorescens	Pseudomonas 	fluorescens
+pfreudenreichii	Propionibacterium	freudenreichii
+pgingivalis	Porphyromonas 	gingivalis
+plarvae	Paenibacillus	larvae
+pmultocida_multihost	Pasteurella	multocida
+pmultocida_rirdc	Pasteurella	multocida
+ppentosaceus	Pediococcus	pentosaceus
+pshigelloides	Plesiomonas	shigelloides
+ranatipestifer	Riemerella	anatipestifer
+sagalactiae	Streptococcus	agalactiae
+saureus	Staphylococcus	aureus
+scanis	Streptococcus	canis
+sdysgalactiae	Streptococcus	dysgalactiae
+senterica	Salmonella	enterica
+sepidermidis	Staphylococcus	epidermidis
+sgallolyticus	Streptococcus	gallolyticus
+shaemolyticus	Staphylococcus	haemolyticus
+shominis	Stapylococcus	hominis
+sinorhizobium	Sinorhizobium	
+slugdunensis	Staphylococcus	lugdunensis
+smaltophilia	Stenotrophomonas	maltophilia
+soralis	Streptococcus	oralis
+spneumoniae	Streptococcus	pneumoniae
+spseudintermedius	Staphylococcus	pseudintermedius
+spyogenes	Streptococcus	pyogenes
+ssuis	Streptococcus	suis
+sthermophilus	Streptococcus	thermophilus
+sthermophilus_2	Streptococcus	thermophilus
+streptomyces	Streptomyces	
+suberis	Streptococcus	uberis
+szooepidemicus	Streptococcus	equi
+taylorella	Taylorella	
+tenacibaculum	Tenacibaculum	
+tvaginalis	Trichomonas	vaginalis
+vcholerae	Vibrio	cholerae
+vibrio	Vibrio	
+vparahaemolyticus	Vibrio	parahaemolyticus
+vtapetis	Vibrio	tapetis
+vvulnificus	Vibrio	vulnificus
+wolbachia	Wolbachia	
+xfastidiosa	Xylella	fastidiosa
+yersinia	Yersinia	
+ypseudotuberculosis	Yersinia	pseudotuberculosis
+yruckeri	Yersinia	ruckeri
