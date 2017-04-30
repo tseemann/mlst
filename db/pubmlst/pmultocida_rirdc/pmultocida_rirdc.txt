@@ -1,4 +1,4 @@
-ST	adk	est	pmi	zwf	mdh	gdh	pgi	clonal_complex
+ST	RIRDC_adk	RIRDC_est	RIRDC_pmi	RIRDC_zwf	RIRDC_mdh	RIRDC_gdh	RIRDC_pgi	clonal_complex
 1	1	1	1	1	1	1	1	
 2	2	2	2	2	2	2	2	
 3	1	5	10	1	1	6	11	ST15
@@ -336,3 +336,5 @@ ST	adk	est	pmi	zwf	mdh	gdh	pgi	clonal_complex
 335	1	42	10	23	1	1	16	
 336	4	4	28	3	12	1	27	
 337	11	20	23	23	1	33	16	
+338	21	15	17	28	20	21	82	
+339	16	7	5	6	4	5	7	

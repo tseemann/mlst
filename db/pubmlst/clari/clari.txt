@@ -56,7 +56,6 @@ ST	Cla_adk	Cla_atpA	Cla_glnA	Cla_glyA	Cla_pgi	Cla_pgm	Cla_tkt	clonal_complex
 55	5	77	2	1	58	63	2	
 56	62	57	63	1	58	70	33	
 57	4	76	2	1	4	3	33	
-58	5	57	2	2	3	63	32	
 59	62	71	60	2	57	52	42	
 60	5	57	2	2	3	65	51	
 61	1	2	2	2	4	52	44	
@@ -64,4 +63,4 @@ ST	Cla_adk	Cla_atpA	Cla_glnA	Cla_glyA	Cla_pgi	Cla_pgm	Cla_tkt	clonal_complex
 63	57	57	1	2	75	61	32	
 64	10	26	1	1	71	64	48	
 65	2	6	1	1	1	1	44	
-66	1	6	1	16	52	68	1	
+66	1	6	1	16	1	68	1	

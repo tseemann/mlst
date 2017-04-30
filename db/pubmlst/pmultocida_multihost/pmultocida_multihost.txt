@@ -1,4 +1,4 @@
-ST	adk	aroA	deoD	gdhA	g6pd	mdh	pgi	clonal_complex
+ST	mh_adk	mh_aroA	mh_deoD	mh_gdhA	mh_g6pd	mh_mdh	mh_pgi	clonal_complex
 1	1	1	1	1	1	1	1	
 2	1	1	1	1	1	2	1	
 3	2	1	1	1	1	1	1	
