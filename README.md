@@ -1,11 +1,14 @@
 # mlst
 
-Scan contig files against PubMLST typing schemes
+Scan contig files against traditional PubMLST typing schemes
 
 ## Quick Start
 
     % mlst contigs.fa
-    contigs.fa  neisseria  11149  abcZ(672)  adk(3)  aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
+    contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
+
+    % mlst genome.gbk.gz
+    genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1) yqiL(1)
 
 ## Installation
 
@@ -38,10 +41,10 @@ Or if you already have the old version installed:
 
 ## Usage
 
-Simply just give it a genome file in FASTA or GenBank file!
+Simply just give it a genome file in FASTA or GenBank format, optionally compressed with gzip!
 
     % mlst contigs.fa
-    contigs.fa  neisseria  11149  abcZ(672)  adk(3)  aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
+    contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
 
 It returns a tab-separated line containing
 * the filename
@@ -59,7 +62,7 @@ You can give it multiple files at once, and they can be in FASTA or GenBank form
 
 ## Without auto-detection
 
-You can make `mlst 2.0` behave like previous versions by simply providing the `--scheme XXXX` parameter. In that case
+You can make `mlst 2.x` behave like previous versions by simply providing the `--scheme XXXX` parameter. In that case
 it will print a fixed tabular output with a heading containing allele names specific to that scheme:
 
     % mlst --scheme neisseria *.fa
