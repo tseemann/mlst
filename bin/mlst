@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.8";
+my $VERSION = "2.9";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
