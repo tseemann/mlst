@@ -112,6 +112,41 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 
     % mlst --csv Peptobismol.fna.gz > mlst.csv
 
+## Updating the database
+
+The `mlst` software comes bundled with the traditional MLST databases;
+namely those schemes with less than 10 genes. I strive to make regular
+releases with updated databases, but if this is not frequent enough you
+can update the databases yourself using some tools included in the `scripts`
+folder as follows:
+
+```
+# Figure out where mlst is installed
+% which mlst
+/home/user/sw/mlst
+
+# Go into the scripts folder (you need to have write access!)
+% cd /home/user/sw/mlst/scripts
+
+# Run the downloader script (you need 'wget' installed)
+% ./mlst-download_pub_mlst | bash
+
+# Check it downloaded everything ok
+% find pubmlst | less
+
+# Save the old database folder
+% mv ../db/pubmlst ../db/pubmlst.old
+
+# Put the new folder there
+% mv ./pubmlst ../db/
+
+# Regenerate the BLAST database
+% ./mlst-make_blast_db
+
+# Check schemes are installed
+% ../bin/mlst --list
+```
+
 ## Bugs
 
 Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issues)
