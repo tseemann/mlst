@@ -112,6 +112,31 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 
     % mlst --csv Peptobismol.fna.gz > mlst.csv
 
+## Mapping to genus/species
+
+Included is a file called `db/scheme_species_map.tab` which has 3
+tab-separated columns as follows:
+
+```
+#SCHEME GENUS   SPECIES
+abaumannii      Acinetobacter   baumannii
+abaumannii_2    Acinetobacter   baumannii
+achromobacter   Achromobacter
+aeromonas       Aeromonas
+afumigatus      Aspergillus     afumigatus
+arcobacter      Arcobacter
+bburgdorferi    Borrelia        burgdorferi
+bhampsonii      Brachyspira     hampsonii
+bhenselae       Bartonella      henselae
+borrelia        Borrelia
+bpilosicoli     Brachyspira     pilosicoli
+...
+```
+
+Note that that some schemes are species specific, and others are genus
+specific, so the `SPECIES` column is empty.  Note that the same
+species/genus can apply to multiple schemes, see `abaumanii` above.
+
 ## Updating the database
 
 The `mlst` software comes bundled with the traditional MLST databases;
