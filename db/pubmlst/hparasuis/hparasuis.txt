@@ -264,3 +264,4 @@ ST	atpD	infB	mdh	rpoB	_6pgd	g3pd	frdB	clonal_complex
 263	4	5	6	5	55	3	23	
 264	26	54	6	3	43	1	2	
 265	4	51	18	4	59	3	5	
+266	4	5	14	4	59	3	5	

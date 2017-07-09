@@ -347,3 +347,5 @@ ST	abcZ	adk	efp	fumC	glyBETA	mutY	ppa	trpE	clonal_complex
 416	3	62	3	9	8	8	8	5	
 417	8	39	6	2	50	66	2	2	
 418	76	65	45	49	101	86	72	31	
+419	38	4	7	12	25	24	20	11	
+420	52	6	12	2	50	19	3	2	
