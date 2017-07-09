@@ -56,7 +56,7 @@ if ($list or $longlist) {
 
 @ARGV or err("Please provide some FASTA/Genbank files to genotype (can be .gz)");
 
-require_exe("blastn");
+require_exe("blastn", "gzip", "file");
 
 # build a hash of schemes to ignore from the CSV string
 my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
