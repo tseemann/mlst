@@ -15,7 +15,7 @@ use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.9";
+my $VERSION = "2.10-dev";
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -189,13 +189,14 @@ sub find_mlst {
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
     my $nlocii = $scheme{$name}->num_genes;
-    # score is out of 100
+    # score is out of 100 (90 split across alleles, 10 for an ST type)
     # penalties are given as below for inexact alleles
     my $score = $nlocii;
-    $score -= 0.2*($sig =~ tr/~/~/);
-    $score -= 0.5*($sig =~ tr/?/?/);
-    $score -= 1.0*($sig =~ tr/-/-/);
-    $score = int($score * 100 / $nlocii);
+    $score -= 0.2*($sig =~ tr/~/~/);  # novelish
+    $score -= 0.5*($sig =~ tr/?/?/);  # approx
+    $score -= 1.0*($sig =~ tr/-/-/);  # absent
+    $score = int($score * 90 / $nlocii);
+    $score += 10 if $ST ne '-';
     msg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)") if $debug;
     push @sig, [ $name, $ST, $sig, $score ] if $score > $minscore;
   }
@@ -239,7 +240,7 @@ sub setOptions {
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
     {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
-    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>20, DESC=>"Minumum score out of 100 to match a scheme"},
+    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme"},
     {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
     {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
