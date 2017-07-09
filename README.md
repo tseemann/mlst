@@ -4,31 +4,39 @@ Scan contig files against traditional PubMLST typing schemes
 
 ## Quick Start
 
-    % mlst contigs.fa
-    contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
+```
+% mlst contigs.fa
+contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
 
-    % mlst genome.gbk.gz
-    genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1) yqiL(1)
+% mlst genome.gbk.gz
+genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1) yqiL(1)
+```
 
 ## Installation
 
 ### Brew
 If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
-    brew tap homebrew/science
-    brew update
-    brew install mlst
+```
+% brew tap homebrew/science
+% brew update
+% brew install mlst
+```
 
 Or if you already have the old version installed:
 
-    brew update
-    brew upgrade mlst
+```
+% brew update
+% brew upgrade mlst
+```
 
 ### Source
 
-    % cd $HOME
-    % git clone https://github.com/tseemann/mlst.git
-    
+```
+% cd $HOME
+% git clone https://github.com/tseemann/mlst.git
+```   
+ 
 ### Dependencies
 
 * [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
@@ -46,8 +54,10 @@ Or if you already have the old version installed:
 
 Simply just give it a genome file in FASTA or GenBank format, optionally compressed with gzip!
 
-    % mlst contigs.fa
-    contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
+```
+% mlst contigs.fa
+contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pgm(6)
+```
 
 It returns a tab-separated line containing
 * the filename
@@ -57,11 +67,13 @@ It returns a tab-separated line containing
 
 You can give it multiple files at once, and they can be in FASTA or GenBank format, and even compressed with gzip!
 
-    % mlst genomes/*
-    genomes/6008.fna        saureus         239  arcc(2)   aroe(3)   glpf(1)   gmk_(1)   pta_(4)   tpi_(4)   yqil(3)
-    genomes/strep.fasta.gz  ssuis             1  aroA(1)   cpn60(1)  dpr(1)    gki(1)    mutS(1)   recA(1)   thrA(1)
-    genomes/NC_002973.gbk   lmonocytogenes    1  abcZ(3)   bglA(1)   cat(1)    dapE(1)   dat(3)    ldh(1)    lhkA(3)
-    genomes/L550.gbk.gz     leptospira      152  glmU(26)  pntA(30)  sucA(28)  tpiA(35)  pfkB(39)  mreA(29)  caiB(29)
+```
+% mlst genomes/*
+genomes/6008.fna        saureus         239  arcc(2)   aroe(3)   glpf(1)   gmk_(1)   pta_(4)   tpi_(4)   yqil(3)
+genomes/strep.fasta.gz  ssuis             1  aroA(1)   cpn60(1)  dpr(1)    gki(1)    mutS(1)   recA(1)   thrA(1)
+genomes/NC_002973.gbk   lmonocytogenes    1  abcZ(3)   bglA(1)   cat(1)    dapE(1)   dat(3)    ldh(1)    lhkA(3)
+genomes/L550.gbk.gz     leptospira      152  glmU(26)  pntA(30)  sucA(28)  tpiA(35)  pfkB(39)  mreA(29)  caiB(29)
+```
 
 ## Without auto-detection
 
@@ -81,7 +93,7 @@ by  providing the `--legacy` parameter with the  `--scheme` parameter. In that c
 it will print a fixed tabular output with a heading containing allele names specific to that scheme:
 
 ```
-% mlst --scheme neisseria *.fa
+% mlst --legacy --scheme neisseria *.fa
 FILE      SCHEME     ST    abcZ  adk  aroE  fumC  gdh  pdhC  pgm
 NM003.fa  neisseria  11    2     3    4     3       8     4    6
 NM009.fa  neisseria  11149 672   3    4     3       8     4    6
@@ -95,11 +107,13 @@ NM110.fa  neisseria  11    2     3    4     3       8     4    6
 
 To see which PubMLST schemes are supported:
 
-    % mlst --list
-    
-    abaumannii achromobacter aeromonas afumigatus cdifficile efaecium
-    hcinaedi hparasuis hpylori kpneumoniae leptospira
-    saureus xfastidiosa	yersinia ypseudotuberculosis yruckeri
+```
+% mlst --list
+
+abaumannii achromobacter aeromonas afumigatus cdifficile efaecium
+hcinaedi hparasuis hpylori kpneumoniae leptospira
+saureus xfastidiosa yersinia ypseudotuberculosis yruckeri
+```
 
 The above list is shortened. You can get more details using `mlst --longlist`.
 
@@ -122,12 +136,13 @@ Symbol | Meaning | Length | Identity
 The output is TSV (tab-separated values). This makes it easy to parse 
 and manipulate with Unix utilities like cut and sort etc. For example, 
 if you only want the filename and ST you can do the following:
-
-    % mlst --scheme abaumanii AB*.fasta | cut -f1,3 > ST.tsv
-    
+```
+% mlst --scheme abaumanii AB*.fasta | cut -f1,3 > ST.tsv
+```    
 If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` option:
-
-    % mlst --csv Peptobismol.fna.gz > mlst.csv
+```
+% mlst --csv Peptobismol.fna.gz > mlst.csv
+```
 
 ## Mapping to genus/species
 
