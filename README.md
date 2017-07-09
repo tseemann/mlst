@@ -38,6 +38,9 @@ Or if you already have the old version installed:
   * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl`
   * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils`
   * Most Unix: `sudo cpan Moo List::MoreUtils`
+* Standard Unix commands
+  * `file` (for file format detection)
+  * `gzip` (for decompressing .gz files)
 
 ## Usage
 
@@ -48,7 +51,7 @@ Simply just give it a genome file in FASTA or GenBank format, optionally compres
 
 It returns a tab-separated line containing
 * the filename
-* the closest PubMLST scheme name
+* the matching PubMLST scheme name
 * the ST (sequence type)
 * the allele IDs
 
@@ -62,17 +65,31 @@ You can give it multiple files at once, and they can be in FASTA or GenBank form
 
 ## Without auto-detection
 
-You can make `mlst 2.x` behave like previous versions by simply providing the `--scheme XXXX` parameter. In that case
+You can force a particular scheme (useful for reporting systems):
+
+```
+% mlst --scheme neisseria NM*
+FILE       SCHEME     ST    abcZ       adk     aroE      fumC       gdh      pdhC     pgm
+NM003.fa   neisseria  4821  abcZ(222)  adk(3)  aroE(58)  fumC(275)  gdh(30)  pdhC(5)  pgm(255)
+NM005.gbk  neisseria  177   abcZ(7)    adk(8)  aroE(10)  fumC(38)   gdh(10)  pdhC(1)  pgm(20)
+NM011.fa   neisseria  11    abcZ(2)    adk(3)  aroE(4)   fumC(3)    gdh(8)   pdhC(4)  pgm(6)
+NMC.gbk.gz neisseria  8     abcZ(2)    adk(3)  aroE(7)   fumC(2)    gdh(8)   pdhC(5)  pgm(2)
+```
+
+You can make `mlst` behave like older version before auto-detection existed
+by  providing the `--legacy` parameter with the  `--scheme` parameter. In that case
 it will print a fixed tabular output with a heading containing allele names specific to that scheme:
 
-    % mlst --scheme neisseria *.fa
-    FILE      SCHEME     ST    abcZ  adk  aroE  fumC  gdh  pdhC  pgm
-    NM003.fa  neisseria  11    2     3    4     3       8     4    6
-    NM009.fa  neisseria  11149 672   3    4     3       8     4    6
-    MN043.fa  neisseria  11    2     3    4     3       8     4    6
-    NM051.fa  neisseria  11    2     3    4     3       8     4    6
-    NM099.fa  neisseria  1287  2     3    4    17       8     4    6
-    NM110.fa  neisseria  11    2     3    4     3       8     4    6
+```
+% mlst --scheme neisseria *.fa
+FILE      SCHEME     ST    abcZ  adk  aroE  fumC  gdh  pdhC  pgm
+NM003.fa  neisseria  11    2     3    4     3       8     4    6
+NM009.fa  neisseria  11149 672   3    4     3       8     4    6
+MN043.fa  neisseria  11    2     3    4     3       8     4    6
+NM051.fa  neisseria  11    2     3    4     3       8     4    6
+NM099.fa  neisseria  1287  2     3    4    17       8     4    6
+NM110.fa  neisseria  11    2     3    4     3       8     4    6
+```
 
 ## Available schemes
 

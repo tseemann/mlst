@@ -23,7 +23,7 @@ my $OUTSEP = "\t";
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
-             $list, $longlist, $scheme, 
+             $list, $longlist, $scheme, $legacy,
              $minid, $mincov, $minscore,
              $csv, $nopath, $novel);
 setOptions();
@@ -34,6 +34,8 @@ setOptions();
 MLST::Logger->quiet($quiet);
 
 $OUTSEP = ',' if $csv;  # default is tab
+
+$legacy && ! $scheme and err("Must specify a --scheme for --legacy output mode");
 
 my $pubmlst = MLST::PubMLST->new( dir => $datadir );
 my %scheme = (map { ($_->name => $_) } @{$pubmlst->schemes});
@@ -67,7 +69,7 @@ msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
 # Output results
 
 # output the header for the old style syntax 
-if ($scheme) {
+if ($scheme and $legacy) {
   print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
 }
 
@@ -98,7 +100,7 @@ for my $argv (@ARGV)
   (undef,undef,$argv) = File::Spec->splitpath($argv) if $nopath;
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
-  if ($scheme) {
+  if ($scheme and $legacy) {
     # old style "one scheme" layout
     print join($OUTSEP, $argv, $sch, $ST, @code),"\n";
   } 
@@ -238,6 +240,7 @@ sub setOptions {
     {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
+    {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
     {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme"},
