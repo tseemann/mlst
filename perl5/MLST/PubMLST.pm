@@ -8,8 +8,8 @@ use MLST::Scheme;
 has dir => (
   is => 'ro',
   required => 1,
-  isa => sub { 
-    die "$_[0] is not a directory" unless -d $_[0] 
+  isa => sub {
+    die "$_[0] is not a directory" unless -d $_[0]
   },
 );
 
@@ -27,10 +27,9 @@ sub _build_schemes {
 
 sub names {
   my($self) = @_;
-  return map { $_->name } @{ $self->schemes };
-} 
+  return map { $_->name } (sort {$a cmp $b} @{ $self->schemes });
+}
 
 #.................................................................................
 
 1;
-
