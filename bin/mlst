@@ -11,6 +11,8 @@ use MLST::Scheme;
 use MLST::Logger qw(err msg);
 use MLST::Requirements qw(require_exe);
 use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
+use JSON;
+use File::Slurp;
 
 #..............................................................................
 # Globals
@@ -25,7 +27,7 @@ my $OUTSEP = "\t";
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
              $list, $longlist, $scheme, $legacy,
              $minid, $mincov, $minscore,
-             $csv, $nopath, $novel);
+             $csv, $json_fn, $nopath, $novel);
 setOptions();
 
 #..............................................................................
@@ -68,6 +70,8 @@ msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
 #..............................................................................
 # Output results
 
+my %json;
+
 # output the header for the old style syntax 
 if ($scheme and $legacy) {
   print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
@@ -94,6 +98,7 @@ for my $argv (@ARGV)
 
   msg("Scanning: $argv [$infile]");  
 
+  # Do the big function call
   my($sch, $ST, $sig) = find_mlst($infile);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
   
@@ -110,11 +115,28 @@ for my $argv (@ARGV)
     my @allele = pairwise { "$a($b)" } @gene, @code;
     print join($OUTSEP, $argv, $sch, $ST, @allele),"\n";
   }
+
+  if ($json_fn) {
+    $json{$argv} = {
+      'filename' => $argv,
+      'scheme' => $sch,
+      'sequence_type' => $ST,
+      'alleles' => $sch eq '-' ? undef : { (pairwise { ($a=>$b) } @{$scheme{$sch}->genes}, @code) },
+    };
+  }
   
   if (@temp) {
     msg("Deleting temporary files: @temp");
     unlink @temp;
   }
+}
+
+if ($json_fn) {
+  msg("Writing JSON: $json_fn");
+  write_file(
+    $json_fn,
+    to_json( \%json, {ascii=>1,pretty=>1,allow_barekey=>1} ),
+  );
 }
 
 if ($novel) {
@@ -246,6 +268,7 @@ sub setOptions {
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme"},
     {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
+    {OPT=>"json=s",     VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
     {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
     {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
   );
