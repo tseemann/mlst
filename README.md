@@ -81,7 +81,6 @@ You can force a particular scheme (useful for reporting systems):
 
 ```
 % mlst --scheme neisseria NM*
-FILE       SCHEME     ST    abcZ       adk     aroE      fumC       gdh      pdhC     pgm
 NM003.fa   neisseria  4821  abcZ(222)  adk(3)  aroE(58)  fumC(275)  gdh(30)  pdhC(5)  pgm(255)
 NM005.gbk  neisseria  177   abcZ(7)    adk(8)  aroE(10)  fumC(38)   gdh(10)  pdhC(1)  pgm(20)
 NM011.fa   neisseria  11    abcZ(2)    adk(3)  aroE(4)   fumC(3)    gdh(8)   pdhC(4)  pgm(6)
