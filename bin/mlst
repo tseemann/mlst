@@ -222,7 +222,7 @@ sub find_mlst {
     $score = int($score * 90 / $nlocii);
     $score += 10 if $ST ne '-';
     msg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)") if $debug;
-    push @sig, [ $name, $ST, $sig, $score ] if $score > $minscore;
+    push @sig, [ $name, $ST, $sig, $score ] if $score >= $minscore;
   }
 
   @sig = sort { 
