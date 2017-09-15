@@ -280,7 +280,7 @@ ambiguous IUPAC symbols. *i.e.* just `A,T,C,G`.
 ### Adding a new scheme
 
 1. Make a new folder in `mlst/db/pubmlst/SCHEME`
-2. Put your `SCHEME.txt file in there
+2. Put your `SCHEME.txt` file in there
 3. Put your `ALLELE.tfa` files in there
 4. Run `mlst/scripts/mlst-make_blast_db` to update the BLAST indices
 5. Run `mlst --longlist | grep SCHEME` to see if it exists
