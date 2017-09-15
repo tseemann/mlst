@@ -273,7 +273,7 @@ sub setOptions {
     {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
   );
 
-  &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
+  &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage(1);
 
   # Now setup default values.
   foreach (@Options) {
@@ -284,12 +284,22 @@ sub setOptions {
 }
 
 sub usage {
+  my($exitcode) = @_;
+  $exitcode ||= 0;
+  $exitcode = 0 if $exitcode eq 'help'; # what gets passed by getopt func ref
+  select STDERR if $exitcode; # write to STDERR if exitcode is error
+  
   print "Usage: $0 [options] <contigs.fa[.gz] | file.gbk[.gz]> ... \n";
   foreach (@Options) {
-    printf "  --%-13s %s%s.\n",$_->{OPT},$_->{DESC},
+    my $opt = $_->{OPT};
+    $opt =~ s/!$//;
+    $opt =~ s/=s$/ [X]/;
+    $opt =~ s/=i$/ [N]/;
+    $opt =~ s/=f$/ [n.n]/;
+    printf "  --%-13s %s%s.\n",$opt,$_->{DESC},
            defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
   }
-  exit(1);
+  exit($exitcode);
 }
  
 #----------------------------------------------------------------------
