@@ -1,0 +1,34 @@
+language: perl
+
+sudo: false
+
+perl:
+    - "5.14"
+    
+#addons:
+#    apt:
+#        packages:
+#            - file
+#            - zip
+#            - gzip
+#            - git
+
+install:
+    - "cpanm --quiet --notest Moo JSON List::MoreUtils File::Slurp"
+    - "wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.6.0+-x64-linux.tar.gz"
+    - "tar zxvf ncbi-blast-2.6.0+-x64-linux.tar.gz"
+    - "export PATH=$PWD/bin:$PWD/ncbi-blast-2.6.0+/bin:$PATH"
+
+script:
+    - "mlst --version"
+    - "mlst --help"
+    - "! mlst --doesnotexist"
+    - "mlst --list | grep saureus"
+    - "mlst --longlist | grep saureus"
+    - "mlst -q test/example.fna.gz | grep -w 184"
+    - "mlst -q test/example.gbk.gz | grep -w 184"
+    - "gzip -d -c example.fna.gz | mlst -q /dev/stdin | grep -w 184"
+    - "gzip -d -c example.gbk.gz | mlst -q /dev/stdin | grep -w 184"
+    - "mlst -q --legacy --scheme sepidermidis test/example.fna.gz test/example.gbk.gz"
+    - "mlst -q --csv test/example.fna.gz | grep ',184,'"
+ 
