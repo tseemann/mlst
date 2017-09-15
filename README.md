@@ -42,10 +42,10 @@ Or if you already have the old version installed:
 * [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
   * You probably have `blastn` already installed already.
   * If you use Brew, this will install the `blast` package for you.
-* Perl modules *Moo* and *List::MoreUtils*
-  * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl`
-  * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils`
-  * Most Unix: `sudo cpan Moo List::MoreUtils`
+* Perl modules: `Moo`,`List::MoreUtils`,`JSON`,`File::Slurp`
+  * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl libjson-perl libfile-slurp-perl`
+  * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils perl-JSON perl-File-Slurp`
+  * Most Unix: `sudo cpan Moo List::MoreUtils JSON File::Slurp`
 * Standard Unix commands
   * `file` (for file format detection)
   * `gzip` (for decompressing .gz files)
@@ -217,4 +217,3 @@ Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issu
 * Web: https://tseemann.github.io/
 * Twitter: [@torstenseemann](https://twitter.com/torstenseemann)
 * Blog: [The Genome Factory](https://thegenomefactory.blogspot.com/)
-
