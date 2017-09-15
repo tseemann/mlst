@@ -205,6 +205,89 @@ folder as follows:
 % ../bin/mlst --list
 ```
 
+## Adding a new scheme 
+
+If you are unable or unwilling to add your scheme to PubMLST via 
+[BIGSdb](https://pubmlst.org/software/database/bigsdb/) you can
+insert a new scheme into your local `mlst` database.
+
+### The directory structure
+
+Each MLST scheme exists in a folder withing the `mlst/db/pubmlst` folder.
+The name of the folder is the scheme name, say `saureus` for 
+*Staphylococcus aureus*. It contains files like this:
+```
+% cd mlst/db/pubmlst/sareus
+% ls -1
+saureus.txt
+arcC.tfa
+aroE.tfa
+glpF.tfa
+gmk.tfa
+pta.tfa
+saureus.txt
+tpi.tfa
+yqiL.tfa
+```
+
+### The scheme file
+
+The `saureus.txt` is a tab-separated file containing one ST definition
+per row. The header line must be present.  Extra columns with names
+`mlst_clade,clonal_complex,species,CC,Lineage` are ignored.
+
+```
+% head -n 5 saureus.txt
+ST      arcC    aroE    glpF    gmk     pta     tpi     yqiL    clonal_complex
+1       1       1       1       1       1       1       1
+2       2       2       2       2       2       2       26
+3       1       1       1       9       1       1       12
+4       10      10      8       6       10      3       2
+```
+
+### The allele sequence files
+
+Each of the `.tfa` files are nucleotide FASTA files with the allele
+sequences for each locus. There must be a `.tfa` file for each and every
+allele locus in the TSV scheme `.txt` file. Here is what the `arcC.tfa`
+file looks like:
+```
+% head -n 20 arcC.tfa
+>arcC_1
+TTATTAATCCAACAAGCTAAATCGAACAGTGACACAACGCCGGCAATGCCATTGGATACT
+TGTGGTGCAATGTCACAGGGTATGATAGGCTATTGGTTGGAAACTGAAATCAATCGCATT
+TTAACTGAAATGAATAGTGATAGAACTGTAGGCACAATCGTTACACGTGTGGAAGTAGAT
+AAAGATGATCCACGATTCAATAACCCAACCAAACCAATTGGTCCTTTTTATACGAAAGAA
+GAAGTTGAAGAATTACAAAAAGAACAGCCAGACTCAGTCTTTAAAGAAGATGCAGGACGT
+GGTTATAGAAAAGTAGTTGCGTCACCACTACCTCAATCTATACTAGAACACCAGTTAATT
+CGAACTTTAGCAGACGGTAAAAATATTGTCATTGCATGCGGTGGTGGCGGTATTCCAGTT
+ATAAAAAAAGAAAATACCTATGAAGGTGTTGAAGCG
+>arcC_2
+TTATTAATCCAACAAGCTAAATCGAACAGTGACACAACGCCGGCAATGCCATTGGATACT
+TGTGGTGCAATGTCACAAGGTATGATAGGCTATTGGTTGGAAACTGAAATCAATCGCATT
+TTAACTGAAATGAATAGTGATAGAACTGTAGGCACAATCGTAACACGTGTGGAAGTAGAT
+AAAGATGATCCACGATTTGATAACCCAACTAAACCAATTGGTCCTTTTTATACGAAAGAA
+GAAGTTGAAGAATTACAAAAAGAACAGCCAGGCTCAGTCTTTAAAGAAGATGCAGGACGT
+GGTTATAGAAAAGTAGTTGCGTCACCACTACCTCAATCTATACTAGAACACCAGTTAATT
+CGAACTTTAGCAGACGGTAAAAATATTGTCATTGCATGCGGTGGTGGCGGTATTCCAGTT
+ATAAAAAAAGAAAATACCTATGAAGGTGTTGAAGCG
+```
+
+The FASTA sequence IDs must be named as `>allele_number` or
+`>allele-number`. Ideally the sequences will not contain any
+ambiguous IUPAC symbols. *i.e.* just `A,T,C,G`.
+
+### Adding a new scheme
+
+1. Make a new folder in `mlst/db/pubmlst/SCHEME`
+2. Put your `SCHEME.txt file in there
+3. Put your `ALLELE.tfa` files in there
+4. Run `mlst/scripts/mlst-make_blast_db` to update the BLAST indices
+5. Run `mlst --longlist | grep SCHEME` to see if it exists
+6. Run `mlst --scheme SCHEME file.fasta` to see if it works
+
+If it doesn't - go back and check you really did do Step 4 above.
+
 ## Bugs
 
 Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issues)
