@@ -18,6 +18,11 @@ use File::Slurp;
 # Globals
 
 my $VERSION = "2.10-dev";
+my $EXE = just_filename( $FindBin::RealScript );
+my $AUTHOR = 'Torsten Seemann';
+my $EMAIL = 'torsten.seemann@gmail.com';
+my $URL = 'https://github.com/tseemann/mlst';
+
 my $SEP = '/';
 my $OUTSEP = "\t";
 
@@ -102,7 +107,7 @@ for my $argv (@ARGV)
   my($sch, $ST, $sig) = find_mlst($infile);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
   
-  (undef,undef,$argv) = File::Spec->splitpath($argv) if $nopath;
+  $argv = just_filename($argv) if $nopath;
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
   if ($scheme and $legacy) {
@@ -239,9 +244,16 @@ sub find_mlst {
 
 #----------------------------------------------------------------------
 
+sub just_filename {
+  my($path) = @_;
+  my(undef,undef,$fname) = File::Spec->splitpath( $path );
+  return $fname;
+}
+
+#----------------------------------------------------------------------
+
 sub show_version {
-  my(undef,undef,$exe) = File::Spec->splitpath($0);
-  print "$exe $VERSION\n";
+  print "$EXE $VERSION\n";
   exit(0);
 }
 
@@ -288,17 +300,24 @@ sub usage {
   $exitcode ||= 0;
   $exitcode = 0 if $exitcode eq 'help'; # what gets passed by getopt func ref
   select STDERR if $exitcode; # write to STDERR if exitcode is error
-  
-  print "Usage: $0 [options] <contigs.fa[.gz] | file.gbk[.gz]> ... \n";
+
+  print "Synopsis:\n\tAutomatic MLST calling from assembled contigs\n";
+  print "Author:\n\t$AUTHOR <$EMAIL>\n";
+  print "Usage:\n";
+  print "\t% $EXE --list                                            # list known schemes\n";
+  print "\t% $EXE [options] <contigs.{fasta,gbk,embl}[.gz]          # auto-detect scheme\n";
+  print "\t% $EXE --scheme <scheme> <contigs.{fasta,gbk,embl}[.gz]> # force a scheme\n";
+  print "Options:\n";
   foreach (@Options) {
     my $opt = $_->{OPT};
     $opt =~ s/!$//;
     $opt =~ s/=s$/ [X]/;
     $opt =~ s/=i$/ [N]/;
     $opt =~ s/=f$/ [n.n]/;
-    printf "  --%-13s %s%s.\n",$opt,$_->{DESC},
+    printf "  --%-14s %s%s.\n",$opt,$_->{DESC},
            defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
   }
+  print "Documentation:\n\t$URL\n";
   exit($exitcode);
 }
  
