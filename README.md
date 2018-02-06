@@ -20,7 +20,9 @@ genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1
 If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
 ```
-% brew tap homebrew/science
+% brew tap brewsci/science
+% brew tap brewsci/bio
+% brew untap homebrew/science
 % brew update
 % brew install mlst
 ```
