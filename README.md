@@ -120,7 +120,7 @@ The above list is shortened. You can get more details using `mlst --longlist`.
 
 ## Missing data
 
-MLST 2.0 does not just look for exact matches to full length alleles. 
+Version 2.x does not just look for exact matches to full length alleles. 
 It attempts to tell you as much as possible about what it found using the
 notation below:
 
@@ -132,7 +132,25 @@ Symbol | Meaning | Length | Identity
 `-`   | allele missing                        | &lt; `--mincov` | &lt; `--minid`
 `n,m` | multiple alleles                      | &nbsp;          | &nbsp;
 
-### Tweaking the output
+## Scoring system
+
+Each MLST prediction gets a score out of 100.
+The score for a scheme with N alleles is as follows:
+
+* +90/N points for an exact allele match _e.g._ `42`
+* +45/N points for a novel allele match (50% of an exact allele) _e.g._ `~42`
+* +18/N points for a partial allele match (20% of an exact alelle) _e.g._ `42?`
+* 0 points for a missing allele _e.g._ `-`
+* +10 points if there is a matching ST type for the allele combination
+
+It is possible to filter results using the `--minscore` option which takes a
+value between 1 and 100. If you only want to report known ST types, then use
+`--minscore 100`. To also include novel combinations of existing alleles with
+no ST type, use `--minscore 90`. The default is `--minscore 50` which is an
+_ad hoc_ value I have found allows for genuine partial ST matches
+but eliminates false positives.
+
+## Tweaking the output
 
 The output is TSV (tab-separated values). This makes it easy to parse 
 and manipulate with Unix utilities like cut and sort etc. For example, 
