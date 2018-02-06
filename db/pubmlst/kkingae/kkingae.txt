@@ -68,3 +68,4 @@ ST	abcZ	adk	aroE	cpn60	gdh	recA
 67	5	2	3	2	2	2
 68	5	2	6	11	9	1
 69	1	2	6	2	1	14
+70	2	2	20	2	2	2

@@ -130,3 +130,4 @@ ST	Chy_aspA	Chy_atpA	Chy_glnA	Chy_gltA	Chy_glyA	Chy_pgm	Chy_tkt	clonal_complex
 129	1	1	5	4	1	18	14	
 130	18	6	2	4	27	4	32	
 131	5	1	8	4	10	2	11	
+132	7	3	1	27	6	2	5	

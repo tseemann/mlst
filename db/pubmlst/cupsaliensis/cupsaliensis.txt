@@ -202,3 +202,4 @@ ST	Cup_adk	Cup_aspA	Cup_atpA	Cup_glnA	Cup_glyA	Cup_pgi	Cup_tkt	clonal_complex
 201	10	3	1	1	33	13	33	
 202	8	65	1	47	1	44	10	
 203	40	43	23	3	30	42	56	
+204	6	64	1	28	1	12	12	

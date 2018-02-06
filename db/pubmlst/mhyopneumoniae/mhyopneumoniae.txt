@@ -69,3 +69,4 @@ ST	adk	rpoB	tpiA	clonal_complex
 68	3	30	20	
 69	23	33	26	
 70	6	33	26	
+71	25	15	36	

@@ -1580,3 +1580,210 @@ ST	Oxf_gltA	Oxf_gyrB	Oxf_gdhB	Oxf_recA	Oxf_cpn60	Oxf_gpi	Oxf_rpoD	clonal_complex
 1579	1	3	3	2	59	163	3		A. baumannii
 1580	28	38	45	1	16	102	2		A. baumannii
 1581	12	87	12	1	29	163	39		A. baumannii
+1582	107	172	123	115	111	307	131		Acinetobacter pittii
+1583	1	62	59	28	4	66	45		A. baumannii
+1584	33	12	62	54	4	4	71		Acinetobacter baumannii
+1585	31	45	8	6	30	144	6		
+1586	31	45	8	6	30	140	6		Acinetobacter baumannii
+1587	51	12	49	11	48	157	4		Acinetobacter baumannii
+1588	1	15	2	28	1	83	32		Acinetobacter baumannii
+1589	1	102	109	1	23	193	26		Acinetobacter baumannii
+1590	10	12	4	11	4	278	5		Acinetobacter baumannii
+1591	1	170	12	6	28	94	32		Acinetobacter baumannii
+1592	1	34	56	1	1	242	45		Acinetobacter baumannii
+1593	1	46	2	82	1	211	6		Acinetobacter baumannii
+1594	1	169	11	48	18	106	43		Acinetobacter baumannii
+1595	1	15	59	28	4	99	45		Acinetobacter baumannii
+1596	1	50	56	1	1	152	26		Acinetobacter baumannii
+1597	1	1	66	12	33	144	41		Acinetobacter baumannii
+1598	1	48	12	11	4	54	3		Acinetobacter baumannii
+1599	1	12	3	2	2	98	3		Acinetobacter baumannii
+1600	1	3	3	2	16	94	3		Acinetobacter baumannii
+1601	1	3	3	2	16	107	3		Acinetobacter baumannii
+1602	1	3	3	2	4	94	3		Acinetobacter baumannii
+1603	1	35	186	11	4	187	6		Acinetobacter baumannii
+1604	10	12	182	11	4	98	5		Acinetobacter baumannii
+1605	90	181	153	98	83	309	136		Acinetobacter pittii
+1606	111	176	183	118	113	132	129		Acinetobacter baumannii
+1607	112	177	101	119	114	4	98		Acinetobacter baumannii
+1608	113	178	101	54	115	4	98		Acinetobacter baumannii
+1609	33	12	62	120	4	4	57		Acinetobacter baumannii
+1610	108	173	7	116	112	106	132		Acinetobacter baumannii
+1611	109	174	80	12	4	153	133		Acinetobacter baumannii
+1612	110	175	127	117	27	153	134		Acinetobacter baumannii
+1613	91	180	184	7	116	308	135		Acinetobacter pittii
+1614	42	65	185	30	25	114	57		Acinetobacter nosocomialis
+1615	1	15	8	10	28	108	32		Acinetobacter baumannii
+1616	10	12	4	11	4	98	109		Acinetobacter baumannii
+1617	1	46	80	54	4	79	17		Acinetobacter baumannii
+1618	35	179	107	37	36	99	5		Acinetobacter baumannii
+1619	12	17	12	1	29	108	39		Acinetobacter baumannii
+1620	114	17	12	1	29	99	39		Acinetobacter baumannii
+1621	22	15	13	12	32	153	2		Acinetobacter baumannii
+1622	1	10	8	6	1	171	14		Acinetobacter baumannii
+1623	44	73	30	53	44	173	4		Acinetobacter baumannii
+1624	1	50	3	2	2	94	3		Acinetobacter baumannii
+1625	1	17	1	1	94	98	2		Acinetobacter baumannii
+1626	1	10	8	6	1	106	14		
+1627	1	3	6	1	4	214	6		
+1628	1	77	59	10	1	54	4		
+1629	24	46	59	11	4	79	26		
+1630	43	182	136	122	117	310	137		
+1631	2	15	12	32	26	202	5		
+1632	1	12	3	2	2	195	3		
+1633	1	15	3	2	2	96	3		
+1634	1	62	3	2	2	164	3		
+1635	31	45	8	6	30	311	6		
+1636	1	35	42	11	35	312	7		
+1637	1	15	12	6	28	102	40		Acinetobacter baumannii
+1638	30	165	157	52	39	313	56		Acinetobacter pittii
+1639	10	12	4	11	4	140	5		Acinetobacter baumannii
+1640	2	34	2	1	1	144	7		Acinetobacter baumannii
+1641	1	15	2	28	1	157	32		Acinetobacter baumannii
+1642	1	12	56	1	1	314	26		Acinetobacter baumannii
+1643	1	183	187	10	1	315	138		Acinetobacter baumannii
+1644	1	31	12	11	4	316	3		Acintobacter baumannii
+1645	1	3	3	2	46	94	3		Acintobacter baumannii
+1646	1	3	3	102	2	140	3		Acintobacter baumannii
+1647	56	100	115	7	51	154	74		Acintobacter baumannii
+1648	1	3	3	102	59	140	3		Acintobacter baumannii
+1649	43	65	43	20	27	96	28		Acintobacter baumannii
+1650	1	3	3	102	46	140	3		Acintobacter baumannii
+1651	1	3	115	2	59	96	3		Acintobacter baumannii
+1652	1	3	3	2	46	96	3		Acintobacter baumannii
+1653	1	3	3	2	59	96	3		Acintobacter baumannii
+1654	1	3	3	2	59	140	3		Acintobacter baumannii
+1655	1	3	34	102	2	140	3		Acintobacter baumannii
+1656	1	3	3	102	2	155	3		Acintobacter baumannii
+1657	1	15	115	2	2	96	3		Acintobacter baumannii
+1658	1	81	3	102	2	16	3		Acintobacter baumannii
+1659	27	35	115	55	25	158	60		Acintobacter baumannii
+1660	1	3	115	102	2	96	3		Acintobacter baumannii
+1661	1	3	115	102	2	97	3		Acintobacter baumannii
+1662	1	15	3	102	2	202	3		
+1663	1	15	3	2	2	111	3		
+1664	1	3	115	102	2	106	21		
+1665	1	3	115	102	2	106	3		
+1666	1	3	3	102	2	96	21		
+1667	1	19	10	123	118	317	3		Acintobacter baumannii
+1668	1	3	115	102	2	174	21		
+1669	1	3	143	102	2	106	3		
+1670	1	3	115	102	2	94	3		
+1671	1	87	188	2	2	83	3		Acintobacter baumannii
+1672	1	3	143	102	2	154	3		
+1673	1	3	143	102	2	140	3		
+1674	1	3	143	102	2	106	21		
+1675	1	184	3	2	2	66	3		Acintobacter baumannii
+1676	1	3	3	102	2	166	3		
+1677	10	12	182	11	4	79	5		Acintobacter baumannii
+1678	10	12	182	11	4	142	5		Acintobacter baumannii
+1679	1	3	3	102	2	106	3		
+1680	1	3	3	102	2	287	3		
+1681	1	3	143	102	2	97	3		
+1682	18	15	3	2	1	140	4		Acinetobacter baumannii
+1683	1	15	3	28	1	175	32	Acinetobacter baumannii	
+1684	1	3	3	2	2	153	3		Acinetobacter baumannii
+1685	1	38	2	82	1	66	6		Acinetobacter baumannii
+1686	36	12	120	10	32	140	4		Acinetobacter baumannii
+1687	1	1	13	6	1	25	6		Acinetobacter baumannii
+1688	21	12	40	26	32	144	4		Acinetobacter baumannii
+1689	1	170	6	1	4	178	6		Acinetobacter baumannii
+1690	1	3	3	102	2	160	21		
+1691	1	3	3	2	2	102	106		Acinetobacter baumannii
+1692	22	15	13	12	4	153	2		Acinetobacter baumannii
+1693	21	48	58	42	36	109	110		Acinetobacter baumannii
+1694	1	3	8	10	28	97	32		Acintobacter baumannii
+1695	1	3	143	102	2	96	21		
+1696	1	3	3	102	2	160	3		
+1697	1	17	3	2	2	66	3		Acinetobacter baumannii
+1698	1	3	2	28	1	182	32		
+1699	1	3	143	102	2	96	3		
+1700	1	3	115	102	2	96	21		
+1701	1	12	3	2	2	66	3		Acinetobacter baumannii
+1702	1	15	2	28	1	163	3		
+1703	10	12	1	33	4	102	5		Acinetobacter baumannii
+1704	1	109	3	2	2	100	3		Acinetobacter baumannii
+1705	1	3	3	2	2	162	3		Acinetobacter baumannii
+1706	36	57	62	31	22	96	4		
+1707	56	164	143	98	51	182	3		
+1708	11	67	186	20	37	139	5		
+1709	1	3	115	102	2	140	3		
+1710	1	17	82	39	1	303	7		
+1711	1	3	115	102	2	102	3		
+1712	1	12	3	102	2	103	3		
+1713	1	146	143	101	76	182	103		
+1714	1	17	3	2	2	304	3		Acinetobacter baumannii
+1715	1	3	3	2	2	97	140		Acinetobacter baumannii
+1716	1	3	115	102	2	303	3		
+1717	24	92	96	11	49	162	141		Acinetobacter baumannii
+1718	1	3	143	13	1	140	36		
+1719	1	17	82	39	1	319	7		Acinetobacter baumannii
+1720	1	3	3	102	2	102	3		
+1721	22	15	13	60	4	174	2		
+1722	11	67	115	20	37	16	15		
+1723	27	3	115	30	25	97	3		
+1724	1	185	3	2	2	102	3		Acintobacter baumannii
+1725	77	104	115	67	55	96	75		
+1726	1	3	115	102	110	140	3		
+1727	1	3	115	102	2	154	3		
+1728	1	17	82	39	1	238	7		Acinetobacter baumannii
+1729	62	165	145	67	52	247	139		Acinetobacter pittii
+1730	1	102	115	102	1	96	3		
+1731	1	12	56	36	1	268	26		
+1732	1	12	42	64	1	103	4		
+1733	59	186	123	124	119	318	142		Acinetobacter pittii
+1734	1	17	5	13	28	97	32		Acinetobacter baumannii
+1735	1	115	115	78	2	166	3		
+1736	10	12	1	1	4	98	5		Acinetobacter baumannii
+1737	1	12	42	64	1	103	3		
+1738	1	3	181	102	3	140	3		
+1739	2	38	12	1	57	67	6		Acinetobacter baumannii
+1740	26	36	43	20	25	320	28		Acinetobacter baumannii
+1741	1	3	115	102	2	174	3		
+1742	56	100	143	98	51	174	2		
+1743	22	15	13	60	2	174	2		
+1744	1	15	3	102	2	96	3		
+1745	25	37	143	20	25	182	55		
+1746	25	37	115	20	25	153	55		
+1747	1	3	115	102	2	182	3		
+1748	1	87	3	102	2	16	3		
+1749	25	37	115	20	25	182	55		
+1750	1	17	82	39	1	83	7		
+1751	1	3	143	102	1	256	3		
+1752	28	38	45	1	16	142	2		Acinetobacter baumannii
+1753	56	105	115	67	55	96	75		
+1754	1	35	115	102	16	103	3		
+1755	1	3	143	102	2	16	3		
+1756	21	35	69	28	1	106	4		
+1757	2	21	12	32	26	148	5		Acinetobacter baumannii
+1758	33	108	46	64	2	153	5		
+1762	97	165	26	102	72	170	89		
+1763	1	3	115	102	2	16	3		
+1765	33	108	139	64	26	153	5		
+1766	1	3	115	102	2	155	3		
+1767	1	3	115	102	96	96	3		
+1768	27	3	115	30	25	154	29		
+1769	1	3	3	102	2	102	116		
+1770	1	81	115	102	2	16	3		
+1771	62	100	115	98	52	182	75		
+1781	33	17	40	81	32	143	5		
+1783	1	12	115	102	2	153	3		
+1784	1	15	115	102	2	153	3		
+1785	30	39	115	52	39	174	56		
+1786	22	15	13	60	3	169	2		
+1787	1	3	115	102	59	139	3		
+1797	1	3	115	102	2	3	3		
+1799	69	157	115	102	59	139	3		
+1802	1	115	115	95	2	140	3		
+1810	1	3	115	102	59	94	3		
+1811	1	27	115	102	2	106	3		
+1817	1	12	115	102	2	103	3		
+1822	1	12	115	2	2	103	3		
+1823	31	34	161	6	30	144	6		
+1824	1	3	115	2	2	106	3		
+1826	1	12	61	64	4	103	3		
+1827	1	3	115	102	2	97	85		
+1828	30	39	115	52	39	139	56		
+1829	11	65	170	20	37	287	15		
+1831	77	104	115	67	55	97	75		
+1832	1	3	3	102	59	97	3		
