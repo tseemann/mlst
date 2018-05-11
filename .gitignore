@@ -17,3 +17,8 @@ nytprof.out
 /pm_to_blib
 *.o
 *.bs
+# custom
+dev/
+test.local/
+db/pubmlst.old*/
+db/pubmlst/dbases.xml
