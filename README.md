@@ -23,15 +23,13 @@ If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/l
 % brew tap brewsci/science
 % brew tap brewsci/bio
 % brew untap homebrew/science
-% brew update
-% brew install mlst
+% brew install mlst   # or "brew upgrade mlst"
 ```
 
-Or if you already have the old version installed:
-
+### Conda
+If you are using [Conda](https://conda.io/docs/install/quick.html)
 ```
-% brew update
-% brew upgrade mlst
+% conda install -c bioconda -c conda-forge mlst
 ```
 
 ### Source
@@ -39,6 +37,7 @@ Or if you already have the old version installed:
 ```
 % cd $HOME
 % git clone https://github.com/tseemann/mlst.git
+% $HOME/mlst/bin/mlst --help
 ```   
  
 ### Dependencies
