@@ -174,6 +174,23 @@ if ($novel) {
   }
 }
 
+# Say our goodbyes
+my @motd = (
+  "Please also cite 'Jolley & Maiden 2010, BMC Bioinf, 11:595' if you use $EXE",
+  "You can use --label XXX to replace an ugly filename in the output",
+  "$EXE also supports --json output for the modern bioinformatician",
+  "Did you know $EXE also works on .gbk and .gz files?",
+  "I am quite confident this won't be the last time you run $EXE",
+  "Somehow this tool escaped my normal Australiana based naming system",
+  "If you have problems, please file at https://github.com/tseemann/mlst/issues",
+  "The manual is now quite extensive; read it at https://github.com/tseemann/mlst",
+  "You can use '$EXE --longlist' to see all the supported schemes",
+  "Use --quiet to avoid all the message output, including these witticisms",
+  "Thanks for using $EXE, I hope you found it useful",
+  "If you like MLST, you're going to absolutely love cgMLST!",
+  "You can follow me on Twitter at \@torstenseemann",
+);
+msg( $motd[ int(rand(scalar(@motd))) ] );
 msg("Done.");
 exit(0);
 
