@@ -12,12 +12,24 @@ contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pg
 
 % mlst genome.gbk.gz
 genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1) yqiL(1)
+
+% mlst --label Anthrax GCF_001941925.1_ASM194192v1_genomic.fna.gz
+Anthrax  bcereus  -  glp(24) gmk(1) ilv(~83) pta(1) pur(~71) pyc(37) tpi(41)
+
+% mlst --nopath /opt/data/refseq/S_pyogenes/*.fna
+NC_018936.fna  spyogenes  28   gki(4)   gtr(3)   murI(4)   mutS(4)  recP(4)    xpt(2)   yqiL(4)
+NC_017596.fna  spyogenes  11   gki(2)   gtr(6)   murI(1)   mutS(2)  recP(2)    xpt(2)   yqiL(2)
+NC_008022.fna  spyogenes  55   gki(11)  gtr(9)   murI(1)   mutS(9)  recP(2)    xpt(3)   yqiL(4)
+NC_006086.fna  spyogenes  382  gki(5)   gtr(52)  murI(5)   mutS(5)  recP(5)    xpt(4)   yqiL(3)
+NC_008024.fna  spyogenes  -    gki(5)   gtr(11)  murI(8)   mutS(5)  recP(15?)  xpt(2)   yqiL(1)
+NC_017040.fna  spyogenes  172  gki(56)  gtr(24)  murI(39)  mutS(7)  recP(30)   xpt(2)   yqiL(33)
 ```
 
 ## Installation
 
 ### Brew
-If you are using the [OSX Brew](http://brew.sh/) or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
+If you are using the [OSX Brew](http://brew.sh/)
+or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
 ```
 % brew tap brewsci/science
@@ -78,7 +90,7 @@ genomes/NC_002973.gbk   lmonocytogenes    1  abcZ(3)   bglA(1)   cat(1)    dapE(
 genomes/L550.gbk.gz     leptospira      152  glmU(26)  pntA(30)  sucA(28)  tpiA(35)  pfkB(39)  mreA(29)  caiB(29)
 ```
 
-## Without auto-detection
+### Without auto-detection
 
 You can force a particular scheme (useful for reporting systems):
 
@@ -105,7 +117,7 @@ NM099.fa  neisseria  1287  2     3    4    17       8     4    6
 NM110.fa  neisseria  11    2     3    4     3       8     4    6
 ```
 
-## Available schemes
+### Available schemes
 
 To see which PubMLST schemes are supported:
 
@@ -119,7 +131,19 @@ saureus xfastidiosa yersinia ypseudotuberculosis yruckeri
 
 The above list is shortened. You can get more details using `mlst --longlist`.
 
-## Missing data
+```
+achromobacter     nusA       rpoB      eno       gltB      lepA       nuoL      nrdA
+abaumannii        Oxf_gltA   Oxf_gyrB  Oxf_gdhB  Oxf_recA  Oxf_cpn60  Oxf_gpi   Oxf_rpoD
+abaumannii_2      Pas_cpn60  Pas_fusA  Pas_gltA  Pas_pyrG  Pas_recA   Pas_rplB  Pas_rpoB
+aeromonas         gyrB       groL      gltA      metG      ppsA       recA
+aphagocytophilum  pheS       glyA      fumC      mdh       sucA       dnaN      atpA
+arcobacter        aspA       atpA      glnA      gltA      glyA       pgm       tkt
+afumigatus        ANX4       BGT1      CAT1      LIP       MAT1_2     SODB      ZRF2
+bcereus           glp        gmk       ilv       pta       pur        pyc       tpi
+<snip>
+```
+
+### Missing data
 
 Version 2.x does not just look for exact matches to full length alleles. 
 It attempts to tell you as much as possible about what it found using the
@@ -133,7 +157,7 @@ Symbol | Meaning | Length | Identity
 `-`   | allele missing                        | &lt; `--mincov` | &lt; `--minid`
 `n,m` | multiple alleles                      | &nbsp;          | &nbsp;
 
-## Scoring system
+### Scoring system
 
 Each MLST prediction gets a score out of 100.
 The score for a scheme with N alleles is as follows:
@@ -163,6 +187,31 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 ```
 % mlst --csv Peptobismol.fna.gz > mlst.csv
 ```
+JSON output is available too:
+```
+% mlst -q --json out.json --label Sepi test/example.fna.gz
+% cat out.json
+{
+   "Sepi" : {
+      "sequence_type" : "184",
+      "alleles" : {
+         "arcC" : "16",
+         "yqiL" : "1",
+         "gtr" : "2",
+         "pyrR" : "2",
+         "tpiA" : "1",
+         "aroE" : "1",
+         "mutS" : "1"
+      },
+      "filename" : "test/example.fna.gz",
+      "scheme" : "sepidermidis"
+   }
+}
+```
+You can also save the "novel" alleles:
+```
+% mlst -q --novel who_knows.fa genome.fasta
+```
 
 ## Mapping to genus/species
 
@@ -182,7 +231,7 @@ bhampsonii      Brachyspira     hampsonii
 bhenselae       Bartonella      henselae
 borrelia        Borrelia
 bpilosicoli     Brachyspira     pilosicoli
-...
+<snip>
 ```
 
 Note that that some schemes are species specific, and others are genus
@@ -306,6 +355,22 @@ ambiguous IUPAC symbols. *i.e.* just `A,T,C,G`.
 6. Run `mlst --scheme SCHEME file.fasta` to see if it works
 
 If it doesn't - go back and check you really did do Step 4 above.
+
+## Citations
+
+The `mlst` software incoprporates components of the 
+[PubMLST database](https://pubmlst.org/policy.shtml)
+and must be cited in any publications that use `mlst`:
+
+*"This publication made use of the PubMLST website (https://pubmlst.org/)
+developed by Keith Jolley 
+[(Jolley & Maiden 2010, BMC Bioinformatics, 11:595)](https://doi.org/10.1186/1471-2105-11-595)
+and sited at the University of Oxford.  The development of that website was
+funded by the Wellcome Trust".*
+
+You should also cite this software (currently unpublished) as:
+
+* Seemann T, `mlst` **Github** https://github.com/tseemann/mlst
 
 ## Bugs
 
