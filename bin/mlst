@@ -20,7 +20,6 @@ use Path::Tiny;  # bundled in $APPDIR/perl5/
 my $VERSION = "2.11-dev";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
-my $EMAIL = 'torsten.seemann@gmail.com';
 my $URL = 'https://github.com/tseemann/mlst';
 
 my $SEP = '/';
@@ -89,7 +88,7 @@ for my $argv (@ARGV)
   
   if ( is_gzipped($argv) ) {
     (undef,$infile) = tempfile(UNLINK=>1);
-    msg("Decompressing: $argv'");
+    msg("Decompressing: $argv");
     gunzip_file($argv, $infile);
     push @temp, $infile;
   }
@@ -263,32 +262,37 @@ sub setOptions {
   use Getopt::Long;
 
   @Options = (
+    "GENERAL",
     {OPT=>"help",       VAR=>\&usage,                 DESC=>"This help"},
     {OPT=>"version!",   VAR=>\&show_version,          DESC=>"Print version and exit"},
-    {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
     {OPT=>"quiet!",     VAR=>\$quiet,    DEFAULT=>0,  DESC=>"Quiet - no stderr output"},
-    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
-    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
+    {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
+    {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
+    "SCHEME",
     {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
-    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
-    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
-    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
-    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme"},
-    {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
+    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
+    "OUTPUT",
     {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
     {OPT=>"json=s",     VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
     {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
     {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
+    {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
+    "SCORING",
+    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
+    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
+    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme"},
+    "PATHS",
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
   );
 
-  &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage(1);
+  &GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options) || usage(1);
 
   # Now setup default values.
   foreach (@Options) {
-    if (defined($_->{DEFAULT}) && !defined(${$_->{VAR}})) {
+    if (ref $_ && defined($_->{DEFAULT}) && !defined(${$_->{VAR}})) {
       ${$_->{VAR}} = $_->{DEFAULT};
     }
   }
@@ -300,23 +304,27 @@ sub usage {
   $exitcode = 0 if $exitcode eq 'help'; # what gets passed by getopt func ref
   select STDERR if $exitcode; # write to STDERR if exitcode is error
 
-  print "Synopsis:\n\tAutomatic MLST calling from assembled contigs\n";
-  print "Author:\n\t$AUTHOR <$EMAIL>\n";
-  print "Usage:\n";
-  print "\t% $EXE --list                                            # list known schemes\n";
-  print "\t% $EXE [options] <contigs.{fasta,gbk,embl}[.gz]          # auto-detect scheme\n";
-  print "\t% $EXE --scheme <scheme> <contigs.{fasta,gbk,embl}[.gz]> # force a scheme\n";
-  print "Options:\n";
+  print "SYNOPSIS\n  Automatic MLST calling from assembled contigs\n";
+  print "USAGE\n";
+  print "  % $EXE --list                                            # list known schemes\n";
+  print "  % $EXE [options] <contigs.{fasta,gbk,embl}[.gz]          # auto-detect scheme\n";
+  print "  % $EXE --scheme <scheme> <contigs.{fasta,gbk,embl}[.gz]> # force a scheme\n";
   foreach (@Options) {
-    my $opt = $_->{OPT};
-    $opt =~ s/!$//;
-    $opt =~ s/=s$/ [X]/;
-    $opt =~ s/=i$/ [N]/;
-    $opt =~ s/=f$/ [n.n]/;
-    printf "  --%-14s %s%s.\n",$opt,$_->{DESC},
-           defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
+    if (ref) {
+      my $def = defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
+      $def = ($def ? ' (default OFF)' : '(default ON)') if $_->{OPT} =~ m/!$/;
+      my $opt = $_->{OPT};
+      $opt =~ s/!$//;
+      $opt =~ s/=s$/ [X]/;
+      $opt =~ s/=i$/ [N]/;
+      $opt =~ s/=f$/ [n.n]/;
+      printf "  --%-15s %s%s\n",$opt,$_->{DESC}, $def;
+    }
+    else {
+      print "$_\n"; # Subheadings in the help output
+    }
   }
-  print "Documentation:\n\t$URL\n";
+  print "HOMEPAGE\n  $URL - $AUTHOR\n";
   exit($exitcode);
 }
  
