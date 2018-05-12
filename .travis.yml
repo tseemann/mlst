@@ -3,15 +3,16 @@ language: perl
 sudo: false
 
 perl:
-    - "5.14"
+    - "5.26"
     
 install:
-    - "cpanm --quiet --notest Moo JSON List::MoreUtils File::Slurp"
+    - "cpanm --quiet --notest Moo JSON List::MoreUtils"
     - "wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.7.1/ncbi-blast-2.7.1+-x64-linux.tar.gz"
     - "tar zxvf ncbi-blast-2.7.1+-x64-linux.tar.gz"
     - "export PATH=$PWD/bin:$PWD/ncbi-blast-2.7.1+/bin:$PATH"
 
 script:
+    - "mlst --check"
     - "mlst --version"
     - "mlst --help"
     - "! mlst --doesnotexist"
@@ -23,4 +24,5 @@ script:
     - "gzip -d -c test/example.gbk.gz | mlst -q /dev/stdin | grep -w 184"
     - "mlst -q --legacy --scheme sepidermidis test/example.fna.gz test/example.gbk.gz"
     - "mlst -q --csv test/example.fna.gz | grep ',184,'"
+    - "mlst -q test/example.gbk.gz --json /dev/stdout | grep 'sequence_type:'"
  

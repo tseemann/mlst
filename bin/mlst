@@ -21,6 +21,7 @@ my $VERSION = "2.11-dev";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
+my @DEPS = (qw(blastn gzip file));
 
 my $SEP = '/';
 my $OUTSEP = "\t";
@@ -29,7 +30,7 @@ my $OUTSEP = "\t";
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
-             $list, $longlist, $scheme, $legacy,
+             $list, $longlist, $scheme, $legacy, $check,
              $minid, $mincov, $minscore,
              $csv, $json_fn, $nopath, $novel);
 setOptions();
@@ -38,6 +39,13 @@ setOptions();
 # Option parsing
 
 MLST::Logger->quiet($quiet);
+
+if ($check) {
+  msg("Checking $EXE dependencies:");
+  require_exe(@DEPS);
+  msg("OK.");
+  exit(0);
+}
 
 $OUTSEP = ',' if $csv;  # default is tab
 
@@ -64,7 +72,7 @@ if ($list or $longlist) {
 
 @ARGV or err("Please provide some FASTA/Genbank files to genotype (can be .gz)");
 
-require_exe("blastn", "gzip", "file");
+require_exe(@DEPS);
 
 # build a hash of schemes to ignore from the CSV string
 my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
@@ -265,6 +273,7 @@ sub setOptions {
     "GENERAL",
     {OPT=>"help",       VAR=>\&usage,                 DESC=>"This help"},
     {OPT=>"version!",   VAR=>\&show_version,          DESC=>"Print version and exit"},
+    {OPT=>"check!",     VAR=>\$check,    DEFAULT=>0,  DESC=>"Just check dependencies and exit"},
     {OPT=>"quiet!",     VAR=>\$quiet,    DEFAULT=>0,  DESC=>"Quiet - no stderr output"},
     {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
