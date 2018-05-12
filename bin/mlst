@@ -47,7 +47,7 @@ if ($check) {
   exit(0);
 }
 
-($label && @ARGV==1) or err("Using --label when scanning multiple files does not make sense");
+($label && @ARGV > 1) and err("Using --label when scanning multiple files does not make sense");
 
 $OUTSEP = ',' if $csv;  # default is tab
 
