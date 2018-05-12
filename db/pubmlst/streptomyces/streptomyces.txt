@@ -1,4 +1,4 @@
-ST	_16S	atpD	gyrB	recA	rpoB	trpB	clonal_complex
+ST	16S	atpD	gyrB	recA	rpoB	trpB	clonal_complex
 1	1	1	1	1	1	1	
 2	2	2	2	2	2	2	
 3	3	3	3	3	3	3	

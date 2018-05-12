@@ -1,4 +1,4 @@
-ST	_16S	batR	ftsZ	gltA	groEL	nlpD	ribC	rpoB	clonal_complex
+ST	16S	batR	ftsZ	gltA	groEL	nlpD	ribC	rpoB	clonal_complex
 1	1	1	1	1	1	1	1	1	
 2	1	1	1	1	2	1	1	1	
 3	1	2	1	1	2	1	1	1	

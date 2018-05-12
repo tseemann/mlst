@@ -489,3 +489,4 @@ ST	gatB	coxA	hcpA	ftsZ	fbpA	clonal_complex
 488	9	271	13	73	443	
 489	9	272	13	73	443	
 490	231	273	301	32	36	
+491	9	38	143	23	444	
