@@ -117,24 +117,26 @@ for my $argv (@ARGV)
   # Do the big function call
   my($sch, $ST, $sig) = find_mlst($infile);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
-  
-  $argv = just_filename($argv) if $nopath;
-  $argv = $label if $label;
+
+  # use --label, else just filename
+  $label ||= $nopath ? just_filename($argv) : $argv;
+  msg("Using label '$label' for file $argv") if $label ne $argv;
+
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
   if ($scheme and $legacy) {
     # old style "one scheme" layout
-    print join($OUTSEP, $argv, $sch, $ST, @code),"\n";
+    print join($OUTSEP, $label, $sch, $ST, @code),"\n";
   } 
   else {
     # new style "autodetect" layout
     my @gene = $sch eq '-' ? () : @{ $scheme{$sch}->genes };
     my @allele = pairwise { "$a($b)" } @gene, @code;
-    print join($OUTSEP, $argv, $sch, $ST, @allele),"\n";
+    print join($OUTSEP, $label, $sch, $ST, @allele),"\n";
   }
 
   if ($json_fn) {
-    $json{$argv} = {
+    $json{$label} = {
       'filename' => $argv,
       'scheme' => $sch,
       'sequence_type' => $ST,
@@ -163,8 +165,17 @@ if ($novel) {
     print FASTA ">", $novel{$seq}, "\n", $seq, "\n";
     $newones++;
   }
-  msg("Found $newones novel intact alleles, wrote them to $novel");
+  if ($newones <= 0) {
+    unlink $novel;
+    msg("Found no novel intact alleles; will not create $novel");
+  }
+  else {
+    msg("Found $newones novel intact alleles, wrote them to $novel");
+  }
 }
+
+msg("Done.");
+exit(0);
 
 #----------------------------------------------------------------------
 
