@@ -93,6 +93,8 @@ if ($scheme and $legacy) {
 
 for my $argv (@ARGV) 
 {
+  -f $argv or err("Not a file: $argv");
+  -r $argv or err("No read access to file: $argv");
   my @temp;
   my $infile = $argv;
   

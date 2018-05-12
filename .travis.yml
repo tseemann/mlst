@@ -16,6 +16,8 @@ script:
     - "mlst --version"
     - "mlst --help"
     - "! mlst --doesnotexist"
+    - "! mlst -q /etc"
+    - "! mlst -q /etc/shadow"
     - "mlst --list | grep saureus"
     - "mlst --longlist | grep saureus"
     - "mlst -q test/example.fna.gz | grep -w 184"
@@ -27,4 +29,5 @@ script:
     - "mlst -q test/example.gbk.gz --json out.json && grep 'sequence_type:' out.json"
     - "! mlst -q --label double_trouble test/example.gbk.gz test/example.fna.gz"
     - "mlst -q --label GDAYMATE test/example.fna.gz | grep GDAYMATE"
+
  
