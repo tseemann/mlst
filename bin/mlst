@@ -94,6 +94,7 @@ if ($scheme and $legacy) {
 for my $argv (@ARGV) 
 {
   -r $argv or err("Unable to read from '$argv'");
+  -d $argv and err("'$argv' seems to be a directory, not a file");
   my @temp;
   my $infile = $argv;
   
