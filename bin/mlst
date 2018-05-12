@@ -30,7 +30,7 @@ my $OUTSEP = "\t";
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
-             $list, $longlist, $scheme, $legacy, $check,
+             $list, $longlist, $scheme, $legacy, $check, $label,
              $minid, $mincov, $minscore,
              $csv, $json_fn, $nopath, $novel);
 setOptions();
@@ -46,6 +46,8 @@ if ($check) {
   msg("OK.");
   exit(0);
 }
+
+($label && @ARGV==1) or err("Using --label when scanning multiple files does not make sense");
 
 $OUTSEP = ',' if $csv;  # default is tab
 
@@ -115,6 +117,7 @@ for my $argv (@ARGV)
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
   
   $argv = just_filename($argv) if $nopath;
+  $argv = $label if $label;
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
   if ($scheme and $legacy) {
@@ -285,6 +288,7 @@ sub setOptions {
     "OUTPUT",
     {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
     {OPT=>"json=s",     VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
+    {OPT=>"label=s",    VAR=>\$label,    DEFAULT=>'', DESC=>"Replace FILE with this name instead"},
     {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
     {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
     {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},

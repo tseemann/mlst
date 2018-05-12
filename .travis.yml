@@ -25,4 +25,6 @@ script:
     - "mlst -q --legacy --scheme sepidermidis test/example.fna.gz test/example.gbk.gz"
     - "mlst -q --csv test/example.fna.gz | grep ',184,'"
     - "mlst -q test/example.gbk.gz --json /dev/stdout | grep 'sequence_type:'"
+    - "! mlst -q --label double_trouble test/example.gbk.gz test/example.fna.gz"
+    - "mlst -q --label GDAYMATE test/example.fna.gz | grep GDAYMATE"
  

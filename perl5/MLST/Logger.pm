@@ -18,7 +18,6 @@ sub quiet {
 #----------------------------------------------------------------------
 
 sub msg {
-#  my $self = shift;
   return if $quiet;
   my $t = localtime;
   print STDERR "[".$t->hms."] @_\n";
@@ -27,7 +26,7 @@ sub msg {
 #----------------------------------------------------------------------
 
 sub err {
-#  my $self = shift;
+  $quiet=0;  # disable on errors!
   msg(@_);
   exit(1);
 }
