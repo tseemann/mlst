@@ -12,12 +12,12 @@ use MLST::Logger qw(err msg);
 use MLST::Requirements qw(require_exe);
 use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 use JSON;
-use File::Slurp;
+use Path::Tiny;  # bundled in $APPDIR/perl5/
 
 #..............................................................................
 # Globals
 
-my $VERSION = "2.10";
+my $VERSION = "2.11-dev";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $EMAIL = 'torsten.seemann@gmail.com';
@@ -138,8 +138,7 @@ for my $argv (@ARGV)
 
 if ($json_fn) {
   msg("Writing JSON: $json_fn");
-  write_file(
-    $json_fn,
+  path($json_fn)->spew(
     to_json( \%json, {ascii=>1,pretty=>1,allow_barekey=>1} ),
   );
 }
