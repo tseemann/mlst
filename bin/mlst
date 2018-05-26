@@ -97,6 +97,7 @@ for my $argv (@ARGV)
   -d $argv and err("'$argv' seems to be a directory, not a file");
   my @temp;
   my $infile = $argv;
+  my $LABEL;
   
   if ( is_gzipped($argv) ) {
     (undef,$infile) = tempfile(UNLINK=>1);
@@ -119,24 +120,25 @@ for my $argv (@ARGV)
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
 
   # use --label, else just filename
-  $label ||= $nopath ? just_filename($argv) : $argv;
-  msg("Using label '$label' for file $argv") if $label ne $argv;
+  $LABEL = $label || ($nopath ? just_filename($argv) : $argv);
+  msg("Using label '$LABEL' for file $argv") if $LABEL ne $argv;
+  msg("argv=$argv infile=$infile LABEL=$LABEL label=$label");
 
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
   if ($scheme and $legacy) {
     # old style "one scheme" layout
-    print join($OUTSEP, $label, $sch, $ST, @code),"\n";
+    print join($OUTSEP, $LABEL, $sch, $ST, @code),"\n";
   } 
   else {
     # new style "autodetect" layout
     my @gene = $sch eq '-' ? () : @{ $scheme{$sch}->genes };
     my @allele = pairwise { "$a($b)" } @gene, @code;
-    print join($OUTSEP, $label, $sch, $ST, @allele),"\n";
+    print join($OUTSEP, $LABEL, $sch, $ST, @allele),"\n";
   }
 
   if ($json_fn) {
-    $json{$label} = {
+    $json{$LABEL} = {
       'filename' => $argv,
       'scheme' => $sch,
       'sequence_type' => $ST,
