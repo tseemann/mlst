@@ -262,11 +262,17 @@ sub find_mlst {
     # score is out of 100 (90 split across alleles, 10 for an ST type)
     # penalties are given as below for inexact alleles
     my $score = $nlocii;
-    $score -= 0.2*($sig =~ tr/~/~/);  # novelish
+    #msg("Start: score=$score ($sig)") if $debug;
+    $score -= 0.3*($sig =~ tr/~/~/);  # novelish
+    #msg("Novel: score=$score") if $debug;
     $score -= 0.5*($sig =~ tr/?/?/);  # approx
+    #msg("Parti: score=$score") if $debug;
     $score -= 1.0*($sig =~ tr/-/-/);  # absent
+    #msg("Absen: score=$score") if $debug;
     $score = int($score * 90 / $nlocii);
+    #msg("Normz: score=$score") if $debug;
     $score += 10 if $ST ne '-';
+    #msg("HasST: score=$score") if $debug;
     msg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)") if $debug;
     push @sig, [ $name, $ST, $sig, $score ] if $score >= $minscore;
   }

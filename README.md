@@ -163,7 +163,7 @@ Each MLST prediction gets a score out of 100.
 The score for a scheme with N alleles is as follows:
 
 * +90/N points for an exact allele match _e.g._ `42`
-* +45/N points for a novel allele match (50% of an exact allele) _e.g._ `~42`
+* +63/N points for a novel allele match (50% of an exact allele) _e.g._ `~42`
 * +18/N points for a partial allele match (20% of an exact alelle) _e.g._ `42?`
 * 0 points for a missing allele _e.g._ `-`
 * +10 points if there is a matching ST type for the allele combination
