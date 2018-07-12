@@ -210,6 +210,7 @@ sub find_mlst {
   # FIXME: we should /sort/ the hits here in case logic below is dodgy?
   
   my %res;
+  my %multihit;
   my $res_count=0;
 
   foreach (@hit) {
@@ -231,6 +232,31 @@ sub find_mlst {
       next;
     }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
+      if (exists $multihit{$sch}{$gene}) {  # check if hit is a subsequence of another hit
+      	  my @discarded;
+      	  my $skip = 0;
+      	  for( my $i=0; $i < scalar(@{$multihit{$sch}{$gene}}); $i++ )  {
+      	      my ($num1,$qstart1,$qend1) = @{$multihit{$sch}{$gene}->[$i]};
+      	      if ($qstart1 <= $qstart and $qend1 >= $qend) {   # previous hit is a supersequence of current sequence
+      		  $skip = 1;
+      		  msg("Exact allele match $sch.$gene-$num is a subsequence of $sch.$gene-$num1, ignored.")
+      	      }
+      	      elsif ($qstart1 >= $qstart and $qend1 <= $qend) {# current hit is a supersequence of previous sequence
+      		  $res{$sch}{$gene} =~ s/,?\b$num1\b//;
+      		  push(@discarded, $i);
+      		  msg("Exact allele match $sch.$gene-$num1 is a subsequence of $sch.$gene-$num, ignored.")
+      	      }
+      	  }
+      	  while (my $i = pop @discarded){
+      	      splice(@{$multihit{$sch}{$gene}},$i,1)
+      	  }
+      	  next if ($skip == 1); # don't do anything further if hit was a subsequence of another hit
+
+      	  push(@{$multihit{$sch}{$gene}}, [$num,$qstart,$qend]);
+      }
+      else {
+      	  $multihit{$sch}{$gene} = [[$num,$qstart,$qend]];
+      }
       if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/[~?]/) {
         msg("WARNING: found addtional exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} .= ",$num";
