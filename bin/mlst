@@ -17,7 +17,7 @@ use Path::Tiny;  # bundled in $APPDIR/perl5/
 #..............................................................................
 # Globals
 
-my $VERSION = "2.11-dev";
+my $VERSION = "2.11";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
