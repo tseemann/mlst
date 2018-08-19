@@ -267,6 +267,12 @@ sub find_mlst {
   for my $name (keys %res) {
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
+
+    # this is to handle null alleles which produce an ST type
+    if ($ST ne '-' and $sig =~ m{/-}) {
+      $sig =~ s{/-}{/0}g; # want gene(0) not gene(-) in these cases
+    }
+
     my $nlocii = $scheme{$name}->num_genes;
     # score is out of 100 (90 split across alleles, 10 for an ST type)
     # penalties are given as below for inexact alleles
