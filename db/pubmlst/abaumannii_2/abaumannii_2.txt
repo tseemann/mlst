@@ -1206,3 +1206,30 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1205	103	160	2	74	2	89	136		
 1206	17	20	23	2	20	18	1		Acinetobacter pittii
 1207	180	169	164	83	177	93	156		Acinetobacter radioresistens
+1208	1	168	1	1	5	1	1		Acinetobacter baumannii
+1209	2	1	2	1	5	1	2		Acinetobacter baumannii
+1210	8	2	2	7	17	1	57		Acinetobacter baumannii
+1211	1	2	2	2	73	4	5		Acinetobacter baumannii
+1212	3	3	6	2	4	4	14		Acinetobacter baumannii
+1213	182	173	72	39	178	41	71		
+1214	1	1	1	1	5	95	1		
+1215	15	171	20	43	19	10	157		
+1216	183	172	165	43	179	96	83		
+1217	3	3	1	1	5	1	1		
+1218	3	3	2	4	15	2	4		
+1219	3	1	1	1	7	1	1		
+1220	12	3	5	2	9	1	14		
+1221	3	1	1	4	5	1	1		
+1222	3	16	94	2	4	2	4		Acinetobacter baumannii
+1223	13	5	40	1	42	1	16		Acinetobacter baumannii
+1224	1	1	7	1	7	2	1		Acinetobacter baumannii
+1225	3	3	6	2	74	2	5		Acinetobacter baumannii
+1226	12	3	6	2	5	1	3		Acinetobacter baumannii
+1227	1	175	2	2	13	4	2		Acinetobacter baumannii
+1228	25	3	2	2	4	4	4		Acinetobacter baumannii
+1229	155	177	6	2	4	1	5		Acinetobacter baumannii
+1230	3	2	148	1	51	1	5		Acinetobacter baumannii
+1231	3	3	168	5	3	1	14		Acinetobacter baumannii
+1232	40	49	6	1	102	1	2		
+1233	3	2	167	2	115	1	4		
+1234	132	20	169	16	72	97	159		

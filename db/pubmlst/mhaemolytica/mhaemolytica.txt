@@ -48,3 +48,5 @@ ST	adk	aroE	deoD	gapDH	gnd	mdh	zwf	clonal_complex
 47	17	12	16	13	14	16	12	
 48	18	13	17	14	15	17	17	
 49	19	14	18	8	16	18	18	
+50	20	15	19	15	17	19	19	
+51	1	2	20	2	1	1	1	

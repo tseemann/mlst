@@ -1,4 +1,4 @@
-ST	abcZ	adk	efp	fumC	glyBETA	mutY	ppa	trpE
+ST	abcZ	adk	efp	fumC	glyBeta	mutY	ppa	trpE
 1	1	1	1	1	1	1	1	1
 2	2	2	2	2	2	2	2	2
 3	2	2	2	3	2	2	2	2

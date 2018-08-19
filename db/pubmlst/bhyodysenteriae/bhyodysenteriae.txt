@@ -240,3 +240,7 @@ ST	Bhy_adh	Bhy_alp	Bhy_est	Bhy_gdh	Bhy_glpK	Bhy_pgm	Bhy_thi	clonal_complex
 239	2	11	33	10	7	3	3	
 240	2	11	3	6	43	26	43	
 241	2	11	3	7	44	2	44	
+242	2	11	33	10	43	3	3	
+243	2	11	3	1	9	2	13	
+244	2	7	3	6	24	2	3	
+245	2	31	3	20	4	2	45	
