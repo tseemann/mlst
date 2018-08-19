@@ -358,9 +358,9 @@ If it doesn't - go back and check you really did do Step 4 above.
 
 ## Citations
 
-The `mlst` software incoprporates components of the 
+The `mlst` software incorporates components of the 
 [PubMLST database](https://pubmlst.org/policy.shtml)
-and must be cited in any publications that use `mlst`:
+which must be cited in any publications that use `mlst`:
 
 *"This publication made use of the PubMLST website (https://pubmlst.org/)
 developed by Keith Jolley 
