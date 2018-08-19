@@ -28,14 +28,11 @@ NC_017040.fna  spyogenes  172  gki(56)  gtr(24)  murI(39)  mutS(7)  recP(30)   x
 ## Installation
 
 ### Brew
-If you are using the [OSX Brew](http://brew.sh/)
+If you are using the [MacOS Homebrew](http://brew.sh/)
 or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
 ```
-% brew tap brewsci/science
-% brew tap brewsci/bio
-% brew untap homebrew/science
-% brew install mlst   # or "brew upgrade mlst"
+% brew install brewsci/bio/mlst
 ```
 
 ### Conda
