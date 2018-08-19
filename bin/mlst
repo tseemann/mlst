@@ -126,6 +126,15 @@ for my $argv (@ARGV)
 
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
+  # sort duplicate alleles numerically (only for pure 100% ones)
+  for my $as (@code) {
+    if ($as =~ m/,/ and $as =~ m/^[0-9,]+/) {
+      #print STDERR "DEBUG: '$as' in [@code]\n";
+      $as = join ',', sort { $a <=> $b } split m/,/, $as;
+      #print STDERR "DEBUG: '$as' in [@code]\n";
+    }
+  }
+
   if ($scheme and $legacy) {
     # old style "one scheme" layout
     print join($OUTSEP, $LABEL, $sch, $ST, @code),"\n";
