@@ -23,5 +23,5 @@ for URL in $(grep '<url>' $OUTDIR/dbases.xml); do
 done
 
 # delete fungi schemes
-echo rm -frv "$OUTDIR"/{tvaginalis,ckrusei,ctropicalis,calbicans}
+echo rm -frv "$OUTDIR"/{tvaginalis,ckrusei,ctropicalis,calbicans.sparasitica}
 
