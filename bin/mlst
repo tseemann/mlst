@@ -211,7 +211,7 @@ sub find_mlst {
   my($fname) = @_;
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
-           ." -perc_identity $minid -evalue 1E-20"
+           ." -perc_identity $minid -evalue 1E-20 -culling_limit 1"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
   msg("Running: $cmd") if $debug;
 
