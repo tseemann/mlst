@@ -17,7 +17,7 @@ use Path::Tiny;  # bundled in $APPDIR/perl5/
 #..............................................................................
 # Globals
 
-my $VERSION = "2.13";
+my $VERSION = "2.14";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -209,9 +209,13 @@ exit(0);
 
 sub find_mlst {
   my($fname) = @_;
+
+  # https://github.com/tseemann/mlst/issues/69
+  my $culling = $scheme ? 10 : 1;
+
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
-           ." -perc_identity $minid -evalue 1E-20 -culling_limit 1"
+           ." -perc_identity $minid -evalue 1E-20 -culling_limit $culling"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
   msg("Running: $cmd") if $debug;
 
