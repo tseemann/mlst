@@ -21,7 +21,7 @@ my $VERSION = "2.12";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
-my @DEPS = (qw(blastn gzip file));
+my @DEPS = (qw(blastn gzip));
 
 my $SEP = '/';
 my $OUTSEP = "\t";
