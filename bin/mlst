@@ -17,7 +17,7 @@ use Path::Tiny;  # bundled in $APPDIR/perl5/
 #..............................................................................
 # Globals
 
-my $VERSION = "2.14";
+my $VERSION = "2.15";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -60,6 +60,12 @@ my %novel;  # keep track of novel alleles
 # in case user is forcing a scheme on us (legacy mode)
 $scheme && ! exists $scheme{$scheme} and err("Invalid --scheme '$scheme'. Check using --list");
 
+# we set minscore to 0 if --scheme is set
+if ($scheme and $minscore != 0) {
+  msg("Setting --miscore=0 because user chose --scheme");
+  $minscore=0;
+}
+
 if ($list or $longlist) {
   if ($list) { 
     print join( " ", $pubmlst->names ), "\n";
@@ -79,7 +85,8 @@ require_exe(@DEPS);
 # build a hash of schemes to ignore from the CSV string
 my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
 %exclude = () if $scheme;   # don't exclude anything is specific scheme provided
-msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
+my $num_excluded = scalar(keys %exclude);
+msg("Excluding $num_excluded schemes:", (keys %exclude)) if $num_excluded > 0;
 
 #..............................................................................
 # Output results
@@ -187,18 +194,20 @@ if ($novel) {
 
 # Say our goodbyes
 my @motd = (
-  "Please also cite 'Jolley & Maiden 2010, BMC Bioinf, 11:595' if you use $EXE",
-  "You can use --label XXX to replace an ugly filename in the output",
-  "$EXE also supports --json output for the modern bioinformatician",
+  "Please also cite 'Jolley & Maiden 2010, BMC Bioinf, 11:595' if you use $EXE.",
+  "You can use --label XXX to replace an ugly filename in the output.",
+  "$EXE also supports --json output for the modern bioinformatician.",
   "Did you know $EXE also works on .gbk and .gz files?",
-  "I am quite confident this won't be the last time you run $EXE",
-  "Somehow this tool escaped my normal Australiana based naming system",
+  "I am quite confident this won't be the last time you run $EXE.",
+  "Somehow this tool escaped my normal Australiana based naming system.",
   "If you have problems, please file at https://github.com/tseemann/mlst/issues",
   "The manual is now quite extensive; read it at https://github.com/tseemann/mlst",
-  "You can use '$EXE --longlist' to see all the supported schemes",
-  "Use --quiet to avoid all the message output, including these witticisms",
-  "Thanks for using $EXE, I hope you found it useful",
+  "You can use '$EXE --longlist' to see all the supported schemes.",
+  "Use --quiet or -q to avoid all the message output, including these witticisms.",
+  "Thanks for using $EXE, I hope you found it useful.",
   "If you like MLST, you're going to absolutely love cgMLST!",
+  "If you like MLST, you're absolutely going to love wgMLST!",
+  "Remember that --minscore is only used when using automatic scheme detection.",
   "You can follow me on Twitter at \@torstenseemann",
 );
 msg( $motd[ int(rand(scalar(@motd))) ] );
@@ -210,12 +219,9 @@ exit(0);
 sub find_mlst {
   my($fname) = @_;
 
-  # https://github.com/tseemann/mlst/issues/69
-  my $culling = $scheme ? 10 : 1;
-
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
-           ." -perc_identity $minid -evalue 1E-20 -culling_limit $culling"
+           ." -perc_identity $minid -evalue 1E-20"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
   msg("Running: $cmd") if $debug;
 
@@ -236,7 +242,7 @@ sub find_mlst {
     next unless $nident/$hlen >= $mincov/100 ; # need min-cov to reach minid
 
     if ($scheme and $sch ne $scheme) {
-      msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
+      msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme") if $debug;
       next;
     }
     if ($exclude{$sch}) {
@@ -352,7 +358,7 @@ sub setOptions {
     "SCORING",
     {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
-    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme"},
+    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
     "PATHS",
     {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
     {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
