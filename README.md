@@ -59,7 +59,6 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
   * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils perl-JSON`
   * Most Unix: `sudo cpan Moo List::MoreUtils JSON`
 * Standard Unix commands
-  * `file` (for file format detection)
   * `gzip` (for decompressing .gz files)
 
 ## Usage
