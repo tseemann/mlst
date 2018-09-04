@@ -1903,3 +1903,4 @@ ST	adk	atpG	frdB	fucK	mdh	pgi	recA	clonal_complex
 1902	14	7	16	0	46	21	1	
 1903	60	51	16	7	15	1	31	
 1904	40	3	38	1	255	40	21	
+1905	51	36	41	123	15	38	18	
