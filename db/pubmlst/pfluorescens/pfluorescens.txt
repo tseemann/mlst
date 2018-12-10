@@ -105,3 +105,5 @@ ST	glnS	gyrB	ileS	nuoD	recA	rpoB	rpoD	clonal_complex
 104	92	86	89	94	90	84	80	
 105	94	25	25	95	91	85	81	
 106	95	87	90	96	92	7	79	
+107	96	88	91	49	26	30	78	
+108	5	5	5	5	5	82	82	

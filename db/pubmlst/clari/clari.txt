@@ -157,3 +157,6 @@ ST	Cla_adk	Cla_atpA	Cla_glnA	Cla_glyA	Cla_pgi	Cla_pgm	Cla_tkt	clonal_complex
 156	8	6	1	1	1	1	36	
 157	8	4	1	1	1	3	6	
 158	103	65	1	1	1	3	44	
+159	7	57	1	1	4	1	6	
+160	6	2	1	1	1	1	6	
+161	103	2	1	1	1	3	44	

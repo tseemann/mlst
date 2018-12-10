@@ -137,3 +137,4 @@ ST	aroE	atpD	gmk	guaA	lepA	sodA	tly	CAMP2	clonal_complex
 136	17	4	15	4	4	6	10	12	
 137	20	4	2	4	2	6	10	42	
 138	1	1	16	5	1	4	8	2	
+139	17	4	2	16	2	20	10	12	
