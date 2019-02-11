@@ -142,3 +142,4 @@ ST	adk_3	icdA_3	lipL32_3	lipL41_3	rrs2_3	secY_3	clonal_complex
 141	36	39	15	32	10	40	
 142	1	2	2	3	29	1	
 143	5	2	2	2	1	17	
+144	13	24	11	19	12	60	

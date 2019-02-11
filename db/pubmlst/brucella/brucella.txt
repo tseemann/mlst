@@ -79,3 +79,4 @@ ST	gap	aroA	glk	dnaK	gyrB	trpE	cobQ	int_hyp	omp25
 78	29	27	43	23	25	26	26	25	37	
 79	30	4	8	4	1	2	5	1	2	
 80	25	24	39	20	19	20	21	18	32	
+81	1	4	44	4	1	2	5	1	2	

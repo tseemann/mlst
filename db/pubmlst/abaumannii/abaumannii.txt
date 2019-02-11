@@ -1866,3 +1866,4 @@ ST	Oxf_gltA	Oxf_gyrB	Oxf_gdhB	Oxf_recA	Oxf_cpn60	Oxf_gpi	Oxf_rpoD	clonal_complex
 1865	1	121	40	12	4	211	6		
 1866	1	12	59	48	35	200	5		
 1867	1	101	3	2	2	153	3		
+1868	10	12	4	11	4	106	5		Acinetobacter baumannii

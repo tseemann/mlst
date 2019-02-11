@@ -46,3 +46,6 @@ ST	TP0136	TP0548	TP0705	clonal_complex
 45	4	1	1	SS14-like
 46	1	31	1	SS14-like
 47	9	14	3	Nichols-like
+48	17	1	1	SS14-like
+49	18	1	1	SS14-like
+50	1	32	1	SS14-like
