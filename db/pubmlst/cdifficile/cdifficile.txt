@@ -533,3 +533,4 @@ ST	adk	atpA	dxr	glyA	recA	sodA	tpi	mlst_clade
 532	1	1	2	6	1	1	1	1
 533	1	7	7	5	1	3	3	1
 534	11	7	14	8	6	20	10	4
+535	1	1	2	10	1	7	1	

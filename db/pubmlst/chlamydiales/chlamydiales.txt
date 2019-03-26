@@ -267,3 +267,5 @@ ST	gatA	oppA	hflX	gidA	enoA	hemN	fumC	clonal_complex
 266	82	75	87	89	92	71	75	
 267	83	76	88	90	93	72	76	
 268	84	77	89	91	94	73	77	
+269	85	78	90	92	13	9	78	
+270	3	3	1	5	3	2	3	

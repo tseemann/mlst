@@ -1867,3 +1867,25 @@ ST	Oxf_gltA	Oxf_gyrB	Oxf_gdhB	Oxf_recA	Oxf_cpn60	Oxf_gpi	Oxf_rpoD	clonal_complex
 1866	1	12	59	48	35	200	5		
 1867	1	101	3	2	2	153	3		
 1868	10	12	4	11	4	106	5		Acinetobacter baumannii
+1869	52	143	193	127	122	323	148		Acinetobacter pittii
+1870	34	97	194	41	4	103	4		Acinetobacter baumannii
+1871	117	190	195	128	123	325	149		Acinetobacter pittii
+1872	62	100	197	7	52	247	75		Acinetobacter pittii
+1873	118	191	179	129	125	308	135		Acinetobacter pittii
+1874	1	192	2	11	4	170	144		Acinetobacter baumannii
+1875	90	143	153	98	83	325	136		Acinetobacter pittii
+1876	49	197	180	132	128	333	150		Acinetobacter seifertii
+1877	33	195	203	1	48	211	50		Acinetobacter baumannii
+1878	3	35	42	12	4	332	30		Acinetobacter baumannii
+1879	1	196	204	37	4	141	26		Acinetobacter baumannii
+1880	1	121	2	82	1	328	6		Acinetobacter baumannii
+1881	34	97	10	41	4	329	4		Acinetobacter baumannii
+1882	1	192	200	12	4	174	145		Acinetobacter baumannii
+1883	1	194	2	11	4	98	146		Acinetobacter baumannii
+1884	1	198	201	37	4	173	151		Acinetobacter baumannii
+1885	120	35	67	6	69	140	147		Acinetobacter baumannii
+1886	15	12	198	12	1	79	85		Acinetobacter baumannii
+1887	1	17	2	131	1	166	69		Acinetobacter baumannii
+1888	21	92	198	1	127	330	4		Acinetobacter baumannii
+1889	1	12	202	2	4	331	32		Acinetobacter baumannii
+1890	1	3	3	2	2	202	3		Acinetobacter baumannii
