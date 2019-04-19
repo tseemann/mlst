@@ -48,10 +48,23 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
 % git clone https://github.com/tseemann/mlst.git
 % $HOME/mlst/bin/mlst --help
 ```   
- 
+
+### Singularity
+
+Install [Singularity](http://singularity.lbl.gov/docs-installation)
+
+```
+% cd $HOME
+% git clone https://github.com/tseemann/mlst.git
+% cd mlst
+% sudo singularity build mlst Singularity
+$ ./mlst --help
+```
+
+
 ### Dependencies
 
-* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
+* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/)
   * You probably have `blastn` already installed already.
   * If you use Brew, this will install the `blast` package for you.
 * Perl modules: `Moo`,`List::MoreUtils`,`JSON`
@@ -141,7 +154,7 @@ bcereus           glp        gmk       ilv       pta       pur        pyc       
 
 ### Missing data
 
-Version 2.x does not just look for exact matches to full length alleles. 
+Version 2.x does not just look for exact matches to full length alleles.
 It attempts to tell you as much as possible about what it found using the
 notation below:
 
@@ -173,8 +186,8 @@ but eliminates false positives.
 
 ## Tweaking the output
 
-The output is TSV (tab-separated values). This makes it easy to parse 
-and manipulate with Unix utilities like cut and sort etc. For example, 
+The output is TSV (tab-separated values). This makes it easy to parse
+and manipulate with Unix utilities like cut and sort etc. For example,
 if you only want the filename and ST you can do the following:
 ```
 % mlst --scheme abaumanii AB*.fasta | cut -f1,3 > ST.tsv
@@ -269,16 +282,16 @@ folder as follows:
 % ../bin/mlst --list
 ```
 
-## Adding a new scheme 
+## Adding a new scheme
 
-If you are unable or unwilling to add your scheme to PubMLST via 
+If you are unable or unwilling to add your scheme to PubMLST via
 [BIGSdb](https://pubmlst.org/software/database/bigsdb/) you can
 insert a new scheme into your local `mlst` database.
 
 ### The directory structure
 
 Each MLST scheme exists in a folder withing the `mlst/db/pubmlst` folder.
-The name of the folder is the scheme name, say `saureus` for 
+The name of the folder is the scheme name, say `saureus` for
 *Staphylococcus aureus*. It contains files like this:
 ```
 % cd mlst/db/pubmlst/sareus
