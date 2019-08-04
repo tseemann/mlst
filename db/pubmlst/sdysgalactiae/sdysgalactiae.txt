@@ -465,3 +465,4 @@ ST	gki	gtr	murI	mutS	recP	xpt	atoB	clonal_complex
 468	3	2	1	1	4	1	15	
 469	3	2	1	1	4	83	11	
 470	4	4	1	57	17	6	2	
+471	3	2	1	1	4	8	11	

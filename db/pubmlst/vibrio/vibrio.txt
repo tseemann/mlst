@@ -148,3 +148,14 @@ ST	gyrB	pyrH	recA	atpA	species
 147	120	95	115	86	
 148	121	96	116	87	
 149	122	97	117	34	
+150	125	100	120	89	V. harveyi group
+151	126	99	119	90	V. cholerae / V. mimicus
+152	130	101	62	19	V. parahaemolyticus
+153	120	94	114	86	V. harveyi group
+154	122	67	116	86	V. harveyi group
+155	123	96	117	87	V. mediterranei / V. shilonii
+156	124	97	118	88	V. splendidus
+157	119	42	113	84	V. orientalis
+158	95	79	88	72	V. mediterranei / V. shilonii
+159	127	98	121	88	V. harveyi group
+160	121	95	115	42	V. parahaemolyticus
