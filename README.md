@@ -289,7 +289,6 @@ aroE.tfa
 glpF.tfa
 gmk.tfa
 pta.tfa
-saureus.txt
 tpi.tfa
 yqiL.tfa
 ```
