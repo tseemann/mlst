@@ -179,6 +179,7 @@ if ($novel) {
   my $newones = 0;
   open FASTA, '>', $novel;
   for my $seq (keys %novel) {
+#    next unless $novel{$seq} =~ m/$sch/;
     next unless $novel{$seq} =~ m/~/;
     print FASTA ">", $novel{$seq}, "\n", $seq, "\n";
     $newones++;
@@ -251,14 +252,14 @@ sub find_mlst {
     }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
       if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/[~?]/) {
-        msg("WARNING: found addtional exact allele match $sch.$gene-$num");
+        msg("WARNING: found additional exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} .= ",$num";
       }
       else {
         msg("Found exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} = "$num";
       }
-      # force update of hash with our exact match (see below for inexact behavior
+      # force update of hash with our exact match (see below for inexact behavior)
       $novel{$qseq} = "$sch.$gene-$num $fname";
     }
     else { # either 100% length (with some SNPs) or partial coverage
