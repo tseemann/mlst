@@ -1,10 +1,9 @@
 #!/usr/bin/env perl
 use 5.26.0;
 use strict;
-use File::Spec;
+use File::Basename;
 use Data::Dumper;
 use List::MoreUtils qw(pairwise);
-use File::Temp qw(tempfile);
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
@@ -18,8 +17,8 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.17.3";
-my $EXE = just_filename( $FindBin::RealScript );
+my $VERSION = "2.17.4";
+my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
 
@@ -112,7 +111,7 @@ for my $argv (@ARGV)
   my $LABEL;
 
   # use --label, else just filename
-  $LABEL = $label || ($nopath ? just_filename($argv) : $argv);
+  $LABEL = $label || ($nopath ? basename($argv) : $argv);
   msg("Using label '$LABEL' for file $argv") if $LABEL ne $argv;
   #msg("argv=$argv infile=$infile LABEL=$LABEL label=$label");
 
@@ -319,14 +318,6 @@ sub find_mlst {
   my @best = @{ $sig[0] };
 
   return @best;
-}
-
-#----------------------------------------------------------------------
-
-sub just_filename {
-  my($path) = @_;
-  my(undef,undef,$fname) = File::Spec->splitpath( $path );
-  return $fname;
 }
 
 #----------------------------------------------------------------------
