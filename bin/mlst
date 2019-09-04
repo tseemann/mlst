@@ -11,7 +11,6 @@ use MLST::PubMLST;
 use MLST::Scheme;
 use MLST::Logger qw(err msg);
 use MLST::Requirements qw(require_exe);
-use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 use JSON;
 use Path::Tiny;  # bundled in $APPDIR/perl5/
 use Digest::MD5 qw(md5_hex);
@@ -23,7 +22,6 @@ my $VERSION = "2.17.3";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
-my @DEPS = (qw(blastn gzip));
 
 my $SEP = '/';
 my $OUTSEP = "\t";
@@ -45,7 +43,7 @@ MLST::Logger->quiet($quiet);
 
 # check we have the right tools and versions thereof
 msg("Checking $EXE dependencies:");
-require_exe(@DEPS);
+require_exe('blastn', 'any2fasta');
 my($blastver) = qx(blastn -version 2>&1);
 chomp $blastver;
 $blastver =~ m/(\d+\.\d+)/ or err("Can not determine BLAST+ version from '$blastver'");
@@ -111,24 +109,7 @@ for my $argv (@ARGV)
   -r $argv or err("Unable to read from '$argv'");
   -d $argv and err("'$argv' seems to be a directory, not a file");
   my @temp;
-  my $infile = $argv;
   my $LABEL;
-  
-  if ( is_gzipped($argv) ) {
-    (undef,$infile) = tempfile(UNLINK=>1);
-    msg("Decompressing: $argv");
-    gunzip_file($argv, $infile);
-    push @temp, $infile;
-  }
-  if ( is_genbank($infile) ) {
-    my $orig = $infile;
-    (undef,$infile) = tempfile(UNLINK=>1);
-    msg("Converting to FASTA: $argv");
-    genbank_to_fasta($orig, $infile);
-    push @temp, $infile;
-  }
-
-  msg("Scanning: $argv [$infile]");  
 
   # use --label, else just filename
   $LABEL = $label || ($nopath ? just_filename($argv) : $argv);
@@ -136,7 +117,7 @@ for my $argv (@ARGV)
   #msg("argv=$argv infile=$infile LABEL=$LABEL label=$label");
 
   # Do the big function call
-  my($sch, $ST, $sig) = find_mlst($infile, $LABEL);
+  my($sch, $ST, $sig) = find_mlst($argv, $LABEL);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
 
   # delete all novel alleles from failed schemes
@@ -242,7 +223,8 @@ exit(0);
 sub find_mlst {
   my($fname, $LABEL) = @_;
 
-  my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
+  my $cmd = " any2fasta -q \Q$fname\E |"
+           ." blastn -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
            ." -perc_identity $minid -evalue 1E-20"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";

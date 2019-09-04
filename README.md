@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/tseemann/mlst.svg?branch=master)](https://travis-ci.org/tseemann/mlst) [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) ![Don't judge me](https://img.shields.io/badge/Language-Perl_5-steelblue.svg)
+[![Build Status](https://travis-ci.org/tseemann/mlst.svg?branch=master)](https://travis-ci.org/tseemann/mlst)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+![Don't judge me](https://img.shields.io/badge/Language-Perl_5-steelblue.svg)
 
 # mlst
 
@@ -13,7 +15,7 @@ contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pg
 % mlst genome.gbk.gz
 genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1) yqiL(1)
 
-% mlst --label Anthrax GCF_001941925.1_ASM194192v1_genomic.fna.gz
+% mlst --label Anthrax GCF_001941925.1_ASM194192v1_genomic.fna.bz2
 Anthrax  bcereus  -  glp(24) gmk(1) ilv(~83) pta(1) pur(~71) pyc(37) tpi(41)
 
 % mlst --nopath /opt/data/refseq/S_pyogenes/*.fna
@@ -59,13 +61,13 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
   * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl libjson-perl`
   * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils perl-JSON`
   * Most Unix: `sudo cpan Moo List::MoreUtils JSON`
-* Standard Unix commands
-  * `gzip` (for decompressing .gz files)
+* [any2fasta](https://github.com/tseemann/any2fasta)
+  * Converts sequence files to FASTA, even compressed ones
 
 ## Usage
 
 Simply just give it a genome file in FASTA or GenBank format,
-optionally compressed with gzip!
+optionally compressed with gzip, zip or bzip2.
 
 ```
 % mlst contigs.fa
@@ -78,14 +80,15 @@ It returns a tab-separated line containing
 * the ST (sequence type)
 * the allele IDs
 
-You can give it multiple files at once, and they can be in FASTA or GenBank format, and even compressed with gzip!
+You can give it multiple files at once, and they can be in FASTA or GenBank format, 
+and even compressed with gzip, bzip2 or zip.
 
 ```
 % mlst genomes/*
 genomes/6008.fna        saureus         239  arcc(2)   aroe(3)   glpf(1)   gmk_(1)   pta_(4)   tpi_(4)   yqil(3)
 genomes/strep.fasta.gz  ssuis             1  aroA(1)   cpn60(1)  dpr(1)    gki(1)    mutS(1)   recA(1)   thrA(1)
 genomes/NC_002973.gbk   lmonocytogenes    1  abcZ(3)   bglA(1)   cat(1)    dapE(1)   dat(3)    ldh(1)    lhkA(3)
-genomes/L550.gbk.gz     leptospira      152  glmU(26)  pntA(30)  sucA(28)  tpiA(35)  pfkB(39)  mreA(29)  caiB(29)
+genomes/L550.gbk.bz2    leptospira      152  glmU(26)  pntA(30)  sucA(28)  tpiA(35)  pfkB(39)  mreA(29)  caiB(29)
 ```
 
 ### Without auto-detection
