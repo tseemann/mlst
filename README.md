@@ -51,6 +51,7 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
  
 ### Dependencies
 
+* [Perl](https://www.perl.org/) >= 5.16
 * [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
   * You probably have `blastn` already installed already.
   * If you use Brew, this will install the `blast` package for you.
@@ -63,7 +64,8 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
 
 ## Usage
 
-Simply just give it a genome file in FASTA or GenBank format, optionally compressed with gzip!
+Simply just give it a genome file in FASTA or GenBank format,
+optionally compressed with gzip!
 
 ```
 % mlst contigs.fa

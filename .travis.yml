@@ -3,7 +3,7 @@ language: perl
 sudo: false
 
 perl:
-    - "5.26"
+    - "5.16"
     
 install:
     - "cpanm --quiet --notest Moo JSON List::MoreUtils"
