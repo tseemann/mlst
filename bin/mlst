@@ -17,7 +17,7 @@ use Path::Tiny;  # bundled in $APPDIR/perl5/
 #..............................................................................
 # Globals
 
-my $VERSION = "2.16.4";
+my $VERSION = "2.16.5";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -171,7 +171,7 @@ for my $argv (@ARGV)
 if ($json_fn) {
   msg("Writing JSON: $json_fn");
   path($json_fn)->spew(
-    to_json( \%json, {ascii=>1,pretty=>1,allow_barekey=>1} ),
+    to_json( \%json, {ascii=>1,pretty=>1} ),
   );
 }
 
