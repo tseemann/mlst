@@ -52,9 +52,9 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
 ### Dependencies
 
 * [Perl](https://www.perl.org/) >= 5.16
-* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) 
+* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) >= 2.9.0
   * You probably have `blastn` already installed already.
-  * If you use Brew, this will install the `blast` package for you.
+  * If you use Brew or Conda, this will install the `blast` package for you.
 * Perl modules: `Moo`,`List::MoreUtils`,`JSON`
   * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl libjson-perl`
   * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils perl-JSON`

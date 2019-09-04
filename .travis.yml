@@ -4,12 +4,15 @@ sudo: false
 
 perl:
     - "5.16"
-    
+
+env:
+  - BLASTVER=2.9.0
+
 install:
     - "cpanm --quiet --notest Moo JSON List::MoreUtils"
-    - "wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.7.1/ncbi-blast-2.7.1+-x64-linux.tar.gz"
-    - "tar zxvf ncbi-blast-2.7.1+-x64-linux.tar.gz"
-    - "export PATH=$PWD/bin:$PWD/ncbi-blast-2.7.1+/bin:$PATH"
+    - "wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${BLASTVER}/ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
+    - "tar zxvf ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
+    - "export PATH=$PWD/bin:$PWD/ncbi-blast-${BLASTVER}+/bin:$PATH"
 
 script:
     - "mlst --check"
@@ -29,5 +32,3 @@ script:
     - "mlst -q test/example.gbk.gz --json out.json && grep 'sequence_type' out.json"
     - "! mlst -q --label double_trouble test/example.gbk.gz test/example.fna.gz"
     - "mlst -q --label GDAYMATE test/example.fna.gz | grep GDAYMATE"
-
- 

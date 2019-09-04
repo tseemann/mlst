@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.17.1";
+my $VERSION = "2.17.2";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -43,9 +43,16 @@ setOptions();
 
 MLST::Logger->quiet($quiet);
 
+# check we have the right tools and versions thereof
+msg("Checking $EXE dependencies:");
+require_exe(@DEPS);
+my($blastver) = qx(blastn -version 2>&1);
+chomp $blastver;
+$blastver =~ m/(\d+\.\d+)/ or err("Can not determine BLAST+ version from '$blastver'");
+my $decver = $1;
+msg("Found $blastver");
+$decver >= 2.9 or err("$EXE needs BLAST+ 2.9.0 or later");
 if ($check) {
-  msg("Checking $EXE dependencies:");
-  require_exe(@DEPS);
   msg("OK.");
   exit(0);
 }
@@ -82,8 +89,6 @@ if ($list or $longlist) {
 }
 
 @ARGV or err("Please provide some FASTA/Genbank files to genotype (can be .gz)");
-
-require_exe(@DEPS);
 
 # build a hash of schemes to ignore from the CSV string
 my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
