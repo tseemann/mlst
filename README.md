@@ -51,7 +51,7 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
  
 ### Dependencies
 
-* [Perl](https://www.perl.org/) >= 5.16
+* [Perl](https://www.perl.org/) >= 5.26
 * [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) >= 2.9.0
   * You probably have `blastn` already installed already.
   * If you use Brew or Conda, this will install the `blast` package for you.

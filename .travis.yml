@@ -3,7 +3,7 @@ language: perl
 sudo: false
 
 perl:
-    - "5.16"
+    - "5.26"
 
 env:
   - BLASTVER=2.9.0

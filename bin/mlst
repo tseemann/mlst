@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-use 5.16.0;
+use 5.26.0;
 use strict;
 use File::Spec;
 use Data::Dumper;
@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.17.2";
+my $VERSION = "2.17.3";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
