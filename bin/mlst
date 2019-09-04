@@ -13,11 +13,12 @@ use MLST::Requirements qw(require_exe);
 use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
 use JSON;
 use Path::Tiny;  # bundled in $APPDIR/perl5/
+use Digest::MD5 qw(md5_hex);
 
 #..............................................................................
 # Globals
 
-my $VERSION = "2.16.5";
+my $VERSION = "2.17.0";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -25,6 +26,7 @@ my @DEPS = (qw(blastn gzip));
 
 my $SEP = '/';
 my $OUTSEP = "\t";
+my $SEEN = 'N';
 
 #..............................................................................
 # Command line options
@@ -55,7 +57,7 @@ $legacy && ! $scheme and err("Must specify a --scheme for --legacy output mode")
 
 my $pubmlst = MLST::PubMLST->new( dir => $datadir );
 my %scheme = (map { ($_->name => $_) } @{$pubmlst->schemes});
-my %novel;  # keep track of novel alleles 
+my %nov;  # keep track of novel alleles
 
 # in case user is forcing a scheme on us (legacy mode)
 $scheme && ! exists $scheme{$scheme} and err("Invalid --scheme '$scheme'. Check using --list");
@@ -122,14 +124,19 @@ for my $argv (@ARGV)
 
   msg("Scanning: $argv [$infile]");  
 
-  # Do the big function call
-  my($sch, $ST, $sig) = find_mlst($infile);
-  $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
-
   # use --label, else just filename
   $LABEL = $label || ($nopath ? just_filename($argv) : $argv);
   msg("Using label '$LABEL' for file $argv") if $LABEL ne $argv;
   #msg("argv=$argv infile=$infile LABEL=$LABEL label=$label");
+
+  # Do the big function call
+  my($sch, $ST, $sig) = find_mlst($infile, $LABEL);
+  $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
+
+  # delete all novel alleles from failed schemes
+  foreach (keys %{$nov{$LABEL}}) {
+    delete $nov{$LABEL}{$_} unless $_ eq $sch;
+  }
 
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
@@ -178,19 +185,25 @@ if ($json_fn) {
 if ($novel) {
   my $newones = 0;
   open FASTA, '>', $novel;
-  for my $seq (keys %novel) {
-#    next unless $novel{$seq} =~ m/$sch/;
-    next unless $novel{$seq} =~ m/~/;
-    print FASTA ">", $novel{$seq}, "\n", $seq, "\n";
-    $newones++;
+  for my $fname (keys %nov) {
+    for my $sch (keys %{$nov{$fname}}) {
+      for my $gene (keys %{$nov{$fname}{$sch}}) {
+        my $seq = $nov{$fname}{$sch}{$gene};
+        if ($seq ne $SEEN) {
+          my $c = md5_hex($seq);
+          print FASTA ">$sch.$gene-$c $fname\n$seq\n";
+          $newones++;
+        }
+      }
+    }
   }
   if ($newones <= 0) {
     unlink $novel;
     msg("Found no novel intact alleles; will not create $novel");
-  }
-  else {
+  } else {
     msg("Found $newones novel intact alleles, wrote them to $novel");
   }
+  print STDERR Dumper(\%nov) if $debug;
 }
 
 # Say our goodbyes
@@ -218,7 +231,7 @@ exit(0);
 #----------------------------------------------------------------------
 
 sub find_mlst {
-  my($fname) = @_;
+  my($fname, $LABEL) = @_;
 
   my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
@@ -260,14 +273,16 @@ sub find_mlst {
         $res{$sch}{$gene} = "$num";
       }
       # force update of hash with our exact match (see below for inexact behavior)
-      $novel{$qseq} = "$sch.$gene-$num $fname";
+      $nov{$LABEL}{$sch}{$gene} = $SEEN;
     }
     else { # either 100% length (with some SNPs) or partial coverage
+      # next if $res{$sch}{$gene};
+
       my $label = ($alen == $hlen) ? "~$num" : "${num}?";
       $res{$sch}{$gene} ||= $label;
       if ($novel and $alen==$hlen) {
         # only update hash if we haven't seen a good version yet
-        $novel{$qseq} ||= "$sch.$gene$label $fname"; 
+        $nov{$LABEL}{$sch}{$gene} ||= $qseq;
       }
     }
   }

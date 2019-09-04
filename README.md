@@ -204,10 +204,17 @@ JSON output is available too:
    }
 }
 ```
-You can also save the "novel" alleles:
+You can also save the "novel" alleles for submission to PubMLST::
 ```
-% mlst -q --novel who_knows.fa genome.fasta
+% mlst -q --novel nouveau.fa s_myces.fasta
+
+% cat nouveau.fa
+
+>streptomyces.recA-e562a2cd93e701e3b58ba0670bcbba0c s_myces.fasta
+GACGTGGCCCTCGGCGTCGGCGGTCTGCCGCGCGGCCGCGTCGTCGAGATCTACGGACCGGAGTCCTCC...
 ```
+The format of the sequence IDs is `scheme.allele-hash filename` where
+`hash` is the hexadecimal MD5 digest of the allele DNA sequence.
 
 ## Mapping to genus/species
 
