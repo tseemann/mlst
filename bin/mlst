@@ -18,7 +18,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.17.0";
+my $VERSION = "2.17.1";
 my $EXE = just_filename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -184,14 +184,17 @@ if ($json_fn) {
 
 if ($novel) {
   my $newones = 0;
+  my %seen;
   open FASTA, '>', $novel;
   for my $fname (keys %nov) {
     for my $sch (keys %{$nov{$fname}}) {
       for my $gene (keys %{$nov{$fname}{$sch}}) {
         my $seq = $nov{$fname}{$sch}{$gene};
         if ($seq ne $SEEN) {
-          my $c = md5_hex($seq);
-          print FASTA ">$sch.$gene-$c $fname\n$seq\n";
+          my $hash = md5_hex($seq);
+          my $id = "$sch.$gene-$hash";
+          next if $seen{$id}++; # same novel allele in > 1 input file
+          print FASTA ">$id $fname\n$seq\n";
           $newones++;
         }
       }
