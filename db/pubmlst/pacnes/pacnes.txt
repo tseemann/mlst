@@ -150,3 +150,4 @@ ST	aroE	atpD	gmk	guaA	lepA	sodA	tly	CAMP2	clonal_complex
 149	17	4	2	4	2	6	10	45	CC30 (type II)
 150	17	4	2	4	2	3	36	10	CC6 (type II)
 151	1	1	1	3	1	1	14	2	CC3 (type IA1)
+152	1	1	1	4	14	4	8	6	CC5 (type IB)

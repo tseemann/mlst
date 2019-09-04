@@ -117,3 +117,5 @@ ST	mh_adk	mh_aroA	mh_deoD	mh_gdhA	mh_g6pd	mh_mdh	mh_pgi	clonal_complex
 116	20	21	33	18	18	18	18	
 117	4	4	4	5	4	6	47	
 118	10	20	3	29	29	16	33	
+119	4	37	5	37	38	30	46	
+120	4	37	5	37	38	31	46	

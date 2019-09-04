@@ -194,3 +194,6 @@ ST	dnaA	fusA	gyrB	leuS	pryG	rplB	rpoB	clonal_complex
 193	5	3	9	5	2	1	2	
 194	10	2	3	14	8	1	2	
 195	12	3	1	4	2	1	2	
+196	3	3	1	43	1	1	2	
+197	8	3	24	13	3	1	2	
+198	24	15	1	5	3	1	2	

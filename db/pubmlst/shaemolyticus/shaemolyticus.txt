@@ -64,3 +64,5 @@ ST	arcC	SH_1200	hemH	leuB	SH1431	cfxE	Ribose_ABC	clonal_complex
 63	17	19	15	23	17	13	16	
 64	18	20	14	24	15	14	17	
 65	2	1	1	1	1	7	4	
+66	19	1	1	1	1	1	4	
+67	20	1	1	1	1	7	9	

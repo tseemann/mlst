@@ -1733,3 +1733,5 @@ ST	ace	gltB	gmhD	lepA	lipA	narK	ndh	clonal_complex
 1735	1	12	2	3	8	4	3	
 1736	3	12	2	3	8	4	3	
 1737	3	1	2	4	1	4	1	
+1738	1	1	2	1	1	3	3	
+1739	1	1	3	1	1	29	1	

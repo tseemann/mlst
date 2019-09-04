@@ -2205,3 +2205,4 @@ ST	dnaE	gyrB	recA	dtdS	pntA	pyrC	tnaA	clonal_complex
 2205	26	269	218	372	28	37	94	no
 2206	27	324	61	423	50	54	44	no
 2207	35	130	300	19	26	71	41	no
+2208	230	169	67	76	92	127	98	no

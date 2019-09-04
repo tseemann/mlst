@@ -2439,3 +2439,5 @@ ST	glp	gmk	ilv	pta	pur	pyc	tpi	clonal_complex
 2439	15	7	7	141	5	8	13	ST-23 complex
 2440	41	6	170	9	4	12	15	
 2441	13	8	8	28	4	12	8	ST-142 complex
+2442	100	1	93	290	51	37	71	
+2443	126	146	133	369	4	117	37	
