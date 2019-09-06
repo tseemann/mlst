@@ -16,7 +16,7 @@ cache:
 install:
     - "cpanm --quiet --notest Moo JSON List::MoreUtils"
     - "mkdir -p $CACHEDIR"
-    - "wget -N -nc -c -P $CACHEDIR http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${BLASTVER}/ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
+    - "wget -N -c -P $CACHEDIR http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${BLASTVER}/ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
     - "tar zxvf $CACHEDIR/ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
     - "curl https://raw.githubusercontent.com/tseemann/any2fasta/master/any2fasta > bin/any2fasta"
     - "chmod +x bin/any2fasta"
