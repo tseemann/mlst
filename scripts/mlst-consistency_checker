@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-use v5.18;
+use v5.26;
 use strict;
 use File::Basename;
 use Cwd 'abs_path';
