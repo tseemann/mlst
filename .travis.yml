@@ -36,3 +36,5 @@ script:
     - "! mlst -q --label double_trouble test/example.gbk.gz test/example.fna.gz"
     - "mlst -q --label GDAYMATE test/example.fna.gz | grep GDAYMATE"
     - "mlst -q --novel novel.fa test/novel.fasta.bz2 && grep 'recP' novel.fa"
+    - "scripts/mlst-show_seqs -s efaecium -t 111"
+
