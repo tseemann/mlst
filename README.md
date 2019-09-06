@@ -29,18 +29,18 @@ NC_017040.fna  spyogenes  172  gki(56)  gtr(24)  murI(39)  mutS(7)  recP(30)   x
 
 ## Installation
 
+### Conda
+If you are using [Conda](https://bioconda.github.io/user/install.html)
+```
+% conda install -c conda-forge -c bioconda -c defaults mlst
+```
+
 ### Brew
 If you are using the [MacOS Homebrew](http://brew.sh/)
 or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
 
 ```
 % brew install brewsci/bio/mlst
-```
-
-### Conda
-If you are using [Conda](https://conda.io/docs/install/quick.html)
-```
-% conda install -c bioconda -c conda-forge mlst
 ```
 
 ### Source
@@ -66,7 +66,7 @@ If you are using [Conda](https://conda.io/docs/install/quick.html)
 
 ## Usage
 
-Simply just give it a genome file in FASTA or GenBank format,
+Simply just give it a genome file in FASTA/GenBank/EMBL format,
 optionally compressed with gzip, zip or bzip2.
 
 ```
@@ -80,8 +80,8 @@ It returns a tab-separated line containing
 * the ST (sequence type)
 * the allele IDs
 
-You can give it multiple files at once, and they can be in FASTA or GenBank format, 
-and even compressed with gzip, bzip2 or zip.
+You can give it multiple files at once, and they can be in
+FASTA/GenBank/EMBL format, and even compressed with gzip, bzip2 or zip.
 
 ```
 % mlst genomes/*
