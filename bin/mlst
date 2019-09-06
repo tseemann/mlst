@@ -18,7 +18,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.17.4";
+my $VERSION = "2.17.5";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -220,6 +220,15 @@ exit(0);
 
 #----------------------------------------------------------------------
 
+sub revcom {
+  my($dna) = @_;
+  $dna = reverse($dna);
+  $dna =~ tr/ATGCatgc/TACGtacg/;
+  return $dna;
+}
+
+#----------------------------------------------------------------------
+
 sub find_mlst {
   my($fname, $LABEL) = @_;
 
@@ -227,7 +236,7 @@ sub find_mlst {
            ." blastn -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
            ." -perc_identity $minid -evalue 1E-20"
-           ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
+           ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq sstrand'";
   msg("Running: $cmd") if $debug;
 
   my @hit = qx($cmd);
@@ -239,10 +248,10 @@ sub find_mlst {
   foreach (@hit) {
     next unless m/ ^ (\w+)\.(\w+)[_-](\d+) 
                    \t (\d+) \t (\d+) \t (\d+) 
-                   \t (\S+) \t (\d+) \t (\d+) \t (\S+) /x;
-    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+                   \t (\S+) \t (\d+) \t (\d+) \t (\S+) \t (\S+) /x;
+    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq, $sstrand) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
     $res_count++;
-    msg("[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq") if $debug;
+    msg("[$res_count] $qid:$qstart-$qend($sstrand) | $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq") if $debug;
 
     next unless $nident/$hlen >= $mincov/100 ; # need min-cov to reach minid
 
@@ -273,6 +282,7 @@ sub find_mlst {
       $res{$sch}{$gene} ||= $label;
       if ($novel and $alen==$hlen) {
         # only update hash if we haven't seen a good version yet
+        $qseq = revcom($qseq) if $sstrand eq 'minus';
         $nov{$LABEL}{$sch}{$gene} ||= $qseq;
       }
     }
