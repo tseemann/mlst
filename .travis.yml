@@ -6,8 +6,7 @@ perl:
     - "5.26"
 
 env:
-  - BLASTVER=2.9.0
-  - CACHEDIR=tarballs
+  - BLASTVER=2.9.0 CACHEDIR=tarballs
 
 cache:
   directories:
