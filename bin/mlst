@@ -70,7 +70,7 @@ $scheme && ! exists $scheme{$scheme} and err("Invalid --scheme '$scheme'. Check 
 
 # we set minscore to 0 if --scheme is set
 if ($scheme and $minscore != 0) {
-  msg("Setting --miscore=0 because user chose --scheme");
+  msg("Setting --minscore=0 because user chose --scheme");
   $minscore=0;
 }
 
