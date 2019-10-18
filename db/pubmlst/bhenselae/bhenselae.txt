@@ -32,3 +32,6 @@ ST	16S	batR	ftsZ	gltA	groEL	nlpD	ribC	rpoB	clonal_complex
 31	2	3	4	2	2	1	1	2	
 32	1	5	1	1	1	1	1	1	
 33	2	3	3	1	2	1	1	2	
+34	1	6	1	1	1	1	1	1	
+35	2	7	1	1	2	1	1	1	
+36	1	7	1	1	1	1	1	1	

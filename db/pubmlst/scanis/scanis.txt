@@ -43,3 +43,5 @@ ST	gki	gtr	murI	mutS	recP	xpt	yqiZ	clonal_complex
 42	13	5	3	3	1	2	3	
 43	14	10	7	11	2	11	1	
 44	10	2	8	7	2	1	2	
+45	2	2	2	13	2	3	2	
+46	2	2	2	2	2	3	2	
