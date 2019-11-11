@@ -18,7 +18,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.17.6";
+my $VERSION = "2.17.7";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -40,16 +40,17 @@ setOptions();
 # Option parsing
 
 MLST::Logger->quiet($quiet);
+msg("This is $EXE $VERSION running on $^O with Perl $]");
 
 # check we have the right tools and versions thereof
 msg("Checking $EXE dependencies:");
 require_exe('blastn', 'any2fasta');
 my($blastver) = qx(blastn -version 2>&1);
 chomp $blastver;
-$blastver =~ m/(\d+\.\d+)/ or err("Can not determine BLAST+ version from '$blastver'");
-my $decver = $1;
-msg("Found $blastver");
-$decver >= 2.9 or err("$EXE needs BLAST+ 2.9.0 or later");
+$blastver =~ m/(\d+)\.(\d+)/ or err("Can not determine BLAST+ version from '$blastver'");
+my $decver = sprintf "%03d%03d", $1, $2;
+msg("Found $blastver ($decver)");
+$decver ge "002009" or err("$EXE needs BLAST+ 2.9.0 or later");
 if ($check) {
   msg("OK.");
   exit(0);
