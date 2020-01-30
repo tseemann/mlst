@@ -983,3 +983,4 @@ ST	adk	gyrB	mdh	metE	pntA	purM	pyrC	clonal_complex
 983	1	153	68	243	2	43	1	
 984	2	38	161	230	69	1	259	
 985	11	27	11	63	19	1	38	
+986	17	5	51	31	34	6	29	

@@ -562,11 +562,11 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 561	82	85	78	45	87	46	76		A. calcoaceticus
 562	85	87	80	47	90	48	80		A. calcoaceticus
 563	77	20	72	39	81	41	71		A. pittii
-564	94	95	88	50	85	44	87		Acinetobacter dijkshoorniae
-565	92	55	83	50	97	45	87		Acinetobacter dijkshoorniae
-566	93	90	84	50	98	44	88		Acinetobacter dijkshoorniae
+564	94	95	88	50	85	44	87		A. dijkshoorniae
+565	92	55	83	50	97	45	87		A. dijkshoorniae
+566	93	90	84	50	98	44	88		A. dijkshoorniae
 567	87	84	73	44	92	41	75		
-568	81	93	77	40	86	44	74		Acinetobacter dijkshoorniae
+568	81	93	77	40	86	44	74		A. dijkshoorniae
 569	86	55	81	16	91	49	81		A. pittii
 570	2	2	2	2	2	2	4		A. baumannii
 571	2	2	2	2	104	2	4		A. baumannii
@@ -604,7 +604,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 603	2	2	93	2	2	2	94		A. baumannii
 604	2	2	2	55	2	2	2		A. baumannii
 605	1	3	10	1	4	55	2		A. baumannii
-606	94	55	77	50	106	44	88		Acinetobacter dijkshoorniae
+606	94	55	77	50	106	44	88		A. dijkshoorniae
 607	3	49	2	1	5	4	5		A. baumannii
 608	3	53	16	2	13	1	15		A. baumannii
 609	4	1	13	1	4	4	14		A. baumannii
@@ -685,17 +685,17 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 684	27	4	2	2	2	2	2		A. baumannii
 685	2	62	3	2	40	4	4		A. baumannii
 686	6	100	5	6	9	1	4		A. baumannii
-687	1	3	2	2	9	1	10		Acinetobacter baumannii
-688	3	5	5	1	7	1	16		Acinetobacter baumannii
-689	1	3	2	2	3	1	5		Acinetobacter baumannii
-690	3	3	2	1	7	2	14		Acinetobacter baumannii
-691	23	20	28	10	25	18	44		Acinetobacter pittii
-692	1	1	7	1	7	1	4		Acinetobacter baumannii
-693	1	4	2	1	42	2	5		Acinetobacter baumannii
-694	3	50	2	2	3	1	4		Acinetobacter baumannii
-695	1	3	2	2	3	4	2		Acinetobacter baumannii
-696	3	1	2	2	4	4	5		Acinetobacter baumannii
-697	3	2	2	2	2	2	2		Acinetobacter baumannii
+687	1	3	2	2	9	1	10		A. baumannii
+688	3	5	5	1	7	1	16		A. baumannii
+689	1	3	2	2	3	1	5		A. baumannii
+690	3	3	2	1	7	2	14		A. baumannii
+691	23	20	28	10	25	18	44		A. pittii
+692	1	1	7	1	7	1	4		A. baumannii
+693	1	4	2	1	42	2	5		A. baumannii
+694	3	50	2	2	3	1	4		A. baumannii
+695	1	3	2	2	3	4	2		A. baumannii
+696	3	1	2	2	4	4	5		A. baumannii
+697	3	2	2	2	2	2	2		A. baumannii
 698	69	1	1	1	13	1	2		
 699	103	2	2	2	2	2	2		
 700	2	2	2	2	100	2	1		
@@ -715,8 +715,8 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 714	103	1	2	2	2	1	2		
 715	2	1	2	2	2	1	4		
 716	103	2	2	2	2	2	1		
-717	1	1	1	1	5	1	30		Acinetobacter baumannii
-718	1	2	1	1	5	1	30		Acinetobacter baumannii
+717	1	1	1	1	5	1	30		A. baumannii
+718	1	2	1	1	5	1	30		A. baumannii
 719	3	2	2	2	3	2	4		A. baumannii
 720	13	4	40	2	7	1	2		A. baumannii
 721	35	4	11	7	9	1	2		A. baumannii
@@ -727,15 +727,15 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 726	13	4	2	1	42	2	2		A. baumannii
 727	1	3	14	3	12	1	2		A. baumannii
 728	25	3	2	2	5	4	5		
-729	3	3	2	2	3	1	4		Acinetobacter baumannii
-730	26	6	2	2	29	4	5		Acinetobacter baumannii
+729	3	3	2	2	3	1	4		A. baumannii
+730	26	6	2	2	29	4	5		A. baumannii
 731	34	3	37	1	29	6	25		
 732	3	35	2	4	7	2	4		
 733	7	1	2	1	8	4	36		
 734	1	1	1	1	3	1	1		
 735	3	3	3	3	7	3	2		A. baumannii
-736	1	3	1	1	5	1	1		Acinetobacter baumannii
-737	6	6	8	6	3	5	4		Acinetobacter baumannii
+736	1	3	1	1	5	1	1		A. baumannii
+737	6	6	8	6	3	5	4		A. baumannii
 738	3	3	105	6	4	2	5		
 739	8	1	5	1	29	2	3		
 740	26	4	2	2	9	1	2		
@@ -775,10 +775,10 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 774	1	115	6	2	3	4	4		
 775	25	16	18	1	122	4	14		
 776	106	20	48	10	116	18	65		
-777	24	20	46	10	123	18	107		Acinetobacter pittii
-778	112	21	111	36	20	18	106		Acinetobacter pittii
-779	113	116	112	64	124	18	108		Acinetobacter pittii
-780	3	3	51	2	28	1	109		Acinetobacter baumannii
+777	24	20	46	10	123	18	107		A. pittii
+778	112	21	111	36	20	18	106		A. pittii
+779	113	116	112	64	124	18	108		A. pittii
+780	3	3	51	2	28	1	109		A. baumannii
 781	20	26	26	14	26	16	47		
 782	22	26	47	14	27	16	47		
 783	17	21	23	36	20	13	46		
@@ -794,17 +794,17 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 793	117	55	53	66	128	64	110		
 794	101	119	120	67	20	66	115		
 795	101	20	46	10	129	18	116		
-796	94	120	88	50	98	44	88		Acinetobacter dijkshoorniae
-797	118	121	84	50	130	44	88		Acinetobacter dijkshoorniae
-798	119	122	121	50	86	44	113		Acinetobacter dijkshoorniae
-799	120	123	88	50	25	67	87		Acinetobacter dijkshoorniae
-800	121	121	122	50	131	45	87		Acinetobacter dijkshoorniae
-801	92	123	114	50	132	41	112		Acinetobacter dijkshoorniae
-802	122	124	123	50	130	63	88		Acinetobacter dijkshoorniae
+796	94	120	88	50	98	44	88		A. dijkshoorniae
+797	118	121	84	50	130	44	88		A. dijkshoorniae
+798	119	122	121	50	86	44	113		A. dijkshoorniae
+799	120	123	88	50	25	67	87		A. dijkshoorniae
+800	121	121	122	50	131	45	87		A. dijkshoorniae
+801	92	123	114	50	132	41	112		A. dijkshoorniae
+802	122	124	123	50	130	63	88		A. dijkshoorniae
 803	124	89	82	23	134	62	34		
 804	106	20	119	65	136	36	111		
-805	114	118	116	10	123	18	120		Acinetobacter pittii
-806	3	3	2	2	3	4	5		Acinetobacter baumannii
+805	114	118	116	10	123	18	120		A. pittii
+806	3	3	2	2	3	4	5		A. baumannii
 807	56	56	55	2	9	4	14		
 808	1	3	2	1	18	8	5		
 809	1	3	5	2	11	1	2		
@@ -825,7 +825,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 824	1	2	2	1	42	1	16		
 825	3	2	2	2	7	4	4		
 826	1	1	1	1	5	8	1		
-827	23	20	23	16	25	18	44		Acinetobacter pittii
+827	23	20	23	16	25	18	44		A. pittii
 828	3	3	2	2	135	8	12		
 829	1	56	124	1	5	1	1		
 830	41	6	56	5	8	69	8		
@@ -837,13 +837,13 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 836	26	2	2	1	29	4	5		
 837	13	4	2	3	6	1	16		
 838	145	55	121	40	149	44	87		
-839	141	21	46	10	20	18	20		Acinetobacter pittii
-840	141	21	46	10	20	18	131		Acinetobacter pittii
-841	3	1	3	2	4	1	9		Acinetobacter baumannii
-842	45	58	44	10	20	18	62		Acinetobacter nosocomialis
-843	5	77	7	2	3	4	14		Acinetobacter baumannii
-844	3	1	6	2	26	1	5		Acinetobacter baumannii
-845	143	137	134	2	7	4	4		A.baumannii
+839	141	21	46	10	20	18	20		A. pittii
+840	141	21	46	10	20	18	131		A. pittii
+841	3	1	3	2	4	1	9		A. baumannii
+842	45	58	44	10	20	18	62		A. nosocomialis
+843	5	77	7	2	3	4	14		A. baumannii
+844	3	1	6	2	26	1	5		A. baumannii
+845	143	137	134	2	7	4	4		A. baumannii
 846	144	138	135	23	148	23	132		A. seifertii
 847	27	2	2	73	5	4	14		12770
 848	13	3	2	3	7	1	16		A. baumannii
@@ -871,39 +871,39 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 870	136	55	84	50	130	44	87		
 871	142	20	133	16	20	18	128		
 872	94	123	88	50	147	44	129		
-873	3	3	7	74	13	1	15		Acinetobacter baumannii
-874	6	115	2	2	29	4	5		Acinetobacter baumannii
-875	8	2	5	2	3	1	51	Acinetobacter baumannii	
-876	1	37	2	2	73	4	5		Acinetobacter baumannii
-877	1	100	2	2	9	1	14	Acinetobacter baumannii	
-878	3	16	136	2	3	4	29		Acinetobacter baumannii
-879	50	3	2	2	3	1	4		Acinetobacter baumannii
-880	2	2	2	2	2	77	2		Acinetobacter baumannii
-881	1	1	1	1	5	1	130		Acinetobacter baumannii
-882	22	136	47	14	50	16	47		Acinetobacter nosocomialis
-883	1	1	2	2	30	1	4		Acinetobacter baumannii
-884	3	1	2	1	18	4	48		Acinetobacter baumannii
-885	26	2	2	2	29	5	5		Acinetobacter baumannii
-886	6	35	2	1	9	5	36		Acinetobacter baumannii
-887	3	50	2	2	30	78	4		Acinetobacter baumannii
-888	12	37	2	2	30	2	14		Acinetobacter baumannii
-889	5	2	4	1	30	4	4		Acinetobacter baumannii
-890	6	6	8	2	30	5	1	Acinetobacter baumannii	
-891	46	2	8	2	5	5	4		Acinetobacter baumannii
-892	6	6	8	2	30	5	133		Acinetobacter baumannii
-893	1	1	5	1	7	1	29		Acinetobacter baumannii
-894	10	3	11	7	9	1	2		Acinetobacter baumannii
-895	1	5	40	2	7	4	9		Acinetobacter baumannii
-896	137	132	137	2	144	18	20		Acinetobacter pittii
-897	50	2	2	2	3	4	4		Acinetobacter baumannii
-898	146	20	138	10	150	18	26		Acinetobacter pittii
-899	6	35	8	2	5	5	36		Acinetobacter baumannii
-900	1	1	14	3	12	1	121		Acinetobacter baumannii
-901	1	3	16	2	13	1	15		Acinetobacter baumannii
-902	1	1	1	1	13	1	1		Acinetobacter baumannii
-903	26	2	2	2	29	4	1		Acinetobacter baumannii
-904	6	6	8	2	2	5	4		Acinetobacter baumannii
-905	1	1	2	2	30	4	4		Acinetobacter baumannii
+873	3	3	7	74	13	1	15		A. baumannii
+874	6	115	2	2	29	4	5		A. baumannii
+875	8	2	5	2	3	1	51		A. baumannii
+876	1	37	2	2	73	4	5		A. baumannii
+877	1	100	2	2	9	1	14		A. baumannii
+878	3	16	136	2	3	4	29		A. baumannii
+879	50	3	2	2	3	1	4		A. baumannii
+880	2	2	2	2	2	77	2		A. baumannii
+881	1	1	1	1	5	1	130		A. baumannii
+882	22	136	47	14	50	16	47		A. nosocomialis
+883	1	1	2	2	30	1	4		A. baumannii
+884	3	1	2	1	18	4	48		A. baumannii
+885	26	2	2	2	29	5	5		A. baumannii
+886	6	35	2	1	9	5	36		A. baumannii
+887	3	50	2	2	30	78	4		A. baumannii
+888	12	37	2	2	30	2	14		A. baumannii
+889	5	2	4	1	30	4	4		A. baumannii
+890	6	6	8	2	30	5	1		A. baumannii
+891	46	2	8	2	5	5	4		A. baumannii
+892	6	6	8	2	30	5	133		A. baumannii
+893	1	1	5	1	7	1	29		A. baumannii
+894	10	3	11	7	9	1	2		A. baumannii
+895	1	5	40	2	7	4	9		A. baumannii
+896	137	132	137	2	144	18	20		A. pittii
+897	50	2	2	2	3	4	4		A. baumannii
+898	146	20	138	10	150	18	26		A. pittii
+899	6	35	8	2	5	5	36		A. baumannii
+900	1	1	14	3	12	1	121		A. baumannii
+901	1	3	16	2	13	1	15		A. baumannii
+902	1	1	1	1	13	1	1		A. baumannii
+903	26	2	2	2	29	4	1		A. baumannii
+904	6	6	8	2	2	5	4		A. baumannii
+905	1	1	2	2	30	4	4		A. baumannii
 906	109	112	106	62	119	61	102		A. ursingii
 907	101	92	104	16	20	18	100		A. pittii
 908	109	10	110	14	21	54	40		A. soli
@@ -917,43 +917,43 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 916	1	2	7	1	7	4	2		
 917	3	2	2	30	30	74	3		
 918	50	3	2	2	30	4	4		
-919	5	4	4	1	3	3	14		Acinetobacter baumannii
-920	1	3	2	2	13	1	8		Acinetobacter baumannii
-921	3	3	2	2	3	4	4		Acinetobacter baumannii
-922	2	2	2	75	2	2	2		Acinetobacter baumannii
-923	12	100	2	2	9	1	4		Acinetobacter baumannii
-924	3	4	2	2	7	1	5		Acinetobacter baumannii
-925	137	132	131	77	144	18	20		Acinetobacter pittii
-926	1	2	2	5	141	6	2		Acinetobacter baumannii
-927	1	3	2	2	2	4	29		Acinetobacter baumannii
-928	3	53	139	2	62	1	5		Acinetobacter baumannii
-929	1	1	2	5	141	6	2		Acinetobacter baumannii
-930	3	139	2	1	15	4	4		Acinetobacter baumannii
-931	3	1	2	1	4	4	134		Acinetobacter baumannii
-932	1	78	2	2	73	4	5		Acinetobacter baumannii
-933	1	3	10	1	3	1	14		Acinetobacter baumannii
-934	147	3	2	2	151	1	4		Acinetobacter baumannii
-935	3	16	2	5	4	2	135		Acinetobacter baumannii
-936	40	16	2	2	5	1	3		Acinetobacter baumannii
-937	3	3	6	2	9	1	4		Acinetobacter baumannii
-938	1	100	2	76	9	1	52		Acinetobacter baumannii
-939	3	2	56	2	8	1	136		Acinetobacter baumannii
-940	1	78	2	2	73	4	14		Acinetobacter baumannii
-941	1	3	55	2	40	4	5		Acinetobacter baumannii
-942	8	1	2	3	6	2	3		Acinetobacter baumannii
-943	1	5	15	5	9	1	4		Acinetobacter baumannii
-944	8	5	5	26	7	1	2		Acinetobacter baumannii
-945	3	3	2	4	7	4	4		Acinetobacter baumannii
-946	1	2	2	2	18	1	4		Acinetobacter baumannii
-947	104	20	46	35	72	18	108		Acinetobacter pittii
+919	5	4	4	1	3	3	14		A. baumannii
+920	1	3	2	2	13	1	8		A. baumannii
+921	3	3	2	2	3	4	4		A. baumannii
+922	2	2	2	75	2	2	2		A. baumannii
+923	12	100	2	2	9	1	4		A. baumannii
+924	3	4	2	2	7	1	5		A. baumannii
+925	137	132	131	77	144	18	20		A. pittii
+926	1	2	2	5	141	6	2		A. baumannii
+927	1	3	2	2	2	4	29		A. baumannii
+928	3	53	139	2	62	1	5		A. baumannii
+929	1	1	2	5	141	6	2		A. baumannii
+930	3	139	2	1	15	4	4		A. baumannii
+931	3	1	2	1	4	4	134		A. baumannii
+932	1	78	2	2	73	4	5		A. baumannii
+933	1	3	10	1	3	1	14		A. baumannii
+934	147	3	2	2	151	1	4		A. baumannii
+935	3	16	2	5	4	2	135		A. baumannii
+936	40	16	2	2	5	1	3		A. baumannii
+937	3	3	6	2	9	1	4		A. baumannii
+938	1	100	2	76	9	1	52		A. baumannii
+939	3	2	56	2	8	1	136		A. baumannii
+940	1	78	2	2	73	4	14		A. baumannii
+941	1	3	55	2	40	4	5		A. baumannii
+942	8	1	2	3	6	2	3		A. baumannii
+943	1	5	15	5	9	1	4		A. baumannii
+944	8	5	5	26	7	1	2		A. baumannii
+945	3	3	2	4	7	4	4		A. baumannii
+946	1	2	2	2	18	1	4		A. baumannii
+947	104	20	46	35	72	18	108		A. pittii
 948	22	26	47	14	26	16	23		A. nosocomialis
 949	22	26	27	14	21	16	23		A. nosocomialis
 950	149	141	112	36	152	59	139		A. pittii
-951	26	20	2	1	43	4	137		Acinetobacter baumannii
-952	26	2	2	1	43	4	137		Acinetobacter baumannii
-953	12	37	128	2	3	2	14		Acinetobacter baumannii
-954	3	142	2	2	3	2	5		Acinetobacter baumannii
-955	1	52	2	2	9	4	4		Acinetobacter baumannii
+951	26	20	2	1	43	4	137		A. baumannii
+952	26	2	2	1	43	4	137		A. baumannii
+953	12	37	128	2	3	2	14		A. baumannii
+954	3	142	2	2	3	2	5		A. baumannii
+955	1	52	2	2	9	4	4		A. baumannii
 956	139	129	44	70	146	46	20		
 957	26	2	2	2	29	53	5		A. baumannii
 958	6	2	2	2	29	4	5		A. baumannii
@@ -991,7 +991,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 990	3	2	2	2	3	2	2		
 991	3	3	2	4	7	2	5		A. baumannii
 992	3	4	2	2	9	1	16		A. baumannii
-993	177	163	160	62	117	90	102		Acinetobacter ursingii
+993	177	163	160	62	117	90	102		A. ursingii
 994	151	143	34	23	153	80	140		A. seifertii
 995	152	1	7	1	7	2	4		A. baumannii
 996	2	2	2	2	2	2	49		A. baumannii
@@ -1062,7 +1062,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1061	6	78	2	2	73	4	141		
 1062	3	144	56	1	5	1	142		
 1063	148	12	11	2	14	9	14		
-1064	159	145	34	78	160	87	144		Acinetobacter seifertii
+1064	159	145	34	78	160	87	144		A. seifertii
 1065	3	3	2	4	7	1	4		
 1066	3	2	148	5	51	8	14		
 1067	161	2	2	2	2	2	2		
@@ -1074,7 +1074,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1073	157	3	11	2	5	1	2		A. baumannii
 1074	1	2	39	2	39	1	5		A. baumannii
 1075	20	26	26	14	26	19	25		A. nosocomialis
-1076	158	20	146	16	159	18	100		Acinetobacter pittii
+1076	158	20	146	16	159	18	100		A. pittii
 1077	25	3	6	2	28	1	2		
 1078	2	146	2	2	2	2	2		
 1079	3	1	6	2	74	1	5		
@@ -1138,30 +1138,30 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1137	8	1	5	26	6	2	3		
 1138	8	1	5	5	6	2	3		
 1139	8	2	2	80	9	1	5		
-1140	3	2	2	1	29	4	4		Acinetobacter baumannii
-1141	77	20	72	39	81	36	71		Acinetobacter pittii
-1142	34	4	37	1	5	6	36		Acinetobacter baumannii
-1143	6	2	8	2	2	2	2		Acinetobacter baumannii
-1144	1	1	2	1	3	4	1		Acinetobacter baumannii
-1145	34	35	37	1	107	6	36		Acinetobacter baumannii
-1146	3	2	1	7	9	1	5		Acinetobacter baumannii
-1147	3	52	2	2	9	1	4		Acinetobacter baumannii
-1148	3	3	2	1	169	1	2		Acinetobacter baumannii
-1149	3	1	2	2	170	4	5		Acinetobacter baumannii
-1150	1	155	2	2	73	4	5		Acinetobacter baumannii
-1151	3	159	6	2	8	4	4		Acinetobacter baumannii
-1152	35	3	2	2	9	1	5		Acinetobacter baumannii
-1153	8	3	10	1	4	2	4		Acinetobacter baumannii
+1140	3	2	2	1	29	4	4		A. baumannii
+1141	77	20	72	39	81	36	71		A. pittii
+1142	34	4	37	1	5	6	36		A. baumannii
+1143	6	2	8	2	2	2	2		A. baumannii
+1144	1	1	2	1	3	4	1		A. baumannii
+1145	34	35	37	1	107	6	36		A. baumannii
+1146	3	2	1	7	9	1	5		A. baumannii
+1147	3	52	2	2	9	1	4		A. baumannii
+1148	3	3	2	1	169	1	2		A. baumannii
+1149	3	1	2	2	170	4	5		A. baumannii
+1150	1	155	2	2	73	4	5		A. baumannii
+1151	3	159	6	2	8	4	4		A. baumannii
+1152	35	3	2	2	9	1	5		A. baumannii
+1153	8	3	10	1	4	2	4		A. baumannii
 1154	2	2	2	2	2	2	148		
 1155	167	26	54	14	167	16	23		
-1156	1	3	2	2	5	58	29		Acinetobacter baumannii
-1157	152	4	7	1	7	1	4		Acinetobacter baumannii
-1158	3	4	2	2	3	1	2		Acinetobacter baumannii
-1159	1	2	2	2	5	4	14		Acinetobacter baumannii
-1160	2	161	2	2	2	2	2		Acinetobacter baumannii
-1161	168	51	2	2	13	4	4		Acinetobacter baumannii
-1162	169	2	2	2	171	1	4		Acintobacter baumannii
-1163	26	2	2	2	29	4	2		Acinetobacter baumannii
+1156	1	3	2	2	5	58	29		A. baumannii
+1157	152	4	7	1	7	1	4		A. baumannii
+1158	3	4	2	2	3	1	2		A. baumannii
+1159	1	2	2	2	5	4	14		A. baumannii
+1160	2	161	2	2	2	2	2		A. baumannii
+1161	168	51	2	2	13	4	4		A. baumannii
+1162	169	2	2	2	171	1	4		A. baumannii
+1163	26	2	2	2	29	4	2		A. baumannii
 1164	112	119	28	16	144	81	115		
 1165	3	67	154	2	11	1	8		
 1166	22	26	29	14	172	16	47		
@@ -1178,39 +1178,39 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1177	94	55	88	50	130	44	149		
 1178	17	20	159	10	20	29	44		
 1179	3	3	2	1	166	2	14		
-1180	5	2	39	2	168	1	5		Acinetobacter baumannii
+1180	5	2	39	2	168	1	5		A. baumannii
 1181	59	26	26	14	58	16	47		
 1182	22	165	161	14	27	19	25		
 1183	20	164	26	14	26	16	23		
-1184	175	33	34	23	35	23	152		
-1185	176	166	162	82	174	91	153		Acinetobacter baylyi
-1186	107	110	106	62	117	60	150		Acinetobacter ursingii
-1187	173	110	107	61	118	60	104		Acinetobacter ursingii
+1184	175	33	34	23	35	23	152		Acinetobacter baumannii
+1185	176	166	162	82	174	91	153		A. baylyi
+1186	107	110	106	62	117	60	150		A. ursingii
+1187	173	110	107	61	118	60	104		A. ursingii
 1188	178	33	34	23	175	92	154		
-1189	174	163	106	60	173	90	151		Acinetobacter ursingii
-1190	3	9	3	2	71	1	9		Acinetobacter baumannii
-1191	1	15	2	5	11	4	14		Acinetobacter baumannii
-1192	1	167	1	1	5	1	1		Acinetobacter baumannii
-1193	3	3	2	4	7	2	155		Acinetobacter baumannii
-1194	179	55	163	16	176	49	114		Acinetobacter pittii
+1189	174	163	106	60	173	90	151		A. ursingii
+1190	3	9	3	2	71	1	9		A. baumannii
+1191	1	15	2	5	11	4	14		A. baumannii
+1192	1	167	1	1	5	1	1		A. baumannii
+1193	3	3	2	4	7	2	155		A. baumannii
+1194	179	55	163	16	176	49	114		A. pittii
 1195	27	2	2	2	5	4	8		
 1196	26	2	2	2	29	4	29		
-1197	1	4	2	2	7	58	2		Acinetobacter baumannii
-1198	56	2	55	2	9	4	14		Acinetobacter baumannii
-1199	1	2	2	2	63	1	29		Acinetobacter baumannii
+1197	1	4	2	2	7	58	2		A. baumannii
+1198	56	2	55	2	9	4	14		A. baumannii
+1199	1	2	2	2	63	1	29		A. baumannii
 1200	3	53	3	2	51	1	9		
 1201	157	2	56	2	5	7	5		
 1202	4	2	2	2	2	2	2		
 1203	94	2	2	50	2	44	2		
 1204	103	2	2	59	2	2	2		
 1205	103	160	2	74	2	89	136		
-1206	17	20	23	2	20	18	1		Acinetobacter pittii
-1207	180	169	164	83	177	93	156		Acinetobacter radioresistens
-1208	1	168	1	1	5	1	1		Acinetobacter baumannii
-1209	2	1	2	1	5	1	2		Acinetobacter baumannii
-1210	8	2	2	7	17	1	57		Acinetobacter baumannii
-1211	1	2	2	2	73	4	5		Acinetobacter baumannii
-1212	3	3	6	2	4	4	14		Acinetobacter baumannii
+1206	17	20	23	2	20	18	1		A. pittii
+1207	180	169	164	83	177	93	156		A. radioresistens
+1208	1	168	1	1	5	1	1		A. baumannii
+1209	2	1	2	1	5	1	2		A. baumannii
+1210	8	2	2	7	17	1	57		A. baumannii
+1211	1	2	2	2	73	4	5		A. baumannii
+1212	3	3	6	2	4	4	14		A. baumannii
 1213	182	173	72	39	178	41	71		
 1214	1	1	1	1	5	95	1		
 1215	15	171	20	43	19	10	157		
@@ -1220,16 +1220,16 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1219	3	1	1	1	7	1	1		
 1220	12	3	5	2	9	1	14		
 1221	3	1	1	4	5	1	1		
-1222	3	16	94	2	4	2	4		Acinetobacter baumannii
-1223	13	5	40	1	42	1	16		Acinetobacter baumannii
-1224	1	1	7	1	7	2	1		Acinetobacter baumannii
-1225	3	3	6	2	74	2	5		Acinetobacter baumannii
-1226	12	3	6	2	5	1	3		Acinetobacter baumannii
-1227	1	175	2	2	13	4	2		Acinetobacter baumannii
-1228	25	3	2	2	4	4	4		Acinetobacter baumannii
-1229	155	177	6	2	4	1	5		Acinetobacter baumannii
-1230	3	2	148	1	51	1	5		Acinetobacter baumannii
-1231	3	3	168	5	3	1	14		Acinetobacter baumannii
+1222	3	16	94	2	4	2	4		A. baumannii
+1223	13	5	40	1	42	1	16		A. baumannii
+1224	1	1	7	1	7	2	1		A. baumannii
+1225	3	3	6	2	74	2	5		A. baumannii
+1226	12	3	6	2	5	1	3		A. baumannii
+1227	1	175	2	2	13	4	2		A. baumannii
+1228	25	3	2	2	4	4	4		A. baumannii
+1229	155	177	6	2	4	1	5		A. baumannii
+1230	3	2	148	1	51	1	5		A. baumannii
+1231	3	3	168	5	3	1	14		A. baumannii
 1232	40	49	6	1	102	1	2		
 1233	3	2	167	2	115	1	4		
 1234	132	20	169	16	72	97	159		
@@ -1265,11 +1265,11 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1264	22	26	90	14	23	16	49		
 1265	22	26	90	18	27	16	40		
 1266	83	86	79	78	88	23	77		
-1267	59	26	59	14	50	16	47		Acinetobacter nosocomialis
-1268	47	47	50	14	26	16	47		Acinetobacter nosocomialis
-1269	20	184	26	14	61	16	23		Acinetobacter nosocomialis
-1270	20	184	26	14	61	16	91		Acinetobacter nosocomialis
-1271	49	26	54	18	27	16	117		Acinetobacter nosocomialis
+1267	59	26	59	14	50	16	47		A. nosocomialis
+1268	47	47	50	14	26	16	47		A. nosocomialis
+1269	20	184	26	14	61	16	23		A. nosocomialis
+1270	20	184	26	14	61	16	91		A. nosocomialis
+1271	49	26	54	18	27	16	117		A. nosocomialis
 1272	83	26	79	14	27	16	47		
 1273	49	26	54	18	27	16	167		
 1274	20	185	179	18	191	16	47		
@@ -1307,7 +1307,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1306	29	26	54	18	27	2	117		
 1307	83	86	79	46	88	23	166		
 1308	83	26	79	47	27	16	47		
-1309	194	186	180	91	194	101	169		Acinetobacter bereziniae
+1309	194	186	180	91	194	101	169		A. bereziniae
 1310	8	1	5	1	6	2	3		
 1311	1	52	2	1	9	4	5		
 1312	2	6	181	2	2	2	2		
@@ -1323,7 +1323,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1322	3	41	6	1	3	3	5		
 1323	3	3	2	1	3	3	2		
 1324	3	1	2	1	59	1	2		
-1325	26	3	2	2	29	4	5		Acinetobacter baumannii
+1325	26	3	2	2	29	4	5		A. baumannii
 1326	22	26	54	14	58	16	47		
 1327	13	1	5	26	7	1	29		
 1328	3	3	2	2	200	4	5		
@@ -1374,7 +1374,7 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1373	3	3	2	2	206	4	14		
 1374	209	3	3	2	29	110	8		
 1375	3	199	7	1	7	1	4		
-1376	208	2	7	5	11	1	14		
+1376	207	2	7	5	11	1	14		
 1377	3	196	101	2	3	1	14		
 1378	3	3	7	2	4	2	180		
 1379	1	197	193	2	18	2	5		
@@ -1384,3 +1384,47 @@ ST	Pas_cpn60	Pas_fusA	Pas_gltA	Pas_pyrG	Pas_recA	Pas_rplB	Pas_rpoB	clonal_comple
 1383	1	201	193	2	9	2	5		
 1384	1	3	194	2	4	4	5		
 1385	12	200	5	2	5	1	14		
+1386	3	3	2	4	5	4	63		
+1387	3	1	1	1	5	1	41		
+1388	204	20	195	10	183	18	65		
+1389	210	76	196	98	209	36	181		
+1390	211	110	106	62	117	60	103		
+1391	24	45	46	29	210	30	46		
+1392	203	102	197	57	110	56	182		
+1393	212	186	180	91	198	111	183		
+1394	213	31	74	99	211	22	73		
+1395	214	170	95	57	121	56	97		
+1396	203	187	183	63	110	56	97		
+1397	215	202	198	100	212	112	184		
+1398	216	203	199	100	212	112	185		
+1399	22	26	200	14	213	16	25		
+1400	217	202	201	100	212	112	186		
+1401	218	204	202	100	214	112	187		
+1402	219	205	203	101	215	113	188		
+1403	220	205	203	101	216	113	189		
+1404	221	206	204	102	212	112	90		
+1405	3	5	5	26	7	1	4		
+1406	1	3	2	1	137	4	92		
+1407	7	190	2	2	8	82	123		
+1408	56	3	2	3	9	35	4		
+1409	40	3	4	2	40	4	4		Acinetobacter baumannii
+1410	40	3	2	1	2	2	2		
+1411	152	5	7	1	7	1	4		
+1412	13	5	5	1	7	1	4		
+1413	1	2	140	1	51	1	4		
+1414	3	3	6	2	3	1	2		
+1415	155	3	13	1	3	1	14		
+1416	3	3	2	2	2	4	14		
+1417	3	3	2	2	9	2	2		
+1418	3	2	2	2	3	1	2		
+1419	156	3	56	1	13	1	1		
+1420	3	2	2	2	5	1	5		
+1421	69	4	2	2	7	1	4		
+1422	3	3	2	5	29	1	4		
+1423	1	2	1	1	28	1	2		
+1424	25	3	6	2	5	1	1		
+1425	1	5	2	2	217	1	8		
+1426	3	16	13	2	71	2	4		
+1427	1	3	11	5	3	4	14		
+1428	1	100	2	2	9	115	52		
+1429	3	3	19	25	5	2	5		

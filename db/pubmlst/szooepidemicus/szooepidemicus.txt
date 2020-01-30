@@ -395,3 +395,4 @@ ST	arcC	nrdE	proS	spi	tdk	tpi	yqiL	clonal_complex
 394	1	56	36	6	30	3	3	
 395	45	45	45	69	45	45	45	
 396	45	45	45	70	45	45	45	
+397	11	14	4	71	1	10	6	

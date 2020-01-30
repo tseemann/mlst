@@ -1164,3 +1164,4 @@ ST	arcC	ddl	gki	recP	tdk	tpi	yqiL	clonal_complex
 1163	46	25	11	10	3	6	3	
 1164	5	15	5	2	2	3	3	
 1165	4	1	4	3	2	3	10	
+1166	42	1	4	2	29	1	34	
