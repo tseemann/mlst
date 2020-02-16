@@ -304,6 +304,8 @@ pta.tfa
 tpi.tfa
 yqiL.tfa
 ```
+The folder name (ie. `saureus`) **must** be the same name
+as the scheme file (ie. `saureus.txt`) or it will not work.
 
 ### The scheme file
 
