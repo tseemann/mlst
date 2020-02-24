@@ -188,26 +188,44 @@ If you prefer CSV because it loads more smoothly into MS Excel, use the `--csv` 
 ```
 % mlst --csv Peptobismol.fna.gz > mlst.csv
 ```
-JSON output is available too:
+JSON output is available too; it returns an array of dictionaries, one per
+input file. The `id` will be the same as `filename` unless `--label` is
+used, but that only works when scanning a single file.
 ```
-% mlst -q --json out.json --label Sepi test/example.fna.gz
+% mlst -q --json out.json test/example.gbk.gz test/novel.fasta.bz2
 % cat out.json
-{
-   "Sepi" : {
-      "sequence_type" : "184",
+[
+   {
+      "scheme" : "sepidermidis",
       "alleles" : {
-         "arcC" : "16",
+         "mutS" : "1",
          "yqiL" : "1",
-         "gtr" : "2",
-         "pyrR" : "2",
          "tpiA" : "1",
+         "pyrR" : "2",
+         "gtr" : "2",
          "aroE" : "1",
-         "mutS" : "1"
+         "arcC" : "16"
       },
-      "filename" : "test/example.fna.gz",
-      "scheme" : "sepidermidis"
+      "sequence_type" : "184",
+      "filename" : "test/example.gbk.gz",
+      "id" : "test/example.gbk.gz"
+   },
+   {
+      "sequence_type" : "-",
+      "filename" : "test/novel.fasta.bz2",
+      "scheme" : "spneumoniae",
+      "alleles" : {
+         "gki" : "2",
+         "aroE" : "7",
+         "ddl" : "22",
+         "gdh" : "15",
+         "xpt" : "1",
+         "recP" : "~10",
+         "spi" : "6"
+      },
+      "id" : "test/novel.fasta.bz2"
    }
-}
+]
 ```
 You can also save the "novel" alleles for submission to PubMLST::
 ```

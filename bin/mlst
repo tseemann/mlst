@@ -18,7 +18,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.18.1";
+my $VERSION = "2.19.0";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -98,7 +98,7 @@ msg("Excluding $num_excluded schemes:", (keys %exclude)) if $num_excluded > 0;
 #..............................................................................
 # Output results
 
-my %json;
+my $json;
 
 # output the header for the old style syntax 
 if ($scheme and $legacy) {
@@ -149,7 +149,8 @@ for my $argv (@ARGV)
   }
 
   if ($json_fn) {
-    $json{$LABEL} = {
+    push @$json, {
+      'id' => $LABEL,
       'filename' => $argv,
       'scheme' => $sch,
       'sequence_type' => $ST,
@@ -166,7 +167,7 @@ for my $argv (@ARGV)
 if ($json_fn) {
   msg("Writing JSON: $json_fn");
   path($json_fn)->spew(
-    to_json( \%json, {ascii=>1,pretty=>1} ),
+    to_json( $json, {ascii=>1,pretty=>1} ),
   );
 }
 
