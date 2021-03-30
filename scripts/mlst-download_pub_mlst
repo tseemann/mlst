@@ -1,27 +1,200 @@
 #!/bin/bash
 
+# TODO:
+# FIX oralstrep --- deconvolute multiple schemes
+# FIX leptospira loci names (extra _\d suffix)
+# FIX streptothermophilus AND sthermophilus
+
 set -e
+
+# grep options change depending on the
+# system
+host=$(uname)
+
+if [[ "$host" == "Darwin" ]];
+then
+  GREP_OPTS="-Eo"
+  echo "# Found $host, using $GREP_OPTS"
+fi
+
+if [[ "$host" == "Linux" ]];
+then
+  GREP_OPTS="-Po"
+  echo "# Found $host, using $GREP_OPTS"
+fi
+
+## get description of scheme
+get_description() {
+  DESCRIPTION=$(echo "$URL" | sed 's@/profiles_csv@@g'| xargs curl -s | grep ${GREP_OPTS} '"description":.*?[^\\]"')
+}
+
+# some schemes that are kept separate in MLST
+# have been grouped into a single DB in the new 
+# pubMLST REST API scheme, this helps maintain
+# backwards compatibility with previous versions
+# of MLST (v2.19.0 and backwards)
+deconvolute_profile() {
+  get_description
+  # echo "# $DESCRIPTION - found"
+  PROFILE=$(echo $DESCRIPTION | sed -E -e 's/.*:\"(.*) MLST\"/\1/g' -e 's/[\. ]//g' | tr A-Z a-z | sed -E 's/\/.*$//g')
+}
+
+# this deals with a new scheme not present in previous
+# version of MLST (prior to v2.19.0), which has two
+# schemes, and one of them has a name with a non-ASCII
+# character that needs to be fixed
+mgallisepticum_profile() {
+  get_description
+ # echo "# $DESCRIPTION - found"
+  PROFILE=${PROFILE}_$(echo $DESCRIPTION | sed -E 's@.*MLST\#.*\((.*)\)\"@\1@g' | tr A-Z a-z | iconv  -f UTF-8 -t ASCII --unicode-subst="o")
+}
+
+# This profile has two schemes, a multihost scheme and 
+# another called RIRDC. In the current MLST nomenclature
+# these schemes are named pmultocida_multihost and 
+# pmultocida_rirdc. Here, we ensure that the new nomenclature
+# on the pubMLST REST API remains backwards compatible
+pmultocida_profile() {
+  get_description
+  # echo "# $DESCRIPTION - found"
+  PROFILE=${PROFILE}_$(echo $DESCRIPTION | sed -E -e 's@.*:\"(.*) MLST\"@\1@g' -e 's/ple//g' -e 's/ //g' | tr A-Z a-z)
+}
+
+## get profile depending on the scheme
+## species with more than one scheme are
+## abaumannii, ecoli, and leptospira
+## this is necessary to maintain backwards 
+## compatibility with previous versions of
+## MLST 
+
+get_profile () {
+  case $PROFILE in
+    "abaumannii") 
+    # echo "# Abaumanni - found $URL"
+    get_description
+    case $DESCRIPTION in
+      '"description":"MLST (Oxford)"')
+       PROFILE="abaumanii"
+       ;;
+       '"description":"MLST (Pasteur)"')
+       PROFILE="abaumannii_2"
+       ;;
+       *)
+       echo "Unknown profile for Abaumanii at $URL"
+       exit 1
+       ;;
+       esac
+    # echo "# $PROFILE - found"
+    ;;
+    'brachyspira')
+    deconvolute_profile
+    # echo "# $PROFILE - found"
+    ;;
+    'campylobacter_nonjejuni')
+    deconvolute_profile
+    # echo "# $PROFILE - found"
+    ;;
+    "ecoli")
+    # echo "# Ecoli - found $URL"
+    PROFILE='ecoli_2'
+    # echo "# $PROFILE - found"
+    ;;
+    "ecoli_achtman")
+    # echo "# Ecoli Achtman - found $URL"
+    PROFILE='ecoli'
+    # echo "# $PROFILE - found"
+    ;;
+    "leptospira")
+    # echo "# Leptospira - found $URL"
+    get_description
+    case $DESCRIPTION in
+      '"description":"MLST (scheme 1)"')
+      PROFILE='leptospira'
+      ;;
+      '"description":"MLST (scheme 2)"')
+      PROFILE='leptospira_2'
+      ;;
+      '"description":"MLST (scheme 3)"')
+      PROFILE='leptospira_3'
+      ;;
+      *)
+      echo "Unknown profile for Leptospira at $URL"
+      exit 1
+      ;;
+      esac
+      # echo "# $PROFILE - found"
+    ;;
+    'mabscessus')
+    deconvolute_profile
+    # echo "# $PROFILE - found"
+    ;;
+    'mgallisepticum')
+    mgallisepticum_profile
+    # echo "# $PROFILE - found"
+    ;;
+    'pmultocida')
+    pmultocida_profile
+    # echo "# $PROFILE - found"
+    ;;
+    'senterica_achtman')
+    PROFILE='senterica'
+    ;;
+    'streptothermophilus')
+    # this is from Pasteur BigsDB
+     PROFILE='sthermophilus_1'
+    ;;
+    'sthermophilus')
+    # this is from pubMLST
+     PROFILE='sthermophilus_2'
+     # echo "# $PROFILE - found"
+    ;;
+    'vcholerae')
+     get_description
+     case $DESCRIPTION in
+       '"description":"MLST"')
+        PROFILE='vcholerae'
+       ;;
+       '"description":"MLST (O1 and O139)"')
+       PROFILE='vcholerae2'
+       ;;
+       *)
+       echo "Unknown profile for Vcholerae at $URL"
+       exit 1       
+       ;;
+       esac
+    # echo "# $PROFILE - found"
+    ;;
+    'ypseudotuberculosis_achtman')
+    PROFILE='ypseudotuberculosis'
+    ;;
+    *)
+    #echo "# $PROFILE"
+    ;;
+    esac
+}
 
 OUTDIR=pubmlst
 mkdir -p "$OUTDIR"
-wget --no-clobber -P "$OUTDIR" http://pubmlst.org/data/dbases.xml 
+wget --no-clobber -P "$OUTDIR" http://pubmlst.org/data/dbases.xml
 
-for URL in $(grep '<url>' $OUTDIR/dbases.xml); do
-#  echo $URL
-  URL=${URL//<url>}
-  URL=${URL//<\/url>}
-#  echo ${URL: -4}
-  if [ ${URL:(-4)} = ".txt" ]; then
-    PROFILE=$(basename $URL .txt)
+for URL in $(grep '<url>' $OUTDIR/dbases.xml | sed -E 's/<\/?url>//g'); do
+  # $URL
+  # URL=${URL//<url>}
+  # URL=${URL//<\/url>}
+  # ${URL: -4}
+  if [ ${URL:(-4)} = "_csv" ]; then
+    PROFILE=$( echo $URL | sed -E 's/.*pubmlst_(.*)_seqdef.*/\1/g' )
+    get_profile
     echo "# $PROFILE "
     PROFILEDIR="$OUTDIR/$PROFILE"
     echo "mkdir -p '$PROFILEDIR'"
-    echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL')"
-  elif [ ${URL:(-4)} = ".tfa" ]; then
-    echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL')"
+    echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$PROFILE.txt')"
+  elif [ ${URL:(-5)} = "fasta" ]; then
+    LOCUS=$(echo $URL | sed -E 's@.*/loci/(.*)/alleles_fasta@\1@g')
+    echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$LOCUS.tfa')"
   fi 
 done
 
 # delete fungi schemes
 echo rm -frv "$OUTDIR"/{afumigatus,blastocystis,calbicans,cglabrata,ckrusei}
-echo rm -frv "$OUTDIR"/{ctropicalis,csinensis,kseptempunctata,sparasitica,tvaginalis}
+echo rm -frv "$OUTDIR"/{ctropicalis,csinensis,geotrichum,kseptempunctata,sparasitica,tvaginalis}
