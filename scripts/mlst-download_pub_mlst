@@ -165,7 +165,7 @@ get_profile () {
     ;;
     'streptothermophilus')
     # this is from Pasteur BigsDB
-     PROFILE='sthermophilus_1'
+     PROFILE='sthermophilus'
     ;;
     'sthermophilus')
     # this is from pubMLST
