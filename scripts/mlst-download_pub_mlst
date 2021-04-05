@@ -36,7 +36,7 @@ get_description() {
 deconvolute_profile() {
   get_description
   # echo "# $DESCRIPTION - found"
-  PROFILE=$(echo $DESCRIPTION | sed -E -e 's/.*:\"(.*) MLST\"/\1/g' -e 's/[\. ]//g' | tr A-Z a-z | sed -E 's/\/.*$//g')
+  PROFILE=$(echo $DESCRIPTION | sed -E -e 's/.*:\"(.*) MLST(.*)?\"/\1\2/g' -e 's/[\. ]//g' -e 's/\(/_/g' -e 's/\)//g' | tr A-Z a-z | sed -E 's/\/.*$//g')
 }
 
 # this deals with a new scheme not present in previous
