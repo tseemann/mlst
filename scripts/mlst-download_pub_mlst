@@ -210,6 +210,11 @@ for URL in $(grep '<url>' $OUTDIR/dbases.xml | sed -E 's/<\/?url>//g'); do
     PROFILE=$( echo $URL | sed -E 's/.*pubmlst_(.*)_seqdef.*/\1/g' )
     get_profile
     echo "# $PROFILE "
+    if [[ " ${IGNORED_SCHEMES[@]} " =~ " ${PROFILE} " ]]; then
+      echo "# Ignoring fungal/parasite scheme: ${PROFILE}"
+      continue
+    # whatever you want to do when IGNORED_SCHEMES contains value
+    fi  
     PROFILEDIR="$OUTDIR/$PROFILE"
     echo "mkdir -p '$PROFILEDIR'"
     echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$PROFILE.txt')"
@@ -220,5 +225,9 @@ for URL in $(grep '<url>' $OUTDIR/dbases.xml | sed -E 's/<\/?url>//g'); do
 done
 
 # delete fungi schemes
-echo rm -frv "$OUTDIR"/{afumigatus,blastocystis,calbicans,cglabrata,ckrusei}
-echo rm -frv "$OUTDIR"/{ctropicalis,csinensis,geotrichum,kseptempunctata,sparasitica,tvaginalis}
+# these lines are no longer necessary, as we skip them in the for loop 
+# above --- they are deprecated, and are commented out.
+# they will be removed in subsequent revisions of this script
+# echo rm -frv "$OUTDIR"/{afumigatus,blastocystis,calbicans,cglabrata,ckrusei}
+# echo rm -frv "$OUTDIR"/{ctropicalis,csinensis,geotrichum,kseptempunctata,sparasitica,tvaginalis}
+
