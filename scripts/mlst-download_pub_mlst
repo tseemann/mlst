@@ -108,6 +108,8 @@ get_profile () {
     PROFILE='ganatis'
     ;;
     'helicobacter')
+    PROFILE='hpylori'
+    ;;
     "leptospira")
     # echo "# Leptospira - found $URL"
     get_description
