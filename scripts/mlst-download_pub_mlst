@@ -7,6 +7,9 @@
 
 set -e
 
+## SCHEMES TO BE IGNORED BECAUSE THEY ARE FUNGII OR PARASITE
+IGNORED_SCHEMES=("afumigatus" "blastocystis" "calbicans" "cglabrata" "ckrusei" "ctropicalis" "csinensis" "geotrichum" "kseptempunctata" "sparasitica" "tvaginalis")
+
 # grep options change depending on the
 # system
 host=$(uname)
