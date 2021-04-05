@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# This script has been heavily modified to support recent changes
+# to how pubMLST has named MLST schemes. Ideally, the script would
+# be written in Python or some other scripting language given the
+# heavy logic involved. But, the idea is still to support running 
+# this script with the bare minimum of requirements (e.g., a basic
+# linux installation), which may have or may not have python, which may
+# or may not be python3. That aside, efforts were made to ensure 
+# that all previous scheme names used in earlier version of 
+# MLST (<=2.19.0) were maintained. This support will drop in version
+# 3.0+ of MLST, where we will support the new pubMLST naming convention
+# or some form of it. Acknowledging that some of the elements of the 
+# script implementation below are fragile, we have added a fail-safe
+# at the end. We double check all the observed schemes against a
+# list of expected scheme names. Any missing schemes, which are not inclued in 
+# a list of deprecated schemes, will be printed out as a warning to 
+# the user (in stderr). Here, deprecated schemes are defined as those
+# no longer maintained and made available by their curators.
+# If you observe any missing schemes, please 
+# file an issue at "https://github.com/tseemann/mlst/issues".
+# Thank you.
+
 set -e
 
 # GET SCRIPT DIRECTORY
