@@ -136,6 +136,9 @@ get_profile () {
       esac
       # echo "# $PROFILE - found"
     ;;
+    'listeria')
+    PROFILE='lmonocytogenes'
+    ;;
     'mabscessus')
     deconvolute_profile
     # echo "# $PROFILE - found"
