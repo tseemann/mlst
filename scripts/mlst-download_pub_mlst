@@ -150,6 +150,9 @@ get_profile () {
     mgallisepticum_profile
     # echo "# $PROFILE - found"
     ;;
+    'oralstrep')
+    deconvolute_profile
+    ;;
     'pmultocida')
     pmultocida_profile
     # echo "# $PROFILE - found"
