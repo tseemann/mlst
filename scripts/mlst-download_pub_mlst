@@ -143,6 +143,9 @@ get_profile () {
     deconvolute_profile
     # echo "# $PROFILE - found"
     ;;
+    "mcatarrhalis_achtman")
+    PROFILE='mcatarrhalis'
+    ;;
     'mgallisepticum')
     mgallisepticum_profile
     # echo "# $PROFILE - found"
