@@ -219,7 +219,7 @@ for URL in $(grep '<url>' $OUTDIR/dbases.xml | sed -E 's/<\/?url>//g'); do
     echo "mkdir -p '$PROFILEDIR'"
     echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$PROFILE.txt')"
   elif [ ${URL:(-5)} = "fasta" ]; then
-    LOCUS=$(echo $URL | sed -E 's@.*/loci/(.*)/alleles_fasta@\1@g')
+    LOCUS=$(echo $URL | sed -E -e 's@.*/loci/(.*)/alleles_fasta@\1@g' -e 's/_[[:digit:]]//g')
     echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$LOCUS.tfa')"
   fi 
 done
