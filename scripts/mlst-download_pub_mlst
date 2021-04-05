@@ -160,6 +160,9 @@ get_profile () {
     'senterica_achtman')
     PROFILE='senterica'
     ;;
+    'staphlugdunensis')
+    PROFILE='slugdunensis'
+    ;;
     'streptothermophilus')
     # this is from Pasteur BigsDB
      PROFILE='sthermophilus_1'
