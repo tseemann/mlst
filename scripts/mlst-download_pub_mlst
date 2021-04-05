@@ -74,7 +74,7 @@ get_profile () {
     get_description
     case $DESCRIPTION in
       '"description":"MLST (Oxford)"')
-       PROFILE="abaumanii"
+       PROFILE="abaumannii"
        ;;
        '"description":"MLST (Pasteur)"')
        PROFILE="abaumannii_2"
