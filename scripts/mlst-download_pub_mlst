@@ -35,6 +35,13 @@ OBSERVED_SCHEMES=() # EMPTY ARRAY TO STORE THE OBSERVED SCHEMES
 ## SCHEMES TO BE IGNORED BECAUSE THEY ARE FUNGII OR PARASITE
 IGNORED_SCHEMES=("afumigatus" "blastocystis" "calbicans" "cglabrata" "ckrusei" "ctropicalis" "csinensis" "geotrichum" "kseptempunctata" "sparasitica" "tvaginalis")
 
+skip_profile() {
+  if [[ " ${IGNORED_SCHEMES[@]} " =~ " ${PROFILE} " ]]; then
+    echo "# Ignoring fungal/parasite scheme: ${PROFILE}"
+    continue
+  fi
+}
+
 # grep options change depending on the
 # system
 host=$(uname)
@@ -238,16 +245,13 @@ for URL in $(grep '<url>' $OUTDIR/dbases.xml | sed -E 's/<\/?url>//g'); do
     PROFILE=$( echo $URL | sed -E 's/.*pubmlst_(.*)_seqdef.*/\1/g' )
     get_profile
     echo "# $PROFILE "
-    if [[ " ${IGNORED_SCHEMES[@]} " =~ " ${PROFILE} " ]]; then
-      echo "# Ignoring fungal/parasite scheme: ${PROFILE}"
-      continue
-    # whatever you want to do when IGNORED_SCHEMES contains value
-    fi  
+    skip_profile
     OBSERVED_SCHEMES+=( $PROFILE )
     PROFILEDIR="$OUTDIR/$PROFILE"
     echo "mkdir -p '$PROFILEDIR'"
     echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$PROFILE.txt')"
   elif [ ${URL:(-5)} = "fasta" ]; then
+    skip_profile
     LOCUS=$(echo $URL | sed -E -e 's@.*/loci/(.*)/alleles_fasta@\1@g' -e 's/_[[:digit:]]$//g')
     echo "(cd '$PROFILEDIR' && echo "$URL" && wget -q '$URL' -O '$LOCUS.tfa')"
   fi 
