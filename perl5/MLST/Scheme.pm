@@ -51,9 +51,11 @@ sub _build_genotypes {
   my @gene = @{ $self->genes };
   open my $fh, '<', $self->_tab_file();
   while (<$fh>) {
+    next if m/^ST/;
     chomp;
     my @col = split m/\t/;
-    next unless $col[0] =~ m/^\d+$/;
+    #allow
+    #next unless $col[0] =~ m/^\d+$/;
     my $sig = join "/", map { $col[$_] || '-' } (1 .. @gene);
     $res->{ $sig } = $col[0];
   }  
