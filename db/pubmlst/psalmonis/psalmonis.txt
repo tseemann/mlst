@@ -23,3 +23,7 @@ ST	dnaK	efp	fumC	glyA	murG	rpoD	trpB	clonal_complex
 22	2	9	2	3	2	1	2	
 23	2	2	2	2	2	1	7	
 24	2	10	2	3	2	1	2	
+25	2	2	2	3	5	1	2	
+26	7	12	6	8	9	4	8	
+27	7	12	8	7	8	3	8	
+28	1	1	1	1	7	2	1	
