@@ -21,7 +21,7 @@
 # file an issue at "https://github.com/tseemann/mlst/issues".
 # Thank you.
 
-set -e
+set -eu
 
 # GET SCRIPT DIRECTORY
 # need this to read the current supported schemes list
