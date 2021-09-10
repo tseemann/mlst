@@ -12,7 +12,10 @@ rm -f "$BLASTFILE"
 for N in $(find $MLSTDIR -mindepth 1 -maxdepth 1 -type d); do
   SCHEME=$(basename $N)
   echo "Adding: $SCHEME"
-  cat "$MLSTDIR"/$SCHEME/*.tfa | sed -e "s/^>/>$SCHEME./" >> "$BLASTFILE"
+  cat "$MLSTDIR"/$SCHEME/*.tfa \
+  	| grep -v 'not a locus'  \
+  	| sed -e "s/^>/>$SCHEME./" \
+  	>> "$BLASTFILE"
 done
 
 makeblastdb -hash_index -in "$BLASTFILE" -dbtype nucl -title "PubMLST" -parse_seqids

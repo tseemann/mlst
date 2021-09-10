@@ -1,0 +1,122 @@
+#!/usr/bin/env perl
+use v5.26;
+use strict;
+use Getopt::Std;
+use File::Basename;
+use Cwd 'abs_path';
+use Data::Dumper;
+
+#...........................................................
+
+my $DEBUG=0;
+my $EXE = basename($0);
+my $VERSION = 0.1;
+my $ROOTDIR = abs_path( dirname($0) . '/../db/pubmlst' );
+
+#...........................................................
+
+sub msg { print STDERR "@_\n"; }
+sub wrn { msg("WARNING:", @_); }
+sub err { msg("ERROR:", @_); exit(1); }
+
+sub version { msg("$EXE $VERSION"); exit(0); }
+
+sub usage {
+  my($ec) = @_;
+  $ec ||= 0;
+  my $ofh = $ec ? \*STDERR : \*STDOUT;
+  print $ofh
+    "SYNOPSIS\n",
+    "  Print allele seqs for a sequence type in FASTA format\n",
+    "USAGE\n",
+    "  $EXE -s [scheme] -t [ST] > alleles.ffn\n",
+    "OPTIONS\n",
+    "  -v         Show version and exit\n",
+    "  -h         This help\n",
+    "  -s SCHEME  MLST scheme name\n",
+    "  -t ST      Sequence type number\n",
+    "  -d DBDIR   PubMLST folder [$ROOTDIR]\n",
+    "END\n";
+  exit($ec);
+}
+
+#...........................................................
+
+my %opt;
+getopts('vhs:t:d:', \%opt) or exit(-1);
+$opt{v} and version();
+$opt{h} and usage(0);
+$opt{d} ||= $ROOTDIR;
+$opt{'s'} or err("Please provide -s scheme");
+$opt{'t'} or err("Please provide -t ST");
+
+my $dir = $opt{d};
+-d $dir or err("Bad database dir -d $dir");
+
+my $s = $opt{'s'};
+$dir = "$dir/$s";
+-d $dir or err("No such folder: $dir");
+
+my $t = $opt{'t'};
+$t =~ m/^\d+$/ or err("-t '$t' should be an integer");
+
+my $sf = "$dir/$s.txt";
+-r $sf or err("No schema file: $sf");
+msg("Schema: $sf");
+
+msg("Target: $s ST$t");
+chdir($dir);
+my @gene = glob("*.tfa");
+map { s/\.tfa// } @gene;
+msg("Genes: @gene");
+
+#ST      atpA    ddl     gdh     purK    gyd     pstS    adk     clonal
+#1       8       4       5       7       1       1       5
+#2       8       4       5       7       9       1       5
+
+open my $SCH, '<', $sf;
+my @hdr;
+my %need;
+while (<$SCH>) {
+  chomp;
+  my @x = split m/\t/;
+  if ($x[0] eq 'ST') {
+    @hdr = @x[1 .. @gene];
+    next;
+  }
+  elsif ($x[0] == $t) {
+    @hdr or err("No header found in $sf");
+    #msg(Dumper(\@gene, \@hdr, \@x));
+    %need = map { ($hdr[$_] => $x[1+$_] ) } (0 .. $#hdr);
+    last;
+  }
+}
+
+scalar(keys %need) or err("Could not find ST$t in $s");
+
+for my $g (sort keys %need) {
+  my $id = $g.'_'.$need{$g};
+  msg("Extracting: $id");
+  fasta_extract("$dir/$g.tfa", $id);
+}
+msg("Done.");
+
+sub fasta_extract {
+  my($fname, $id) = @_;
+  open my $FASTA, '<', $fname or err("Can't open FASTA: $fname");
+  my $p=0;
+  while (<$FASTA>) {
+    if (m/^>(\S+)/) { $p = ($1 eq $id) }
+    print $_ if $p;
+  }
+  close $FASTA;
+}
+
+
+
+
+
+
+
+
+

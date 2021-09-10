@@ -1,0 +1,95 @@
+#!/usr/bin/env perl
+use v5.26;
+use strict;
+use File::Basename;
+use Cwd 'abs_path';
+use Data::Dumper;
+
+my $DEBUG=0;
+
+my $SEP = '-';
+my %IGNORE_COLUMN = map { $_ => 1 } 
+  qw(ST mlst_clade clonal_complex species CC lineage);
+
+sub msg { print STDERR "@_\n"; }
+sub wrn { msg("WARNING:", @_); }
+sub err { msg("ERROR:", @_); exit(1); }
+
+my $root = abs_path( dirname($0) . '/../db/pubmlst' );
+msg("Database dir detected as: $root");
+-d $root or err("Not a directory: $root");
+
+chdir($root);
+my @scheme = grep { -d $_ } <*>;
+map { msg($_) } @scheme if $DEBUG;
+msg("Found", 0+@scheme, "schemes");
+
+for my $name (@scheme) {
+  msg("Validating scheme: $name");
+
+  my $s = scheme_to_hash("$root/$name/$name.txt");
+  msg("$name has", scalar keys %$s, "alleles designated");
+
+  my $a = load_allele_names("$root/$name");
+  msg("$name has", scalar keys %$a, "allele sequences");
+
+  print Dumper($s, $a) if $DEBUG;
+
+  for my $g (sort keys %$s) {
+    if ($g =~ m/${SEP}0$/) {
+      say "$name $g has a null allele";
+    }
+    elsif (not exists $a->{$g}) {
+      say "$name $g in scheme but no allele";
+    }
+  } 
+  for my $g (sort keys %$a) {
+    if (not exists $s->{$g}) {
+      say "$name $g allele but not in any STs";
+    }
+  } 
+  
+#  exit;
+}
+
+
+sub load_allele_names {
+  my($dir) = @_;
+  -d $dir or err("Not a directory: $dir");
+  my $a = {};
+  my $cmd = "grep -h '^>' ".join(' ', map { "\Q$_\E" } <$dir/*.tfa>); 
+  open my $FASTA, '-|', $cmd;
+  while (<$FASTA>) {
+    next unless m/^>(\S+)/;
+    my $id = $1;
+    $id =~ s/_(\d+)$/$SEP$1/; # recA_31 -> recA-31
+    $a->{$id}++;
+  }  
+  close $FASTA;
+  return $a;
+}
+
+sub scheme_to_hash {
+  my($fname) = @_;
+  -r $fname or err("Can't read filename: $fname");
+  open my $FIN, '<', $fname;
+  my @hdr;
+  my $a = {};
+  while (<$FIN>) {
+    chomp;
+    my @row = split m/\t/;
+    if (@hdr) {
+      for (my $i=1; $i < @hdr; $i++) {  # skip ST column 1
+        if (not $IGNORE_COLUMN{ $hdr[$i] }) {
+          $a->{ $hdr[$i] . $SEP . $row[$i] }++;
+        }
+      }
+    }
+    else {
+      @hdr = @row;
+    }
+  }
+  close $FIN;
+  return $a;
+}
+

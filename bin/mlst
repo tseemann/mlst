@@ -1,46 +1,79 @@
 #!/usr/bin/env perl
+use 5.26.0;
 use strict;
-use File::Spec;
+use File::Basename;
 use Data::Dumper;
+use Cwd 'abs_path';
 use List::MoreUtils qw(pairwise);
-use File::Temp qw(tempfile);
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
 use MLST::Scheme;
 use MLST::Logger qw(err msg);
 use MLST::Requirements qw(require_exe);
-use MLST::FileUtils qw(is_genbank genbank_to_fasta is_gzipped gunzip_file);
+use JSON;
+use Path::Tiny;  # bundled in $APPDIR/perl5/
+use Digest::MD5 qw(md5_hex);
 
 #..............................................................................
 # Globals
 
-my $VERSION = "2.8";
+my $VERSION = "2.19.0";
+my $EXE = basename( $FindBin::RealScript );
+my $AUTHOR = 'Torsten Seemann';
+my $URL = 'https://github.com/tseemann/mlst';
+
 my $SEP = '/';
 my $OUTSEP = "\t";
+my $SEEN = 'N';
 
 #..............................................................................
 # Command line options
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
-             $list, $longlist, $scheme, 
+             $list, $longlist, $scheme, $legacy, $check, $label,
              $minid, $mincov, $minscore,
-             $csv, $nopath, $novel);
+             $csv, $json_fn, $nopath, $novel);
 setOptions();
 
 #..............................................................................
 # Option parsing
 
 MLST::Logger->quiet($quiet);
+msg("This is $EXE $VERSION running on $^O with Perl $]");
+
+# check we have the right tools and versions thereof
+msg("Checking $EXE dependencies:");
+require_exe('blastn', 'any2fasta');
+my($blastver) = qx(blastn -version 2>&1);
+chomp $blastver;
+$blastver =~ m/(\d+)\.(\d+)/ or err("Can not determine BLAST+ version from '$blastver'");
+my $decver = sprintf "%03d%03d", $1, $2;
+msg("Found $blastver ($decver)");
+$decver ge "002009" or err("$EXE needs BLAST+ 2.9.0 or later");
+if ($check) {
+  msg("OK.");
+  exit(0);
+}
+
+($label && @ARGV > 1) and err("Using --label when scanning multiple files does not make sense");
 
 $OUTSEP = ',' if $csv;  # default is tab
 
+$legacy && ! $scheme and err("Must specify a --scheme for --legacy output mode");
+
 my $pubmlst = MLST::PubMLST->new( dir => $datadir );
 my %scheme = (map { ($_->name => $_) } @{$pubmlst->schemes});
-my %novel;  # keep track of novel alleles 
+my %nov;  # keep track of novel alleles
 
 # in case user is forcing a scheme on us (legacy mode)
 $scheme && ! exists $scheme{$scheme} and err("Invalid --scheme '$scheme'. Check using --list");
+
+# we set minscore to 0 if --scheme is set
+if ($scheme and $minscore != 0) {
+  msg("Setting --minscore=0 because user chose --scheme");
+  $minscore=0;
+}
 
 if ($list or $longlist) {
   if ($list) { 
@@ -54,59 +87,75 @@ if ($list or $longlist) {
   exit(0);
 }
 
-@ARGV or err("Please provide some FASTA files to determine the MLST of");
-
-require_exe("blastn");
+@ARGV or err("Please provide some FASTA/Genbank files to genotype (can be .gz)");
 
 # build a hash of schemes to ignore from the CSV string
 my %exclude = map { ($_ => 1) } (split m/,/ , $exclude);
 %exclude = () if $scheme;   # don't exclude anything is specific scheme provided
-msg("Excluding", scalar(keys %exclude), "schemes:", (keys %exclude));
+my $num_excluded = scalar(keys %exclude);
+msg("Excluding $num_excluded schemes:", (keys %exclude)) if $num_excluded > 0;
 
 #..............................................................................
 # Output results
 
+my $json;
+
 # output the header for the old style syntax 
-if ($scheme) {
+if ($scheme and $legacy) {
   print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
 }
 
 for my $argv (@ARGV) 
 {
+  -r $argv or err("Unable to read from '$argv'");
+  -d $argv and err("'$argv' seems to be a directory, not a file");
   my @temp;
-  my $infile = $argv;
-  
-  if ( is_gzipped($argv) ) {
-    (undef,$infile) = tempfile(UNLINK=>1);
-    msg("Decompressing: $argv'");
-    gunzip_file($argv, $infile);
-    push @temp, $infile;
-  }
-  if ( is_genbank($infile) ) {
-    my $orig = $infile;
-    (undef,$infile) = tempfile(UNLINK=>1);
-    msg("Converting to FASTA: $argv");
-    genbank_to_fasta($orig, $infile);
-    push @temp, $infile;
-  }
+  my $LABEL;
 
-  msg("Scanning: $argv [$infile]");  
+  # use --label, else just filename
+  $LABEL = $label || ($nopath ? basename($argv) : $argv);
+  msg("Using label '$LABEL' for file $argv") if $LABEL ne $argv;
+  #msg("argv=$argv infile=$infile LABEL=$LABEL label=$label");
 
-  my($sch, $ST, $sig) = find_mlst($infile);
+  # Do the big function call
+  my($sch, $ST, $sig) = find_mlst($argv, $LABEL);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
-  
-  (undef,undef,$argv) = File::Spec->splitpath($argv) if $nopath;
+
+  # delete all novel alleles from failed schemes
+  foreach (keys %{$nov{$LABEL}}) {
+    delete $nov{$LABEL}{$_} unless $_ eq $sch;
+  }
+
   my @code = $sch eq '-' ? () : split m{$SEP}, $sig ;
   
-  if ($scheme) {
+  # sort duplicate alleles numerically (only for pure 100% ones)
+  for my $as (@code) {
+    if ($as =~ m/,/ and $as =~ m/^[0-9,]+/) {
+      #print STDERR "DEBUG: '$as' in [@code]\n";
+      $as = join ',', sort { $a <=> $b } split m/,/, $as;
+      #print STDERR "DEBUG: '$as' in [@code]\n";
+    }
+  }
+
+  if ($scheme and $legacy) {
     # old style "one scheme" layout
-    print join($OUTSEP, $argv, $sch, $ST, @code),"\n";
+    print join($OUTSEP, $LABEL, $sch, $ST, @code),"\n";
   } 
   else {
     # new style "autodetect" layout
     my @gene = $sch eq '-' ? () : @{ $scheme{$sch}->genes };
     my @allele = pairwise { "$a($b)" } @gene, @code;
-    print join($OUTSEP, $argv, $sch, $ST, @allele),"\n";
+    print join($OUTSEP, $LABEL, $sch, $ST, @allele),"\n";
+  }
+
+  if ($json_fn) {
+    push @$json, {
+      'id' => $LABEL,
+      'filename' => $argv,
+      'scheme' => $sch,
+      'sequence_type' => $ST,
+      'alleles' => $sch eq '-' ? undef : { (pairwise { ($a=>$b) } @{$scheme{$sch}->genes}, @code) },
+    };
   }
   
   if (@temp) {
@@ -115,25 +164,81 @@ for my $argv (@ARGV)
   }
 }
 
+if ($json_fn) {
+  msg("Writing JSON: $json_fn");
+  path($json_fn)->spew(
+    to_json( $json, {ascii=>1,pretty=>1} ),
+  );
+}
+
 if ($novel) {
   my $newones = 0;
+  my %seen;
   open FASTA, '>', $novel;
-  for my $seq (keys %novel) {
-    next unless $novel{$seq} =~ m/~/;
-    print FASTA ">", $novel{$seq}, "\n", $seq, "\n";
-    $newones++;
+  for my $fname (keys %nov) {
+    for my $sch (keys %{$nov{$fname}}) {
+      for my $gene (keys %{$nov{$fname}{$sch}}) {
+        my $seq = $nov{$fname}{$sch}{$gene};
+        if ($seq ne $SEEN) {
+          my $hash = md5_hex($seq);
+          my $id = "$sch.$gene-$hash";
+          next if $seen{$id}++; # same novel allele in > 1 input file
+          print FASTA ">$id $fname\n$seq\n";
+          $newones++;
+        }
+      }
+    }
   }
-  msg("Found $newones novel intact alleles, wrote them to $novel");
+  if ($newones <= 0) {
+    unlink $novel;
+    msg("Found no novel intact alleles; will not create $novel");
+  } else {
+    msg("Found $newones novel intact alleles, wrote them to $novel");
+  }
+  print STDERR Dumper(\%nov) if $debug;
+}
+
+# Say our goodbyes
+my @motd = (
+  "Please also cite 'Jolley & Maiden 2010, BMC Bioinf, 11:595' if you use $EXE.",
+  "You can use --label XXX to replace an ugly filename in the output.",
+  "$EXE also supports --json output for the modern bioinformatician.",
+  "Did you know $EXE also works on .gbk and .gz files?",
+  "I am quite confident this won't be the last time you run $EXE.",
+  "Somehow this tool escaped my normal Australiana based naming system.",
+  "If you have problems, please file at https://github.com/tseemann/mlst/issues",
+  "The manual is now quite extensive; read it at https://github.com/tseemann/mlst",
+  "You can use '$EXE --longlist' to see all the supported schemes.",
+  "Use --quiet or -q to avoid all the message output, including these witticisms.",
+  "Thanks for using $EXE, I hope you found it useful.",
+  "If you like MLST, you're going to absolutely love cgMLST!",
+  "If you like MLST, you're absolutely going to love wgMLST!",
+  "Remember that --minscore is only used when using automatic scheme detection.",
+  "You can follow me on Twitter at \@torstenseemann",
+);
+msg( $motd[ int(rand(scalar(@motd))) ] );
+msg("Done.");
+exit(0);
+
+#----------------------------------------------------------------------
+
+sub revcom {
+  my($dna) = @_;
+  $dna = reverse($dna);
+  $dna =~ tr/ATGCatgc/TACGtacg/;
+  return $dna;
 }
 
 #----------------------------------------------------------------------
 
 sub find_mlst {
-  my($fname) = @_;
-  my $cmd = "blastn -query \Q$fname\E -db \Q$blastdb\E -num_threads $threads"
+  my($fname, $LABEL) = @_;
+
+  my $cmd = " any2fasta -q \Q$fname\E |"
+           ." blastn -db \Q$blastdb\E -num_threads $threads"
            ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
            ." -perc_identity $minid -evalue 1E-20"
-           ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq'";
+           ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq sstrand'";
   msg("Running: $cmd") if $debug;
 
   my @hit = qx($cmd);
@@ -145,15 +250,15 @@ sub find_mlst {
   foreach (@hit) {
     next unless m/ ^ (\w+)\.(\w+)[_-](\d+) 
                    \t (\d+) \t (\d+) \t (\d+) 
-                   \t (\S+) \t (\d+) \t (\d+) \t (\S+) /x;
-    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+                   \t (\S+) \t (\d+) \t (\d+) \t (\S+) \t (\S+) /x;
+    my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq, $sstrand) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
     $res_count++;
-    msg("[$res_count] $qid:$qstart-$qend| $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq") if $debug;
+    msg("[$res_count] $qid:$qstart-$qend($sstrand) | $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq") if $debug;
 
     next unless $nident/$hlen >= $mincov/100 ; # need min-cov to reach minid
 
     if ($scheme and $sch ne $scheme) {
-      msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
+      msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme") if $debug;
       next;
     }
     if ($exclude{$sch}) {
@@ -162,22 +267,25 @@ sub find_mlst {
     }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
       if (exists $res{$sch}{$gene} and $res{$sch}{$gene} !~ m/[~?]/) {
-        msg("WARNING: found addtional exact allele match $sch.$gene-$num");
+        msg("WARNING: found additional exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} .= ",$num";
       }
       else {
         msg("Found exact allele match $sch.$gene-$num");
         $res{$sch}{$gene} = "$num";
       }
-      # force update of hash with our exact match (see below for inexact behavior
-      $novel{$qseq} = "$sch.$gene-$num $fname";
+      # force update of hash with our exact match (see below for inexact behavior)
+      $nov{$LABEL}{$sch}{$gene} = $SEEN;
     }
     else { # either 100% length (with some SNPs) or partial coverage
+      # next if $res{$sch}{$gene};
+
       my $label = ($alen == $hlen) ? "~$num" : "${num}?";
       $res{$sch}{$gene} ||= $label;
       if ($novel and $alen==$hlen) {
         # only update hash if we haven't seen a good version yet
-        $novel{$qseq} ||= "$sch.$gene$label $fname"; 
+        $qseq = revcom($qseq) if $sstrand eq 'minus';
+        $nov{$LABEL}{$sch}{$gene} ||= $qseq;
       }
     }
   }
@@ -188,16 +296,29 @@ sub find_mlst {
   for my $name (keys %res) {
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
+
+    # this is to handle null alleles which produce an ST type
+    if ($ST ne '-' and $sig =~ m{/-}) {
+      $sig =~ s{/-}{/0}g; # want gene(0) not gene(-) in these cases
+    }
+
     my $nlocii = $scheme{$name}->num_genes;
-    # score is out of 100
+    # score is out of 100 (90 split across alleles, 10 for an ST type)
     # penalties are given as below for inexact alleles
     my $score = $nlocii;
-    $score -= 0.2*($sig =~ tr/~/~/);
-    $score -= 0.5*($sig =~ tr/?/?/);
-    $score -= 1.0*($sig =~ tr/-/-/);
-    $score = int($score * 100 / $nlocii);
+    #msg("Start: score=$score ($sig)") if $debug;
+    $score -= 0.3*($sig =~ tr/~/~/);  # novelish
+    #msg("Novel: score=$score") if $debug;
+    $score -= 0.5*($sig =~ tr/?/?/);  # approx
+    #msg("Parti: score=$score") if $debug;
+    $score -= 1.0*($sig =~ tr/-/-/);  # absent
+    #msg("Absen: score=$score") if $debug;
+    $score = int($score * 90 / $nlocii);
+    #msg("Normz: score=$score") if $debug;
+    $score += 10 if $ST ne '-';
+    #msg("HasST: score=$score") if $debug;
     msg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)") if $debug;
-    push @sig, [ $name, $ST, $sig, $score ] if $score > $minscore;
+    push @sig, [ $name, $ST, $sig, $score ] if $score >= $minscore;
   }
 
   @sig = sort { 
@@ -215,8 +336,7 @@ sub find_mlst {
 #----------------------------------------------------------------------
 
 sub show_version {
-  my(undef,undef,$exe) = File::Spec->splitpath($0);
-  print "$exe $VERSION\n";
+  print "$EXE $VERSION\n";
   exit(0);
 }
 
@@ -227,42 +347,72 @@ sub setOptions {
   use Getopt::Long;
 
   @Options = (
+    "GENERAL",
     {OPT=>"help",       VAR=>\&usage,                 DESC=>"This help"},
     {OPT=>"version!",   VAR=>\&show_version,          DESC=>"Print version and exit"},
-    {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
+    {OPT=>"check!",     VAR=>\$check,    DEFAULT=>0,  DESC=>"Just check dependencies and exit"},
     {OPT=>"quiet!",     VAR=>\$quiet,    DEFAULT=>0,  DESC=>"Quiet - no stderr output"},
-    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>"$FindBin::RealBin/../db/blast/mlst.fa", DESC=>"BLAST database"},
-    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>"$FindBin::RealBin/../db/pubmlst", DESC=>"PubMLST data"},
+    {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
+    {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
+    "SCHEME",
     {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
-    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
-    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
-    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>20, DESC=>"Minumum score out of 100 to match a scheme"},
-    {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
+    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
+    "OUTPUT",
     {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
+    {OPT=>"json=s",     VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
+    {OPT=>"label=s",    VAR=>\$label,    DEFAULT=>'', DESC=>"Replace FILE with this name instead"},
     {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
     {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
+    {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
+    "SCORING",
+    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
+    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
+    {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
+    "PATHS",
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>abs_path("$FindBin::RealBin/../db/blast/mlst.fa"), DESC=>"BLAST database"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>abs_path("$FindBin::RealBin/../db/pubmlst"), DESC=>"PubMLST data"},
   );
 
-  &GetOptions(map {$_->{OPT}, $_->{VAR}} @Options) || usage();
+  &GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options) || usage(1);
 
   # Now setup default values.
   foreach (@Options) {
-    if (defined($_->{DEFAULT}) && !defined(${$_->{VAR}})) {
+    if (ref $_ && defined($_->{DEFAULT}) && !defined(${$_->{VAR}})) {
       ${$_->{VAR}} = $_->{DEFAULT};
     }
   }
 }
 
 sub usage {
-  print "Usage: $0 [options] <contigs.fa[.gz] | file.gbk[.gz]> ... \n";
+  my($exitcode) = @_;
+  $exitcode ||= 0;
+  $exitcode = 0 if $exitcode eq 'help'; # what gets passed by getopt func ref
+  select STDERR if $exitcode; # write to STDERR if exitcode is error
+
+  print "SYNOPSIS\n  Automatic MLST calling from assembled contigs\n";
+  print "USAGE\n";
+  print "  % $EXE --list                                            # list known schemes\n";
+  print "  % $EXE [options] <contigs.{fasta,gbk,embl}[.gz]          # auto-detect scheme\n";
+  print "  % $EXE --scheme <scheme> <contigs.{fasta,gbk,embl}[.gz]> # force a scheme\n";
   foreach (@Options) {
-    printf "  --%-13s %s%s.\n",$_->{OPT},$_->{DESC},
-           defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
+    if (ref) {
+      my $def = defined($_->{DEFAULT}) ? " (default '$_->{DEFAULT}')" : "";
+      $def = ($def ? ' (default OFF)' : '(default ON)') if $_->{OPT} =~ m/!$/;
+      my $opt = $_->{OPT};
+      $opt =~ s/!$//;
+      $opt =~ s/=s$/ [X]/;
+      $opt =~ s/=i$/ [N]/;
+      $opt =~ s/=f$/ [n.n]/;
+      printf "  --%-15s %s%s\n",$opt,$_->{DESC}, $def;
+    }
+    else {
+      print "$_\n"; # Subheadings in the help output
+    }
   }
-  exit(1);
+  print "HOMEPAGE\n  $URL - $AUTHOR\n";
+  exit($exitcode);
 }
  
 #----------------------------------------------------------------------

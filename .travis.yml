@@ -1,0 +1,45 @@
+language: perl
+
+sudo: false
+
+perl:
+    - "5.26"
+
+env:
+  - BLASTVER=2.9.0 CACHEDIR=tarballs
+
+cache:
+  directories:
+    - $CACHEDIR
+
+install:
+    - "cpanm --quiet --notest Moo JSON List::MoreUtils"
+    - "mkdir -p $CACHEDIR"
+    - "wget -N -c -P $CACHEDIR http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${BLASTVER}/ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
+    - "tar zxvf $CACHEDIR/ncbi-blast-${BLASTVER}+-x64-linux.tar.gz"
+    - "curl https://raw.githubusercontent.com/tseemann/any2fasta/master/any2fasta > bin/any2fasta"
+    - "chmod +x bin/any2fasta"
+    - "export PATH=$PWD/bin:$PWD/ncbi-blast-${BLASTVER}+/bin:$PATH"
+
+script:
+    - "mlst --check"
+    - "mlst --version"
+    - "mlst --help"
+    - "! mlst --doesnotexist"
+    - "! mlst -q /etc"
+    - "! mlst -q /etc/shadow"
+    - "mlst --list | grep saureus"
+    - "mlst --longlist | grep saureus"
+    - "mlst -q test/example.fna.gz | grep -w 184"
+    - "mlst -q test/example.gbk.gz | grep -w 184"
+    - "mlst -q test/novel.fasta.bz2 | grep -w spneumoniae"
+    - "gzip -d -c test/example.fna.gz | mlst -q /dev/stdin | grep -w 184"
+    - "gzip -d -c test/example.gbk.gz | mlst -q /dev/stdin | grep -w 184"
+    - "mlst -q --legacy --scheme sepidermidis test/example.fna.gz test/example.gbk.gz"
+    - "mlst -q --csv test/example.fna.gz | grep ',184,'"
+    - "mlst -q test/example.gbk.gz --json out.json && grep 'sequence_type' out.json"
+    - "! mlst -q --label double_trouble test/example.gbk.gz test/example.fna.gz"
+    - "mlst -q --label GDAYMATE test/example.fna.gz | grep GDAYMATE"
+    - "mlst -q --novel novel.fa test/novel.fasta.bz2 && grep 'recP' novel.fa"
+    - "scripts/mlst-show_seqs -s efaecium -t 111"
+

@@ -170,3 +170,4 @@ ST	Cln_aspA	Cln_atpA	Cln_glnA	Cln_gltA	Cln_glyA	Cln_pgm	Cln_tkt	clonal_complex
 169	38	26	55	25	32	68	93	
 170	1	1	80	1	1	1	1	
 171	7	7	12	68	21	12	10	
+172	41	30	33	69	53	40	39	

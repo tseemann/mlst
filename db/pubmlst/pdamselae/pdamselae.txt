@@ -54,3 +54,4 @@ ST	glpF	gyrB	metG	pntA	pyrC	toxR	clonal_complex
 53	20	4	19	5	22	28	
 54	16	12	21	17	24	29	
 55	11	9	1	4	25	9	
+56	17	25	22	18	26	30	

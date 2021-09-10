@@ -67,3 +67,4 @@ ST	Cfe_aspA	Cfe_glnA	Cfe_gltA	Cfe_glyA	Cfe_pgm	Cfe_tkt	Cfe_uncA	clonal_complex
 66	15	17	10	11	10	5	5	
 67	4	3	6	5	5	5	5	
 68	1	2	2	13	1	2	4	
+69	17	18	11	14	4	13	14	
