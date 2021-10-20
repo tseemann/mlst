@@ -22,3 +22,4 @@ dev/
 test.local/
 db/pubmlst.old*/
 db/pubmlst/dbases.xml
+tmp/
