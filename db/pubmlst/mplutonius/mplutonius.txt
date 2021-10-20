@@ -34,3 +34,6 @@ ST	argE	galK	gbpB	purR	clonal_complex
 33	4	4	3	6	12
 34	4	4	17	5	12
 35	7	3	2	4	
+36	1	10	1	4	
+37	2	3	18	4	3
+38	4	4	9	5	
