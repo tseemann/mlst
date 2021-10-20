@@ -18,7 +18,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.19.0";
+my $VERSION = "2.20.0";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -358,7 +358,7 @@ sub setOptions {
     {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli_2,abaumannii', DESC=>"Ignore these schemes (comma sep. list)"},
+    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli,abaumannii,vcholerae_2', DESC=>"Ignore these schemes (comma sep. list)"},
     "OUTPUT",
     {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
     {OPT=>"json=s",     VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
