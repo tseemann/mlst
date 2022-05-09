@@ -515,3 +515,4 @@ ST	arcC	nrdE	proS	spi	tdk	tpi	yqiL	clonal_complex
 514	6	6	6	2	5	63	7	
 515	16	73	74	6	1	14	6	
 516	12	11	75	82	55	51	12	
+517	45	45	45	45	45	10	45	

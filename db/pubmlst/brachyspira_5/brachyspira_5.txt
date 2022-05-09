@@ -19,3 +19,6 @@ ST	Bha_adh	Bha_est	Bha_gdh	Bha_glpK	Bha_pgm	Bha_thi	clonal_complex
 18	9	10	9	13	13	12	
 19	10	10	8	14	14	13	
 20	11	11	11	11	12	11	
+21	12	12	12	15	15	14	
+22	13	13	8	16	16	15	
+23	14	14	13	17	17	16	

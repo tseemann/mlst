@@ -86,3 +86,5 @@ ST	leuA	petC	malF	cysG	holC	nuoL	gltT	clonal_complex
 85	7	6	8	10	10	8	8	
 86	7	6	8	10	11	20	8	
 87	5	3	5	3	3	21	3	
+88	3	3	19	7	3	3	3	
+89	6	3	5	18	4	23	7	

@@ -76,3 +76,4 @@ ST	gltA	gyrB	fh	shmt	tyrB	adk	txn	clonal_complex
 76	23	6	35	4	25	15	28	
 77	22	6	36	4	25	15	25	
 78	22	9	35	4	25	15	28	
+79	21	10	12	18	24	20	29	
