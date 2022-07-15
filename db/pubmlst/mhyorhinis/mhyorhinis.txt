@@ -164,3 +164,4 @@ ST	dnaA	rpoB	gyrB	gltX	adk	gmk	clonal_complex
 163	2	1	3	1	1	3	
 164	10	1	1	4	1	5	
 165	25	1	4	4	2	5	
+166	26	1	4	4	2	5	

@@ -309,3 +309,4 @@ ST	Cla_adk	Cla_atpA	Cla_glnA	Cla_glyA	Cla_pgi	Cla_pgm	Cla_tkt	clonal_complex
 308	20	18	122	49	187	14	164	
 309	20	129	14	30	15	14	98	
 310	20	154	108	30	14	34	138	
+311	30	153	95	104	189	174	125	

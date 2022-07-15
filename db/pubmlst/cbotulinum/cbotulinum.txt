@@ -157,3 +157,4 @@ ST	aroE	mdh	aceK	oppB	rpoB	recA	hsp	clonal_complex
 156	13	30	11	9	8	6	8	
 157	49	48	53	55	20	35	24	
 158	13	45	54	10	9	8	7	
+159	50	36	44	35	10	25	9	

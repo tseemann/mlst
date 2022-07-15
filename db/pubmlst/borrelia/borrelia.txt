@@ -1025,3 +1025,4 @@ ST	clpA	clpX	nifS	pepX	pyrG	recG	rplB	uvrA	clonal_complex
 1024	8	2	5	18	2	8	1	2	
 1025	1	151	1	1	1	136	1	1	
 1026	296	24	23	87	92	27	23	29	
+1027	36	1	23	31	22	28	197	231	

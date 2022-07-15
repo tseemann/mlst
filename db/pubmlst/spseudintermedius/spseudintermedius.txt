@@ -2360,3 +2360,4 @@ ST	ack	cpn60	fdh	pta	purA	sar	tuf	clonal_complex
 2359	5	9	2	1	1	1	29	
 2360	2	9	1	1	1	1	5	
 2361	1	8	1	1	5	5	1	
+2362	5	2	1	48	11	1	1	

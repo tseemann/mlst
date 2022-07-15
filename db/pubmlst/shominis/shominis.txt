@@ -74,3 +74,5 @@ ST	arcC	glpK	gtr	pta	tpiA	tuf	clonal_complex
 73	24	5	7	1	6	3	
 74	6	12	1	6	6	3	
 75	8	14	9	1	14	9	
+76	26	5	12	1	6	3	
+77	6	13	19	1	6	3	
