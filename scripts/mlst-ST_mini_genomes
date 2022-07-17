@@ -1,0 +1,92 @@
+#!/usr/bin/env perl
+use strict;
+use File::Spec;
+use Data::Dumper;
+
+#.....................................
+sub msg { print STDERR "@_\n"; }
+sub err { msg("ERROR:",@_); exit(-1); }
+
+#.....................................
+my($path) = qx'which mlst';
+#chomp $path;
+(undef,$path,undef) = File::Spec->splitpath($path);
+$path .= '../db/pubmlst';
+msg("Files: $path");
+
+#.....................................
+my @list = qx'mlst --longlist';
+chomp @list;
+#msg(Dumper(\@list));
+
+#.....................................
+for my $row (@list) {
+  my($scheme,@gene) = split ' ', $row;
+  msg("$scheme has", 0+@gene, "alleles: @gene");
+  my $gene = {};
+  for my $g (@gene) {
+    my $tfa = "$path/$scheme/$g.tfa";
+    my $s = fasta2hash($tfa);
+    $gene = { %$gene, %$s }; # append into hash
+    #msg(Dumper($s));
+  }
+  #msg(Dumper($gene));
+  my $st_fn = "$path/$scheme/$scheme.txt";
+  my $st = load_scheme($st_fn);
+  #msg(Dumper($st));
+  
+  for my $ST (sort { $a <=> $b } keys %$st) {
+    msg("$scheme ST$ST");
+    #msg(Dumper($st->{$ST})); exit;
+    print 
+      ">$scheme.ST$ST\n",
+      join("N", map { $gene->{$_} // '' } $st->{$ST}->@*),
+      "\n";
+  }
+}
+
+#.....................................
+sub load_scheme {
+  my($fname) = @_;
+  my $st = {};
+  open my $TSV, '<', $fname;
+  my $row=0;
+  my @hdr;
+  while (my $line = <$TSV>) {
+    chomp $line;
+    my($ST,@gid) = split m/\t/, $line;
+    if ($row == 0) {
+      @hdr = @gid;
+    }
+    else {
+      for my $i (0 .. @hdr-1) {
+        push $st->{$ST}->@*, $hdr[$i].'_'.$gid[$i];
+      }
+    }
+    $row++;
+  }
+  close $TSV;
+  return $st;
+}
+
+#.....................................
+sub fasta2hash {
+  my($fname) = @_;
+  my $seq = {};
+  msg("Parsing FASTA: $fname");
+  open my $FASTA, '<', $fname;
+  my $id;
+  while (my $line = <$FASTA>) {
+    chomp $line;
+    if ($line =~ m/^>(\S+)/) {
+      $id = $1;
+    }
+    else {
+      $seq->{$id} .= $line;
+    }
+  }
+  close $FASTA;
+  return $seq;
+}
+
+
