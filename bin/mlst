@@ -100,6 +100,13 @@ msg("Excluding $num_excluded schemes:", (keys %exclude)) if $num_excluded > 0;
 
 my $json;
 
+my $allele_cnt = 7;
+
+# If --scheme is set, set the length for initialising @sig to the number of alleles in $scheme
+if ($scheme) {
+  $allele_cnt = @{$scheme{$scheme}->genes};
+}
+
 # output the header for the old style syntax 
 if ($scheme and $legacy) {
   print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
@@ -290,10 +297,11 @@ sub find_mlst {
     }
   }
 
-  # find the signature with the fewest missing/approximate alleles  
-  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-')x7), 0 ] );  # sentinel
+  # find the signature with the fewest missing/approximate alleles
+  my @sig = ( [ ($scheme || '-'), '-', join("/", ('-') x $allele_cnt), 0 ] );  # sentinel
 
   for my $name (keys %res) {
+    msg("name: $name\n");
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
 
