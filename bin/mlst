@@ -301,7 +301,6 @@ sub find_mlst {
   my @sig = ( [ ($scheme || '-'), '-', join("/", ('-') x $allele_cnt), 0 ] );  # sentinel
 
   for my $name (keys %res) {
-    msg("name: $name\n");
     my $sig = $scheme{$name}->signature_of($res{$name});
     my $ST = $scheme{$name}->sequence_type($sig);
 
