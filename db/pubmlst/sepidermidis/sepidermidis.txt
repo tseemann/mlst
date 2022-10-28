@@ -1176,3 +1176,4 @@ ST	arcC	aroE	gtr	mutS	pyrR	tpiA	yqiL	clonal_complex
 1176	31	1	2	2	2	16	61	
 1177	1	103	2	2	1	1	3	
 1178	7	104	2	2	4	1	1	
+1179	24	30	6	23	9	56	13	

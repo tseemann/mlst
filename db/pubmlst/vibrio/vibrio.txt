@@ -537,7 +537,11 @@ ST	gyrB	pyrH	recA	atpA	species
 536	17	110	22	16	Vibrio alginolyticus
 537	112	20	247	16	
 538	112	17	137	16	Vibrio alginolyticus
+539	262	82	248	65	
+540	264	186	253	179	
 541	17	102	69	100	Vibrio alginolyticus
+542	265	17	69	16	
+543	187	187	131	16	
 544	78	17	18	16	Vibrio alginolyticus
 545	193	17	107	16	Vibrio alginolyticus
 551	255	20	245	199	

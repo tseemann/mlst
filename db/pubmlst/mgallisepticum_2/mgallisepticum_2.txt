@@ -123,3 +123,6 @@ ST	atpG2	dnaA	fusA	rpoB	ruvB	uvrA	clonal_complex
 122	5	8	10	3	5	5	
 123	5	8	10	6	5	10	
 124	8	3	21	44	2	5	
+125	8	5	16	14	2	12	
+126	8	3	10	8	1	2	
+127	8	1	36	23	2	26	
