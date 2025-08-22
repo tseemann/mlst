@@ -243,7 +243,7 @@ sub find_mlst {
 
   my $cmd = " any2fasta -q \Q$fname\E |"
            ." blastn -db \Q$blastdb\E -num_threads $threads"
-           ." -ungapped -dust no -word_size 32 -max_target_seqs 10000"
+           ." -ungapped -dust no -word_size 32 -max_target_seqs 100000"
            ." -perc_identity $minid -evalue 1E-20"
            ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq sstrand'";
   msg("Running: $cmd") if $debug;
