@@ -9,7 +9,8 @@ use Cwd 'abs_path';
 
 my $EXE = basename($0);
 my $URL = 'http://pubmlst.org/data/dbases.xml';
-my $CURL = "curl --silent";
+my $RETRIES = 5
+my $CURL = "curl --silent --retry $RETRIES";
 
 my %opt = (
   'd' => '',
