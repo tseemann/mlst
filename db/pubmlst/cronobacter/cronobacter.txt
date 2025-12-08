@@ -1,0 +1,1128 @@
+ST	atpD	fusA	glnS	gltB	gyrB	infB	pps	clonal_complex	species
+1	1	1	1	1	1	1	1	1	Cronobacter sakazakii
+2	2	2	2	2	2	2	2		Other Enterobacteriaceae
+3	3	3	3	5	3	3	3	3	Cronobacter sakazakii
+4	5	1	3	3	5	5	4	4	Cronobacter sakazakii
+5	6	5	4	4	6	6	5		Cronobacter turicensis
+6	9	6	5	6	7	13	7		Other Enterobacteriaceae
+7	10	7	6	7	9	14	9	7	Cronobacter malonaticus
+8	11	8	7	5	8	15	10	8	Cronobacter sakazakii
+9	21	10	9	5	3	3	3	3	Cronobacter sakazakii
+10	3	7	11	7	10	16	8	63	Cronobacter malonaticus
+11	17	7	17	11	17	22	12		Cronobacter malonaticus
+12	18	17	10	12	18	24	18	12	Cronobacter sakazakii
+13	15	14	15	13	22	5	16	13	Cronobacter sakazakii
+14	1	1	1	1	1	1	11	1	Cronobacter sakazakii
+15	5	9	3	3	5	5	4	4	Cronobacter sakazakii
+16	15	1	3	9	14	19	15	16	Cronobacter sakazakii
+17	3	12	16	5	16	20	14	17	Cronobacter sakazakii
+18	20	18	16	10	3	20	20	23	Cronobacter sakazakii
+19	22	22	14	16	24	18	24	24	Cronobacter turicensis
+20	16	14	24	17	25	33	25	20	Cronobacter sakazakii
+21	3	11	13	18	11	17	13	21	Cronobacter sakazakii
+22	16	1	19	19	26	5	26	22	Cronobacter sakazakii
+23	20	18	16	10	3	20	27	23	Cronobacter sakazakii
+24	14	22	14	20	13	18	28	24	Cronobacter turicensis
+25	10	7	25	23	10	40	29		Cronobacter malonaticus
+26	10	7	18	24	28	35	30	69	Cronobacter malonaticus
+27	23	23	35	24	27	34	30		Cronobacter dublinensis
+28	4	24	19	19	4	4	6	81	Cronobacter muytjensii
+29	13	7	8	8	12	14	31		Cronobacter malonaticus
+30	169	161	207	19	230	217	312		Other Enterobacteriaceae
+31	3	8	37	22	29	36	32	31	Cronobacter sakazakii
+32	6	28	21	21	30	29	34		Cronobacter turicensis
+33	49	10	53	55	54	20	74		Cronobacter sakazakii
+35	25	26	22	21	31	37	35		Cronobacter turicensis
+36	30	20	33	26	36	27	41	80	Cronobacter dublinensis
+37	44	15	3	5	5	38	59	37	Cronobacter sakazakii
+38	20	118	19	257	231	148	313		Cronobacter sakazakii
+39	170	106	208	258	232	218	314		Other Enterobacteriaceae
+40	3	15	28	22	5	38	19	40	Cronobacter sakazakii
+41	3	17	23	5	18	31	18	281	Cronobacter sakazakii
+42	48	17	10	69	71	5	81		Cronobacter sakazakii
+43	31	20	35	227	34	41	36		Cronobacter dublinensis
+44	4	4	3	31	4	4	6	81	Cronobacter muytjensii
+45	3	15	28	22	5	21	19	40	Cronobacter sakazakii
+46	34	36	10	44	43	48	51		Cronobacter sakazakii
+47	15	10	3	32	5	24	22		Cronobacter sakazakii
+48	27	32	38	34	37	45	42		Cronobacter universalis
+49	26	25	36	25	33	39	44		Cronobacter muytjensii
+50	3	8	13	15	22	20	21		Cronobacter sakazakii
+51	27	33	38	35	39	45	45		Cronobacter universalis
+52	3	8	3	3	18	46	46	52	Cronobacter sakazakii
+53	3	7	12	8	23	26	8	129	Cronobacter malonaticus
+54	27	19	20	14	20	45	33		Cronobacter universalis
+55	10	13	40	37	12	35	48		Cronobacter malonaticus
+56	15	51	13	67	65	67	78	113	Cronobacter sakazakii
+57	3	1	3	1	1	1	1	1	Cronobacter sakazakii
+58	15	8	39	36	38	38	47	58	Cronobacter sakazakii
+59	27	34	20	38	40	45	45		Cronobacter universalis
+60	12	7	8	8	10	16	43	60	Cronobacter malonaticus
+61	16	1	13	39	21	5	17	264	Cronobacter sakazakii
+62	10	13	18	7	17	23	8	62	Cronobacter malonaticus
+63	3	7	6	7	10	14	8	63	Cronobacter malonaticus
+64	16	8	13	40	15	15	10	64	Cronobacter sakazakii
+65	19	16	19	41	19	14	23	83	Cronobacter sakazakii
+66	171	108	209	259	233	219	315		Other Enterobacteriaceae
+67	16	14	24	17	15	33	25	20	Cronobacter sakazakii
+68	20	8	16	42	42	47	27		Cronobacter sakazakii
+69	10	7	18	43	28	35	50		Cronobacter malonaticus
+70	32	20	32	29	44	43	38		Cronobacter dublinensis
+71	35	35	41	46	45	39	52		Cronobacter muytjensii
+72	36	22	42	47	46	49	53	1009	Cronobacter turicensis
+73	55	14	59	70	70	70	80	73	Cronobacter sakazakii
+74	29	31	26	30	41	44	39	74	Cronobacter dublinensis
+75	26	35	46	46	50	54	54	411	Cronobacter muytjensii
+76	38	42	44	48	48	51	56	78	Cronobacter dublinensis
+77	39	43	45	49	49	52	57		Cronobacter dublinensis
+78	38	44	44	48	48	51	56		Cronobacter dublinensis
+79	40	20	47	50	51	55	58		Cronobacter dublinensis
+80	30	46	33	26	36	27	41	80	Cronobacter dublinensis
+81	4	24	36	31	4	4	6	81	Cronobacter muytjensii
+82	26	45	36	51	45	53	55		Cronobacter muytjensii
+83	19	16	19	41	19	15	23	83	Cronobacter sakazakii
+84	10	7	6	7	9	14	71	7	Cronobacter malonaticus
+85	6	22	22	47	46	49	53	1009	Cronobacter turicensis
+86	42	14	15	13	22	5	16	13	Cronobacter sakazakii
+87	36	49	4	52	52	59	72		
+88	43	46	33	5	36	14	41		
+89	10	7	6	7	9	20	9	7	Cronobacter malonaticus
+90	3	8	23	53	18	31	18	281	Cronobacter sakazakii
+91	50	21	34	33	19	28	37		
+92	40	48	3	3	53	28	57		
+93	15	1	3	32	5	36	190		Cronobacter sakazakii
+94	12	24	8	8	4	4	6	81	Cronobacter muytjensii
+95	37	41	43	30	47	50	76	162	Cronobacter dublinensis
+96	16	37	48	61	5	56	77		Cronobacter sakazakii
+97	5	1	3	60	5	5	4	4	Cronobacter sakazakii
+98	24	86	96	28	63	42	147		Cronobacter condimenti
+99	3	8	52	54	21	65	73	99	Cronobacter sakazakii
+100	10	17	30	59	57	66	63	100	Cronobacter sakazakii
+101	3	50	52	54	21	65	73	99	Cronobacter sakazakii
+102	3	206	50	66	61	62	70		Cronobacter malonaticus
+103	3	38	3	13	59	57	21		Cronobacter sakazakii
+104	48	36	29	57	54	20	61		Cronobacter sakazakii
+105	5	15	28	22	5	38	19	40	Cronobacter sakazakii
+106	29	30	27	27	64	32	40		Cronobacter dublinensis
+107	5	50	3	3	5	5	4	4	Cronobacter sakazakii
+108	5	8	3	3	5	5	4	4	Cronobacter sakazakii
+109	5	51	3	3	5	5	4	4	Cronobacter sakazakii
+110	11	1	3	5	8	5	4	4	Cronobacter sakazakii
+111	5	8	7	3	5	15	10	8	Cronobacter sakazakii
+112	51	7	6	7	62	30	50	112	Cronobacter malonaticus
+113	15	1	13	67	65	67	78	113	Cronobacter sakazakii
+114	45	22	54	56	56	6	60		Cronobacter turicensis
+115	44	8	19	58	67	61	62		Cronobacter sakazakii
+116	22	22	57	16	55	18	64	24	Cronobacter turicensis
+117	3	17	49	68	58	63	65		Cronobacter sakazakii
+118	6	5	58	64	66	58	68		Cronobacter turicensis
+119	36	39	27	65	46	18	69	119	Cronobacter turicensis
+120	36	39	56	65	46	18	69	119	Cronobacter turicensis
+121	5	54	3	3	5	5	4	4	Cronobacter sakazakii
+122	54	53	55	3	69	69	82		Other Enterobacteriaceae
+123	10	17	30	59	66	66	63	100	Cronobacter sakazakii
+124	11	8	7	71	8	15	10	8	Cronobacter sakazakii
+125	10	17	30	59	57	66	83	100	Cronobacter sakazakii
+126	46	39	4	62	60	49	66		Cronobacter turicensis
+127	47	39	60	63	60	49	67		Cronobacter turicensis
+128	3	15	28	22	5	38	54	40	Cronobacter sakazakii
+129	10	7	12	8	23	30	8	129	Cronobacter malonaticus
+130	11	8	7	45	8	35	10	8	Cronobacter sakazakii
+131	16	8	13	40	25	15	84	64	Cronobacter sakazakii
+132	36	22	61	20	13	72	85		Cronobacter turicensis
+133	11	8	7	72	8	15	10	8	Cronobacter sakazakii
+134	1	60	62	1	1	1	1	1	Cronobacter sakazakii
+135	3	15	28	22	5	38	86	40	Cronobacter sakazakii
+136	16	18	9	5	3	73	87		Cronobacter sakazakii
+137	27	61	20	73	39	75	91		Cronobacter universalis
+138	57	7	25	8	72	40	89		Cronobacter malonaticus
+139	13	13	64	74	72	23	88		Cronobacter malonaticus
+140	56	7	63	75	17	74	90		Cronobacter malonaticus
+141	1	1	1	1	1	1	92	1	Cronobacter sakazakii
+142	3	36	74	97	86	66	107	142	Cronobacter sakazakii
+143	3	68	49	88	81	56	96	143	Cronobacter sakazakii
+144	3	15	28	22	5	15	19	40	Cronobacter sakazakii
+145	3	8	65	77	74	77	93		Cronobacter sakazakii
+146	15	1	66	80	14	79	25		Cronobacter sakazakii
+147	60	65	22	81	76	80	94	171	Cronobacter turicensis
+148	15	67	49	9	14	19	15	16	Cronobacter sakazakii
+149	3	7	16	5	16	20	14	17	Cronobacter sakazakii
+150	16	8	13	83	15	15	10	64	Cronobacter sakazakii
+151	34	8	68	84	78	83	19		Cronobacter sakazakii
+152	3	68	49	88	81	14	96	143	Cronobacter sakazakii
+153	68	39	42	93	60	49	99		Cronobacter turicensis
+154	3	8	72	94	88	3	102		Cronobacter sakazakii
+155	69	8	13	95	89	56	103	155	Cronobacter sakazakii
+156	3	11	13	18	11	88	104	21	Cronobacter sakazakii
+157	20	8	15	96	90	89	105	157	Cronobacter sakazakii
+158	15	17	73	36	91	90	106		Cronobacter sakazakii
+159	10	7	6	7	9	16	9	7	Cronobacter malonaticus
+160	10	13	18	7	17	23	101	62	Cronobacter malonaticus
+161	10	7	6	7	5	14	19	7	Cronobacter malonaticus
+162	37	41	43	78	47	50	109	162	Cronobacter dublinensis
+163	37	66	76	82	92	82	111		Cronobacter dublinensis
+164	63	20	69	87	80	43	113		Cronobacter dublinensis
+165	66	20	70	90	83	85	115		Cronobacter dublinensis
+166	67	20	71	91	84	43	116		Cronobacter dublinensis
+167	58	63	75	76	73	76	108		Cronobacter dublinensis
+168	59	20	70	79	75	78	110		Cronobacter dublinensis
+169	61	7	67	81	77	81	95		Cronobacter malonaticus
+170	62	23	68	85	79	83	112	455	Cronobacter dublinensis
+171	60	65	22	86	76	80	94	171	Cronobacter turicensis
+172	64	7	67	75	17	84	97		Cronobacter malonaticus
+173	65	20	77	89	82	84	114		Cronobacter dublinensis
+174	58	20	78	89	83	86	117	177	Cronobacter dublinensis
+175	67	20	76	92	85	41	98		Cronobacter dublinensis
+176	70	20	71	90	83	5	118		Cronobacter dublinensis
+177	58	20	78	89	83	43	117	177	Cronobacter dublinensis
+178	10	1	68	5	86	87	100		Cronobacter sakazakii
+179	59	20	69	90	87	41	119		Cronobacter dublinensis
+180	12	7	8	1	1	16	43	60	Cronobacter malonaticus
+181	1	1	1	13	22	1	1	1	Cronobacter sakazakii
+182	15	14	15	3	5	5	16	13	Cronobacter sakazakii
+183	5	1	3	22	5	5	4	4	Cronobacter sakazakii
+184	3	36	74	97	86	20	107	142	Cronobacter sakazakii
+185	3	15	28	5	3	38	19	40	Cronobacter sakazakii
+186	64	7	79	75	93	22	120		Cronobacter malonaticus
+187	3	3	3	5	10	3	3	3	Cronobacter sakazakii
+188	71	10	68	18	94	92	121		Cronobacter sakazakii
+189	3	37	13	1	95	63	122		Cronobacter sakazakii
+190	44	69	80	1	96	93	123		Cronobacter sakazakii
+191	15	1	13	67	1	67	78	113	Cronobacter sakazakii
+192	5	1	3	3	1	5	4	4	Cronobacter sakazakii
+193	5	8	13	40	15	15	10	64	Cronobacter sakazakii
+194	3	15	28	22	5	91	19	40	Cronobacter sakazakii
+195	16	8	13	40	15	15	124	64	Cronobacter sakazakii
+196	55	17	9	98	58	56	125		Cronobacter sakazakii
+197	15	8	13	1	1	1	126		Cronobacter sakazakii
+198	3	8	3	3	18	46	127	52	Cronobacter sakazakii
+199	15	8	13	94	99	98	126	249	Cronobacter sakazakii
+200	13	13	64	75	17	16	128	200	Cronobacter malonaticus
+201	10	7	6	99	9	14	9	7	Cronobacter malonaticus
+202	11	10	7	3	91	46	26		Cronobacter sakazakii
+203	5	1	3	3	18	5	4	4	Cronobacter sakazakii
+204	61	13	25	7	101	14	130	679	Cronobacter malonaticus
+205	69	14	13	95	89	46	103	155	Cronobacter sakazakii
+206	15	8	15	3	22	5	16	13	Cronobacter sakazakii
+207	4	24	30	31	4	4	6	81	Cronobacter muytjensii
+208	55	1	89	5	5	36	131		Cronobacter sakazakii
+209	3	37	15	100	102	101	133		Cronobacter sakazakii
+210	15	4	15	13	22	5	16	13	Cronobacter sakazakii
+211	57	7	64	8	17	16	128	200	Cronobacter malonaticus
+212	80	77	90	101	2	20	132		Cronobacter sakazakii
+213	23	63	78	102	83	102	114		Cronobacter dublinensis
+214	16	8	13	3	15	15	10	64	Cronobacter sakazakii
+215	81	74	88	103	104	100	135		Franconibacter pulveris
+216	79	76	91	104	105	104	136		Siccibacter turicensis
+217	78	71	82	105	103	103	134		Franconibacter helveticus
+218	5	1	3	106	5	5	4	4	Cronobacter sakazakii
+219	69	8	13	95	86	105	47	155	Cronobacter sakazakii
+220	10	7	67	107	106	16	137		Cronobacter malonaticus
+221	11	78	7	5	8	106	138		Cronobacter sakazakii
+222	11	15	7	109	59	56	140		Cronobacter sakazakii
+223	20	10	30	108	107	20	139		Cronobacter sakazakii
+224	83	36	13	110	108	56	4		Cronobacter sakazakii
+225	15	8	39	36	38	107	47	58	Cronobacter sakazakii
+226	11	8	7	45	8	15	10	8	Cronobacter sakazakii
+227	82	70	81	113	97	94	143		Siccibacter colletis
+228	74	73	86	114	111	108	144		Franconibacter duqui
+229	73	71	92	115	112	109	145		Franconibacter helveticus
+230	75	74	93	103	113	110	146		Franconibacter pulveris
+231	77	73	94	111	109	111	141		Franconibacter pulveris
+232	84	73	95	112	110	112	142		Franconibacter pulveris
+233	10	37	9	3	115	56	126	233	Cronobacter sakazakii
+234	10	7	6	7	9	115	9	7	Cronobacter malonaticus
+235	5	18	45	3	5	5	4	4	Cronobacter sakazakii
+236	47	39	101	121	118	49	153		Cronobacter turicensis
+237	47	39	101	122	118	49	4		Cronobacter turicensis
+238	10	7	6	7	9	14	4	7	Cronobacter malonaticus
+239	85	23	69	123	119	16	57		Cronobacter dublinensis
+240	1	1	1	3	1	1	1	1	Cronobacter sakazakii
+241	5	1	3	1	5	1	4	4	Cronobacter sakazakii
+242	5	1	3	1	5	5	4	4	Cronobacter sakazakii
+243	19	16	19	41	120	15	23	83	Cronobacter sakazakii
+244	44	37	9	118	114	65	148		
+245	16	8	9	32	21	113	149	475	Cronobacter sakazakii
+246	36	22	57	120	117	116	152		Cronobacter turicensis
+247	64	7	67	75	17	41	97		Cronobacter malonaticus
+248	3	15	28	22	5	117	19	40	Cronobacter sakazakii
+249	15	8	13	94	99	118	126	249	Cronobacter sakazakii
+250	3	13	102	8	77	119	154		Cronobacter malonaticus
+251	36	22	57	124	46	18	156		Cronobacter turicensis
+252	86	22	104	120	117	116	152		Cronobacter turicensis
+253	88	89	106	125	123	122	158		Cronobacter malonaticus
+254	3	8	37	117	29	56	32		
+255	5	1	3	3	5	123	4	4	Cronobacter sakazakii
+256	15	15	80	126	124	56	159		Cronobacter sakazakii
+257	3	11	13	116	11	17	13	21	Cronobacter sakazakii
+258	89	13	107	8	10	35	160		Cronobacter malonaticus
+259	16	37	108	22	74	56	4		Cronobacter sakazakii
+260	16	8	9	109	125	3	102		Cronobacter sakazakii
+261	16	8	13	40	15	15	161	64	Cronobacter sakazakii
+262	47	5	60	63	116	49	150		
+263	16	18	13	119	88	73	25	263	Cronobacter sakazakii
+264	16	1	13	39	21	5	21	264	Cronobacter sakazakii
+265	86	22	98	120	117	116	152		Cronobacter turicensis
+266	5	1	3	3	5	131	4	4	Cronobacter sakazakii
+267	5	1	3	3	5	133	4	4	Cronobacter sakazakii
+268	5	1	3	127	5	5	4	4	Cronobacter sakazakii
+269	55	14	59	128	70	70	80	73	Cronobacter sakazakii
+270	91	23	111	123	5	126	114		Cronobacter dublinensis
+271	10	7	8	7	9	127	167	271	Cronobacter malonaticus
+272	3	7	8	8	23	128	160		Cronobacter malonaticus
+273	93	20	69	132	128	129	169		Cronobacter dublinensis
+274	94	100	113	133	15	130	170		Cronobacter dublinensis
+275	95	23	114	123	5	132	171		Cronobacter dublinensis
+276	90	98	109	129	4	39	162		Cronobacter muytjensii
+277	59	20	70	79	126	78	36		Cronobacter dublinensis
+278	10	7	6	7	5	14	9	7	Cronobacter malonaticus
+279	11	8	110	5	8	15	10	8	Cronobacter sakazakii
+280	37	99	112	130	8	32	163		Cronobacter dublinensis
+281	3	8	23	5	18	31	18	281	Cronobacter sakazakii
+282	16	8	13	5	15	15	10	64	Cronobacter sakazakii
+283	20	37	13	58	127	24	164		Cronobacter sakazakii
+284	92	13	40	131	17	35	48		Cronobacter malonaticus
+285	11	8	49	58	38	38	165		Cronobacter sakazakii
+286	61	7	12	7	9	35	166		Cronobacter malonaticus
+287	5	1	3	3	5	5	168	4	Cronobacter sakazakii
+288	35	62	36	51	45	114	54		Cronobacter muytjensii
+289	172	110	210	260	234	220	316		Other Enterobacteriaceae
+290	23	63	78	3	83	102	4		
+291	10	7	63	7	77	40	9		Cronobacter malonaticus
+292	27	18	16	10	3	20	27	23	Cronobacter sakazakii
+293	68	39	60	47	118	49	53		Cronobacter turicensis
+294	26	25	36	134	33	39	44		Cronobacter muytjensii
+295	5	1	3	3	5	61	4	4	Cronobacter sakazakii
+296	3	15	28	22	5	38	1	40	Cronobacter sakazakii
+297	3	1	48	84	130	36	178		Cronobacter sakazakii
+298	1	1	1	153	1	1	1	1	Cronobacter sakazakii
+299	36	22	57	124	136	18	156		Cronobacter turicensis
+300	10	13	67	7	131	124	174	300	Cronobacter malonaticus
+301	59	20	71	138	83	137	175		Cronobacter dublinensis
+302	98	7	67	23	10	123	154		Cronobacter malonaticus
+303	10	13	64	75	72	14	1		Cronobacter malonaticus
+304	3	17	13	57	58	63	1		Cronobacter sakazakii
+305	88	13	8	23	9	35	12		Cronobacter malonaticus
+306	101	20	119	139	134	140	179		Cronobacter dublinensis
+307	51	7	6	140	135	30	50	112	Cronobacter malonaticus
+308	16	18	120	119	88	73	18	263	Cronobacter sakazakii
+309	22	22	121	20	136	116	180	463	Cronobacter turicensis
+310	5	1	3	3	5	73	4	4	Cronobacter sakazakii
+311	62	23	122	85	137	83	112	455	Cronobacter dublinensis
+312	10	7	6	141	9	14	9	7	Cronobacter malonaticus
+313	10	13	67	7	10	124	50	300	Cronobacter malonaticus
+314	3	3	3	5	143	3	184	3	Cronobacter sakazakii
+315	3	3	3	5	3	146	3	3	Cronobacter sakazakii
+316	12	7	8	142	140	16	43	60	Cronobacter malonaticus
+317	3	8	126	15	22	20	21	50	Cronobacter sakazakii
+318	3	10	13	32	144	65	1		Cronobacter sakazakii
+319	15	116	15	144	22	5	16	13	Cronobacter sakazakii
+320	67	117	71	15	87	145	185		Cronobacter dublinensis
+321	16	37	9	1	145	19	140		Cronobacter sakazakii
+322	16	8	128	146	125	3	102		Cronobacter sakazakii
+323	105	118	30	32	147	5	159	324	Cronobacter sakazakii
+324	105	118	30	32	147	148	159	324	Cronobacter sakazakii
+325	10	7	6	7	22	14	9	7	Cronobacter malonaticus
+326	106	69	129	147	96	93	123		Cronobacter sakazakii
+327	44	69	80	147	96	93	123		Cronobacter sakazakii
+328	61	13	25	7	17	142	130	679	Cronobacter malonaticus
+329	15	8	9	143	141	143	182		Cronobacter sakazakii
+330	10	7	127	145	146	147	9		Cronobacter malonaticus
+331	61	13	25	148	5	142	130	679	Cronobacter malonaticus
+332	47	22	130	47	142	144	183		Cronobacter turicensis
+333	10	37	30	3	115	56	126	233	Cronobacter sakazakii
+334	3	8	37	22	29	48	32	31	Cronobacter sakazakii
+335	4	24	36	31	4	4	112	81	Cronobacter muytjensii
+336	10	7	6	7	148	147	71	7	Cronobacter malonaticus
+337	64	7	147	7	17	22	206	337	Cronobacter malonaticus
+338	15	122	9	149	91	15	186		Cronobacter sakazakii
+339	99	75	118	150	132	138	176		Other Enterobacteriaceae
+340	100	81	132	151	133	139	177		Other Enterobacteriaceae
+341	40	48	133	152	149	149	187	678	Cronobacter dublinensis
+342	6	49	4	52	52	59	72		Cronobacter turicensis
+343	72	71	85	137	103	103	172		Franconibacter helveticus
+344	47	5	4	63	116	150	150		Cronobacter turicensis
+345	72	71	82	105	103	103	173		Franconibacter helveticus
+346	50	21	34	33	73	28	188		Cronobacter dublinensis
+347	28	29	36	46	32	39	189		Cronobacter muytjensii
+348	3	38	120	154	150	15	191		Cronobacter sakazakii
+349	47	22	60	47	142	49	183		Cronobacter turicensis
+350	68	39	60	47	118	49	195		Cronobacter turicensis
+351	68	39	42	159	136	49	193	359	Cronobacter turicensis
+352	36	22	57	156	13	152	193		Cronobacter turicensis
+353	36	22	57	16	116	152	64		Cronobacter turicensis
+354	58	23	137	160	149	134	192		Cronobacter dublinensis
+355	30	48	134	26	154	27	196		Cronobacter dublinensis
+356	110	21	138	157	153	28	197		Cronobacter dublinensis
+357	111	124	136	158	152	153	198		Cronobacter dublinensis
+358	112	100	43	155	64	154	111		Cronobacter dublinensis
+359	68	39	42	159	136	49	199	359	Cronobacter turicensis
+360	30	43	33	161	154	27	196		Cronobacter dublinensis
+361	70	120	139	163	149	151	200		Cronobacter dublinensis
+362	4	24	140	31	4	4	6	81	Cronobacter muytjensii
+363	113	125	141	164	156	159	201		Cronobacter dublinensis
+364	85	23	142	5	119	41	202		Cronobacter dublinensis
+365	114	23	114	123	157	132	171		Cronobacter dublinensis
+366	58	63	143	76	73	76	108		Cronobacter dublinensis
+367	115	5	144	165	158	29	203		Cronobacter turicensis
+368	115	5	145	165	158	29	203		Cronobacter turicensis
+369	27	61	20	69	159	160	204		Cronobacter universalis
+370	27	61	20	3	159	160	204		Cronobacter universalis
+371	116	40	100	125	160	115	151		Cronobacter malonaticus
+372	117	13	146	94	99	161	205		Cronobacter malonaticus
+373	64	7	147	166	17	22	206	337	Cronobacter malonaticus
+374	64	7	147	7	17	22	207	337	Cronobacter malonaticus
+375	55	14	59	70	70	70	208	73	Cronobacter sakazakii
+376	20	18	16	167	3	20	27	23	Cronobacter sakazakii
+377	20	10	30	168	107	20	139		
+378	3	8	52	54	21	65	209	99	Cronobacter sakazakii
+379	1	8	52	169	21	65	73	99	Cronobacter sakazakii
+380	15	8	3	84	15	162	210	615	Cronobacter sakazakii
+381	15	8	3	84	11	162	210	615	Cronobacter sakazakii
+382	3	11	13	18	161	17	13	21	Cronobacter sakazakii
+383	118	1	1	1	161	1	1	1	Cronobacter sakazakii
+384	1	1	1	1	162	1	1	1	Cronobacter sakazakii
+385	11	121	7	3	91	46	26		Cronobacter sakazakii
+386	10	13	40	131	17	35	48		Cronobacter malonaticus
+387	14	126	14	20	13	18	28	24	Cronobacter turicensis
+388	119	127	148	170	163	163	211		Cronobacter dublinensis
+389	67	128	111	171	164	41	212		Cronobacter dublinensis
+390	12	7	8	8	10	16	9	60	Cronobacter malonaticus
+391	1	1	30	1	1	125	1	1	Cronobacter sakazakii
+392	3	13	102	8	77	141	154	250	Cronobacter malonaticus
+393	10	17	1	59	57	66	63	100	Cronobacter sakazakii
+394	12	7	8	8	10	16	123	60	Cronobacter malonaticus
+395	3	36	39	22	5	38	19	40	Cronobacter sakazakii
+396	5	3	3	5	3	3	3	3	Cronobacter sakazakii
+397	80	3	72	5	15	20	3		Cronobacter sakazakii
+398	16	37	72	146	125	56	102		Cronobacter sakazakii
+399	120	119	149	173	48	51	213		Cronobacter dublinensis
+400	109	120	137	174	165	83	214		Cronobacter dublinensis
+401	20	123	49	175	15	56	215		Cronobacter sakazakii
+402	11	15	7	177	59	56	140		Cronobacter sakazakii
+403	35	35	41	46	45	39	216		Cronobacter muytjensii
+404	26	35	36	48	50	54	54	411	Cronobacter muytjensii
+405	123	37	9	179	114	65	148		Cronobacter sakazakii
+406	16	1	13	178	21	5	21	264	Cronobacter sakazakii
+407	35	62	36	180	45	114	217		Cronobacter muytjensii
+408	61	7	67	7	77	81	95		Cronobacter malonaticus
+409	65	20	77	89	82	84	218		Cronobacter dublinensis
+410	19	17	19	41	168	166	220	83	Cronobacter sakazakii
+411	26	35	36	46	50	54	54	411	Cronobacter muytjensii
+412	3	8	37	117	29	36	32	31	Cronobacter sakazakii
+413	124	13	102	8	17	141	43		Cronobacter malonaticus
+414	126	73	86	111	169	167	221		Franconibacter pulveris
+415	127	75	153	182	170	168	222		Other Enterobacteriaceae
+416	128	55	154	183	171	169	223		Other Enterobacteriaceae
+417	129	75	155	184	172	99	224		Other Enterobacteriaceae
+418	130	57	156	185	173	170	225		Other Enterobacteriaceae
+419	131	136	157	186	100	99	226		Other Enterobacteriaceae
+420	76	75	158	187	174	99	227		Other Enterobacteriaceae
+421	76	75	159	188	172	171	228		Other Enterobacteriaceae
+422	76	75	160	189	175	99	229		Other Enterobacteriaceae
+423	132	137	161	190	176	172	230		Other Enterobacteriaceae
+424	133	113	162	191	177	173	231		Other Enterobacteriaceae
+425	135	102	164	193	179	175	236		Other Enterobacteriaceae
+426	136	103	165	194	180	176	237		Other Enterobacteriaceae
+427	137	104	166	195	181	177	234		Other Enterobacteriaceae
+428	138	53	167	199	182	178	235		Other Enterobacteriaceae
+429	140	114	170	198	183	181	233		Other Enterobacteriaceae
+430	141	112	169	196	185	180	238		Other Enterobacteriaceae
+431	142	113	171	197	177	12	232		Other Enterobacteriaceae
+432	26	115	36	201	167	164	54		Cronobacter muytjensii
+433	67	20	71	91	166	145	239		Cronobacter dublinensis
+434	125	135	70	79	83	43	36		Cronobacter dublinensis
+435	88	40	100	125	186	122	240		Cronobacter malonaticus
+436	26	35	151	202	45	39	242		Cronobacter muytjensii
+437	59	20	152	203	119	182	243		Cronobacter dublinensis
+438	117	7	40	181	188	165	120		Cronobacter malonaticus
+439	69	8	89	200	187	56	241		Cronobacter sakazakii
+440	124	13	172	204	77	183	244	611	Cronobacter malonaticus
+441	57	7	64	1	17	16	128		Cronobacter malonaticus
+442	11	8	7	1	8	15	10	8	Cronobacter sakazakii
+443	124	13	25	1	16	22	90		Cronobacter malonaticus
+444	19	8	173	1	107	20	4		Cronobacter sakazakii
+445	77	73	1	1	1	1	1	1	Cronobacter sakazakii
+446	16	17	49	205	127	92	245	710	Cronobacter sakazakii
+447	143	73	1	1	1	184	1	1	Cronobacter sakazakii
+448	144	74	1	1	1	185	1	1	Cronobacter sakazakii
+449	3	17	23	1	18	31	18		Cronobacter sakazakii
+450	145	140	83	1	1	186	1		Cronobacter sakazakii
+451	124	13	25	1	1	22	90		Cronobacter malonaticus
+452	10	7	6	1	1	14	9	7	Cronobacter malonaticus
+453	3	8	174	1	3	38	246		Cronobacter sakazakii
+454	44	69	19	84	147	20	18		Cronobacter sakazakii
+455	62	23	122	85	79	83	112	455	Cronobacter dublinensis
+456	80	77	90	101	3	20	132		Cronobacter sakazakii
+457	16	17	49	32	127	92	186	710	Cronobacter sakazakii
+458	69	8	89	200	187	56	47		Cronobacter sakazakii
+459	10	7	8	7	9	127	14	271	Cronobacter malonaticus
+460	64	13	8	75	17	16	97		Cronobacter malonaticus
+461	61	7	12	7	189	14	247		Cronobacter malonaticus
+462	146	7	8	7	10	35	247		Cronobacter malonaticus
+463	22	22	57	20	136	116	180	463	Cronobacter turicensis
+464	26	35	176	1	121	39	47		Cronobacter muytjensii
+465	117	7	177	7	17	141	206		Cronobacter malonaticus
+466	149	39	42	93	60	49	99		Cronobacter turicensis
+467	147	142	175	206	190	187	248		Cronobacter malonaticus
+468	1	1	1	208	1	1	1	1	Cronobacter sakazakii
+469	96	97	115	209	129	155	251		Siccibacter colletis
+470	55	1	68	32	191	36	252		Cronobacter sakazakii
+471	58	20	99	89	83	43	117	177	Cronobacter dublinensis
+472	88	143	17	204	77	156	90		Cronobacter malonaticus
+473	115	88	181	210	192	157	203		Cronobacter turicensis
+474	30	20	33	211	128	129	294		Cronobacter dublinensis
+475	16	8	9	32	21	113	253	475	Cronobacter sakazakii
+476	58	20	214	213	164	158	255		Cronobacter dublinensis
+477	151	20	69	90	194	41	256		Cronobacter dublinensis
+478	113	125	141	164	238	159	201		Cronobacter dublinensis
+479	152	20	71	91	195	212	36		Cronobacter dublinensis
+480	16	8	13	40	15	189	10	64	Cronobacter sakazakii
+481	153	20	180	214	34	222	258		Cronobacter dublinensis
+482	62	23	122	85	79	83	259	455	Cronobacter dublinensis
+483	3	17	13	119	18	56	4		Cronobacter sakazakii
+484	44	15	3	5	5	38	245	37	Cronobacter sakazakii
+485	69	8	13	95	86	56	103		Cronobacter sakazakii
+486	15	1	66	80	14	20	25		Cronobacter sakazakii
+487	148	20	182	207	34	188	249		Cronobacter dublinensis
+488	16	8	19	12	196	3	102		Cronobacter sakazakii
+489	26	25	36	216	45	4	216		Cronobacter muytjensii
+490	26	35	183	215	45	4	75		Cronobacter muytjensii
+491	26	145	19	217	45	39	55		Cronobacter muytjensii
+492	3	8	174	218	3	38	246		Cronobacter sakazakii
+493	26	64	36	219	45	190	250		Cronobacter muytjensii
+494	11	8	24	220	15	56	261		Cronobacter sakazakii
+495	3	8	52	13	21	65	73		Cronobacter sakazakii
+496	112	100	43	9	14	154	15		
+497	15	64	36	219	45	190	250		
+498	125	148	185	222	83	195	226		Cronobacter dublinensis
+499	70	20	186	223	84	192	267		
+500	55	18	187	119	88	1	139		Cronobacter sakazakii
+501	55	149	187	224	88	197	139		Cronobacter sakazakii
+502	155	26	22	21	198	37	35		Cronobacter turicensis
+503	83	22	188	47	199	196	268		
+504	61	7	12	9	200	35	15		Cronobacter malonaticus
+505	150	144	179	221	193	194	265		
+506	115	147	21	21	197	193	263		Cronobacter turicensis
+507	150	20	69	38	46	192	53		
+508	154	1	3	3	5	5	4	4	Cronobacter sakazakii
+509	16	1	19	19	26	5	262	22	Cronobacter sakazakii
+510	27	146	184	38	22	191	264		Cronobacter universalis
+511	10	13	67	7	131	124	265		Cronobacter malonaticus
+512	27	146	184	38	197	191	264		Cronobacter universalis
+513	5	1	3	225	5	5	4	4	Cronobacter sakazakii
+514	5	1	3	225	201	5	4	4	Cronobacter sakazakii
+515	5	1	189	225	5	5	4	4	Cronobacter sakazakii
+516	5	1	3	226	5	5	4	4	Cronobacter sakazakii
+517	31	20	35	227	156	41	260		Cronobacter dublinensis
+518	49	10	53	55	202	20	74		Cronobacter sakazakii
+519	115	5	190	56	6	29	203		Cronobacter turicensis
+520	67	20	69	228	195	145	269		Cronobacter dublinensis
+521	63	20	71	90	119	41	270		Cronobacter dublinensis
+522	58	20	191	29	203	199	214		Cronobacter dublinensis
+523	59	20	152	229	204	41	112		Cronobacter dublinensis
+524	70	20	192	230	84	192	271		Cronobacter dublinensis
+525	112	66	43	231	92	198	272		Cronobacter dublinensis
+526	3	159	3	5	3	201	3	3	Cronobacter sakazakii
+527	44	14	7	3	5	200	273		Cronobacter sakazakii
+528	10	157	18	7	28	16	43		Cronobacter malonaticus
+529	64	13	8	75	17	16	274		Cronobacter malonaticus
+530	26	35	36	46	45	39	275		Cronobacter muytjensii
+531	26	25	36	180	45	39	276		Cronobacter muytjensii
+532	28	158	36	46	32	53	219		Cronobacter muytjensii
+533	23	23	35	123	27	34	112		Cronobacter dublinensis
+534	10	7	6	7	9	14	108	7	Cronobacter malonaticus
+535	25	26	22	21	31	37	108		Cronobacter turicensis
+536	67	20	71	90	84	145	212		Cronobacter dublinensis
+537	125	20	152	90	194	41	212		Cronobacter dublinensis
+538	156	163	19	15	18	90	286		Cronobacter sakazakii
+539	44	15	3	235	5	38	59	37	Cronobacter sakazakii
+540	19	8	173	237	107	20	4		Cronobacter sakazakii
+541	10	7	67	7	17	141	287		Cronobacter malonaticus
+543	15	8	3	5	5	24	288		Cronobacter sakazakii
+544	44	15	3	5	5	38	289	37	Cronobacter sakazakii
+545	10	7	17	8	214	16	290	545	Cronobacter malonaticus
+546	26	35	36	242	45	39	275		Cronobacter muytjensii
+547	58	20	226	240	215	210	291		Cronobacter dublinensis
+548	157	20	215	241	44	41	293		Cronobacter dublinensis
+549	160	20	213	232	205	202	277		Cronobacter dublinensis
+550	112	41	221	233	206	203	278		Cronobacter dublinensis
+551	10	13	67	234	131	124	174		Cronobacter malonaticus
+552	15	17	193	36	86	90	106		Cronobacter sakazakii
+553	12	160	8	8	10	16	43	60	Cronobacter malonaticus
+554	10	7	18	7	207	205	43		Cronobacter malonaticus
+555	55	17	194	236	15	56	125		Cronobacter sakazakii
+556	71	1	13	18	208	56	78		Cronobacter sakazakii
+557	6	49	39	52	52	59	72		Cronobacter turicensis
+558	150	144	39	212	193	194	254	570	Cronobacter dublinensis
+559	62	23	196	85	79	83	281	455	Cronobacter dublinensis
+560	113	125	229	164	210	207	214		Cronobacter dublinensis
+561	94	100	113	133	211	130	282		Cronobacter dublinensis
+562	15	17	9	239	212	208	283		Cronobacter sakazakii
+563	158	7	12	7	9	35	166		Cronobacter malonaticus
+564	3	15	28	22	5	38	284	40	Cronobacter sakazakii
+565	115	88	39	244	213	209	285		Cronobacter turicensis
+566	159	167	195	238	209	206	280		Cronobacter sakazakii
+567	10	162	67	7	77	204	279		Cronobacter malonaticus
+568	60	164	39	86	76	80	94	171	Cronobacter turicensis
+569	6	88	197	243	30	211	292		Cronobacter turicensis
+570	150	144	179	212	193	194	254	570	Cronobacter dublinensis
+571	37	66	76	82	91	82	111		
+572	39	43	39	49	222	52	57		
+573	165	13	199	74	72	41	88		Cronobacter malonaticus
+574	112	41	198	251	211	154	109		Cronobacter dublinensis
+575	58	20	39	213	164	158	255		
+576	151	20	71	90	8	41	256		Cronobacter dublinensis
+577	10	7	6	7	9	14	295	7	Cronobacter malonaticus
+578	161	20	35	245	119	212	296		Cronobacter dublinensis
+579	162	165	225	246	164	213	297		Cronobacter dublinensis
+580	163	23	114	247	218	41	300		
+581	58	20	191	250	203	199	301		Cronobacter dublinensis
+582	40	48	216	152	149	149	302		Cronobacter dublinensis
+583	30	20	33	254	154	27	303		Cronobacter dublinensis
+584	70	43	69	252	221	215	303		Cronobacter dublinensis
+585	166	7	177	7	17	141	304		Cronobacter malonaticus
+586	122	20	230	253	82	41	305		Cronobacter dublinensis
+587	16	36	3	249	58	36	4		Cronobacter sakazakii
+589	150	144	179	212	227	194	254		
+590	157	63	39	123	226	212	306		Cronobacter dublinensis
+591	164	166	201	239	212	82	283		Cronobacter dublinensis
+592	37	41	26	27	219	32	163		Cronobacter dublinensis
+593	167	18	120	119	88	73	18		Cronobacter sakazakii
+594	82	70	204	255	228	94	309		Siccibacter colletis
+595	67	20	39	248	164	214	308		Cronobacter dublinensis
+596	5	17	3	3	5	5	4	4	Cronobacter sakazakii
+597	1	17	1	1	1	1	1	1	Cronobacter sakazakii
+598	16	1	13	12	18	24	18		Cronobacter sakazakii
+599	18	1	10	12	21	5	21		Cronobacter sakazakii
+600	18	1	10	12	18	24	105		Cronobacter sakazakii
+601	20	1	15	96	90	89	105	157	Cronobacter sakazakii
+602	10	1	12	8	5	30	8	129	Cronobacter malonaticus
+603	168	138	205	256	229	216	310		Other Enterobacteriaceae
+604	76	75	206	187	100	99	129		Other Enterobacteriaceae
+605	26	115	36	217	4	39	311		Cronobacter muytjensii
+606	63	20	211	261	119	221	317		Cronobacter dublinensis
+607	163	23	114	247	235	41	300		Cronobacter dublinensis
+608	11	8	7	262	8	15	10	8	Cronobacter sakazakii
+609	3	8	13	32	236	56	81		
+610	3	16	212	263	99	15	319		Cronobacter sakazakii
+611	124	13	172	204	77	16	224	611	Cronobacter malonaticus
+612	3	156	3	3	18	46	127		Cronobacter sakazakii
+613	20	18	203	119	3	223	87		Cronobacter sakazakii
+614	173	22	57	264	46	18	180		Cronobacter turicensis
+615	15	8	3	84	161	162	210	615	Cronobacter sakazakii
+616	15	116	15	13	22	5	16	13	Cronobacter sakazakii
+617	10	13	64	75	239	14	247		Cronobacter malonaticus
+618	3	18	9	267	1	225	210		Cronobacter sakazakii
+619	16	8	52	143	22	15	321		Cronobacter sakazakii
+620	3	11	13	18	11	17	322	21	Cronobacter sakazakii
+621	10	7	67	8	240	16	120		Cronobacter malonaticus
+622	27	34	20	268	241	75	324		Cronobacter universalis
+623	15	16	66	119	242	226	325		Cronobacter sakazakii
+624	35	64	36	265	50	224	320		Cronobacter muytjensii
+625	26	25	232	266	45	39	217		Cronobacter muytjensii
+626	1	1	1	269	1	1	1	1	Cronobacter sakazakii
+627	72	71	233	270	243	227	326		Franconibacter helveticus
+628	13	13	64	75	17	16	88		Cronobacter malonaticus
+629	117	13	146	8	77	161	154		Cronobacter malonaticus
+630	3	18	10	32	245	229	140		Cronobacter sakazakii
+631	174	175	234	73	241	75	328		Cronobacter universalis
+632	3	17	13	271	58	63	126		Cronobacter sakazakii
+633	175	10	7	272	244	228	327		Cronobacter sakazakii
+634	64	7	67	75	17	16	97		Cronobacter malonaticus
+635	177	76	235	273	246	231	329		Siccibacter turicensis
+636	176	176	57	20	46	230	330		Cronobacter turicensis
+637	67	20	70	227	75	78	323		Cronobacter dublinensis
+638	68	22	42	159	136	49	199	359	Cronobacter turicensis
+640	178	177	36	215	4	4	332		Cronobacter muytjensii
+641	3	10	9	275	247	20	51		Cronobacter sakazakii
+642	3	15	28	22	248	38	19	40	Cronobacter sakazakii
+643	15	14	236	13	22	5	16	13	Cronobacter sakazakii
+644	1	1	1	1	1	223	1	1	Cronobacter sakazakii
+645	1	1	1	1	5	1	1	1	Cronobacter sakazakii
+646	55	172	203	42	107	47	81		Cronobacter sakazakii
+647	15	118	30	32	147	148	159	324	Cronobacter sakazakii
+648	175	1	120	275	21	234	333		Cronobacter sakazakii
+649	124	13	25	7	10	22	90		Cronobacter malonaticus
+650	117	13	8	181	17	16	279		Cronobacter malonaticus
+651	124	13	172	204	77	16	244	611	Cronobacter malonaticus
+652	3	12	16	5	16	14	14	17	Cronobacter sakazakii
+653	3	8	37	22	29	3	32		Cronobacter sakazakii
+654	3	38	120	154	150	15	140		Cronobacter sakazakii
+655	121	8	7	5	8	15	10	8	Cronobacter sakazakii
+656	1	15	80	126	124	56	159		Cronobacter sakazakii
+657	67	20	69	90	83	41	334		Cronobacter dublinensis
+658	180	20	237	29	249	235	335		Cronobacter dublinensis
+659	3	8	37	276	29	36	32		Cronobacter sakazakii
+660	64	7	63	8	17	16	336		Cronobacter malonaticus
+661	15	8	39	277	38	236	100		Cronobacter sakazakii
+662	23	20	71	90	84	212	256		Cronobacter dublinensis
+663	1	1	1	1	1	1	337	1	Cronobacter sakazakii
+664	179	7	17	7	10	14	338		Cronobacter malonaticus
+665	151	20	71	79	250	41	116		Cronobacter dublinensis
+666	112	100	43	278	64	154	111		Cronobacter dublinensis
+667	181	178	238	279	251	237	339		Siccibacter turicensis
+668	97	179	239	280	252	238	340		Siccibacter turicensis
+669	97	180	240	280	253	238	341		Siccibacter turicensis
+670	79	180	241	281	254	231	342		Siccibacter turicensis
+671	182	181	242	282	255	239	343		Siccibacter turicensis
+672	183	181	243	282	255	239	343		Siccibacter turicensis
+673	143	73	86	274	110	232	331		Franconibacter pulveris
+674	16	8	72	283	38	15	345		Cronobacter sakazakii
+675	15	17	73	13	91	90	106		Cronobacter sakazakii
+676	15	14	15	13	22	5	1	13	Cronobacter sakazakii
+677	36	22	57	284	257	116	346		Cronobacter turicensis
+678	40	48	133	152	221	149	187	678	Cronobacter dublinensis
+679	61	13	25	7	101	142	130	679	Cronobacter malonaticus
+680	151	20	244	228	194	41	334		Cronobacter dublinensis
+681	16	8	13	1	15	15	10	64	Cronobacter sakazakii
+682	5	36	7	285	18	15	21		Cronobacter sakazakii
+683	13	7	245	7	93	16	43		Cronobacter malonaticus
+684	12	7	8	8	10	16	8	60	Cronobacter malonaticus
+685	3	13	8	7	10	22	174		Cronobacter malonaticus
+686	3	10	120	286	125	241	347		Cronobacter sakazakii
+687	20	18	16	10	3	189	27	23	Cronobacter sakazakii
+688	16	8	188	32	21	113	253	475	Cronobacter sakazakii
+689	3	183	7	287	58	46	246		Cronobacter sakazakii
+690	10	37	39	19	258	24	131		Cronobacter sakazakii
+691	115	184	246	288	259	242	348		Cronobacter turicensis
+692	67	20	71	90	80	78	256		Cronobacter dublinensis
+693	1	1	1	1	1	233	1	1	Cronobacter sakazakii
+694	16	14	7	289	5	243	349		Cronobacter sakazakii
+695	176	22	57	290	260	244	350		Cronobacter turicensis
+696	179	7	17	7	10	14	351		Cronobacter malonaticus
+697	20	18	16	291	3	20	27	23	Cronobacter sakazakii
+698	3	36	49	9	261	236	352		Cronobacter sakazakii
+699	69	13	67	84	262	245	353		
+700	3	17	80	292	147	20	354		Cronobacter sakazakii
+701	13	7	247	293	77	127	355		Cronobacter malonaticus
+702	18	17	10	12	18	24	356	12	Cronobacter sakazakii
+703	23	23	35	241	27	34	357		Cronobacter dublinensis
+704	26	145	36	217	45	39	358		Cronobacter muytjensii
+705	28	177	41	46	32	39	359		Cronobacter muytjensii
+706	15	1	3	294	15	48	280		Cronobacter sakazakii
+707	15	1	248	295	212	56	360		Cronobacter sakazakii
+708	15	1	16	57	263	20	140		Cronobacter sakazakii
+709	44	14	249	5	5	200	273		Cronobacter sakazakii
+710	16	17	49	32	127	92	245	710	Cronobacter sakazakii
+711	117	7	177	7	17	141	304		Cronobacter malonaticus
+712	16	37	9	283	114	65	18		Cronobacter sakazakii
+713	152	20	71	91	264	145	116		Cronobacter dublinensis
+714	47	5	4	296	116	150	150		Cronobacter turicensis
+715	16	185	250	297	119	192	361		Cronobacter dublinensis
+716	89	7	17	8	10	35	160		Cronobacter malonaticus
+717	184	194	252	299	265	247	363		Other Enterobacteriaceae
+718	185	195	253	300	266	248	364		Other Enterobacteriaceae
+719	187	196	255	301	268	250	366		Other Enterobacteriaceae
+720	188	197	256	302	269	251	367		Other Enterobacteriaceae
+721	85	23	69	123	119	41	202		Cronobacter dublinensis
+722	34	8	68	84	78	56	19		Cronobacter sakazakii
+724	31	20	35	227	75	252	260		Cronobacter dublinensis
+726	26	35	257	215	45	4	332		Cronobacter muytjensii
+727	16	8	13	40	15	15	369	64	Cronobacter sakazakii
+728	36	198	57	16	116	18	370		Cronobacter turicensis
+729	15	199	15	13	22	5	16	13	Cronobacter sakazakii
+730	37	99	26	304	64	32	163		Cronobacter dublinensis
+731	134	101	163	192	178	174	307		Other Enterobacteriaceae
+732	189	174	259	185	271	254	372		Other Enterobacteriaceae
+733	3	1	7	94	270	47	368		Cronobacter sakazakii
+734	115	200	258	303	272	253	371		Cronobacter turicensis
+735	191	201	261	306	274	256	374		Cronobacter turicensis
+736	190	202	260	305	273	255	373		Other Enterobacteriaceae
+737	15	186	251	298	209	246	362		Cronobacter sakazakii
+738	22	170	57	16	275	259	156		Cronobacter turicensis
+739	36	22	42	93	116	49	53		Cronobacter turicensis
+740	22	22	57	16	275	259	156		Cronobacter turicensis
+741	36	22	14	311	276	18	375		Cronobacter turicensis
+742	3	7	63	75	9	16	287		Cronobacter malonaticus
+743	194	8	13	3	5	261	190		Cronobacter sakazakii
+744	16	8	13	205	15	15	10	64	Cronobacter sakazakii
+745	3	203	19	146	277	262	18		Cronobacter sakazakii
+746	35	35	264	312	45	4	376		Cronobacter muytjensii
+747	3	14	265	109	278	56	13		Cronobacter sakazakii
+748	68	5	42	313	60	150	377		Cronobacter turicensis
+749	101	23	266	248	264	263	378		
+750	3	8	9	42	88	20	379		Cronobacter sakazakii
+751	10	7	245	75	77	14	48		Cronobacter malonaticus
+752	195	8	13	40	15	15	10	64	Cronobacter sakazakii
+753	20	36	19	277	81	38	18		Cronobacter sakazakii
+754	47	39	42	47	60	49	380		Cronobacter turicensis
+755	196	74	49	9	14	185	384		Cronobacter sakazakii
+756	58	48	268	315	280	264	383		Cronobacter dublinensis
+757	141	67	49	9	14	19	15		Cronobacter sakazakii
+758	15	37	9	179	114	65	148		Cronobacter sakazakii
+759	15	205	13	94	99	118	126	249	Cronobacter sakazakii
+760	76	75	153	182	170	168	222		Other Enterobacteriaceae
+761	5	1	3	3	5	267	4	4	Cronobacter sakazakii
+762	197	22	4	316	281	268	385		Cronobacter turicensis
+763	117	13	8	7	17	141	43		Cronobacter malonaticus
+764	3	8	10	42	15	48	26		Cronobacter sakazakii
+765	26	35	176	46	45	39	55		Cronobacter muytjensii
+766	74	73	86	317	111	108	144		Franconibacter duqui
+767	16	8	13	40	282	15	10	64	Cronobacter sakazakii
+768	198	35	36	318	33	269	216		Cronobacter muytjensii
+769	1	1	269	1	1	1	1	1	Cronobacter sakazakii
+770	16	8	39	319	283	236	131		Cronobacter sakazakii
+771	199	8	120	119	88	73	18		Cronobacter sakazakii
+772	16	18	39	319	283	236	131		Cronobacter sakazakii
+773	4	24	270	320	4	4	6	81	Cronobacter muytjensii
+774	4	24	271	321	4	4	6	81	Cronobacter muytjensii
+775	163	20	272	322	235	260	303		Cronobacter dublinensis
+776	3	11	13	18	11	88	13	21	Cronobacter sakazakii
+777	10	7	273	8	23	30	8	129	Cronobacter malonaticus
+778	201	17	120	278	84	56	386		Cronobacter sakazakii
+779	57	7	64	17	8	16	128		
+780	10	7	6	9	7	14	9	7	Cronobacter malonaticus
+781	11	8	7	8	5	15	10	8	Cronobacter sakazakii
+782	19	16	19	19	41	15	23	83	Cronobacter sakazakii
+783	16	36	3	58	249	36	4		Cronobacter sakazakii
+784	200	20	33	323	284	27	387		Cronobacter dublinensis
+785	202	43	34	324	285	270	388		Cronobacter dublinensis
+786	5	1	3	3	286	5	4	4	Cronobacter sakazakii
+787	20	18	274	119	3	223	87		Cronobacter sakazakii
+788	95	23	114	123	157	132	171		Cronobacter dublinensis
+789	15	14	15	13	22	5	347	13	Cronobacter sakazakii
+790	55	14	59	70	70	70	389		Cronobacter sakazakii
+791	15	14	15	13	287	5	16	13	Cronobacter sakazakii
+792	204	22	57	326	288	18	156		Cronobacter turicensis
+793	203	39	101	325	60	150	390		Cronobacter turicensis
+794	19	16	19	41	19	15	391	83	Cronobacter sakazakii
+795	18	8	39	36	38	38	47	58	Cronobacter sakazakii
+796	20	8	15	96	90	89	392	157	Cronobacter sakazakii
+797	205	59	260	327	289	255	393		Other Enterobacteriaceae
+798	35	64	36	328	50	271	311		Cronobacter muytjensii
+799	15	17	68	257	290	5	394		Cronobacter sakazakii
+800	115	65	144	64	281	209	318		
+801	11	8	7	329	8	15	10	8	Cronobacter sakazakii
+802	5	1	3	330	5	5	4	4	Cronobacter sakazakii
+803	207	13	275	84	262	245	353		Cronobacter malonaticus
+804	3	1	120	94	270	1	368		Cronobacter sakazakii
+805	64	7	64	7	10	16	281		Cronobacter malonaticus
+806	46	147	276	21	237	193	318		Cronobacter turicensis
+807	3	8	10	331	5	93	74		Cronobacter malonaticus
+808	46	5	4	314	279	265	382		Cronobacter turicensis
+809	208	207	277	334	293	273	396		Cronobacter dublinensis
+810	109	21	135	162	151	28	397		Cronobacter dublinensis
+811	115	208	21	335	292	272	395		Cronobacter turicensis
+812	3	11	13	336	11	17	13	21	Cronobacter sakazakii
+813	209	65	144	332	291	209	318		Cronobacter turicensis
+814	115	208	21	333	292	272	395		Cronobacter turicensis
+815	6	208	278	21	294	272	395		Cronobacter turicensis
+816	210	209	258	337	272	253	398		Cronobacter turicensis
+817	212	58	281	339	295	95	400		Other Enterobacteriaceae
+818	211	75	280	187	100	99	399		Other Enterobacteriaceae
+819	3	3	3	5	3	3	401	3	Cronobacter sakazakii
+820	1	1	1	1	1	275	1	1	Cronobacter sakazakii
+821	6	65	22	333	66	209	402		Cronobacter turicensis
+822	58	20	111	228	296	28	403		Cronobacter dublinensis
+823	213	10	3	42	141	274	140		Cronobacter sakazakii
+824	6	214	258	340	297	276	404		Cronobacter turicensis
+825	3	12	16	5	16	20	405	17	Cronobacter sakazakii
+826	58	20	250	102	34	43	406		Cronobacter dublinensis
+827	3	37	9	5	299	65	379		Cronobacter sakazakii
+828	112	41	43	341	298	154	109		Cronobacter dublinensis
+829	155	26	22	21	31	37	35		Cronobacter turicensis
+830	44	14	249	67	5	200	273		Cronobacter sakazakii
+831	3	15	28	344	5	38	19	40	Cronobacter sakazakii
+832	214	20	282	139	300	277	407		Cronobacter dublinensis
+833	117	7	8	8	188	165	410		Cronobacter malonaticus
+834	16	8	283	342	301	56	408		Cronobacter sakazakii
+835	57	7	25	343	72	40	89		Cronobacter malonaticus
+836	10	37	9	3	302	56	126	233	Cronobacter sakazakii
+837	15	8	3	84	161	162	409	615	Cronobacter sakazakii
+838	215	14	15	13	22	5	16	13	Cronobacter sakazakii
+839	216	20	284	345	303	278	411		Cronobacter dublinensis
+840	10	7	17	8	214	16	412	545	Cronobacter malonaticus
+841	36	22	61	347	46	18	414		Cronobacter turicensis
+842	23	23	237	348	249	34	357		Cronobacter dublinensis
+843	10	13	40	131	28	16	48		Cronobacter malonaticus
+844	57	7	245	181	17	280	416		Cronobacter malonaticus
+845	217	67	49	9	14	19	15		Cronobacter sakazakii
+846	85	23	69	123	119	281	202		Cronobacter dublinensis
+847	3	18	9	267	1	225	417		Cronobacter sakazakii
+848	218	1	37	94	305	282	418		Cronobacter sakazakii
+849	5	1	3	3	5	5	419	4	Cronobacter sakazakii
+850	5	1	3	3	5	5	420	4	Cronobacter sakazakii
+851	221	1	3	3	5	5	4	4	Cronobacter sakazakii
+852	5	1	3	3	5	135	4	4	Cronobacter sakazakii
+853	70	20	287	349	306	260	421		Cronobacter dublinensis
+854	11	8	288	5	8	15	10		Cronobacter sakazakii
+855	1	8	289	283	307	283	422		Cronobacter sakazakii
+856	15	13	6	350	10	284	423		Cronobacter malonaticus
+857	220	21	290	33	73	28	424		Cronobacter dublinensis
+858	115	5	291	351	308	211	425		Cronobacter turicensis
+859	3	1	10	18	21	285	4		Cronobacter sakazakii
+860	222	17	10	12	18	24	18	12	Cronobacter sakazakii
+861	55	69	9	352	309	56	426		Cronobacter sakazakii
+862	3	7	67	204	10	74	427		Cronobacter malonaticus
+863	3	13	8	23	28	22	247		Cronobacter malonaticus
+864	201	17	120	84	278	56	386		Cronobacter sakazakii
+865	36	22	57	359	313	152	432		Cronobacter turicensis
+866	47	208	21	360	31	290	433		Cronobacter turicensis
+867	58	221	70	123	314	291	434		Cronobacter dublinensis
+868	3	36	37	5	309	292	435		Cronobacter sakazakii
+869	224	43	292	355	235	287	428		Cronobacter dublinensis
+870	225	34	234	356	310	288	429		Cronobacter universalis
+871	16	1	19	19	311	5	26	22	Cronobacter sakazakii
+872	31	20	293	357	75	289	430		Cronobacter dublinensis
+873	61	7	294	358	207	141	43		Cronobacter malonaticus
+874	226	7	6	7	9	14	9	7	Cronobacter malonaticus
+875	27	146	184	35	312	45	431		Cronobacter universalis
+876	3	7	295	8	10	16	415		Cronobacter malonaticus
+877	3	17	9	32	86	293	436		Cronobacter sakazakii
+878	27	146	184	38	39	191	264		Cronobacter universalis
+879	3	17	49	361	58	63	65		Cronobacter sakazakii
+880	228	20	35	362	316	295	438		Cronobacter dublinensis
+881	14	22	297	20	136	18	85		Cronobacter turicensis
+882	229	223	298	363	317	296	439		Cronobacter dublinensis
+883	69	224	9	352	318	297	440		Cronobacter sakazakii
+884	51	7	6	140	77	30	50	112	Cronobacter malonaticus
+885	230	225	299	364	319	298	441		Cronobacter malonaticus
+886	67	20	237	365	119	41	442		Cronobacter dublinensis
+887	65	20	152	79	320	212	443		Cronobacter dublinensis
+888	59	20	300	366	82	299	444		Cronobacter dublinensis
+889	59	20	301	366	82	299	444		Cronobacter dublinensis
+890	10	7	107	7	17	16	445		Cronobacter malonaticus
+891	61	7	17	7	77	16	12		Cronobacter malonaticus
+892	44	226	3	5	5	38	59	37	Cronobacter sakazakii
+893	112	100	43	369	321	203	450		Cronobacter dublinensis
+894	10	7	67	204	322	16	451		Cronobacter malonaticus
+895	58	20	111	367	264	300	446		Cronobacter dublinensis
+896	61	13	25	7	101	14	43	679	Cronobacter malonaticus
+897	3	77	302	125	107	15	447		Cronobacter sakazakii
+898	3	77	302	125	107	15	448		Cronobacter sakazakii
+899	194	8	13	368	5	261	190		Cronobacter sakazakii
+900	157	20	32	123	119	43	453		Cronobacter dublinensis
+901	57	7	64	7	28	16	449		Cronobacter malonaticus
+902	10	7	63	75	17	74	90		Cronobacter malonaticus
+903	231	13	67	8	17	40	9		Cronobacter malonaticus
+904	58	20	304	123	84	102	454		Cronobacter dublinensis
+905	61	7	17	7	135	16	12		
+906	55	1	3	15	244	24	4		Cronobacter sakazakii
+907	232	229	305	371	323	45	431		Cronobacter universalis
+908	58	48	69	372	324	302	387		Cronobacter dublinensis
+909	219	215	285	346	304	279	413		Cronobacter turicensis
+910	10	216	286	7	10	40	415		Cronobacter malonaticus
+911	10	217	30	59	57	66	83		Cronobacter sakazakii
+912	10	218	6	7	9	14	9		Cronobacter malonaticus
+913	26	219	176	353	33	39	311		Cronobacter muytjensii
+914	5	227	3	3	5	5	4		Cronobacter sakazakii
+915	61	228	303	370	190	301	452		Cronobacter malonaticus
+916	20	17	306	373	16	274	456		Cronobacter sakazakii
+917	10	13	64	75	239	14	8		Cronobacter malonaticus
+918	233	48	34	309	315	27	457		Cronobacter dublinensis
+919	16	36	30	58	325	303	18		Cronobacter sakazakii
+920	15	8	13	94	99	304	458	249	Cronobacter sakazakii
+921	3	36	52	374	18	90	466		Cronobacter sakazakii
+922	16	36	3	249	58	305	4		Cronobacter sakazakii
+923	67	20	307	375	326	214	459		Cronobacter dublinensis
+924	3	36	74	97	86	306	107		Cronobacter sakazakii
+925	3	186	128	119	70	241	190		Cronobacter sakazakii
+926	151	20	70	376	327	145	36		Cronobacter dublinensis
+927	58	63	308	377	73	307	108		Cronobacter dublinensis
+928	67	20	226	92	85	86	460		Cronobacter dublinensis
+929	67	20	71	91	195	308	461		Cronobacter dublinensis
+930	16	17	49	205	127	92	462		Cronobacter sakazakii
+931	94	100	263	133	211	309	463		Cronobacter dublinensis
+932	94	100	263	133	211	310	464		Cronobacter dublinensis
+933	68	100	309	93	328	311	465		Cronobacter turicensis
+934	40	48	133	152	221	312	187	934	Cronobacter dublinensis
+935	47	1	311	93	60	313	153		Cronobacter turicensis
+936	10	7	17	8	214	314	290	545	Cronobacter malonaticus
+937	3	1	9	378	329	56	103		Cronobacter sakazakii
+938	16	37	9	1	263	92	140		Cronobacter sakazakii
+939	10	7	245	131	9	141	351		Cronobacter malonaticus
+940	3	15	3	22	5	38	19	40	Cronobacter sakazakii
+941	5	1	3	379	5	5	4	4	Cronobacter sakazakii
+942	86	176	57	16	136	18	156		Cronobacter turicensis
+943	15	14	312	13	22	5	16	13	Cronobacter sakazakii
+944	44	15	3	5	5	261	59	37	Cronobacter sakazakii
+945	3	8	9	380	125	20	467		Cronobacter sakazakii
+946	47	39	57	63	60	49	67		Cronobacter turicensis
+947	68	232	313	63	331	315	468		Cronobacter turicensis
+948	234	5	278	56	330	211	395		Cronobacter turicensis
+949	235	233	43	155	332	44	469		Cronobacter dublinensis
+950	12	7	8	381	10	16	43	60	Cronobacter malonaticus
+951	1	1	1	382	1	1	1	1	Cronobacter sakazakii
+952	37	41	221	383	92	130	163		Cronobacter dublinensis
+953	191	201	314	306	274	316	470		Cronobacter turicensis
+954	115	5	278	314	333	80	318		Cronobacter turicensis
+955	112	41	221	385	334	130	111		Cronobacter dublinensis
+956	112	41	315	384	92	154	111		Cronobacter dublinensis
+957	26	234	36	242	335	53	471		Cronobacter muytjensii
+958	67	20	71	91	195	145	256		Cronobacter dublinensis
+959	57	7	25	5	72	40	89		Cronobacter malonaticus
+960	3	36	3	249	35	36	4		Cronobacter sakazakii
+961	23	1	317	348	119	34	461		Cronobacter sakazakii
+962	236	7	67	7	9	35	166		Cronobacter malonaticus
+963	1	1	1	1	1	93	1	1	Cronobacter sakazakii
+964	76	75	319	386	172	99	472		Other Enterobacteriaceae
+965	240	221	321	393	340	260	476		Cronobacter sakazakii
+966	163	20	272	322	235	260	475		Cronobacter dublinensis
+967	115	147	21	21	66	193	263		Cronobacter turicensis
+968	239	238	221	392	339	317	278		Cronobacter dublinensis
+969	37	100	43	251	339	154	111		Cronobacter dublinensis
+970	16	8	9	391	21	113	253	475	Cronobacter sakazakii
+971	47	39	42	390	338	49	153		Cronobacter turicensis
+972	16	203	9	18	196	36	474		Cronobacter sakazakii
+973	163	20	320	389	327	260	303		Cronobacter dublinensis
+974	238	88	22	388	337	29	473		Cronobacter turicensis
+975	36	22	57	20	336	18	180		Cronobacter turicensis
+976	47	22	313	47	338	49	183		Cronobacter turicensis
+977	36	239	104	400	136	244	478		Cronobacter turicensis
+978	27	235	234	268	345	45	477		Cronobacter universalis
+979	5	8	249	399	86	5	126		Cronobacter sakazakii
+980	243	240	4	402	158	321	480		Cronobacter turicensis
+981	6	17	49	205	346	92	245		Cronobacter sakazakii
+982	5	8	30	401	15	56	479		Cronobacter sakazakii
+983	16	17	49	205	346	92	245		Cronobacter sakazakii
+984	157	20	323	403	34	41	481		Cronobacter dublinensis
+985	15	1	13	387	65	67	78	113	Cronobacter sakazakii
+986	112	41	43	383	92	323	109		Cronobacter dublinensis
+987	29	31	26	30	64	44	39		Cronobacter dublinensis
+988	58	20	78	89	83	324	117	177	Cronobacter dublinensis
+989	67	20	71	90	87	145	483		Cronobacter dublinensis
+990	244	1	1	1	1	1	1	1	Cronobacter sakazakii
+991	15	17	10	154	348	15	485		Cronobacter sakazakii
+992	3	3	3	3	3	3	484	3	Cronobacter sakazakii
+993	10	7	8	7	9	127	174	271	Cronobacter malonaticus
+994	68	22	42	313	60	150	153		Cronobacter turicensis
+995	3	15	28	22	347	38	19	40	Cronobacter sakazakii
+996	22	22	57	16	136	322	486		Cronobacter turicensis
+997	152	20	324	407	350	212	36		Cronobacter dublinensis
+998	112	100	26	406	339	203	109		Cronobacter dublinensis
+999	69	8	9	405	86	48	273		Cronobacter sakazakii
+1000	245	201	261	408	274	325	487		Cronobacter turicensis
+1001	35	35	36	413	45	4	493		Cronobacter muytjensii
+1002	247	35	36	412	32	39	491		Cronobacter muytjensii
+1003	26	35	36	411	335	39	55		Cronobacter muytjensii
+1004	26	64	36	265	335	53	490		Cronobacter muytjensii
+1005	246	32	325	410	351	45	489		Cronobacter universalis
+1006	153	20	71	409	119	41	492		Cronobacter dublinensis
+1007	3	12	16	414	16	20	14	17	Cronobacter sakazakii
+1008	20	18	3	5	88	3	140		Cronobacter sakazakii
+1009	36	22	42	93	46	49	53	CC1009	Cronobacter turicensis
+1010	35	35	36	46	45	39	217		Cronobacter muytjensii
+1011	36	210	57	20	136	244	488		Cronobacter turicensis
+1012	95	20	326	396	349	132	171		Cronobacter dublinensis
+1013	249	20	282	416	300	277	407		Cronobacter dublinensis
+1014	35	219	176	353	33	326	93		Cronobacter muytjensii
+1015	35	64	140	217	335	4	496		Cronobacter muytjensii
+1016	26	35	327	417	335	326	217		Cronobacter muytjensii
+1017	28	25	36	418	4	39	495		Cronobacter muytjensii
+1018	15	8	39	277	352	236	100		Cronobacter sakazakii
+1019	41	47	140	217	45	269	311		
+1020	36	22	104	311	46	116	432		Cronobacter turicensis
+1021	3	18	13	42	270	20	379		Cronobacter sakazakii
+1022	247	192	36	202	45	39	498		Cronobacter muytjensii
+1023	34	8	3	421	15	329	126		Cronobacter sakazakii
+1024	3	36	52	374	18	90	501		Cronobacter sakazakii
+1025	6	5	21	422	353	290	502		Cronobacter turicensis
+1026	252	63	70	426	157	78	506		Cronobacter dublinensis
+1027	251	20	330	423	83	330	499		Cronobacter dublinensis
+1028	36	22	57	20	13	116	500		Cronobacter turicensis
+1029	68	39	60	425	354	150	503		Cronobacter turicensis
+1030	36	22	331	16	46	18	504		Cronobacter turicensis
+1031	30	20	69	424	235	27	505		Cronobacter dublinensis
+1032	28	243	335	427	356	331	507		Cronobacter muytjensii
+1033	59	242	332	428	357	102	508		Cronobacter dublinensis
+1034	253	20	333	429	355	78	512		Cronobacter dublinensis
+1035	254	20	111	430	82	102	509		Cronobacter dublinensis
+1036	256	20	111	431	119	41	513		Cronobacter dublinensis
+1037	58	20	111	431	44	295	510		Cronobacter dublinensis
+1038	255	20	330	431	75	78	514		Cronobacter dublinensis
+1039	26	35	36	328	33	4	44		Cronobacter muytjensii
+1040	26	87	36	265	121	120	155		Cronobacter muytjensii
+1041	66	63	334	228	204	43	511		Cronobacter dublinensis
+1042	26	25	36	31	33	39	216		Cronobacter muytjensii
+1043	27	34	20	356	39	45	45		Cronobacter universalis
+1044	3	12	16	5	16	20	3	17	Cronobacter sakazakii
+1045	17	7	6	432	77	14	90		Cronobacter malonaticus
+1046	192	100	43	383	358	154	109		Cronobacter dublinensis
+1047	233	48	34	433	315	27	457		Cronobacter dublinensis
+1048	250	241	329	420	203	328	497		Cronobacter dublinensis
+1049	151	20	111	90	195	212	239		Cronobacter dublinensis
+1050	36	39	57	65	46	18	69		Cronobacter turicensis
+1051	3	7	64	7	10	141	515		Cronobacter malonaticus
+1052	70	20	35	123	82	41	438		Cronobacter dublinensis
+1053	41	47	36	217	45	269	311		Cronobacter muytjensii
+1054	3	69	13	18	359	332	516		Cronobacter sakazakii
+1055	257	88	22	434	337	193	473		Cronobacter turicensis
+1056	36	22	338	20	336	18	180		Cronobacter turicensis
+1057	5	1	3	3	363	5	4	4	Cronobacter sakazakii
+1058	5	1	3	3	5	5	522	4	Cronobacter sakazakii
+1059	112	100	43	435	211	44	76		Cronobacter dublinensis
+1060	23	244	70	436	34	43	506		Cronobacter dublinensis
+1061	69	245	128	437	5	38	436		Cronobacter sakazakii
+1062	71	250	68	18	365	92	78		Cronobacter sakazakii
+1063	260	35	36	457	335	39	540		Cronobacter muytjensii
+1064	67	20	71	407	195	145	116		Cronobacter dublinensis
+1065	26	25	232	455	4	39	276		Cronobacter muytjensii
+1066	148	251	349	456	355	348	539		Cronobacter dublinensis
+1067	203	5	60	93	60	347	199		Cronobacter turicensis
+1068	63	20	114	160	249	212	524		Cronobacter dublinensis
+1069	26	35	36	450	335	39	533		Cronobacter muytjensii
+1070	67	20	348	452	82	199	537		Cronobacter dublinensis
+1071	67	20	33	451	284	140	536		Cronobacter dublinensis
+1072	224	43	292	453	235	287	428		Cronobacter dublinensis
+1073	22	22	57	20	136	333	180	463	Cronobacter turicensis
+1074	46	147	336	21	237	193	318		Cronobacter turicensis
+1075	112	41	221	438	360	154	517		Cronobacter dublinensis
+1076	25	246	21	439	213	334	518		Cronobacter turicensis
+1077	58	20	347	89	83	43	534	177	Cronobacter dublinensis
+1078	64	7	67	75	17	22	97		Cronobacter malonaticus
+1079	112	99	221	304	64	258	163		Cronobacter dublinensis
+1080	260	35	36	454	33	345	540		Cronobacter muytjensii
+1081	58	249	343	458	34	295	541		Cronobacter dublinensis
+1082	58	20	111	440	361	212	438		Cronobacter dublinensis
+1083	68	39	313	47	362	315	519		Cronobacter turicensis
+1084	63	20	32	123	82	43	532		Cronobacter dublinensis
+1085	125	148	69	79	83	43	36		Cronobacter dublinensis
+1086	26	247	36	202	4	4	55		Cronobacter muytjensii
+1087	67	248	337	441	303	335	520		Cronobacter dublinensis
+1088	15	8	10	147	368	346	538		Cronobacter sakazakii
+1089	112	100	221	155	64	82	530		Cronobacter dublinensis
+1090	12	157	18	7	28	344	535		Cronobacter malonaticus
+1091	59	20	111	442	164	336	438		Cronobacter dublinensis
+1092	109	21	135	85	300	28	108		Cronobacter dublinensis
+1093	11	157	12	7	28	16	43		Cronobacter malonaticus
+1094	112	41	342	445	358	340	526		Cronobacter dublinensis
+1095	37	100	221	385	332	82	521		Cronobacter dublinensis
+1096	37	41	201	30	47	50	109		Cronobacter dublinensis
+1097	59	20	152	229	204	41	528		Cronobacter dublinensis
+1098	67	20	226	459	82	341	527		Cronobacter dublinensis
+1099	109	21	135	157	300	28	397		Cronobacter dublinensis
+1100	113	20	344	164	366	287	254		Cronobacter dublinensis
+1101	16	1	13	446	5	5	21	264	Cronobacter sakazakii
+1102	258	41	26	155	211	154	111		Cronobacter dublinensis
+1103	68	39	345	159	136	49	199	359	Cronobacter turicensis
+1104	47	22	42	93	367	342	503		Cronobacter turicensis
+1105	40	220	341	443	87	339	525		Cronobacter dublinensis
+1106	26	25	36	448	4	114	529		Cronobacter muytjensii
+1107	68	39	101	447	60	150	199		Cronobacter turicensis
+1108	259	215	346	449	353	290	518		Cronobacter turicensis
+1109	3	18	7	444	245	229	140		Cronobacter sakazakii
+1110	20	18	16	10	3	47	27	23	Cronobacter sakazakii
+1111	115	5	190	56	6	343	531		Cronobacter turicensis
+1112	112	41	43	341	64	130	282		Cronobacter dublinensis
+1113	58	211	111	123	342	320	506		
+1114	40	165	339	246	215	337	523		Cronobacter dublinensis
+1115	112	100	201	385	364	338	111		Cronobacter dublinensis
+1116	15	17	19	263	309	118	479		Cronobacter sakazakii
+1117	112	41	221	384	64	130	544		Cronobacter dublinensis
+1118	30	43	340	26	155	27	196		Cronobacter dublinensis
+1119	241	20	351	395	343	319	543		Cronobacter dublinensis
+1120	46	39	4	62	60	64	66		Cronobacter turicensis
+1121	180	20	71	394	82	41	542		Cronobacter dublinensis
+1122	37	41	43	78	369	50	272		
+1123	58	212	328	419	370	52	545		
+1124	242	213	322	397	344	28	546		
+1125	261	214	353	461	374	350	549		Cronobacter turicensis
+1126	226	252	36	457	335	271	55		Cronobacter muytjensii
+1127	210	209	258	337	272	253	551		Cronobacter turicensis
+1128	243	240	352	460	373	349	548		Cronobacter turicensis
+1129	191	201	355	306	274	316	550		Cronobacter turicensis
+1130	124	13	172	462	77	183	244		Cronobacter malonaticus
+1131	262	42	354	463	48	287	56		Cronobacter dublinensis
+1132	6	88	21	333	292	272	395		Cronobacter turicensis
+1133	26	252	36	457	335	271	55		Cronobacter muytjensii
