@@ -265,46 +265,26 @@ Note that that some schemes are species specific, and others are genus
 specific, so the `SPECIES` column is empty.  Note that the same
 species/genus can apply to multiple schemes, see `abaumanii` above.
 
-## Updating the database
+## Updating the bundled database
 
-The `mlst` software comes bundled with the traditional MLST databases;
-namely those schemes with less than 10 genes. I strive to make regular
-releases with updated databases, but if this is not frequent enough you
-can update the databases yourself using some tools included in the `scripts`
-folder as follows:
+The `mlst` software no longer provides a script
+to update the database. This is because PubMLST
+now requires a user account and a private key
+to access data through the
+[PubMLST API](https://pubmlst.org/api).
+There will eventually be many 3rd party
+tools to help you download updated schemes
+and use them with `mlst`.
 
-```
-# Figure out where mlst is installed
-% which mlst
-/home/user/sw/mlst
+If you do download a new database, make
+sure it's in `/path/to/mlst/db/pubmlst`
+and run `scripts/mlst-make_blast_db` before
+attempting to run `mlst`.
 
-# Go into the scripts folder (you need to have write access!)
-% cd /home/user/sw/mlst/scripts
+## Adding a scheme 
 
-# Run the downloader script (you need 'wget' installed)
-% ./mlst-download_pub_mlst | bash
-
-# Check it downloaded everything ok
-% find pubmlst | less
-
-# Save the old database folder
-% mv ../db/pubmlst ../db/pubmlst.old
-
-# Put the new folder there
-% mv ./pubmlst ../db/
-
-# Regenerate the BLAST database
-% ./mlst-make_blast_db
-
-# Check schemes are installed
-% ../bin/mlst --list
-```
-
-## Adding a new scheme 
-
-If you are unable or unwilling to add your scheme to PubMLST via 
-[BIGSdb](https://pubmlst.org/software/database/bigsdb/) you can
-insert a new scheme into your local `mlst` database.
+If you want to add a custom private scheme
+with `mlst` you can
 
 ### The directory structure
 
