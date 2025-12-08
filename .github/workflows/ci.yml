@@ -110,5 +110,8 @@ jobs:
     - name: Test novel alleles
       run: mlst -q --novel novel.fa test/novel.fasta.bz2 && grep 'mreA' novel.fa
 
+    - name: Test Issue 146 bug
+      run: mlst -q test/issue146.fa | grep -F 'purE(25)'
+
     - name: Test mlst-show_seqs
       run: scripts/mlst-show_seqs -s efaecium -t 111
