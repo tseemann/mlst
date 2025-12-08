@@ -10,6 +10,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     env:
       BLASTVER: 2.9.0
       CACHEDIR: tarballs
