@@ -14,12 +14,12 @@ jobs:
       contents: read
 
     env:
-      BLASTVER: 2.9.0
+      BLASTVER: 2.16.0
       CACHEDIR: tarballs
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6
 
     - name: Set up Perl
       uses: shogo82148/actions-setup-perl@v1
@@ -27,7 +27,7 @@ jobs:
         perl-version: '5.26'
 
     - name: Cache BLAST+ tarball
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ env.CACHEDIR }}
         key: blast-${{ env.BLASTVER }}
