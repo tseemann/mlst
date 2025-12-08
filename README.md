@@ -272,9 +272,9 @@ to update the database. This is because PubMLST
 now requires a user account and a private key
 to access data through the
 [PubMLST API](https://pubmlst.org/api).
-There will eventually be many 3rd party
-tools to help you download updated schemes
-and use them with `mlst`.
+You can use the
+[mlstdb](https://github.com/MDU-PHL/mlstdb)
+tool to help you do this.
 
 If you do download a new database, make
 sure it's in `/path/to/mlst/db/pubmlst`
