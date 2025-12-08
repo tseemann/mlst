@@ -33,15 +33,7 @@ NC_017040.fna  spyogenes  172  gki(56)  gtr(24)  murI(39)  mutS(7)  recP(30)   x
 ### Conda
 If you are using [Conda](https://bioconda.github.io/user/install.html)
 ```
-% conda install -c conda-forge -c bioconda -c defaults mlst
-```
-
-### Brew
-If you are using the [MacOS Homebrew](http://brew.sh/)
-or [LinuxBrew](http://brew.sh/linuxbrew/) packaging system:
-
-```
-% brew install brewsci/bio/mlst
+% conda install -c conda-forge -c bioconda  mlst
 ```
 
 ### Source
