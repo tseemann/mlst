@@ -43,6 +43,7 @@ jobs:
 
     - name: Download any2fasta
       run: |
+        mkdir -p bin
         curl https://raw.githubusercontent.com/tseemann/any2fasta/master/any2fasta > bin/any2fasta
         chmod +x bin/any2fasta
 
