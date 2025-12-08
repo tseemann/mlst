@@ -84,7 +84,7 @@ jobs:
       run: mlst -q test/example.gbk.gz | grep -w 184
 
     - name: Test novel.fasta.bz2
-      run: mlst -q test/novel.fasta.bz2 | grep -w spneumoniae
+      run: mlst -q test/novel.fasta.bz2 | grep -w leptospira_2
 
     - name: Test stdin with fna.gz
       run: gzip -d -c test/example.fna.gz | mlst -q /dev/stdin | grep -w 184
@@ -108,7 +108,7 @@ jobs:
       run: mlst -q --label GDAYMATE test/example.fna.gz | grep GDAYMATE
 
     - name: Test novel alleles
-      run: mlst -q --novel novel.fa test/novel.fasta.bz2 && grep 'recP' novel.fa
+      run: mlst -q --novel novel.fa test/novel.fasta.bz2 && grep 'mreA' novel.fa
 
     - name: Test mlst-show_seqs
       run: scripts/mlst-show_seqs -s efaecium -t 111
