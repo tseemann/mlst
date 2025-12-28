@@ -1,0 +1,14 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - perl >=5.32
+  - perl-bioperl >=1.7.2
+  - perl-file-which
+  - perl-json
+  - perl-list-moreutils
+  - perl-moo
+  - blast >=2.16.0
+  - any2fasta >=0.6.0
+  - bats-core
+  - zlib
