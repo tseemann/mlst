@@ -30,6 +30,8 @@ setup() {
 }
 @test "Bad option" {
   run ! $exe --doesnotexist
+  [[ "$output" =~ "Unknown option" ]]
+  [[ ! "$output" =~ "USAGE" ]]
 }
 @test "List schemes (short)" {
   run -0 $exe --list

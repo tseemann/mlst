@@ -387,8 +387,8 @@ sub setOptions {
     {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>abs_path("$FindBin::RealBin/../db/blast/mlst.fa"), DESC=>"BLAST database"},
     {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>abs_path("$FindBin::RealBin/../db/pubmlst"), DESC=>"PubMLST data"},
   );
-
-  &GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options) || usage(1);
+  GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options)
+    or exit(1);
 
   # Now setup default values.
   foreach (@Options) {
@@ -406,7 +406,7 @@ sub usage {
 
   print "SYNOPSIS\n  Automatic MLST calling from assembled contigs\n";
   print "USAGE\n";
-  print "  % $EXE --list                                            # list known schemes\n";
+  print "  % $EXE --longlist                                        # list known schemes\n";
   print "  % $EXE [options] <contigs.{fasta,gbk,embl}[.gz]          # auto-detect scheme\n";
   print "  % $EXE --scheme <scheme> <contigs.{fasta,gbk,embl}[.gz]> # force a scheme\n";
   foreach (@Options) {
@@ -415,9 +415,9 @@ sub usage {
       $def = ($def ? ' (default OFF)' : '(default ON)') if $_->{OPT} =~ m/!$/;
       my $opt = $_->{OPT};
       $opt =~ s/!$//;
-      $opt =~ s/=s$/ [X]/;
-      $opt =~ s/=i$/ [N]/;
-      $opt =~ s/=f$/ [n.n]/;
+      $opt =~ s/=s$/ STR/;
+      $opt =~ s/=i$/ INT/;
+      $opt =~ s/=f$/ NUM/;
       printf "  --%-15s %s%s\n",$opt,$_->{DESC}, $def;
     }
     else {
