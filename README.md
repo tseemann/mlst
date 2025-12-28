@@ -1,4 +1,4 @@
-[![CI](https://github.com/tseemann/mlst/actions/workflows/ci.yml/badge.svg)](https://github.com/tseemann/mlst/actions/workflows/ci.yml)
+[![CI](https://github.com/tseemann/mlst/actions/workflows/CI.yml/badge.svg)](https://github.com/tseemann/mlst/actions/workflows/CI.yml)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Don't judge me](https://img.shields.io/badge/Language-Perl_5-steelblue.svg)
 [![Version](https://img.shields.io/github/v/release/tseemann/mlst)](https://github.com/tseemann/mlst/releases)
@@ -43,20 +43,6 @@ If you are using [Conda](https://bioconda.github.io/user/install.html)
 % git clone https://github.com/tseemann/mlst.git
 % $HOME/mlst/bin/mlst --help
 ```   
- 
-### Dependencies
-
-* [Perl](https://www.perl.org/) >= 5.26
-* [NCBI BLAST+ blastn](https://www.ncbi.nlm.nih.gov/books/NBK279671/) >= 2.9.0
-  * You probably have `blastn` already installed already.
-  * If you use Brew or Conda, this will install the `blast` package for you.
-* Perl modules: `Moo`,`List::MoreUtils`,`JSON`
-  * Debian: `sudo apt-get install libmoo-perl liblist-moreutils-perl libjson-perl`
-  * Redhat: `sudo apt-get install perl-Moo perl-List-MoreUtils perl-JSON`
-  * Most Unix: `sudo cpan Moo List::MoreUtils JSON`
-* [any2fasta](https://github.com/tseemann/any2fasta)
-  * Converts sequence files to FASTA, even compressed ones
-
 ## Usage
 
 Simply just give it a genome file in FASTA/GenBank/EMBL format,
@@ -123,9 +109,11 @@ hcinaedi hparasuis hpylori kpneumoniae leptospira
 saureus xfastidiosa yersinia ypseudotuberculosis yruckeri
 ```
 
-The above list is shortened. You can get more details using `mlst --longlist`.
+If you want a more detailed list;
 
 ```
+% mkst --longlist
+
 achromobacter     nusA       rpoB      eno       gltB      lepA       nuoL      nrdA
 abaumannii        Oxf_gltA   Oxf_gyrB  Oxf_gdhB  Oxf_recA  Oxf_cpn60  Oxf_gpi   Oxf_rpoD
 abaumannii_2      Pas_cpn60  Pas_fusA  Pas_gltA  Pas_pyrG  Pas_recA   Pas_rplB  Pas_rpoB
@@ -139,7 +127,7 @@ bcereus           glp        gmk       ilv       pta       pur        pyc       
 
 ### Missing data
 
-Version 2.x does not just look for exact matches to full length alleles. 
+`mlst` does not just look for exact matches to full length alleles. 
 It attempts to tell you as much as possible about what it found using the
 notation below:
 
