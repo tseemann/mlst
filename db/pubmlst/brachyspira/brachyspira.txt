@@ -14,6 +14,7 @@ ST	Bra_adh	Bra_alp	Bra_est	Bra_gdh	Bra_glp	Bra_pgm	Bra_thi	clonal_complex
 13	6	17	10	8	10	7	12	
 14	1	10	18	27	19	17	25	
 15	1	1	2	47	52	1	2	
+16	6	17	10	46	10	7	12	
 17	6	17	10	8	10	7	13	
 18	6	20	10	8	10	7	12	
 19	7	18	15	9	10	7	13	
@@ -25,6 +26,7 @@ ST	Bra_adh	Bra_alp	Bra_est	Bra_gdh	Bra_glp	Bra_pgm	Bra_thi	clonal_complex
 25	10	14	9	16	18	10	5	
 26	10	14	9	14	18	10	5	
 27	11	16	8	12	12	16	9	
+28	6	34	10	8	10	7	12	
 29	15	6	11	18	15	13	30	
 33	19	32	36	41	34	36	15	
 34	24	27	29	37	33	31	14	

@@ -101,3 +101,4 @@ ST	gapdh	tpi	mdh	icl	rpoB	recA	adk	clonal_complex
 100	2	1	4	1	8	1	2	
 101	3	3	6	1	8	1	19	
 102	7	3	19	17	3	3	5	
+103	3	22	10	16	4	20	2	

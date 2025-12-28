@@ -353,3 +353,5 @@ ST	Bhy_adh	Bhy_alp	Bhy_est	Bhy_gdh	Bhy_glpK	Bhy_pgm	Bhy_thi	clonal_complex
 352	2	11	3	6	43	2	55	
 353	2	11	3	20	24	2	6	
 354	2	11	17	1	22	11	13	
+355	2	13	36	6	62	2	21	
+356	2	11	8	4	6	2	42	

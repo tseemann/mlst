@@ -1004,7 +1004,7 @@ ST	atpD	fusA	glnS	gltB	gyrB	infB	pps	clonal_complex	species
 1009	36	22	42	93	46	49	53	CC1009	Cronobacter turicensis
 1010	35	35	36	46	45	39	217		Cronobacter muytjensii
 1011	36	210	57	20	136	244	488		Cronobacter turicensis
-1012	95	20	326	396	349	132	171		Cronobacter dublinensis
+1012	95	20	350	396	349	132	171		Cronobacter dublinensis
 1013	249	20	282	416	300	277	407		Cronobacter dublinensis
 1014	35	219	176	353	33	326	93		Cronobacter muytjensii
 1015	35	64	140	217	335	4	496		Cronobacter muytjensii
@@ -1126,3 +1126,24 @@ ST	atpD	fusA	glnS	gltB	gyrB	infB	pps	clonal_complex	species
 1131	262	42	354	463	48	287	56		Cronobacter dublinensis
 1132	6	88	21	333	292	272	395		Cronobacter turicensis
 1133	26	252	36	457	335	271	55		Cronobacter muytjensii
+1134	115	147	21	21	66	193	395		Cronobacter turicensis
+1135	263	208	22	21	52	351	552		Cronobacter dublinensis
+1136	22	22	14	16	136	18	346		Cronobacter turicensis
+1137	58	20	356	89	83	43	117	117	Cronobacter dublinensis
+1138	3	3	16	5	3	3	3	3	Cronobacter sakazakii
+1139	1	253	1	1	1	1	1	1	Cronobacter sakazakii
+1140	55	17	19	236	375	56	100		Cronobacter sakazakii
+1141	44	8	19	58	67	61	18		Cronobacter sakazakii
+1142	3	17	80	292	376	329	553		Cronobacter sakazakii
+1143	159	15	194	32	5	352	26		Cronobacter sakazakii
+1144	16	37	9	1	377	19	140		Cronobacter sakazakii
+1145	3	37	16	100	115	101	133		Cronobacter sakazakii
+1146	3	118	3	257	147	148	426		Cronobacter sakazakii
+1147	34	37	9	58	127	24	164		Cronobacter sakazakii
+1148	16	1	13	39	5	353	21	264	Cronobacter sakazakii
+1149	55	172	274	42	107	47	81		Cronobacter malonaticus
+1150	112	41	219	464	378	355	278		Cronobacter dublinensis
+1151	3	17	306	59	144	354	435		Cronobacter sakazakii
+1152	15	8	13	466	99	118	126		Cronobacter sakazakii
+1153	70	20	357	465	379	356	554		Cronobacter dublinensis
+1154	37	254	76	467	64	32	555		Cronobacter dublinensis

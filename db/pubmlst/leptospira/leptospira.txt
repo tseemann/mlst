@@ -384,3 +384,4 @@ ST	glmU_1	pntA_1	sucA_1	tpiA_1	pfkB_1	mreA_1	caiB_1	clonal_complex
 385	1	4	2	1	5	26	4	
 386	1	10	7	58	15	5	56	
 387	40	48	47	93	129	88	42	
+388	6	1	2	65	2	67	19	

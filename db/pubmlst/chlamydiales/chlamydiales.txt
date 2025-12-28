@@ -486,3 +486,4 @@ ST	gatA	oppA	hflX	gidA	enoA	hemN	fumC	clonal_complex
 485	115	24	122	131	126	97	105	
 486	119	104	124	134	10	99	106	
 487	11	107	15	14	13	9	11	
+488	85	78	90	112	13	9	78	
