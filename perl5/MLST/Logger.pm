@@ -27,7 +27,7 @@ sub msg {
 
 sub err {
   $quiet=0;  # disable on errors!
-  msg(@_);
+  msg("ERRPR:", @_);
   exit(1);
 }
 

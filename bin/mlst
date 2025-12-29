@@ -5,6 +5,7 @@ use File::Basename;
 use Data::Dumper;
 use Cwd 'abs_path';
 use List::MoreUtils qw(pairwise);
+use File::Temp qw(tempdir);
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
@@ -18,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.26.4";
+my $VERSION = "2.27.0";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -111,8 +112,9 @@ if ($scheme and $legacy) {
   print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
 }
 
-for my $argv (@ARGV) 
-{
+my $dir = tempdir(CLEANUP=>1);
+
+for my $argv (@ARGV) {
   -r $argv or err("Unable to read from '$argv'");
   -d $argv and err("'$argv' seems to be a directory, not a file");
   my @temp;
@@ -234,26 +236,38 @@ sub revcom {
   $dna =~ tr/ATGCatgc/TACGtacg/;
   return $dna;
 }
-
 #----------------------------------------------------------------------
-
+sub run_cmd {
+  my($cmd) = @_;
+  msg("Running: $cmd");
+  system($cmd)==0
+    or err("COMMAND FAILED: $cmd");
+}
+#----------------------------------------------------------------------
 sub find_mlst {
   my($fname, $LABEL) = @_;
 
-  my $cmd = " any2fasta -q \Q$fname\E |"
-           ." blastn -db \Q$blastdb\E -num_threads $threads"
-           ." -ungapped -dust no -word_size 32 -max_target_seqs 100000"
-           ." -perc_identity $minid -evalue 1E-20"
-           ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq sstrand'";
-  msg("Running: $cmd") if $debug;
+  my $FNA = "$dir/mlst.fna";
+  my $BLS = "$dir/mlst.bls";
 
-  my @hit = qx($cmd);
-  # FIXME: we should /sort/ the hits here in case logic below is dodgy?
-  
+  run_cmd("any2fasta -q \Q$fname\E > $FNA");
+
+  run_cmd(" blastn -query $FNA -out $BLS"
+         ." -db \Q$blastdb\E -num_threads $threads"
+         ." -ungapped -dust no -word_size 32"
+         ." -max_target_seqs 100000"
+         ." -perc_identity $minid -evalue 1E-20"
+         ." -outfmt '6 sseqid slen length nident qseqid qstart qend qseq sstrand'"
+         );
+
   my %res;
   my $res_count=0;
 
-  foreach (@hit) {
+  open my $hits, '<', $BLS
+    or err("Can;t open BLAST output");
+
+  foreach (<$hits>) {
+    chomp;
     next unless m/ ^ (\w+)\.(\w+)[_-](\d+) 
                    \t (\d+) \t (\d+) \t (\d+) 
                    \t (\S+) \t (\d+) \t (\d+) \t (\S+) \t (\S+) /x;
@@ -340,7 +354,6 @@ sub find_mlst {
 }
 
 #----------------------------------------------------------------------
-
 sub show_version {
   print "$EXE $VERSION\n";
   exit(0);
