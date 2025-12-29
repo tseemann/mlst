@@ -46,11 +46,11 @@ setup() {
   [[ "$output" =~ "directory" ]]
 }
 @test "Null input" {
-  run $exe null.fa
+  run ! $exe null.fa
   [[ "$output" =~ "ERROR" ]]
 }
 @test "Empry input" {
-  run $exe --no-quiet empty.fa
+  run ! $exe --no-quiet empty.fa
   [[ "$output" =~ "Sequence contains no data" ]]
 }
 @test "Gzipped FASTA" {
