@@ -212,7 +212,7 @@ if ($novel) {
 
 # Say our goodbyes
 my @motd = (
-  "Please also cite 'Jolley & Maiden 2010, BMC Bioinf, 11:595' if you use $EXE.",
+  "Please also cite: Jolley et al (2018) https://pubmed.ncbi.nlm.nih.gov/30345391",
   "You can use --label XXX to replace an ugly filename in the output.",
   "$EXE also supports --json output for the modern bioinformatician.",
   "Did you know $EXE also works on .gbk and .gz files?",

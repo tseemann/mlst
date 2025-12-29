@@ -352,7 +352,7 @@ which must be cited in any publications that use `mlst`:
 
 *"This publication made use of the PubMLST website (https://pubmlst.org/)
 developed by Keith Jolley 
-[(Jolley & Maiden 2010, BMC Bioinformatics, 11:595)](https://doi.org/10.1186/1471-2105-11-595)
+[Wellcome Open Res. 2018 Sep 24:3:124](https://pubmed.ncbi.nlm.nih.gov/30345391/)
 and sited at the University of Oxford.  The development of that website was
 funded by the Wellcome Trust".*
 
@@ -360,7 +360,7 @@ You should also cite this software (currently unpublished) as:
 
 * Seemann T, `mlst` **Github** https://github.com/tseemann/mlst
 
-## Bugs
+## Feedback
 
 Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issues)
 
