@@ -34,7 +34,8 @@ sub _build_num_genes {
 
 sub _build_genes {
   my($self) = @_;
-  open my $fh, '<', $self->_tab_file();
+  open my $fh, '<', $self->_tab_file()
+    or die "Could not open scheme file: $!";
   my $header = <$fh>;
   chomp $header;
   my @row = split m/\t/, $header;
@@ -49,7 +50,8 @@ sub _build_genotypes {
   my($self) = @_;
   my $res;
   my @gene = @{ $self->genes };
-  open my $fh, '<', $self->_tab_file();
+  open my $fh, '<', $self->_tab_file()
+    or die "Could not open scheme file: $!";
   while (<$fh>) {
     next if m/^ST/;
     chomp;
