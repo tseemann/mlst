@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.27.0";
+my $VERSION = "2.27.1";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -180,9 +180,8 @@ if ($json_fn) {
 }
 
 if ($novel) {
-  my $newones = 0;
   my %seen;
-  open FASTA, '>', $novel;
+  my @new;
   for my $fname (keys %nov) {
     for my $sch (keys %{$nov{$fname}}) {
       for my $gene (keys %{$nov{$fname}{$sch}}) {
@@ -191,18 +190,14 @@ if ($novel) {
           my $hash = md5_hex($seq);
           my $id = "$sch.$gene-$hash";
           next if $seen{$id}++; # same novel allele in > 1 input file
-          print FASTA ">$id $fname\n$seq\n";
-          $newones++;
+          push @new, ">$id $fname\n$seq\n";
         }
       }
     }
   }
-  if ($newones <= 0) {
-    unlink $novel;
-    msg("Found no novel intact alleles; will not create $novel");
-  } else {
-    msg("Found $newones novel intact alleles, wrote them to $novel");
-  }
+
+  msg("Found",0+@new,"novel alleles");
+  write_lines($novel, \@new) if @new;
   print STDERR Dumper(\%nov) if $debug;
 }
 
@@ -229,7 +224,6 @@ msg("Done.");
 exit(0);
 
 #----------------------------------------------------------------------
-
 sub revcom {
   my($dna) = @_;
   $dna = reverse($dna);
@@ -242,6 +236,24 @@ sub run_cmd {
   msg("Running: $cmd");
   system($cmd)==0
     or err("COMMAND FAILED: $cmd");
+}
+#----------------------------------------------------------------------
+sub read_lines {
+  my($fname) = @_;
+  open my $fh, '<', $fname 
+    or err("Can not read $fname: $!");
+  my @lines = <$fh>;
+  close $fh;
+  chomp @lines;
+  return @lines;
+}
+#----------------------------------------------------------------------
+sub write_lines {
+  my($fname, $lines) = @_;
+  open my $fh, '>', $fname 
+    or err("Can not write $fname: $!");
+  print {$fh} @$lines;
+  close $fh;
 }
 #----------------------------------------------------------------------
 sub find_mlst {
@@ -352,13 +364,11 @@ sub find_mlst {
 
   return @best;
 }
-
 #----------------------------------------------------------------------
 sub show_version {
   print "$EXE $VERSION\n";
   exit(0);
 }
-
 #----------------------------------------------------------------------
 # Option setting routines
 
