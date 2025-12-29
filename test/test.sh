@@ -21,7 +21,7 @@ setup() {
   run -0 $exe --help
   [[ "$output" =~ "threads" ]]
 }
-@test "Dep check" {
+@test "Try --check" {
   run -0 $exe --no-quiet --check
   [[ "$output" =~ "OK" ]]
 }
@@ -61,9 +61,12 @@ setup() {
   run -0 $exe novel.fasta.bz2
   [[ "$output" =~ "leptospira_2" ]]  
 }
+@test "Try --skipcheck" {
+  run -0 $exe --no-quiet --skipcheck example.fna.gz
+  [[ ! "$output" =~ "Checking mlst dependencie" ]]
+}
 @test "Accept STDIN" {
-  skip
-  run bats_pipe gzip -d -c test/example.fna.gz \| $exe /dev/stdin
+  run bats_pipe gzip -d -c example.fna.gz \| $exe /dev/stdin
   [[ "$output" =~ $SEPI ]]  
 }
 @test "Two files in legacy mode " {
