@@ -3624,4 +3624,5 @@ ST	Oxf_gltA	Oxf_gyrB	Oxf_gdhB	Oxf_recA	Oxf_cpn60	Oxf_gpi	Oxf_rpoD	clonal_complex
 3628	21	12	40	1	48	107	4		
 3629	1	1	4	46	28	99	138		
 3630	1	166	80	85	28	533	113		
+3631	21	12	40	28	22	107	4		
 3632	56	248	405	87	178	353	75		

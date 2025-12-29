@@ -866,3 +866,4 @@ ST	atpD	infB	mdh	rpoB	6pgd	g3pd	frdB	clonal_complex
 867	2	16	4	3	9	3	127	
 868	7	24	6	5	12	13	2	
 869	73	11	90	1	112	32	13	
+870	74	4	4	2	4	3	4	

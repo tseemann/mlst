@@ -1677,3 +1677,4 @@ ST	gki	gtr	murI	mutS	recP	xpt	yqiL	clonal_complex
 1676	3	2	8	5	2	3	32	
 1677	2	6	7	3	9	3	1	
 1678	233	106	8	7	51	3	76	
+1679	13	32	7	6	19	3	2	
