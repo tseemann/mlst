@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.28.0";
+my $VERSION = "2.28.1";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -58,7 +58,7 @@ else {
 
 if ($fofn) {
   msg("Using '$fofn' as source of input files");
-  @ARGV = read_lines($fofn);
+  @ARGV = path($fofn)->lines( {chomp=>1} );;
   msg("Read",0+@ARGV,"filenames");
 }
 
@@ -123,7 +123,6 @@ my $dir = tempdir(CLEANUP=>1);
 for my $argv (@ARGV) {
   -r $argv or err("Unable to read from '$argv'");
   -d $argv and err("'$argv' seems to be a directory, not a file");
-  my @temp;
   my $LABEL;
 
   # use --label, else just filename
@@ -171,11 +170,6 @@ for my $argv (@ARGV) {
       'alleles' => $sch eq '-' ? undef : { (pairwise { ($a=>$b) } @{$scheme{$sch}->genes}, @code) },
     };
   }
-  
-  if (@temp) {
-    msg("Deleting temporary files: @temp");
-    unlink @temp;
-  }
 }
 
 if ($json_fn) {
@@ -203,7 +197,7 @@ if ($novel) {
   }
 
   msg("Found",0+@new,"novel alleles");
-  write_lines($novel, \@new) if @new;
+  path($novel)->spew(\@new);
   print STDERR Dumper(\%nov) if $debug;
 }
 
@@ -242,24 +236,6 @@ sub run_cmd {
   msg("Running: $cmd");
   system($cmd)==0
     or err("COMMAND FAILED: $cmd");
-}
-#----------------------------------------------------------------------
-sub read_lines {
-  my($fname) = @_;
-  open my $fh, '<', $fname 
-    or err("Can not read $fname: $!");
-  my @lines = <$fh>;
-  close $fh;
-  chomp @lines;
-  return @lines;
-}
-#----------------------------------------------------------------------
-sub write_lines {
-  my($fname, $lines) = @_;
-  open my $fh, '>', $fname 
-    or err("Can not write $fname: $!");
-  print {$fh} @$lines;
-  close $fh;
 }
 #----------------------------------------------------------------------
 sub find_mlst {
@@ -404,8 +380,8 @@ sub setOptions {
     {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
     {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
     "SCORING",
-    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
-    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
+    {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider similar/'~''"},
+    {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>50, DESC=>"DNA %cov to report partial/'?' allele"},
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
     "DATABASE",
     {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>abs_path("$FindBin::RealBin/../db/blast/mlst.fa"), DESC=>"BLAST database"},
