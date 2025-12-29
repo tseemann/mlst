@@ -53,13 +53,30 @@ setup() {
   run ! $exe --no-quiet empty.fa
   [[ "$output" =~ "Sequence contains no data" ]]
 }
+@test "Plain FASTA" {
+  run -0 $exe example.fna
+  [[ "$output" =~ "$SEPI" ]]  
+}
 @test "Gzipped FASTA" {
+  run -0 $exe example.fna.gz
+  [[ "$output" =~ "$SEPI" ]]  
+}
+@test "Gzipped Genbank" {
   run -0 $exe example.fna.gz
   [[ "$output" =~ "$SEPI" ]]  
 }
 @test "Bzipped FASTA" {
   run -0 $exe novel.fasta.bz2
   [[ "$output" =~ "leptospira_2" ]]  
+}
+@test "FOFN input" {
+  run -0 $exe --quiet --fofn fofn.txt
+  [[ "${lines[0]}" =~ $SEPI ]]  
+  [[ "${lines[1]}" =~ $SEPI ]]  
+  [[ "${lines[2]}" =~ $SEPI ]]  
+}
+@test "Bad FOFN input" {
+  run ! $exe --fofn /dev/null
 }
 @test "Try --skipcheck" {
   run -0 $exe --no-quiet --skipcheck example.fna.gz

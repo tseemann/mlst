@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.27.1";
+my $VERSION = "2.28.0";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -33,7 +33,7 @@ my $SEEN = 'N';
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
              $list, $longlist, $scheme, $legacy, $check, $skipcheck, $label,
-             $minid, $mincov, $minscore,
+             $minid, $mincov, $minscore, $fofn,
              $csv, $json_fn, $nopath, $novel);
 setOptions();
 
@@ -54,6 +54,12 @@ else {
     msg("OK.");
     exit(0);
   }
+}
+
+if ($fofn) {
+  msg("Using '$fofn' as source of input files");
+  @ARGV = read_lines($fofn);
+  msg("Read",0+@ARGV,"filenames");
 }
 
 ($label && @ARGV > 1) and err("Using --label when scanning multiple files does not make sense");
@@ -378,12 +384,13 @@ sub setOptions {
   @Options = (
     "GENERAL",
     {OPT=>"help",       VAR=>\&usage,                 DESC=>"This help"},
-    {OPT=>"version!",   VAR=>\&show_version,          DESC=>"Print version and exit"},
+    {OPT=>"version",   VAR=>\&show_version,          DESC=>"Print version and exit"},
     {OPT=>"check!",     VAR=>\$check,    DEFAULT=>0,  DESC=>"Just check dependencies and exit"},
     {OPT=>"skipcheck!", VAR=>\$skipcheck,    DEFAULT=>0,  DESC=>"Skip dependency check at runtime"},
     {OPT=>"quiet!",     VAR=>\$quiet,    DEFAULT=>0,  DESC=>"Quiet - no stderr output"},
     {OPT=>"threads=i",  VAR=>\$threads,  DEFAULT=>1,  DESC=>"Number of BLAST threads (suggest GNU Parallel instead)"},
     {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
+    {OPT=>"fofn=s",     VAR=>\$fofn,    DEFAULT=>'',  DESC=>"File of input filenames to use"},
     "SCHEME",
     {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
@@ -400,7 +407,7 @@ sub setOptions {
     {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider 'similar' [~]"},
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>10, DESC=>"DNA %cov to report partial allele at all [?]"},
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
-    "PATHS",
+    "DATABASE",
     {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>abs_path("$FindBin::RealBin/../db/blast/mlst.fa"), DESC=>"BLAST database"},
     {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>abs_path("$FindBin::RealBin/../db/pubmlst"), DESC=>"PubMLST data"},
   );

@@ -1,0 +1,3 @@
+example.fna
+example.fna.gz
+example.gbk.gz
