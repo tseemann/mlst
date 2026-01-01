@@ -1,7 +1,8 @@
 [![CI](https://github.com/tseemann/mlst/actions/workflows/CI.yml/badge.svg)](https://github.com/tseemann/mlst/actions/workflows/CI.yml)
+[![Version](https://img.shields.io/github/v/release/tseemann/mlst)](https://github.com/tseemann/mlst/releases)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Don't judge me](https://img.shields.io/badge/Language-Perl_5-steelblue.svg)
-[![Version](https://img.shields.io/github/v/release/tseemann/mlst)](https://github.com/tseemann/mlst/releases)
+[![Bioconda Downloads](https://img.shields.io/conda/dn/bioconda/mlst.svg)](https://anaconda.org/bioconda/mlst)
 
 # mlst
 
