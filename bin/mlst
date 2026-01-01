@@ -2,16 +2,16 @@
 use 5.32.0;
 use strict;
 use warnings;
+use FindBin;
+use lib "$FindBin::RealBin/../perl5";
 use File::Basename;
 use Data::Dumper;
 use Cwd 'abs_path';
-use List::MoreUtils qw(pairwise);
 use File::Temp qw(tempdir);
 use Path::Tiny;  # bundled in $APPDIR/perl5/
+use List::MoreUtils qw(pairwise);
 use Digest::MD5 qw(md5_hex);
 use JSON;
-use FindBin;
-use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
 use MLST::Scheme;
 use MLST::Logger qw(err msg);
