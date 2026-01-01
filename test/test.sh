@@ -107,8 +107,8 @@ setup() {
   [[ "$output" =~ "WARNING"  ]]
 }
 @test "CSV output" {
-  run -0 $exe --csv example.fna.gz
-  [[ "$output" =~ ",184," ]]  
+  run -0 $exe --csv mixed.fa.zip
+  [[ "${lines[0]}" =~ ",\"MLST_gyrB(1,1)\"," ]]  
 }
 @test "Detect PERFECT" {
   run -0 $exe --full --csv example.fna

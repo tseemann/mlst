@@ -1,32 +1,38 @@
 #!/usr/bin/env perl
 use 5.32.0;
 use strict;
+use warnings;
 use File::Basename;
 use Data::Dumper;
 use Cwd 'abs_path';
 use List::MoreUtils qw(pairwise);
 use File::Temp qw(tempdir);
+use Path::Tiny;  # bundled in $APPDIR/perl5/
+use Digest::MD5 qw(md5_hex);
+use JSON;
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use MLST::PubMLST;
 use MLST::Scheme;
 use MLST::Logger qw(err msg);
 use MLST::Requirements qw(require_exe);
-use JSON;
-use Path::Tiny;  # bundled in $APPDIR/perl5/
-use Digest::MD5 qw(md5_hex);
 
 #..............................................................................
 # Globals
 
-my $VERSION = "2.30.0";
+my $VERSION = '2.30.1';
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
 
+# internal symbols
 my $SEP = '/';
-my $OUTSEP = "\t";
 my $SEEN = 'N';
+
+# for the tabular output
+my $OUTSEP = "\t";
+my $OUTFH = \*STDOUT;
+my $QUOTECHAR = '"';
 
 #..............................................................................
 # Command line options
@@ -87,21 +93,20 @@ if ($list or $longlist or $info) {
   }
   elsif ($longlist) {
     for my $s (@{ $pubmlst->schemes }) {
-      print join( $OUTSEP, $s->name, @{$s->genes} ), "\n";
+      print_row( $s->name, @{$s->genes} );
     }
   }
   elsif ($info) {
-    print join($OUTSEP,
-      qw"SCHEME LOCII TYPES ALLELES DATE LOCII_NAMES"),"\n";
+    print_row(qw"SCHEME LOCII TYPES ALLELES DATE LOCII_NAMES");
     for my $s (sort { $a->name cmp $b->name } @{ $pubmlst->schemes }) {
-      print join($OUTSEP,
+      print_row(
         $s->name,
         $s->num_genes,
         $s->num_genotypes,
         $s->num_alleles,,
         $s->last_updated,
         join(' ', $s->genes->@*),
-      ), "\n";
+      );
     }
   }
   exit(0);
@@ -129,10 +134,10 @@ if ($scheme) {
 
 # output the header for the old style syntax 
 if ($scheme and $legacy) {
-  print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
+  print_row( qw"FILE SCHEME ST", @{ $scheme{$scheme}->genes } );
 }
 elsif ($full) {
-  print join($OUTSEP, qw"FILE SCHEME ST STATUS SCORE ALLELES"), "\n";
+  print_row( qw"FILE SCHEME ST STATUS SCORE ALLELES" );
 }
 
 my $dir = tempdir(CLEANUP=>1);
@@ -169,25 +174,25 @@ for my $argv (@ARGV) {
 
   if ($scheme and $legacy) {
     # old style "one scheme" layout
-    print join($OUTSEP, $LABEL, $sch, $ST, @code),"\n";
+    print_row( $LABEL, $sch, $ST, @code );
   } 
   else {
     # new style "autodetect" layout
     my @gene = $sch eq '-' ? () : $scheme{$sch}->genes->@* ;
     my $status = status_column($ST,$score,@code);
-    my @allele = pairwise { "$a($b)" } @gene, @code;
+    my @allele = pairwise { "$a($b)" } @gene, @code ;
     if ($full) {
-      print join($OUTSEP,
+      print_row(
         $LABEL,
         $sch,
         $ST,
         $status,
         $score,
         join(';',@allele)
-      ), "\n";
+      );
     }
     else {
-      print join($OUTSEP, $LABEL, $sch, $ST, @allele),"\n";
+      print_row( $LABEL, $sch, $ST, @allele );
     }
   }
 
@@ -197,7 +202,9 @@ for my $argv (@ARGV) {
       'filename' => $argv,
       'scheme' => $sch,
       'sequence_type' => $ST,
-      'alleles' => $sch eq '-' ? undef : { (pairwise { ($a=>$b) } @{$scheme{$sch}->genes}, @code) },
+      'alleles' => $sch eq '-' 
+        ? undef 
+        : { (pairwise { ($a=>$b) } @{$scheme{$sch}->genes}, @code) },
     };
   }
 }
@@ -387,6 +394,19 @@ sub find_mlst {
   my @best = @{ $sig[0] };
 
   return @best;
+}
+#----------------------------------------------------------------------
+sub print_row {
+  # will use globals $OUTSEP and $OUTFH;
+  my(@col) = @_;
+  # escape any conflicts  (eg. comma)
+  foreach (@col) {
+    next unless m/"|$OUTSEP/;
+    s{$QUOTECHAR}{$QUOTECHAR$QUOTECHAR}g;
+    s/\\/\\\\/g;
+    $_ = $QUOTECHAR.$_.$QUOTECHAR;
+  }
+  print {$OUTFH} join($OUTSEP, @col), "\n";
 }
 #----------------------------------------------------------------------
 sub show_version {
