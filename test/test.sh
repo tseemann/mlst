@@ -34,12 +34,17 @@ setup() {
   [[ "$output" =~ "Unknown option" ]]
   [[ ! "$output" =~ "USAGE" ]]
 }
-@test "List schemes (short)" {
+@test "List schemes --list" {
   run -0 $exe --list
   [[ "$output" =~ "saureus" ]]
 }
-@test "List schemes (long)" {
+@test "List schemes --longlist" {
   run -0 $exe --longlist
+  [[ "$output" =~ "saureus" ]]
+}
+@test "List schemes --info" {
+  run -0 $exe --info
+  [[ "$lines[0]" =~ "LOCII" ]]
   [[ "$output" =~ "saureus" ]]
 }
 @test "Passing a folder" {

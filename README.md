@@ -103,31 +103,26 @@ NM110.fa  neisseria  11    2     3    4     3       8     4    6
 
 ### Available schemes
 
-To see which PubMLST schemes are supported:
+To see which MLST schemes are supported:
 
 ```
-% mlst --list
+% mlst --info | csvtk -t pretty
 
-abaumannii achromobacter aeromonas afumigatus cdifficile efaecium
-hcinaedi hparasuis hpylori kpneumoniae leptospira
-saureus xfastidiosa yersinia ypseudotuberculosis yruckeri
+CHEME           LOCII   TYPES   ALLELES   DATE         LOCII_NAMES
+--------------   -----   -----   -------   ----------   --------------------------------------------------
+mbovis           7       193     154       2025-06-25   adh1 gltX gpsA gyrB pta2 tdk tkt
+mhominis_3       11      43      190       2023-11-05   eST uvrA gyrB ftsY tuf gap p120' vaa lmp1 lmp3 p60
+mhyopneumoniae   3       255     254       2025-12-14   adk rpoB tpiA
+mcanis           7       83      153       2019-10-21   ack cpn60 fdh pta purA sar tuf
+mhyorhinis       6       265     148       2025-08-20   dnaA rpoB gyrB gltX adk gmk
+mgallisepticum   7       119     249       2025-12-05   atpG dppC DUF3196 lgT mraW plsC ugpA
+mflocculare      3       8       22        2018-07-03   adk rpoB tpiA
+...
 ```
-
-If you want a more detailed list;
-
-```
-% mkst --longlist
-
-achromobacter     nusA       rpoB      eno       gltB      lepA       nuoL      nrdA
-abaumannii        Oxf_gltA   Oxf_gyrB  Oxf_gdhB  Oxf_recA  Oxf_cpn60  Oxf_gpi   Oxf_rpoD
-abaumannii_2      Pas_cpn60  Pas_fusA  Pas_gltA  Pas_pyrG  Pas_recA   Pas_rplB  Pas_rpoB
-aeromonas         gyrB       groL      gltA      metG      ppsA       recA
-aphagocytophilum  pheS       glyA      fumC      mdh       sucA       dnaN      atpA
-arcobacter        aspA       atpA      glnA      gltA      glyA       pgm       tkt
-afumigatus        ANX4       BGT1      CAT1      LIP       MAT1_2     SODB      ZRF2
-bcereus           glp        gmk       ilv       pta       pur        pyc       tpi
-<snip>
-```
+This outpuit is TSV by default but will 
+honour the `--csv` option.
+The older `--list` and `--longlist` are still
+available for backward compatibility.
 
 ### Missing data
 
@@ -411,7 +406,7 @@ ambiguous IUPAC symbols. *i.e.* just `A,T,C,G`.
 2. Put your `SCHEME.txt` file in there
 3. Put your `ALLELE.tfa` files in there
 4. Run `mlst/scripts/mlst-make_blast_db` to update the BLAST indices
-5. Run `mlst --longlist | grep SCHEME` to see if it exists
+5. Run `mlst --info | grep SCHEME` to see if it exists
 6. Run `mlst --scheme SCHEME file.fasta` to see if it works
 
 If it doesn't - go back and check you really did do Step 4 above.

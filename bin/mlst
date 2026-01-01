@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.29.2";
+my $VERSION = "2.30.0";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -33,7 +33,7 @@ my $SEEN = 'N';
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
              $list, $longlist, $scheme, $legacy, $check, $skipcheck, $label,
-             $minid, $mincov, $minscore, $fofn,
+             $minid, $mincov, $minscore, $fofn, $info,
              $full, $csv, $json_fn, $nopath, $novel);
 setOptions();
 
@@ -81,13 +81,27 @@ if ($scheme and $minscore != 0) {
   $minscore=0;
 }
 
-if ($list or $longlist) {
+if ($list or $longlist or $info) {
   if ($list) { 
     print join( " ", $pubmlst->names ), "\n";
   }
   elsif ($longlist) {
     for my $s (@{ $pubmlst->schemes }) {
       print join( $OUTSEP, $s->name, @{$s->genes} ), "\n";
+    }
+  }
+  elsif ($info) {
+    print join($OUTSEP,
+      qw"SCHEME LOCII TYPES ALLELES DATE LOCII_NAMES"),"\n";
+    for my $s (sort { $a->name cmp $b->name } @{ $pubmlst->schemes }) {
+      print join($OUTSEP,
+        $s->name,
+        $s->num_genes,
+        $s->num_genotypes,
+        $s->num_alleles,,
+        $s->last_updated,
+        join(' ', $s->genes->@*),
+      ), "\n";
     }
   }
   exit(0);
@@ -397,6 +411,7 @@ sub setOptions {
     {OPT=>"fofn=s",     VAR=>\$fofn,    DEFAULT=>'',  DESC=>"File of input filenames to use"},
     "SCHEME",
     {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
+    {OPT=>"info!",      VAR=>\$info,     DEFAULT=>0,  DESC=>"More information about schemes"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
     {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli,abaumannii,vcholerae_2', DESC=>"Ignore these schemes (comma sep. list)"},
