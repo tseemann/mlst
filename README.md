@@ -220,9 +220,9 @@ use for mixtures of species, so you should use
 | FILE     | Input filename   | `genome.gbk` |
 | SCHEME   | From `--scheme`  | `mgenitalium` |
 | ST       | Sequence Type    | `148` |
-| ALLELE_1 | Allele 1         | `adk(7)` |
-| ALLELE_2 | Allele 2         | `atpA(1)` |
-| ALLELE_n | Allele n         | ... |
+| ALLELE_1 | Allele 1 numner  | `7` |
+| ALLELE_2 | Allele 2 numbner | `1` |
+| ALLELE_n | Allele number    | _integer_ |
 
 ## Tweaking the output
 
