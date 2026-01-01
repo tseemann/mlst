@@ -105,9 +105,9 @@ setup() {
   run -0 $exe --csv example.fna.gz
   [[ "$output" =~ ",184," ]]  
 }
-@test "Detect GOOD" {
+@test "Detect PERFECT" {
   run -0 $exe --full --csv example.fna
-  [[ "${lines[1]}" =~ ",GOOD," ]]
+  [[ "${lines[1]}" =~ ",PERFECT," ]]
 }
 @test "Detect MIXED" {
   run -0 $exe --full --csv mixed.fa.zip
@@ -117,9 +117,13 @@ setup() {
   run -0 $exe --full --csv novel.fa
   [[ "${lines[1]}" =~ ",NOVEL," ]]
 }
-@test "Detect BAD" {
+@test "Detect MISSING" {
   run -0 $exe --full --csv messy.fa
-  [[ "${lines[1]}" =~ ",BAD," ]]
+  [[ "${lines[1]}" =~ ",MISSING," ]]
+}
+@test "Detect NONE" {
+  run -0 $exe --full --csv none.fa
+  [[ "${lines[1]}" =~ ",NONE," ]]
 }
 
 @test "JSON output" {

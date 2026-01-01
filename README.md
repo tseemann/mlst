@@ -172,6 +172,8 @@ but CSV can be enabled with `--csv`.
 
 ### Default
 
+This format does not have any column headings.
+
 | Column  | Description   | Example |
 | :------ | :----------   | :------ |
 | 1       | Filename      | `genome.gbk` |
@@ -183,16 +185,40 @@ but CSV can be enabled with `--csv`.
 
 ### Full `--full` (recommended)
 
+This preferred format has 6 columns:
+
 | Column  | Description | Example |
 | :-----  | :---------- | :------ |
 | FILE    | Input filename | `genome.gbk` |
 | SCHEME  | Auto-detected scheme | `mgenitalium` |
 | ST      | Sequence Type assined | `148` |
-| STATUS  | Quality of genotype | `NOVEL` |
+| STATUS  | Quality of genotype | `NOVEL` (read [more](#status)) |
 | SCORE   | Score of genotype | `90` |
 | ALLELES | Indetified alleles | `adk(7);atpA(1);gmk(1);gyrB(1);pgm(3);ppa(1)` |
 
+#### Status
+
+These codes are in development.
+Some of them are stable, but others 
+are subject to change.
+
+| STATUS  | Meaning | Stable? |
+| :-----  | :------ | :------ |
+| PERFECT | Exact matches to a known ST | YES |
+| NOVEL   | Exact matches, but not ST yet | YES |
+| NONE    | No allele matches whatsoever | YES |
+| MIXED   | Has at least one mixed allele | YES
+| MISSING | Has at least one missing allele | no |
+| BAD     | If none of the above & score below 70 | no |
+| OK      | If none of the above | no |
+
 ### Legacy `--legacy`
+
+This format has a variable number of columns
+per line, depending on how many allees are
+in the scheme found. This makes it hard to 
+use for mixtures of species, so you should use
+`--full` for that mode.
 
 | Column   | Description      | Example |
 | :-----   | :----------      | :------ |

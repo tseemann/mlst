@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.29.0";
+my $VERSION = "2.29.2";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -242,11 +242,12 @@ exit(0);
 #----------------------------------------------------------------------
 sub status_column {
   my($ST, $score, @code) = @_;
-  return 'GOOD' if $ST =~ m/^\d+$/; # already good
+  return 'PERFECT' if $ST =~ m/^\d+$/; # already good
+  return 'NONE' if $score <= 0;
   return 'NOVEL' if ! grep m/\D/, @code;
   return 'MIXED' if grep m/,/, @code;
-  return 'BAD' if $score < 70;
   return 'MISSING' if grep m/-/, @code;
+  return 'BAD' if $score < 70;
   return 'OK';
 }
 
