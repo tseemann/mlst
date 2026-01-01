@@ -48,7 +48,7 @@ has genotypes => (
 
 sub _build_genotypes {
   my($self) = @_;
-  my $res;
+  my $res = {};
   my @gene = @{ $self->genes };
   open my $fh, '<', $self->_tab_file()
     or die "Could not open scheme file: $!";
