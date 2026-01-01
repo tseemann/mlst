@@ -74,12 +74,14 @@ sub _build_num_genotypes {
 sub _build_num_alleles {
   my($self) = @_;
   my %count;
+  my @g = $self->genes->@*;
   for my $sig (keys $self->genotypes->%*) {
     my @n = split m'/', $sig;
-    @n = map { "A$_-".$n[$_] } 0 .. $#n;
+    @n = map { $g[$_].'_'.$n[$_] } 0 .. $#n;
     map { $count{$_}++ } @n;
+    #print Dumper($sig, \@n);
   }
-  #print Dumper(\%count);
+  #print Dumper($self->name, $self->num_genes, \%count);
   return scalar keys %count;
 }
 

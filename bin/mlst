@@ -20,7 +20,7 @@ use MLST::Requirements qw(require_exe);
 #..............................................................................
 # Globals
 
-my $VERSION = '2.30.1';
+my $VERSION = '2.31.0';
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -39,7 +39,7 @@ my $QUOTECHAR = '"';
 
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
              $list, $longlist, $scheme, $legacy, $check, $skipcheck, $label,
-             $minid, $mincov, $minscore, $fofn, $info,
+             $minid, $mincov, $minscore, $fofn, $info, $outfile,
              $full, $csv, $json_fn, $nopath, $novel);
 setOptions();
 
@@ -70,7 +70,6 @@ if ($fofn) {
 
 ($label && @ARGV > 1) and err("Using --label when scanning multiple files does not make sense");
 
-$OUTSEP = ',' if $csv;  # default is tab
 
 $legacy && ! $scheme and err("Must specify a --scheme for --legacy output mode");
 
@@ -123,8 +122,13 @@ msg("Excluding $num_excluded schemes:", (keys %exclude)) if $num_excluded > 0;
 #..............................................................................
 # Output results
 
-my $json;
+if ($outfile) {
+  # defaults to STDOUT
+  $OUTFH = path($outfile)->filehandle('>');
+}
+$OUTSEP = ',' if $csv;  # default is tab
 
+my $json;
 my $allele_cnt = 7;
 
 # If --scheme is set, set the length for initialising @sig to the number of alleles in $scheme
@@ -430,7 +434,7 @@ sub setOptions {
     {OPT=>"debug!",     VAR=>\$debug,    DEFAULT=>0,  DESC=>"Verbose debug output to stderr"},
     {OPT=>"fofn=s",     VAR=>\$fofn,    DEFAULT=>'',  DESC=>"File of input filenames to use"},
     "SCHEME",
-    {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Don't autodetect, force this scheme on all inputs"},
+    {OPT=>"scheme=s",   VAR=>\$scheme,   DEFAULT=>'', DESC=>"Do not auto-detect, force this scheme"},
     {OPT=>"info!",      VAR=>\$info,     DEFAULT=>0,  DESC=>"More information about schemes"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
@@ -442,6 +446,7 @@ sub setOptions {
     {OPT=>"label=s", VAR=>\$label,    DEFAULT=>'', DESC=>"Replace FILE with this name instead"},
     {OPT=>"nopath!", VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
     "OUTPUT FILES",
+    {OPT=>"outfile=s", VAR=>\$outfile,    DEFAULT=>'', DESC=>"Save output to this file [STDOUT]"},
     {OPT=>"novel=s", VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
     {OPT=>"json=s",  VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
     "SCORING",

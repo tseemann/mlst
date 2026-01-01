@@ -137,6 +137,14 @@ setup() {
   [[ -r "$outfile" ]]
   run -0 grep 'sequence_type' "$outfile"
 }
+@test "Using --outfile" {
+  local outfile="${BATS_TMPDIR}/$name.tsv"
+  run -0 $exe --full --outfile "$outfile" messy.fa
+  [[ "$output" == "" ]]
+  [[ -r "$outfile" ]]
+  run -0 wc -l < "$outfile"
+  [[ ${lines[0]} == "2" ]]
+}
 @test "Custom label" {
   run -0 $exe --label GDAYMATE example.fna.gz
   [[ "$output" =~ "GDAYMATE" ]]
