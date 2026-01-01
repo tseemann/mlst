@@ -19,7 +19,7 @@ use Digest::MD5 qw(md5_hex);
 #..............................................................................
 # Globals
 
-my $VERSION = "2.28.2";
+my $VERSION = "2.29.0";
 my $EXE = basename( $FindBin::RealScript );
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -34,7 +34,7 @@ my $SEEN = 'N';
 my(@Options, $debug, $quiet, $blastdb, $datadir, $threads, $exclude,
              $list, $longlist, $scheme, $legacy, $check, $skipcheck, $label,
              $minid, $mincov, $minscore, $fofn,
-             $csv, $json_fn, $nopath, $novel);
+             $full, $csv, $json_fn, $nopath, $novel);
 setOptions();
 
 #..............................................................................
@@ -117,6 +117,9 @@ if ($scheme) {
 if ($scheme and $legacy) {
   print join($OUTSEP, qw(FILE SCHEME ST), @{ $scheme{$scheme}->genes } ),"\n";
 }
+elsif ($full) {
+  print join($OUTSEP, qw"FILE SCHEME ST STATUS SCORE ALLELES"), "\n";
+}
 
 my $dir = tempdir(CLEANUP=>1);
 
@@ -131,7 +134,7 @@ for my $argv (@ARGV) {
   #msg("argv=$argv infile=$infile LABEL=$LABEL label=$label");
 
   # Do the big function call
-  my($sch, $ST, $sig) = find_mlst($argv, $LABEL);
+  my($sch, $ST, $sig, $score) = find_mlst($argv, $LABEL);
   $scheme && $sch ne $scheme and err("BUG: got back $sch despite --scheme $scheme");
 
   # delete all novel alleles from failed schemes
@@ -156,9 +159,22 @@ for my $argv (@ARGV) {
   } 
   else {
     # new style "autodetect" layout
-    my @gene = $sch eq '-' ? () : @{ $scheme{$sch}->genes };
+    my @gene = $sch eq '-' ? () : $scheme{$sch}->genes->@* ;
+    my $status = status_column($ST,$score,@code);
     my @allele = pairwise { "$a($b)" } @gene, @code;
-    print join($OUTSEP, $LABEL, $sch, $ST, @allele),"\n";
+    if ($full) {
+      print join($OUTSEP,
+        $LABEL,
+        $sch,
+        $ST,
+        $status,
+        $score,
+        join(';',@allele)
+      ), "\n";
+    }
+    else {
+      print join($OUTSEP, $LABEL, $sch, $ST, @allele),"\n";
+    }
   }
 
   if ($json_fn) {
@@ -222,6 +238,17 @@ my @motd = (
 msg( $motd[ int(rand(scalar(@motd))) ] );
 msg("Done.");
 exit(0);
+
+#----------------------------------------------------------------------
+sub status_column {
+  my($ST, $score, @code) = @_;
+  return 'GOOD' if $ST =~ m/^\d+$/; # already good
+  return 'NOVEL' if ! grep m/\D/, @code;
+  return 'MIXED' if grep m/,/, @code;
+  return 'BAD' if $score < 70;
+  return 'MISSING' if grep m/-/, @code;
+  return 'OK';
+}
 
 #----------------------------------------------------------------------
 sub revcom {
@@ -372,13 +399,15 @@ sub setOptions {
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
     {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli,abaumannii,vcholerae_2', DESC=>"Ignore these schemes (comma sep. list)"},
-    "OUTPUT",
-    {OPT=>"csv!",       VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
-    {OPT=>"json=s",     VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
-    {OPT=>"label=s",    VAR=>\$label,    DEFAULT=>'', DESC=>"Replace FILE with this name instead"},
-    {OPT=>"nopath!",    VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
-    {OPT=>"novel=s",    VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
-    {OPT=>"legacy!",    VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
+    "OUTPUT FORMAT",
+    {OPT=>"full!",   VAR=>\$full,     DEFAULT=>0,  DESC=>"More detailed output format (recommended)"},
+    {OPT=>"legacy!", VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
+    {OPT=>"csv!",    VAR=>\$csv,      DEFAULT=>0,  DESC=>"Output CSV instead of TSV"},
+    {OPT=>"label=s", VAR=>\$label,    DEFAULT=>'', DESC=>"Replace FILE with this name instead"},
+    {OPT=>"nopath!", VAR=>\$nopath,   DEFAULT=>0,  DESC=>"Strip filename paths from FILE column"},
+    "OUTPUT FILES",
+    {OPT=>"novel=s", VAR=>\$novel,    DEFAULT=>'', DESC=>"Save novel alleles to this FASTA file"},
+    {OPT=>"json=s",  VAR=>\$json_fn,  DEFAULT=>'', DESC=>"Also write results to this file in JSON format"},
     "SCORING",
     {OPT=>"minid=f",    VAR=>\$minid,    DEFAULT=>95, DESC=>"DNA %identity of full allelle to consider similar/'~''"},
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>50, DESC=>"DNA %cov to report partial/'?' allele"},

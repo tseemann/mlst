@@ -5,7 +5,8 @@ setup() {
   bats_require_minimum_version 1.5.0
   dir=$(dirname "$BATS_TEST_FILENAME")
   cd "$dir"
-  exe="$dir/../bin/$name --quiet"
+  bin="$dir/../bin/$name"
+  exe="$bin --quiet --skipcheck"
   tab=$'\t'
   SEPI="${tab}sepidermidis${tab}184${tab}"
 }
@@ -22,7 +23,7 @@ setup() {
   [[ "$output" =~ "threads" ]]
 }
 @test "Try --check" {
-  run -0 $exe --no-quiet --check
+  run -0 $bin --check
   [[ "$output" =~ "OK" ]]
 }
 @test "No parameters" {
@@ -69,6 +70,10 @@ setup() {
   run -0 $exe novel.fasta.bz2
   [[ "$output" =~ "leptospira_2" ]]  
 }
+@test "Zipped FASTA" {
+  run -0 $exe mixed.fa.zip
+  [[ "$output" =~ "mgen" ]]
+}
 @test "FOFN input" {
   run -0 $exe --quiet --fofn fofn.txt
   [[ "${lines[0]}" =~ $SEPI ]]  
@@ -90,10 +95,33 @@ setup() {
   run -0 $exe example.fna.gz example.gbk.gz
   [[ "$output" =~ $SEPI ]]  
 }
+@test "Finds duplicate alleles" {
+  run -0 $bin mixed.fa.zip
+  [[ "$output" =~ "pgm(3,3)"  ]]
+  [[ "$output" =~ "atpA(1,1)" ]]
+  [[ "$output" =~ "WARNING"  ]]
+}
 @test "CSV output" {
   run -0 $exe --csv example.fna.gz
   [[ "$output" =~ ",184," ]]  
 }
+@test "Detect GOOD" {
+  run -0 $exe --full --csv example.fna
+  [[ "${lines[1]}" =~ ",GOOD," ]]
+}
+@test "Detect MIXED" {
+  run -0 $exe --full --csv mixed.fa.zip
+  [[ "${lines[1]}" =~ ",MIXED," ]]
+}
+@test "Detect NOVEL" {
+  run -0 $exe --full --csv novel.fa
+  [[ "${lines[1]}" =~ ",NOVEL," ]]
+}
+@test "Detect BAD" {
+  run -0 $exe --full --csv messy.fa
+  [[ "${lines[1]}" =~ ",BAD," ]]
+}
+
 @test "JSON output" {
   local outfile="${BATS_TMPDIR}/$name.json"
   run -0 $exe --json "$outfile" example.fna.gz

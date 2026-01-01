@@ -16,6 +16,10 @@ contigs.fa  neisseria  11149  abcZ(672) adk(3) aroE(4) fumC(3) gdh(8) pdhC(4) pg
 % mlst genome.gbk.gz
 genome.gbk.gz  sepidermidis  184  arcC(16) aroE(1) gtr(2) mutS(1) pyrR(2) tpiA(1) yqiL(1)
 
+% mlst --full new.fa
+FILE    SCHEME       ST  STATUS  SCORE  ALLELES
+new.fa  mgenitalium  -   NOVEL   90      MLST_adk(7);MLST_atpA(1);MLST_gmk(1);MLST_gyrB(1);MLST_pgm(3);MLST_ppa(1)
+
 % mlst --label Anthrax GCF_001941925.1_ASM194192v1_genomic.fna.bz2
 Anthrax  bcereus  -  glp(24) gmk(1) ilv(~83) pta(1) pur(~71) pyc(37) tpi(41)
 
@@ -131,24 +135,26 @@ bcereus           glp        gmk       ilv       pta       pur        pyc       
 It attempts to tell you as much as possible about what it found using the
 notation below:
 
-Symbol | Meaning | Length | Identity
----   | --- | --- | ---
-`n`   | exact intact allele                   | 100%            | 100%
-`~n`  | novel full length allele similar to n | 100%            | &ge; `--minid`
-`n?`  | partial match to known allele         | &ge; `--mincov` | &ge; `--minid`
-`-`   | allele missing                        | &lt; `--mincov` | &lt; `--minid`
-`n,m` | multiple alleles                      | &nbsp;          | &nbsp;
+| Symbol | Meaning | Length | Identity |
+| :---   | :---    | :---   | :--- |
+| `n`    | exact intact allele                   | 100%            | 100% |
+| `~n`   | novel full length allele similar to n | 100%            | &ge; `--minid` |
+| `n?`   | partial match to known allele         | &ge; `--mincov` | &ge; `--minid` |
+| `-`    | allele missing                        | &lt; `--mincov` | &lt; `--minid` |
+| `n,m`  | multiple alleles                      | &nbsp;          | &nbsp; |
 
 ### Scoring system
 
 Each MLST prediction gets a score out of 100.
 The score for a scheme with N alleles is as follows:
 
-* +90/N points for an exact allele match _e.g._ `42`
-* +63/N points for a novel allele match (50% of an exact allele) _e.g._ `~42`
-* +18/N points for a partial allele match (20% of an exact alelle) _e.g._ `42?`
-* 0 points for a missing allele _e.g._ `-`
-* +10 points if there is a matching ST type for the allele combination
+| Points | For | Example |
+| :----- | :-- | :-----  |
+| +90/N  | exact allele match | `42` |
+| +63/N  | novel allele match (50% of an exact allele) |`~42` |
+| +18/N  | partial allele match (20% of an exact alelle) | `42?`|
+| 0      | missing allele  | `-` |
+| +10    | a matching ST type for the allele combination | `248` |
 
 It is possible to filter results using the `--minscore` option which takes a
 value between 1 and 100. If you only want to report known ST types, then use
@@ -156,6 +162,46 @@ value between 1 and 100. If you only want to report known ST types, then use
 no ST type, use `--minscore 90`. The default is `--minscore 50` which is an
 _ad hoc_ value I have found allows for genuine partial ST matches
 but eliminates false positives.
+
+## Output formats
+
+There are 3 output formats. 
+I recommened using `--full` mode.
+By default they are TSV, 
+but CSV can be enabled with `--csv`.
+
+### Default
+
+| Column  | Description   | Example |
+| :------ | :----------   | :------ |
+| 1       | Filename      | `genome.gbk` |
+| 2       | Scheme        | `mgenitalium` |
+| 3       | Sequence Type | `148` |
+| 4       | Alelle 1      | `adk(7)` |
+| 5       | Allele 2      | `atpA(1)` |
+| 6 +     | Allele 3 ...  | ... |
+
+### Full `--full` (recommended)
+
+| Column  | Description | Example |
+| :-----  | :---------- | :------ |
+| FILE    | Input filename | `genome.gbk` |
+| SCHEME  | Auto-detected scheme | `mgenitalium` |
+| ST      | Sequence Type assined | `148` |
+| STATUS  | Quality of genotype | `NOVEL` |
+| SCORE   | Score of genotype | `90` |
+| ALLELES | Indetified alleles | `adk(7);atpA(1);gmk(1);gyrB(1);pgm(3);ppa(1)` |
+
+### Legacy `--legacy`
+
+| Column   | Description      | Example |
+| :-----   | :----------      | :------ |
+| FILE     | Input filename   | `genome.gbk` |
+| SCHEME   | From `--scheme`  | `mgenitalium` |
+| ST       | Sequence Type    | `148` |
+| ALLELE_1 | Allele 1         | `adk(7)` |
+| ALLELE_2 | Allele 2         | `atpA(1)` |
+| ALLELE_n | Allele n         | ... |
 
 ## Tweaking the output
 
@@ -370,7 +416,4 @@ Please submit via the [Github Issues page](https://github.com/tseemann/mlst/issu
 
 ## Author
 
-* Torsten Seemann
-* Web: https://tseemann.github.io/
-* Twitter: [@torstenseemann](https://twitter.com/torstenseemann)
-* Blog: [The Genome Factory](https://thegenomefactory.blogspot.com/)
+* [Torsten Seemann](https://tseemann.github.io/)
