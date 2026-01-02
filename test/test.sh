@@ -166,3 +166,7 @@ setup() {
   run -0 "$dir/../scripts/mlst-show_seqs" -s efaecium -t 111
   [[ "$output" =~ ">atpA_2" ]]  
 }
+@test "Eqyally good scheme warning" {
+  run -0 $bin equality.fa.gz 
+  [[ "$output" =~ "WARNING:" ]]  
+}
