@@ -5,7 +5,6 @@ use warnings;
 use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use Data::Dumper;
-use Cwd 'abs_path';
 use Path::Tiny;
 use List::MoreUtils qw(pairwise);
 use Digest::MD5 qw(md5_hex);
@@ -452,8 +451,8 @@ sub setOptions {
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>50, DESC=>"DNA %cov to report partial/'?' allele"},
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
     "DATABASE",
-    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>abs_path("$FindBin::RealBin/../db/blast/mlst.fa"), DESC=>"BLAST database"},
-    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>abs_path("$FindBin::RealBin/../db/pubmlst"), DESC=>"PubMLST data"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>path("$FindBin::RealBin/../db/blast/mlst.fa")->realpath, DESC=>"BLAST database prefix"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>path("$FindBin::RealBin/../db/pubmlst")->realpath, DESC=>"PubMLST data folders"},
   );
   GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options)
     or exit(1);
