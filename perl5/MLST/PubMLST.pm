@@ -27,7 +27,7 @@ sub _build_schemes {
 
 sub names {
   my($self) = @_;
-  return map { $_->name } @{ $self->schemes };
+  return sort map { $_->name } @{ $self->schemes };
 } 
 
 #.................................................................................
