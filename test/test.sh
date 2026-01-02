@@ -96,6 +96,10 @@ setup() {
   run bats_pipe gzip -d -c example.fna.gz \| $exe /dev/stdin
   [[ "$output" =~ $SEPI ]]  
 }
+@test "Check --debug works" {
+  run -0 $exe --debug example.fna.gz
+  [[ "$output" =~ "=== DEBUG" ]]  
+}
 @test "Two files in legacy mode " {
   run -0 $exe example.fna.gz example.gbk.gz
   [[ "$output" =~ $SEPI ]]  

@@ -11,13 +11,13 @@ use Digest::MD5 qw(md5_hex);
 use JSON;
 use MLST::PubMLST;
 use MLST::Scheme;
-use MLST::Logger qw(err wrn msg);
+use MLST::Logger qw(err wrn msg dbg);
 use MLST::Requirements qw(require_exe);
 
 #..............................................................................
 # Globals
 
-my $VERSION = '2.32.2';
+my $VERSION = '2.32.3';
 my $EXE = path($FindBin::RealScript)->basename;
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -47,6 +47,8 @@ setOptions();
 # Option parsing
 
 MLST::Logger->quiet($quiet);
+MLST::Logger->debug($debug);
+
 msg("This is $EXE $VERSION running on $^O with Perl $]");
 
 # check we have the right tools and versions thereof
@@ -239,7 +241,7 @@ if ($novel) {
 
   msg("Found",0+@new,"novel alleles");
   path($novel)->spew(\@new);
-  print STDERR Dumper(\%nov) if $debug;
+  dbg(Dumper(\%nov));
 }
 
 # Say our goodbyes
@@ -320,12 +322,12 @@ sub find_mlst {
                    \t (\S+) \t (\d+) \t (\d+) \t (\S+) \t (\S+) /x;
     my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq, $sstrand) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
     $res_count++;
-    msg("[$res_count] $qid:$qstart-$qend($sstrand) | $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq") if $debug;
+    dbg("[$res_count] $qid:$qstart-$qend($sstrand) | $sch $gene $num | id=$nident/$alen | cov=$alen/$hlen | seq=$qseq");
 
     next unless $nident/$hlen >= $mincov/100 ; # need min-cov to reach minid
 
     if ($scheme and $sch ne $scheme) {
-      msg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme") if $debug;
+      dbg("Skipping $sch.$gene.$num allele as user specified --scheme $scheme");
       next;
     }
     if ($exclude{$sch}) {
@@ -373,18 +375,18 @@ sub find_mlst {
     # score is out of 100 (90 split across alleles, 10 for an ST type)
     # penalties are given as below for inexact alleles
     my $score = $nlocii;
-    #msg("Start: score=$score ($sig)") if $debug;
+    #dbg("Start: score=$score ($sig)");
     $score -= 0.3*($sig =~ tr/~/~/);  # novelish
-    #msg("Novel: score=$score") if $debug;
+    #dbg("Novel: score=$score");
     $score -= 0.5*($sig =~ tr/?/?/);  # approx
-    #msg("Parti: score=$score") if $debug;
+    #dbg("Parti: score=$score");
     $score -= 1.0*($sig =~ tr/-/-/);  # absent
-    #msg("Absen: score=$score") if $debug;
+    #dbg("Absen: score=$score");
     $score = int($score * 90 / $nlocii);
-    #msg("Normz: score=$score") if $debug;
+    #dbg("Normz: score=$score");
     $score += 10 if $ST ne '-';
-    #msg("HasST: score=$score") if $debug;
-    msg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)") if $debug;
+    #dbg("HasST: score=$score");
+    dbg("SCORE=$score\t$name\t$ST\t$sig\t($nlocii genes)");
     push @sig, [ $name, $ST, $sig, $score ] if $score >= $minscore;
   }
 
@@ -399,7 +401,7 @@ sub find_mlst {
       #wrn(Dumper(\@sig));
     }
   }
-  print STDERR Dumper(@sig) if $debug;
+  dbg(Dumper(@sig));
 
   # take the top scorer
   my @best = @{ $sig[0] };
