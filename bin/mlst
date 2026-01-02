@@ -11,13 +11,13 @@ use Digest::MD5 qw(md5_hex);
 use JSON;
 use MLST::PubMLST;
 use MLST::Scheme;
-use MLST::Logger qw(err msg);
+use MLST::Logger qw(err wrn msg);
 use MLST::Requirements qw(require_exe);
 
 #..............................................................................
 # Globals
 
-my $VERSION = '2.32.0';
+my $VERSION = '2.32.2';
 my $EXE = path($FindBin::RealScript)->basename;
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -388,10 +388,17 @@ sub find_mlst {
     push @sig, [ $name, $ST, $sig, $score ] if $score >= $minscore;
   }
 
-  @sig = sort { 
-       $b->[3] <=> $a->[3]   # choose highest score
-    or $a->[1] <=> $b->[1]   # if same, prefer scheme with 'older' number
-  } @sig;
+  # sort by score highest to lowest
+  @sig = sort { $b->[3] <=> $a->[3] } @sig;
+  
+  # mention any equal-firsts
+  for my $i (1 .. $#sig) {
+    my $scaw = $sig[$i][3];
+    if ($scaw == $sig[0][3]) {
+      wrn("$sig[0][0]($sig[0][1])==$sig[$i][0]($sig[$i][1]) score=$scaw $fname");
+      #wrn(Dumper(\@sig));
+    }
+  }
   print STDERR Dumper(@sig) if $debug;
 
   # take the top scorer
