@@ -23,4 +23,5 @@ test.local/
 db/pubmlst.old*/
 eb/blast.old*/
 db/pubmlst/dbases.xml
+db/blast/mlst.fa
 tmp/
