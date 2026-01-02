@@ -17,10 +17,13 @@ use MLST::Requirements qw(require_exe);
 #..............................................................................
 # Globals
 
-my $VERSION = '2.31.1';
+my $VERSION = '2.32.0';
 my $EXE = path($FindBin::RealScript)->basename;
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
+
+# this is just the default schemes to exclude
+my $EXCLUDE = 'ecoli,abaumannii,vcholerae_2,senterica_achtman_2';
 
 # internal symbols
 my $SEP = '/';
@@ -435,7 +438,7 @@ sub setOptions {
     {OPT=>"info!",      VAR=>\$info,     DEFAULT=>0,  DESC=>"More information about schemes"},
     {OPT=>"list!",      VAR=>\$list,     DEFAULT=>0,  DESC=>"List available MLST scheme names"},
     {OPT=>"longlist!",  VAR=>\$longlist, DEFAULT=>0,  DESC=>"List allelles for all MLST schemes"},
-    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>'ecoli,abaumannii,vcholerae_2', DESC=>"Ignore these schemes (comma sep. list)"},
+    {OPT=>"exclude=s",  VAR=>\$exclude,  DEFAULT=>$EXCLUDE,  DESC=>"Ignore these schemes"},
     "OUTPUT FORMAT",
     {OPT=>"full!",   VAR=>\$full,     DEFAULT=>0,  DESC=>"More detailed output format (recommended)"},
     {OPT=>"legacy!", VAR=>\$legacy,   DEFAULT=>0,  DESC=>"Use old legacy output with allele header row (requires --scheme)"},
