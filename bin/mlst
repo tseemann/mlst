@@ -6,8 +6,7 @@ use FindBin;
 use lib "$FindBin::RealBin/../perl5";
 use Data::Dumper;
 use Cwd 'abs_path';
-use File::Temp qw(tempdir);
-use Path::Tiny;  # bundled in $APPDIR/perl5/
+use Path::Tiny;
 use List::MoreUtils qw(pairwise);
 use Digest::MD5 qw(md5_hex);
 use JSON;
@@ -143,7 +142,7 @@ elsif ($full) {
   print_row( qw"FILE SCHEME ST STATUS SCORE ALLELES" );
 }
 
-my $dir = tempdir(CLEANUP=>1);
+my $dir = Path::Tiny->tempdir(CLEANUP=>1);
 
 for my $argv (@ARGV) {
   -r $argv or err("Unable to read from '$argv'");
