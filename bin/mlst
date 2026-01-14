@@ -17,7 +17,7 @@ use MLST::Requirements qw(require_exe);
 #..............................................................................
 # Globals
 
-my $VERSION = '2.32.3';
+my $VERSION = '2.32.4';
 my $EXE = path($FindBin::RealScript)->basename;
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
@@ -208,8 +208,10 @@ for my $argv (@ARGV) {
       'filename' => $argv,
       'scheme' => $sch,
       'sequence_type' => $ST,
-      'alleles' => $sch eq '-' 
-        ? undef 
+      'status' => status_column($ST, $score, @code),
+      'score' => $score,
+      'alleles' => $sch eq '-'
+        ? undef
         : { (pairwise { ($a=>$b) } @{$scheme{$sch}->genes}, @code) },
     };
   }

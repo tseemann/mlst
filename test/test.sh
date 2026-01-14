@@ -139,7 +139,9 @@ setup() {
   local outfile="${BATS_TMPDIR}/$name.json"
   run -0 $exe --json "$outfile" example.fna.gz
   [[ -r "$outfile" ]]
-  run -0 grep 'sequence_type' "$outfile"
+  run -0 grep '"sequence_type"' "$outfile"
+  run -0 grep '"status"' "$outfile"
+  run -0 grep '"score"' "$outfile"
 }
 @test "Using --outfile" {
   local outfile="${BATS_TMPDIR}/$name.tsv"
