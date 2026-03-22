@@ -1,0 +1,10 @@
+{
+  "name": "ureaplasma",
+  "description": "MLST",
+  "locus": 4,
+  "download_date": "2026-03-11",
+  "last_updated": "2024-01-16",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_ureaplasma_seqdef/schemes/1",
+  "authenticated": false
+}

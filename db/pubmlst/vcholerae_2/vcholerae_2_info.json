@@ -1,0 +1,10 @@
+{
+  "name": "vcholerae_2",
+  "description": "MLST (O1 and O139)",
+  "locus": 5,
+  "download_date": "2026-03-11",
+  "last_updated": "2019-09-13",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_vcholerae_seqdef/schemes/2",
+  "authenticated": false
+}

@@ -1,0 +1,10 @@
+{
+  "name": "staphlugdunensis",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2018-08-06",
+  "source": "pasteur",
+  "API": "https://bigsdb.pasteur.fr/api/db/pubmlst_staphlugdunensis_seqdef/schemes/1",
+  "authenticated": false
+}

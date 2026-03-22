@@ -1,0 +1,10 @@
+{
+  "name": "ecloacae",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-02-17",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_ecloacae_seqdef/schemes/1",
+  "authenticated": false
+}

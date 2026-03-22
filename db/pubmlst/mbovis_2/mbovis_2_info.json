@@ -1,0 +1,10 @@
+{
+  "name": "mbovis_2",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-08-14",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_mbovis_seqdef/schemes/2",
+  "authenticated": false
+}

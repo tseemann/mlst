@@ -1,0 +1,10 @@
+{
+  "name": "mflocculare",
+  "description": "MLST",
+  "locus": 3,
+  "download_date": "2026-03-11",
+  "last_updated": "2018-07-03",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_mflocculare_seqdef/schemes/1",
+  "authenticated": false
+}

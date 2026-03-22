@@ -1,0 +1,10 @@
+{
+  "name": "achromobacter",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-12-09",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_achromobacter_seqdef/schemes/1",
+  "authenticated": false
+}

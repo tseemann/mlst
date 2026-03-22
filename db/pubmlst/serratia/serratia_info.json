@@ -1,0 +1,10 @@
+{
+  "name": "serratia",
+  "description": "MLST",
+  "locus": 6,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-02-19",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_serratia_seqdef/schemes/1",
+  "authenticated": false
+}

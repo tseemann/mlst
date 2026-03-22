@@ -1,0 +1,10 @@
+{
+  "name": "mhominis_3",
+  "description": "eMLST",
+  "locus": 10,
+  "download_date": "2026-03-11",
+  "last_updated": "2023-11-05",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_mhominis_seqdef/schemes/3",
+  "authenticated": false
+}

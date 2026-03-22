@@ -1,0 +1,10 @@
+{
+  "name": "campylobacter_nonjejuni_9",
+  "description": "C. fetus MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2024-06-03",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_campylobacter_nonjejuni_seqdef/schemes/9",
+  "authenticated": false
+}

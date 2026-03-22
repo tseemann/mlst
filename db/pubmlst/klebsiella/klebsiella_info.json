@@ -1,0 +1,10 @@
+{
+  "name": "klebsiella",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-03-10",
+  "source": "pasteur",
+  "API": "https://bigsdb.pasteur.fr/api/db/pubmlst_klebsiella_seqdef/schemes/1",
+  "authenticated": false
+}

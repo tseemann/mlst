@@ -1,0 +1,10 @@
+{
+  "name": "pacnes_3",
+  "description": "MLST",
+  "locus": 8,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-12-01",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_pacnes_seqdef/schemes/3",
+  "authenticated": false
+}

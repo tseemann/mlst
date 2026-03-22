@@ -1,0 +1,10 @@
+{
+  "name": "mgenitalium",
+  "description": "MLST",
+  "locus": 6,
+  "download_date": "2026-03-11",
+  "last_updated": "No version information available",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_mgenitalium_seqdef/schemes/2",
+  "authenticated": false
+}

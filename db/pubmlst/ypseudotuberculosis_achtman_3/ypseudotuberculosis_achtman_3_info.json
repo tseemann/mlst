@@ -1,0 +1,10 @@
+{
+  "name": "ypseudotuberculosis_achtman_3",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-03-10",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_ypseudotuberculosis_achtman_seqdef/schemes/3",
+  "authenticated": false
+}

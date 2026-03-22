@@ -1,0 +1,10 @@
+{
+  "name": "mhyorhinis",
+  "description": "MLST",
+  "locus": 6,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-08-20",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_mhyorhinis_seqdef/schemes/1",
+  "authenticated": false
+}

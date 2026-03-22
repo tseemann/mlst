@@ -1,0 +1,10 @@
+{
+  "name": "proteus",
+  "description": "MLST",
+  "locus": 6,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-03-05",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_proteus_seqdef/schemes/1",
+  "authenticated": false
+}

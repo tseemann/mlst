@@ -1,0 +1,10 @@
+{
+  "name": "csepticum",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2024-11-21",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_csepticum_seqdef/schemes/1",
+  "authenticated": false
+}

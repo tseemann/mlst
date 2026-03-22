@@ -1,0 +1,10 @@
+{
+  "name": "mcatarrhalis_achtman_6",
+  "description": "MLST",
+  "locus": 8,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-12-18",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_mcatarrhalis_achtman_seqdef/schemes/6",
+  "authenticated": false
+}

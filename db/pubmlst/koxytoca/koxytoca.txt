@@ -1,0 +1,649 @@
+ST	gapA	infB	mdh	pgi	phoE	rpoB	tonB	species
+1	1	1	1	1	1	1	1	Klebsiella oxytoca
+2	1	2	2	1	2	1	2	Klebsiella oxytoca
+3	2	3	2	2	3	1	3	Klebsiella oxytoca
+4	2	2	2	3	4	2	2	Klebsiella oxytoca
+5	2	2	2	3	5	2	2	Klebsiella oxytoca
+9	1	7	2	1	9	1	2	Klebsiella oxytoca
+10	3	8	6	7	10	6	7	Klebsiella michiganensis
+11	3	5	7	8	11	6	5	Klebsiella michiganensis
+12	3	4	3	4	12	3	4	Klebsiella michiganensis
+13	3	9	8	9	13	6	8	Klebsiella michiganensis
+14	4	6	9	10	4	7	9	
+15	4	6	5	10	8	5	6	Klebsiella grimontii
+16	5	10	10	10	14	5	9	Klebsiella grimontii
+17	4	6	11	10	15	8	9	Klebsiella grimontii
+18	1	2	2	3	2	1	2	Klebsiella oxytoca
+19	1	2	2	1	16	1	2	Klebsiella oxytoca
+20	1	11	12	1	4	9	1	Klebsiella oxytoca
+21	1	12	2	1	2	1	1	Klebsiella oxytoca
+22	1	3	13	1	2	10	10	Klebsiella oxytoca
+23	4	6	5	6	15	7	6	Klebsiella grimontii
+24	4	6	14	11	15	11	9	Klebsiella grimontii
+26	3	5	4	13	17	4	5	Klebsiella michiganensis
+27	3	5	7	13	17	4	5	Klebsiella michiganensis
+28	3	5	7	8	11	12	5	Klebsiella michiganensis
+29	3	4	15	8	18	6	11	Klebsiella michiganensis
+30	1	2	2	14	19	9	2	Klebsiella oxytoca
+31	1	13	1	15	4	1	1	Klebsiella oxytoca
+32	3	8	16	16	20	6	12	Klebsiella michiganensis
+33	1	7	1	1	2	1	1	Klebsiella oxytoca
+34	2	2	2	17	2	1	2	Klebsiella oxytoca
+35	3	8	17	7	20	6	13	Klebsiella michiganensis
+36	1	7	2	15	21	1	14	Klebsiella oxytoca
+37	1	7	1	18	4	13	15	Klebsiella oxytoca
+38	5	6	18	10	15	8	16	Klebsiella grimontii
+39	6	6	19	6	22	7	17	Klebsiella grimontii
+40	3	8	20	7	23	14	18	Klebsiella michiganensis
+41	3	9	8	9	20	15	8	Klebsiella michiganensis
+42	3	5	21	19	24	16	19	Klebsiella michiganensis
+43	3	5	21	20	11	6	20	Klebsiella michiganensis
+44	3	14	22	21	25	17	21	Klebsiella michiganensis
+45	3	15	15	22	18	3	4	Klebsiella michiganensis
+46	1	7	2	15	2	1	1	Klebsiella oxytoca
+47	7	16	23	23	26	18	22	Klebsiella pasteurii
+48	1	3	13	24	27	10	1	Klebsiella oxytoca
+49	3	8	24	25	28	6	23	Klebsiella michiganensis
+50	3	8	8	7	10	6	7	Klebsiella michiganensis
+51	1	7	2	1	2	1	1	Klebsiella oxytoca
+52	8	8	16	21	20	19	12	Klebsiella michiganensis
+53	1	7	2	14	19	9	2	Klebsiella oxytoca
+55	3	9	16	21	23	19	25	
+56	2	18	2	17	30	2	1	
+57	1	7	2	2	9	1	2	
+58	1	2	2	1	4	1	2	Klebsiella oxytoca
+59	2	2	2	27	2	1	2	Klebsiella oxytoca
+60	5	6	19	10	31	7	26	
+61	1	2	2	28	16	1	2	Klebsiella oxytoca
+62	4	6	26	10	15	5	6	
+63	1	2	2	1	9	1	2	
+64	10	8	27	29	32	6	27	Klebsiella michiganensis
+65	1	7	2	30	4	21	2	Klebsiella oxytoca
+66	3	4	15	4	33	22	28	
+67	11	19	2	2	34	1	2	
+68	12	8	17	21	20	17	29	Klebsiella michiganensis
+69	5	6	18	10	15	23	9	
+70	3	20	28	29	35	19	30	
+71	5	6	19	10	36	5	6	
+72	4	6	19	6	15	24	31	
+73	5	6	19	10	37	5	6	
+74	5	6	19	11	15	7	32	
+75	4	6	19	10	15	5	6	
+76	6	6	14	10	15	8	33	Klebsiella grimontii
+77	3	21	15	8	12	6	4	
+78	1	22	2	27	9	1	2	
+79	12	9	17	7	20	6	25	
+80	3	4	15	8	12	3	4	
+81	13	23	29	31	38	25	34	
+82	14	24	15	8	18	6	4	Klebsiella michiganensis
+83	3	4	30	8	39	26	35	Klebsiella michiganensis
+84	3	8	17	21	40	17	29	Klebsiella michiganensis
+85	3	5	21	13	24	6	19	Klebsiella michiganensis
+86	3	4	15	32	41	3	35	Klebsiella michiganensis
+87	1	7	1	15	4	13	15	
+88	3	8	24	33	20	6	23	Klebsiella michiganensis
+89	15	6	14	10	14	8	9	
+90	1	25	2	34	42	1	36	
+91	3	4	15	8	12	3	35	Klebsiella michiganensis
+92	3	4	15	8	18	6	37	Klebsiella michiganensis
+93	3	26	31	8	33	6	4	Klebsiella michiganensis
+94	3	4	15	8	12	6	11	
+95	3	24	15	4	43	6	4	Klebsiella michiganensis
+96	2	19	2	18	34	10	1	
+97	5	6	26	35	15	7	9	
+98	3	27	32	21	44	19	38	Klebsiella michiganensis
+99	6	6	19	35	15	7	9	
+100	2	2	33	18	2	1	39	
+101	2	3	2	2	45	10	1	Klebsiella oxytoca
+102	3	4	15	36	33	3	4	
+103	3	5	34	13	17	4	5	Klebsiella michiganensis
+104	4	6	11	10	46	27	9	Klebsiella grimontii
+105	16	28	35	37	47	28	40	
+106	1	3	36	18	2	10	1	Klebsiella oxytoca
+107	3	29	17	7	20	6	41	
+108	3	5	21	20	24	6	30	Klebsiella michiganensis
+109	3	9	8	9	20	6	8	Klebsiella michiganensis
+110	3	15	15	38	12	29	4	Klebsiella michiganensis
+111	1	7	2	30	2	2	1	Klebsiella oxytoca
+112	2	3	2	27	16	1	42	Klebsiella oxytoca
+113	17	23	23	39	48	30	43	Klebsiella pasteurii
+114	3	9	16	40	49	17	44	Klebsiella michiganensis
+115	17	16	37	41	50	25	43	
+116	3	8	20	21	25	17	45	
+117	5	6	14	11	14	7	6	
+118	18	8	17	21	20	31	29	
+119	19	6	19	10	31	5	31	
+120	1	30	12	14	4	1	1	
+121	17	16	38	39	14	25	43	
+122	5	10	10	10	14	5	19	
+123	19	6	39	10	15	5	8	
+124	7	23	38	23	12	25	4	
+125	4	6	19	35	37	7	16	
+126	5	6	19	10	15	5	9	
+127	14	4	15	4	41	3	4	Klebsiella michiganensis
+128	3	31	40	21	20	6	46	Klebsiella michiganensis
+129	6	6	19	10	15	7	17	
+130	3	8	17	42	20	6	23	
+131	3	8	41	43	51	6	47	
+132	6	6	26	10	20	24	33	
+133	17	32	29	44	15	25	9	
+134	5	6	14	10	52	7	31	
+135	3	8	17	45	20	6	48	Klebsiella michiganensis
+136	5	6	39	11	15	7	6	
+137	3	4	42	8	25	3	4	Klebsiella michiganensis
+138	3	8	24	46	53	32	48	Klebsiella michiganensis
+139	3	8	24	46	54	32	48	Klebsiella michiganensis
+140	3	8	24	46	55	32	48	Klebsiella michiganensis
+141	1	7	2	1	4	1	2	Klebsiella oxytoca
+142	3	5	40	13	24	4	49	Klebsiella michiganensis
+143	3	8	43	7	20	33	23	Klebsiella michiganensis
+144	3	5	21	20	24	6	20	Klebsiella michiganensis
+145	1	3	2	34	16	34	1	Klebsiella oxytoca
+146	3	5	44	13	24	6	50	Klebsiella michiganensis
+147	2	19	2	14	34	10	1	Klebsiella oxytoca
+148	3	5	44	13	24	35	50	Klebsiella michiganensis
+149	3	33	17	45	20	6	48	Klebsiella michiganensis
+150	1	2	2	14	4	9	2	Klebsiella oxytoca
+151	3	5	21	13	20	6	12	Klebsiella michiganensis
+152	2	3	2	27	16	1	2	Klebsiella oxytoca
+153	1	2	1	1	1	1	1	Klebsiella oxytoca
+154	1	7	2	47	4	1	2	Klebsiella oxytoca
+155	1	2	2	28	56	1	2	Klebsiella oxytoca
+156	2	2	2	1	57	1	2	Klebsiella oxytoca
+157	3	34	45	48	20	17	47	Klebsiella michiganensis
+158	3	8	17	45	20	6	12	Klebsiella michiganensis
+159	1	7	2	30	2	21	2	Klebsiella oxytoca
+160	13	23	29	31	58	25	34	Klebsiella pasteurii
+161	2	2	2	1	4	2	2	Klebsiella oxytoca
+162	3	24	31	8	18	6	4	Klebsiella michiganensis
+163	7	23	29	31	59	25	43	Klebsiella pasteurii
+164	4	6	14	11	60	11	9	Klebsiella grimontii
+165	20	35	46	49	61	36	51	
+166	2	19	2	14	45	1	52	Klebsiella oxytoca
+167	12	8	20	21	10	32	53	Klebsiella michiganensis
+168	15	6	39	10	46	24	6	Klebsiella grimontii
+169	4	6	26	10	62	5	9	Klebsiella grimontii
+170	3	8	17	42	40	6	23	Klebsiella michiganensis
+171	3	4	15	4	18	3	4	Klebsiella michiganensis
+172	6	6	19	11	46	7	9	Klebsiella grimontii
+173	15	6	19	11	63	5	31	Klebsiella grimontii
+174	7	23	29	31	64	25	43	Klebsiella pasteurii
+175	3	21	15	8	12	6	20	Klebsiella michiganensis
+176	1	7	2	1	65	1	2	Klebsiella oxytoca
+177	3	8	17	21	40	17	54	Klebsiella michiganensis
+178	1	11	2	1	4	1	2	Klebsiella oxytoca
+179	1	36	2	1	66	2	2	Klebsiella oxytoca
+180	3	8	22	42	20	33	23	Klebsiella michiganensis
+181	1	7	2	1	67	1	2	Klebsiella oxytoca
+182	3	37	20	7	23	14	18	Klebsiella michiganensis
+183	3	4	47	8	43	3	4	Klebsiella michiganensis
+184	4	6	26	10	46	5	6	Klebsiella grimontii
+185	7	23	23	31	68	25	43	Klebsiella pasteurii
+186	21	6	14	10	62	7	9	Klebsiella grimontii
+187	7	23	38	31	69	37	22	Klebsiella pasteurii
+188	1	38	48	1	65	1	2	Klebsiella oxytoca
+189	5	10	10	10	70	5	9	Klebsiella grimontii
+190	5	6	5	50	71	5	6	Klebsiella grimontii
+191	3	4	49	8	25	38	55	Klebsiella michiganensis
+192	3	9	17	21	20	6	5	Klebsiella michiganensis
+193	7	23	29	31	72	25	34	Klebsiella pasteurii
+194	12	29	20	51	40	6	46	Klebsiella michiganensis
+195	3	8	20	21	25	17	56	Klebsiella michiganensis
+196	3	14	50	21	25	17	21	Klebsiella michiganensis
+197	3	4	15	8	33	6	4	Klebsiella michiganensis
+198	8	8	16	52	73	19	12	Klebsiella michiganensis
+199	2	2	2	3	19	2	2	Klebsiella oxytoca
+200	2	7	2	15	2	1	57	Klebsiella oxytoca
+201	1	3	12	53	16	1	1	Klebsiella oxytoca
+202	3	5	21	13	74	6	12	Klebsiella michiganensis
+203	3	39	8	7	20	6	38	
+204	3	4	49	4	25	3	4	
+205	12	9	17	9	20	17	29	Klebsiella michiganensis
+206	3	40	7	54	75	39	20	
+207	1	3	13	24	2	10	58	
+208	5	6	18	10	76	7	9	
+209	22	19	2	18	34	10	1	
+210	3	4	51	8	77	6	59	Klebsiella michiganensis
+211	3	8	52	42	20	33	23	
+212	3	41	53	21	78	6	60	
+213	3	5	21	13	24	6	61	Klebsiella michiganensis
+214	5	6	19	10	46	5	9	
+215	21	6	14	10	46	11	6	Klebsiella grimontii
+216	4	6	19	10	46	24	31	Klebsiella grimontii
+217	3	9	16	13	20	6	27	
+218	5	6	19	35	46	7	9	Klebsiella grimontii
+219	2	2	2	1	19	2	2	Klebsiella oxytoca
+220	3	8	24	21	40	6	12	Klebsiella michiganensis
+221	1	11	2	1	2	40	2	Klebsiella oxytoca
+222	23	42	2	14	34	41	62	Klebsiella oxytoca
+223	2	18	2	55	79	1	2	Klebsiella oxytoca
+224	24	6	54	10	46	5	16	Klebsiella grimontii
+225	4	6	26	10	80	7	63	Klebsiella grimontii
+226	3	9	55	21	81	6	64	Klebsiella michiganensis
+227	21	6	56	10	46	11	6	Klebsiella grimontii
+228	5	6	57	10	70	5	6	Klebsiella grimontii
+229	7	23	58	31	82	25	22	Klebsiella pasteurii
+230	25	23	38	31	82	25	65	Klebsiella pasteurii
+231	3	9	20	21	25	17	56	Klebsiella michiganensis
+232	3	4	49	8	25	3	4	Klebsiella michiganensis
+233	3	4	15	8	41	3	28	Klebsiella michiganensis
+234	26	41	40	21	83	6	25	Klebsiella michiganensis
+235	1	3	12	53	16	1	66	Klebsiella oxytoca
+236	27	6	14	11	46	5	9	Klebsiella grimontii
+237	1	13	1	56	4	1	1	Klebsiella oxytoca
+238	4	6	57	10	46	8	6	Klebsiella grimontii
+239	3	29	32	29	10	6	67	Klebsiella michiganensis
+240	1	18	2	14	2	1	1	Klebsiella oxytoca
+241	1	18	2	1	84	1	2	Klebsiella oxytoca
+242	3	4	15	8	41	3	4	Klebsiella michiganensis
+243	1	7	1	2	19	1	1	Klebsiella oxytoca
+244	1	7	2	18	19	1	2	Klebsiella oxytoca
+245	2	7	2	14	19	1	2	
+246	5	10	59	10	46	7	9	Klebsiella grimontii
+247	2	2	33	57	85	1	1	Klebsiella oxytoca
+248	5	6	19	10	86	7	26	Klebsiella grimontii
+249	7	23	38	31	87	25	22	Klebsiella pasteurii
+250	1	2	2	1	88	1	2	Klebsiella oxytoca
+251	4	43	39	11	46	5	9	Klebsiella grimontii
+252	1	7	2	15	89	1	1	Klebsiella oxytoca
+253	3	5	21	58	11	6	12	Klebsiella michiganensis
+254	3	5	7	42	11	33	68	Klebsiella michiganensis
+255	5	6	19	10	70	24	69	Klebsiella grimontii
+256	4	6	19	10	46	42	70	Klebsiella grimontii
+257	1	3	13	24	2	10	10	Klebsiella oxytoca
+258	2	7	2	15	2	1	1	Klebsiella oxytoca
+259	3	40	7	13	75	4	20	Klebsiella michiganensis
+260	3	9	40	21	20	6	46	Klebsiella michiganensis
+261	4	6	19	10	46	5	6	Klebsiella grimontii
+262	6	6	19	35	46	7	9	Klebsiella grimontii
+263	6	6	26	10	46	24	33	Klebsiella grimontii
+264	5	10	19	10	46	8	9	Klebsiella grimontii
+265	28	5	60	13	24	33	12	Klebsiella michiganensis
+266	1	2	2	1	65	1	2	Klebsiella oxytoca
+267	1	7	2	1	66	1	2	Klebsiella oxytoca
+268	3	15	15	4	41	3	71	Klebsiella michiganensis
+269	5	5	21	58	24	6	20	Klebsiella michiganensis
+270	7	23	38	31	69	25	22	Klebsiella pasteurii
+271	1	18	2	1	4	1	2	Klebsiella oxytoca
+272	31	25	48	10	60	24	48	
+273	8	25	48	10	60	24	48	
+274	8	25	35	10	60	24	48	
+275	8	25	48	10	60	24	43	
+276	8	25	48	10	60	44	44	
+277	7	23	38	39	6	25	43	Klebsiella pasteurii
+278	1	2	2	60	91	1	76	Klebsiella oxytoca
+279	1	36	2	1	66	1	2	Klebsiella oxytoca
+280	1	3	13	24	2	21	75	Klebsiella oxytoca
+281	3	5	60	8	11	6	5	Klebsiella michiganensis
+282	2	19	2	14	29	1	52	Klebsiella oxytoca
+283	5	6	19	11	46	7	32	Klebsiella grimontii
+284	3	9	17	21	83	31	23	Klebsiella michiganensis
+285	1	3	13	24	2	10	1	Klebsiella oxytoca
+286	2	2	33	14	16	1	39	Klebsiella oxytoca
+287	1	2	2	2	94	1	1	Klebsiella oxytoca
+288	1	2	2	28	66	1	2	Klebsiella oxytoca
+289	1	2	2	27	65	1	1	Klebsiella oxytoca
+290	5	6	14	11	70	7	6	Klebsiella grimontii
+291	5	6	66	10	95	5	9	Klebsiella grimontii
+292	1	2	2	14	4	1	2	Klebsiella oxytoca
+293	1	2	2	1	90	2	2	Klebsiella oxytoca
+294	3	8	24	33	20	6	25	Klebsiella michiganensis
+295	12	41	25	9	24	6	12	Klebsiella michiganensis
+296	1	7	2	5	34	1	1	Klebsiella oxytoca
+297	3	5	21	13	24	6	74	Klebsiella michiganensis
+298	7	46	58	31	82	18	22	Klebsiella pasteurii
+299	2	7	2	18	19	1	2	Klebsiella oxytoca
+300	13	23	38	39	69	25	22	Klebsiella pasteurii
+301	5	6	19	10	46	7	32	Klebsiella grimontii
+302	1	18	2	1	84	1	1	Klebsiella oxytoca
+303	12	29	20	21	40	32	46	Klebsiella michiganensis
+304	3	8	22	52	20	33	24	Klebsiella michiganensis
+305	3	41	25	12	20	6	25	Klebsiella michiganensis
+306	3	8	22	52	20	33	23	Klebsiella michiganensis
+307	19	6	39	10	46	5	9	Klebsiella grimontii
+308	3	14	8	21	25	17	21	Klebsiella michiganensis
+309	3	5	21	13	24	33	20	Klebsiella michiganensis
+310	3	26	31	8	33	6	72	Klebsiella michiganensis
+311	17	32	29	44	92	25	77	Klebsiella pasteurii
+312	5	6	26	10	15	7	9	Klebsiella grimontii
+313	4	6	19	10	15	7	6	Klebsiella grimontii
+314	3	8	20	25	23	14	18	Klebsiella michiganensis
+315	3	41	21	13	24	6	20	Klebsiella michiganensis
+316	5	6	19	11	46	5	9	Klebsiella grimontii
+317	3	8	22	9	20	33	23	Klebsiella michiganensis
+318	3	5	8	8	11	6	5	Klebsiella michiganensis
+319	4	6	14	11	46	11	9	Klebsiella grimontii
+320	17	16	38	39	82	25	43	Klebsiella pasteurii
+321	7	16	38	31	26	25	65	Klebsiella pasteurii
+322	17	23	38	39	26	25	22	Klebsiella pasteurii
+323	1	3	2	14	4	1	2	Klebsiella oxytoca
+324	32	5	7	61	24	6	78	Klebsiella michiganensis
+325	1	7	67	1	4	1	2	Klebsiella oxytoca
+326	4	6	14	35	96	5	6	Klebsiella grimontii
+327	4	6	68	11	46	5	79	Klebsiella grimontii
+328	1	3	13	24	97	10	80	Klebsiella oxytoca
+329	1	48	2	1	2	1	2	Klebsiella oxytoca
+330	3	4	15	4	33	45	4	Klebsiella michiganensis
+331	19	6	19	10	15	6	81	Klebsiella grimontii
+332	3	6	15	10	15	8	33	
+333	4	23	8	27	25	25	22	
+334	1	22	2	23	9	1	2	Klebsiella oxytoca
+335	7	6	39	10	50	24	31	Klebsiella grimontii
+336	6	5	21	10	24	6	19	Klebsiella michiganensis
+337	3	9	8	9	12	15	8	Klebsiella michiganensis
+338	12	9	17	7	15	6	25	Klebsiella michiganensis
+339	3	4	26	8	12	3	4	Klebsiella michiganensis
+340	1	17	2	27	2	1	2	Klebsiella oxytoca
+341	21	6	70	10	46	11	6	Klebsiella grimontii
+342	3	5	40	64	24	6	82	Klebsiella michiganensis
+343	3	5	21	65	20	6	12	Klebsiella michiganensis
+344	3	8	24	21	24	32	48	Klebsiella michiganensis
+345	2	2	33	14	2	1	2	Klebsiella oxytoca
+346	1	7	1	15	89	1	83	Klebsiella oxytoca
+347	1	36	2	1	101	1	2	Klebsiella oxytoca
+348	34	2	2	3	19	2	2	Klebsiella oxytoca
+349	3	50	15	8	41	22	4	Klebsiella michiganensis
+350	4	6	11	10	46	8	9	Klebsiella grimontii
+351	7	23	23	39	69	25	43	Klebsiella pasteurii
+352	1	7	2	14	2	1	2	Klebsiella oxytoca
+353	3	14	22	21	20	17	21	Klebsiella michiganensis
+354	3	5	21	58	24	6	20	Klebsiella michiganensis
+355	1	11	2	1	2	1	2	Klebsiella oxytoca
+356	3	4	15	4	33	3	28	Klebsiella michiganensis
+357	1	2	2	15	4	1	1	Klebsiella oxytoca
+358	1	7	2	15	89	1	2	
+359	1	7	2	66	89	1	2	Klebsiella oxytoca
+360	3	29	8	21	20	6	48	Klebsiella michiganensis
+361	6	6	14	10	46	8	33	Klebsiella grimontii
+362	5	6	26	35	46	7	9	Klebsiella grimontii
+363	3	40	7	54	75	4	20	Klebsiella michiganensis
+364	1	7	2	2	65	1	2	Klebsiella oxytoca
+365	2	7	2	1	89	1	1	Klebsiella oxytoca
+366	3	8	17	21	51	6	23	Klebsiella michiganensis
+367	3	9	17	21	10	17	29	Klebsiella michiganensis
+368	3	8	17	21	40	17	46	Klebsiella michiganensis
+369	1	3	2	1	66	1	86	Klebsiella oxytoca
+370	3	29	74	21	20	31	12	Klebsiella michiganensis
+371	15	6	19	10	46	24	6	Klebsiella grimontii
+372	3	8	22	67	102	32	87	Klebsiella michiganensis
+373	3	9	17	21	40	17	29	
+374	38	4	30	8	39	26	35	
+375	37	18	2	17	30	1	2	Klebsiella oxytoca
+376	3	8	24	42	106	6	88	Klebsiella michiganensis
+377	4	6	19	10	46	8	31	Klebsiella grimontii
+378	19	6	18	10	46	5	16	Klebsiella grimontii
+379	15	6	19	10	46	7	90	Klebsiella grimontii
+380	3	41	76	29	51	6	45	Klebsiella michiganensis
+381	26	41	40	21	20	6	25	Klebsiella michiganensis
+382	3	29	17	7	107	6	89	Klebsiella michiganensis
+383	3	4	75	4	25	3	28	Klebsiella michiganensis
+384	3	8	17	21	106	31	13	Klebsiella michiganensis
+385	3	9	45	21	20	6	46	Klebsiella michiganensis
+386	7	16	58	68	26	25	43	Klebsiella pasteurii
+387	17	52	38	31	6	25	91	Klebsiella pasteurii
+388	1	7	2	2	2	1	1	Klebsiella oxytoca
+389	6	6	77	10	46	8	33	Klebsiella grimontii
+390	1	53	2	1	2	1	2	Klebsiella oxytoca
+391	5	54	14	11	46	5	6	Klebsiella grimontii
+392	3	9	20	9	83	6	45	Klebsiella michiganensis
+393	3	8	20	7	20	14	18	Klebsiella michiganensis
+394	19	6	39	10	46	5	81	Klebsiella grimontii
+395	2	2	33	18	88	1	39	Klebsiella oxytoca
+396	1	17	1	15	89	1	83	Klebsiella oxytoca
+397	1	3	13	1	2	10	1	Klebsiella oxytoca
+398	3	9	25	7	20	6	54	Klebsiella michiganensis
+399	1	7	2	1	65	2	2	Klebsiella oxytoca
+400	21	6	19	10	46	11	6	Klebsiella grimontii
+401	1	3	2	1	30	1	2	Klebsiella oxytoca
+402	7	23	38	44	26	25	65	Klebsiella pasteurii
+403	3	8	76	21	51	19	25	Klebsiella michiganensis
+404	5	6	19	10	46	7	6	Klebsiella grimontii
+405	3	8	24	33	106	6	23	Klebsiella michiganensis
+406	5	6	19	10	46	5	6	Klebsiella grimontii
+407	3	5	21	13	25	6	61	Klebsiella michiganensis
+408	21	6	19	10	46	7	9	Klebsiella grimontii
+409	3	8	17	29	108	6	25	Klebsiella michiganensis
+410	3	55	28	21	103	48	30	Klebsiella michiganensis
+411	5	6	19	10	109	5	6	Klebsiella grimontii
+412	3	21	15	8	12	6	94	Klebsiella michiganensis
+413	2	2	2	3	19	2	93	Klebsiella oxytoca
+414	3	9	25	13	24	6	61	Klebsiella michiganensis
+415	1	2	2	1	110	1	2	Klebsiella oxytoca
+416	13	23	29	31	92	25	34	Klebsiella pasteurii
+417	12	9	17	9	20	6	30	Klebsiella michiganensis
+418	3	50	15	22	18	6	4	Klebsiella michiganensis
+419	42	3	13	24	27	49	96	Klebsiella oxytoca
+420	3	8	17	72	20	6	46	Klebsiella michiganensis
+421	2	7	67	71	111	21	2	Klebsiella oxytoca
+422	3	8	17	12	40	6	95	Klebsiella michiganensis
+423	7	23	58	31	92	25	43	Klebsiella pasteurii
+424	1	2	2	55	85	1	2	Klebsiella oxytoca
+425	40	2	2	1	2	1	2	Klebsiella oxytoca
+426	41	8	22	52	20	33	23	Klebsiella michiganensis
+427	39	4	75	4	25	3	28	Klebsiella michiganensis
+428	25	56	78	69	87	25	91	
+429	1	2	2	15	34	2	2	Klebsiella oxytoca
+430	1	2	12	1	2	1	2	Klebsiella oxytoca
+431	21	6	19	10	46	7	6	Klebsiella grimontii
+432	1	58	2	34	16	34	1	Klebsiella oxytoca
+433	3	8	24	21	40	6	88	Klebsiella michiganensis
+434	3	8	22	33	106	33	23	Klebsiella michiganensis
+435	3	8	76	21	51	19	38	Klebsiella michiganensis
+436	6	6	19	10	46	7	9	Klebsiella grimontii
+437	5	6	19	10	46	8	9	Klebsiella grimontii
+438	4	6	19	10	46	5	16	Klebsiella grimontii
+439	4	6	19	10	4	7	9	Klebsiella grimontii
+440	5	6	19	10	70	5	6	Klebsiella grimontii
+441	35	7	12	18	89	1	1	Klebsiella oxytoca
+442	1	2	2	1	2	1	1	Klebsiella oxytoca
+443	8	25	48	10	60	24	91	
+444	12	59	17	21	20	19	23	Klebsiella michiganensis
+445	5	6	19	10	46	5	98	Klebsiella grimontii
+446	3	5	7	58	24	6	12	
+447	1	60	2	1	16	1	2	Klebsiella oxytoca
+448	2	2	33	14	16	50	97	Klebsiella oxytoca
+449	3	14	8	21	25	17	38	Klebsiella michiganensis
+450	1	11	2	1	65	1	2	Klebsiella oxytoca
+451	3	5	40	13	24	6	12	Klebsiella michiganensis
+452	3	8	16	21	107	19	99	Klebsiella michiganensis
+453	1	18	2	1	2	1	1	Klebsiella oxytoca
+454	1	2	2	1	19	1	2	Klebsiella oxytoca
+455	1	2	2	73	2	1	2	Klebsiella oxytoca
+456	3	9	40	21	13	6	46	Klebsiella michiganensis
+457	3	9	17	9	113	6	27	Klebsiella michiganensis
+458	3	9	17	52	113	6	23	Klebsiella michiganensis
+459	5	10	26	10	46	5	100	Klebsiella grimontii
+460	3	8	22	67	102	32	88	Klebsiella michiganensis
+461	30	24	81	4	41	51	101	Klebsiella michiganensis
+462	45	61	82	74	20	52	102	Klebsiella michiganensis
+463	19	6	66	10	46	7	6	Klebsiella grimontii
+464	1	3	12	53	16	53	1	Klebsiella oxytoca
+465	46	5	21	58	24	6	20	Klebsiella michiganensis
+466	7	16	58	39	69	25	43	Klebsiella pasteurii
+467	5	6	83	75	46	8	103	Klebsiella grimontii
+468	3	8	32	29	114	6	104	Klebsiella michiganensis
+469	5	6	18	10	46	8	16	Klebsiella grimontii
+470	7	23	38	39	92	25	22	Klebsiella pasteurii
+471	3	2	7	76	24	6	105	Klebsiella michiganensis
+472	3	8	24	77	40	6	88	Klebsiella michiganensis
+473	3	5	7	78	24	6	12	Klebsiella michiganensis
+474	3	5	40	13	17	54	12	Klebsiella michiganensis
+475	3	41	8	79	51	6	23	Klebsiella michiganensis
+476	5	6	19	35	112	8	9	Klebsiella grimontii
+477	3	41	20	21	20	6	25	Klebsiella michiganensis
+478	5	6	19	10	1	27	9	Klebsiella grimontii
+479	1	32	29	44	58	25	77	Klebsiella pasteurii
+480	4	6	14	10	46	7	31	Klebsiella grimontii
+481	3	8	84	21	103	19	30	Klebsiella michiganensis
+482	1	7	2	55	2	1	1	Klebsiella oxytoca
+483	1	7	12	15	89	1	1	Klebsiella oxytoca
+484	3	29	55	21	20	6	64	Klebsiella michiganensis
+485	3	4	15	4	12	3	4	Klebsiella michiganensis
+486	3	5	21	58	40	6	20	Klebsiella michiganensis
+487	3	8	17	29	20	6	45	Klebsiella michiganensis
+488	4	6	19	10	46	5	9	Klebsiella grimontii
+489	5	6	14	10	46	5	32	Klebsiella grimontii
+490	5	6	18	10	46	23	9	Klebsiella grimontii
+491	7	23	38	39	26	25	22	Klebsiella pasteurii
+492	7	23	38	39	69	25	43	Klebsiella pasteurii
+493	7	23	58	31	82	25	43	Klebsiella pasteurii
+494	1	2	2	15	2	1	2	Klebsiella oxytoca
+495	1	2	2	3	19	2	2	Klebsiella oxytoca
+496	1	3	13	1	2	21	10	Klebsiella oxytoca
+497	3	29	32	25	10	31	104	Klebsiella michiganensis
+498	47	29	17	21	40	31	30	Klebsiella michiganensis
+499	17	16	38	31	6	25	108	Klebsiella pasteurii
+500	2	7	2	15	2	56	1	Klebsiella oxytoca
+501	48	35	85	81	118	55	107	
+502	3	41	22	82	119	57	25	Klebsiella michiganensis
+503	3	8	28	80	115	48	106	Klebsiella michiganensis
+504	49	51	28	21	20	19	30	Klebsiella michiganensis
+505	7	32	29	83	69	25	43	Klebsiella pasteurii
+506	50	6	19	10	46	5	6	Klebsiella grimontii
+507	1	2	2	14	120	9	1	Klebsiella oxytoca
+508	1	3	13	24	117	10	1	Klebsiella oxytoca
+509	21	6	14	10	116	7	9	Klebsiella grimontii
+510	3	8	24	33	20	6	20	Klebsiella michiganensis
+511	3	29	8	12	20	6	47	Klebsiella michiganensis
+512	8	8	16	29	20	19	12	Klebsiella michiganensis
+513	12	29	20	29	40	32	46	Klebsiella michiganensis
+514	3	5	60	58	24	6	20	Klebsiella michiganensis
+515	3	5	60	58	24	4	12	Klebsiella michiganensis
+516	44	8	22	7	106	33	23	Klebsiella michiganensis
+517	4	6	26	10	46	7	81	Klebsiella grimontii
+518	3	8	24	82	20	19	41	Klebsiella michiganensis
+519	43	6	19	10	46	5	16	Klebsiella grimontii
+520	1	2	2	1	2	9	2	Klebsiella oxytoca
+521	1	2	2	1	16	1	62	Klebsiella oxytoca
+522	1	2	2	1	89	1	2	Klebsiella oxytoca
+523	1	2	12	14	19	9	2	Klebsiella oxytoca
+524	1	3	33	24	2	10	1	Klebsiella oxytoca
+525	1	7	1	55	4	1	2	Klebsiella oxytoca
+526	1	11	2	14	90	1	2	Klebsiella oxytoca
+527	1	17	1	15	91	1	2	Klebsiella oxytoca
+528	2	2	1	1	16	1	2	Klebsiella oxytoca
+529	2	3	2	2	85	10	1	Klebsiella oxytoca
+530	2	7	2	15	19	1	1	Klebsiella oxytoca
+531	2	7	2	30	4	1	2	Klebsiella oxytoca
+532	2	19	2	14	29	10	1	Klebsiella oxytoca
+533	3	4	42	4	43	6	4	Klebsiella michiganensis
+534	3	4	49	8	12	3	4	Klebsiella michiganensis
+535	3	5	7	13	24	6	5	Klebsiella michiganensis
+536	3	5	7	61	24	6	78	Klebsiella michiganensis
+537	3	5	7	65	20	6	5	Klebsiella michiganensis
+538	3	5	21	58	24	4	12	Klebsiella michiganensis
+539	3	5	21	58	108	6	20	Klebsiella michiganensis
+540	3	5	40	58	24	4	12	Klebsiella michiganensis
+541	3	8	17	7	20	6	23	Klebsiella michiganensis
+542	3	8	17	21	20	17	29	Klebsiella michiganensis
+543	3	8	17	42	106	6	23	Klebsiella michiganensis
+544	3	8	24	21	20	6	88	Klebsiella michiganensis
+545	3	8	24	42	40	6	25	Klebsiella michiganensis
+546	3	8	24	42	106	6	41	Klebsiella michiganensis
+547	3	8	24	46	106	6	23	Klebsiella michiganensis
+548	3	15	15	8	25	3	35	Klebsiella michiganensis
+549	3	21	15	8	18	6	4	Klebsiella michiganensis
+550	3	23	7	19	75	6	12	Klebsiella michiganensis
+551	3	24	15	8	43	6	4	Klebsiella michiganensis
+552	3	29	8	42	108	6	45	Klebsiella michiganensis
+553	3	41	21	58	24	6	20	Klebsiella michiganensis
+554	3	57	79	8	25	6	4	Klebsiella michiganensis
+555	4	6	19	10	46	7	6	Klebsiella grimontii
+556	4	6	19	10	46	24	32	Klebsiella grimontii
+557	4	6	19	10	70	7	31	Klebsiella grimontii
+558	4	6	39	10	46	7	16	Klebsiella grimontii
+559	5	6	2	10	46	5	63	
+560	5	6	11	11	46	5	16	Klebsiella grimontii
+561	5	6	14	10	46	5	9	Klebsiella grimontii
+562	5	6	14	10	46	7	9	Klebsiella grimontii
+563	5	6	18	10	46	8	31	Klebsiella grimontii
+564	5	6	19	10	70	11	26	Klebsiella grimontii
+565	5	6	26	10	46	5	6	Klebsiella grimontii
+566	5	6	26	10	46	7	9	Klebsiella grimontii
+567	6	6	18	10	46	8	16	Klebsiella grimontii
+568	6	6	19	10	46	5	63	Klebsiella grimontii
+569	7	23	38	31	82	25	43	Klebsiella pasteurii
+570	7	23	38	39	87	25	22	Klebsiella pasteurii
+571	7	23	38	44	69	25	91	Klebsiella pasteurii
+572	12	8	20	21	10	32	12	Klebsiella michiganensis
+573	12	8	22	21	40	31	27	Klebsiella michiganensis
+574	12	29	8	21	51	6	27	Klebsiella michiganensis
+575	12	29	20	21	40	32	54	Klebsiella michiganensis
+576	15	6	10	11	46	8	16	Klebsiella grimontii
+577	15	6	19	11	46	5	31	Klebsiella grimontii
+578	15	6	26	10	46	11	9	Klebsiella grimontii
+579	30	4	30	8	25	6	4	Klebsiella michiganensis
+580	32	5	7	13	24	6	12	Klebsiella michiganensis
+581	49	8	73	29	103	19	30	Klebsiella michiganensis
+582	3	8	40	33	106	32	48	Klebsiella michiganensis
+583	1	2	2	14	85	1	39	Klebsiella oxytoca
+584	3	29	45	82	20	6	7	Klebsiella michiganensis
+585	12	59	17	21	20	19	7	Klebsiella michiganensis
+586	12	8	45	9	44	6	12	Klebsiella michiganensis
+587	3	62	17	33	20	6	23	Klebsiella michiganensis
+588	21	6	14	10	128	7	9	Klebsiella grimontii
+589	7	23	29	39	72	25	111	Klebsiella pasteurii
+590	4	6	14	85	46	5	112	Klebsiella grimontii
+591	4	6	19	10	46	7	113	Klebsiella grimontii
+592	1	3	13	86	127	10	1	Klebsiella oxytoca
+593	3	5	7	58	129	6	5	Klebsiella michiganensis
+594	3	29	32	29	114	6	114	Klebsiella michiganensis
+595	37	7	88	1	65	1	2	Klebsiella oxytoca
+596	3	8	17	87	20	6	5	Klebsiella michiganensis
+597	51	5	7	58	75	6	5	Klebsiella michiganensis
+598	7	23	38	31	87	25	115	Klebsiella pasteurii
+599	52	6	19	10	46	7	6	Klebsiella grimontii
+600	1	3	13	24	127	10	10	
+601	2	18	2	2	56	1	1	Klebsiella oxytoca
+602	2	19	2	14	126	1	52	Klebsiella oxytoca
+603	3	4	47	8	18	51	4	Klebsiella michiganensis
+604	10	9	16	84	125	6	7	Klebsiella michiganensis
+605	2	19	2	14	29	10	52	Klebsiella oxytoca
+606	2	2	33	27	2	1	2	Klebsiella oxytoca
+607	1	2	2	30	2	1	2	Klebsiella oxytoca
+608	7	23	87	39	124	25	43	Klebsiella pasteurii
+609	3	8	32	29	40	6	46	Klebsiella michiganensis
+610	3	8	22	88	20	33	23	Klebsiella michiganensis
+611	1	18	86	18	121	58	2	Klebsiella oxytoca
+612	1	13	1	56	4	1	109	Klebsiella oxytoca
+613	5	6	19	10	46	7	110	Klebsiella grimontii
+614	3	14	8	21	122	17	21	Klebsiella michiganensis
+615	3	5	40	58	123	6	19	Klebsiella michiganensis
+616	3	4	15	4	18	3	35	Klebsiella michiganensis
+617	3	24	15	4	43	6	20	Klebsiella michiganensis
+618	5	6	19	10	96	5	6	Klebsiella grimontii
+619	3	5	21	13	24	59	12	Klebsiella michiganensis
+620	1	18	2	1	19	1	2	Klebsiella oxytoca
+622	1	7	2	15	21	1	117	Klebsiella oxytoca
+623	3	8	8	45	20	6	38	Klebsiella michiganensis
+624	3	9	16	40	49	17	27	Klebsiella michiganensis
+625	1	3	13	1	2	10	116	Klebsiella oxytoca
+626	4	6	5	10	46	7	6	Klebsiella grimontii
+627	3	5	21	13	24	4	12	Klebsiella michiganensis
+628	7	23	38	39	26	25	119	Klebsiella pasteurii
+629	53	56	78	31	130	60	31	Klebsiella pasteurii
+630	7	63	38	31	92	25	43	Klebsiella pasteurii
+631	7	32	38	44	69	25	43	Klebsiella pasteurii
+632	7	16	38	31	82	25	43	Klebsiella pasteurii
+633	17	32	29	44	131	25	77	Klebsiella pasteurii
+634	7	23	29	31	132	25	43	Klebsiella pasteurii
+635	7	23	89	31	6	25	34	Klebsiella pasteurii
+636	7	23	23	31	69	25	120	Klebsiella pasteurii
+637	17	16	23	89	69	25	43	Klebsiella pasteurii
+638	3	5	7	58	24	6	5	Klebsiella michiganensis
+639	3	5	40	19	24	54	12	Klebsiella michiganensis
+640	4	6	19	10	80	61	63	Klebsiella grimontii
+641	7	23	29	31	26	25	122	Klebsiella pasteurii
+642	54	61	82	90	134	52	123	Klebsiella michiganensis
+643	3	8	17	88	20	6	41	Klebsiella michiganensis
+644	1	7	1	1	27	1	76	Klebsiella oxytoca
+645	14	64	15	4	41	3	4	Klebsiella michiganensis
+646	55	6	26	10	46	5	6	Klebsiella grimontii
+647	3	15	15	8	33	3	4	Klebsiella michiganensis
+648	56	15	15	8	135	3	4	Klebsiella michiganensis
+649	29	28	10	37	70	20	40	
+650	29	28	35	37	47	20	40	
+651	16	28	35	37	47	43	40	
+652	3	29	74	29	20	31	12	Klebsiella michiganensis
+653	7	23	58	39	69	25	43	Klebsiella pasteurii
+654	21	6	14	10	46	5	6	Klebsiella grimontii

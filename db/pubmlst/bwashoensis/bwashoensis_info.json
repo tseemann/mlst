@@ -1,0 +1,10 @@
+{
+  "name": "bwashoensis",
+  "description": "MLST",
+  "locus": 6,
+  "download_date": "2026-03-11",
+  "last_updated": "2023-04-04",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_bwashoensis_seqdef/schemes/1",
+  "authenticated": false
+}

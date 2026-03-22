@@ -1,0 +1,10 @@
+{
+  "name": "brachyspira_4",
+  "description": "B. pilosicoli MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2021-06-01",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_brachyspira_seqdef/schemes/4",
+  "authenticated": false
+}

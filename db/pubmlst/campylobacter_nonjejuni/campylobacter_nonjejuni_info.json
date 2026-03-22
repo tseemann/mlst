@@ -1,0 +1,10 @@
+{
+  "name": "campylobacter_nonjejuni",
+  "description": "C. helveticus MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2015-01-12",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_campylobacter_nonjejuni_seqdef/schemes/1",
+  "authenticated": false
+}

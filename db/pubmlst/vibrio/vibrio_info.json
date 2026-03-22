@@ -1,0 +1,10 @@
+{
+  "name": "vibrio",
+  "description": "MLST",
+  "locus": 4,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-01-22",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_vibrio_seqdef/schemes/1",
+  "authenticated": false
+}

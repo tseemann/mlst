@@ -1,0 +1,10 @@
+{
+  "name": "pmultocida_2",
+  "description": "RIRDC MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-01-25",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_pmultocida_seqdef/schemes/2",
+  "authenticated": false
+}

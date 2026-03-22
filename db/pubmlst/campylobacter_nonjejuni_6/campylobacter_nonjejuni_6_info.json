@@ -1,0 +1,10 @@
+{
+  "name": "campylobacter_nonjejuni_6",
+  "description": "C. hyointestinalis MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-03-04",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_campylobacter_nonjejuni_seqdef/schemes/6",
+  "authenticated": false
+}

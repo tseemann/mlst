@@ -1,0 +1,10 @@
+{
+  "name": "orhinotracheale",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2025-08-15",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_orhinotracheale_seqdef/schemes/1",
+  "authenticated": false
+}

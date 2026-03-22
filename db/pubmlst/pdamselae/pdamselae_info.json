@@ -1,0 +1,10 @@
+{
+  "name": "pdamselae",
+  "description": "MLST",
+  "locus": 6,
+  "download_date": "2026-03-11",
+  "last_updated": "2023-08-11",
+  "source": "pubmlst",
+  "API": "https://rest.pubmlst.org/db/pubmlst_pdamselae_seqdef/schemes/1",
+  "authenticated": false
+}

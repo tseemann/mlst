@@ -1,0 +1,10 @@
+{
+  "name": "listeria_2",
+  "description": "MLST",
+  "locus": 7,
+  "download_date": "2026-03-11",
+  "last_updated": "2026-02-11",
+  "source": "pasteur",
+  "API": "https://bigsdb.pasteur.fr/api/db/pubmlst_listeria_seqdef/schemes/2",
+  "authenticated": false
+}
