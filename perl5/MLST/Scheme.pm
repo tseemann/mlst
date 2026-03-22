@@ -39,7 +39,7 @@ sub _build_num_genes {
 sub _build_genes {
   my($self) = @_;
   open my $fh, '<', $self->_tab_file()
-    or die "Could not open scheme file: $!";
+    or die "Could not open scheme file: ".$self->_tab_file();
   my $header = <$fh>;
   chomp $header;
   my @row = split m/\t/, $header;
