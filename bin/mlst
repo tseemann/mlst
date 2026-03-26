@@ -331,7 +331,7 @@ sub find_mlst {
       next;
     }
     if ($exclude{$sch}) {
-      msg("Excluding $sch.$gene.$num due to --exclude option");
+      dbg("Excluding $sch.$gene.$num due to --exclude option");
       next;
     }
     if ($hlen == $alen and $nident == $hlen) {   # need full length 100% hits
