@@ -112,12 +112,12 @@ setup() {
 }
 
 @test "Decimal allele IDs are reported" {
-  run -0 perl -e '$line = "ngstar.penA_2.002\t884\t884\t884\tq1\t1\t884\tACGT\tplus"; $line =~ m/^ (\\w+)\\.(\\w+)[_-](\\d+(?:\\.\\d+)?) \\t (\\d+) \\t (\\d+) \\t (\\d+) \\t (\\S+) \\t (\\d+) \\t (\\d+) \\t (\\S+) \\t (\\S+) $/x or exit 1; print "$1 $2 $3"'
-  [[ "$output" == "ngstar penA 2.002" ]]
+   run -0 perl -e '$line = "ngstar.penA_2.002\t884\t884\t884\tq1\t1\t884\tACGT\tplus"; $line =~ m/^ (\w+)\.(\w+)[_-](\d+(?:\.\d+)?) \t (\d+) \t (\d+) \t (\d+) \t (\S+) \t (\d+) \t (\d+) \t (\S+) \t (\S+) $/x or exit 1; print "$1 $2 $3"'
+   [[ "$output" == "ngstar penA 2.002" ]]
 }
 
 @test "Decimal duplicate alleles sort numerically" {
-  run -0 perl -e '$as = "10.001,2.002,2.001"; if ($as =~ m/,/ and $as =~ m/^[\\d.,]+$/) { $as = join ",", sort { $a <=> $b } split m/,/, $as; } print $as'
+  run -0 perl -e '$as = "10.001,2.002,2.001"; if ($as =~ m/,/ and $as =~ m/^[\d.,]+$/) { $as = join ",", sort { $a <=> $b } split m/,/, $as; } print $as'
   [[ "$output" == "2.001,2.002,10.001" ]]
 }
 @test "CSV output" {
