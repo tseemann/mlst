@@ -171,7 +171,7 @@ for my $argv (@ARGV) {
   
   # sort duplicate alleles numerically (only for pure 100% ones)
   for my $as (@code) {
-    if ($as =~ m/,/ and $as =~ m/^[0-9,]+/) {
+    if ($as =~ m/,/ and $as =~ m/^[\d.,]+$/) {
       #print STDERR "DEBUG: '$as' in [@code]\n";
       $as = join ',', sort { $a <=> $b } split m/,/, $as;
       #print STDERR "DEBUG: '$as' in [@code]\n";
@@ -317,7 +317,7 @@ sub find_mlst {
 
   foreach (<$hits>) {
     chomp;
-    next unless m/ ^ (\w+)\.(\w+)[_-](\d+) 
+    next unless m/ ^ (\w+)\.(\w+)[_-](\d+(?:\.\d+)?) 
                    \t (\d+) \t (\d+) \t (\d+) 
                    \t (\S+) \t (\d+) \t (\d+) \t (\S+) \t (\S+) /x;
     my($sch, $gene, $num, $hlen, $alen, $nident, $qid, $qstart, $qend, $qseq, $sstrand) = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
