@@ -17,7 +17,7 @@ use MLST::Requirements qw(require_exe);
 #..............................................................................
 # Globals
 
-my $VERSION = '2.33.1';
+my $VERSION = '2.34.0';
 my $EXE = path($FindBin::RealScript)->basename;
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
