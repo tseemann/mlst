@@ -463,8 +463,8 @@ sub setOptions {
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>50, DESC=>"DNA %cov to report partial/'?' allele"},
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
     "DATABASE",
-    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>path("$FindBin::RealBin/../db/blast/mlst.fa")->realpath, DESC=>"BLAST database prefix"},
-    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>path("$FindBin::RealBin/../db/pubmlst")->realpath, DESC=>"PubMLST data folders"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>path(($ENV{MLSTDB_DIR} || "$FindBin::RealBin/../db")."/blast/mlst.fa")->realpath, DESC=>"BLAST database prefix [default via MLSTDB_DIR/blast/mlst.fa; --blastdb overrides]"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>path(($ENV{MLSTDB_DIR} || "$FindBin::RealBin/../db")."/pubmlst")->realpath, DESC=>"PubMLST data folders [default via MLSTDB_DIR/pubmlst; --datadir overrides]"},
   );
   GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options)
     or exit(1);
