@@ -332,6 +332,12 @@ sure it's in `/path/to/mlst/db/pubmlst`
 and run `scripts/mlst-make_blast_db` before
 attempting to run `mlst`.
 
+If you want `mlst` to use a different bundled database location by default,
+set `MLSTDB_DIR` to your environment. This changes the default `--blastdb`
+path to `MLSTDB_DIR/blast/mlst.fa` and the default `--datadir` path to
+`MLSTDB_DIR/pubmlst`. Explicit `--blastdb` and `--datadir` options still
+override these defaults.
+
 ## Adding a scheme 
 
 If you want to add a custom private scheme
