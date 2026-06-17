@@ -38,6 +38,10 @@ setup() {
   run -0 $exe --list
   [[ "$output" =~ "saureus" ]]
 }
+@test "List schemes with MLSTDB_DIR" {
+  run -0 env MLSTDB_DIR="$dir/../db" $exe --list
+  [[ "$output" =~ "saureus" ]]
+}
 @test "List schemes --longlist" {
   run -0 $exe --longlist
   [[ "$output" =~ "saureus" ]]
