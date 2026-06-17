@@ -25,8 +25,8 @@ my $URL = 'https://github.com/tseemann/mlst';
 # this is just the default schemes to exclude
 my $EXCLUDE = 'ecoli,abaumannii,vcholerae_2,senterica_achtman_2';
 
-# database directory from MLST_DBDIR or default to parent of script
-my $MLST_DBDIR = path($ENV{MLST_DBDIR} || "$FindBin::RealBin/..")->realpath;
+# database directory from MLST_DBDIR or default to bundled db folder
+my $MLST_DBDIR = path($ENV{MLST_DBDIR} || "$FindBin::RealBin/../db")->realpath;
 
 # internal symbols
 my $SEP = '/';

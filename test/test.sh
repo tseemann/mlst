@@ -39,7 +39,7 @@ setup() {
   [[ "$output" =~ "saureus" ]]
 }
 @test "List schemes with MLST_DBDIR" {
-  run -0 env MLST_DBDIR="$dir/.." $exe --list
+  run -0 env MLST_DBDIR="$dir/../db" $exe --list
   [[ "$output" =~ "saureus" ]]
 }
 @test "List schemes --longlist" {

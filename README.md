@@ -334,9 +334,9 @@ attempting to run `mlst`.
 
 If you want `mlst` to use a different bundled database
 location by default, set `MLST_DBDIR` to the directory
-containing the `db` folder. This changes the default `--blastdb`
-path to `MLST_DBDIR/blast/mlst.fa` and the default `--datadir`
-path to `MLST_DBDIR/pubmlst`. Explicit `--blastdb`
+containing the `blast` and `pubmlst` folders. This changes
+the default `--blastdb` path to `MLST_DBDIR/blast/mlst.fa`
+and the default `--datadir` path to `MLST_DBDIR/pubmlst`. Explicit `--blastdb`
 and `--datadir` options still override these defaults.
 
 ## Adding a scheme 
