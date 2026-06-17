@@ -17,13 +17,16 @@ use MLST::Requirements qw(require_exe);
 #..............................................................................
 # Globals
 
-my $VERSION = '2.34.0';
+my $VERSION = '2.35.0';
 my $EXE = path($FindBin::RealScript)->basename;
 my $AUTHOR = 'Torsten Seemann';
 my $URL = 'https://github.com/tseemann/mlst';
 
 # this is just the default schemes to exclude
 my $EXCLUDE = 'ecoli,abaumannii,vcholerae_2,senterica_achtman_2';
+
+# database directory from MLST_DBDIR or default to bundled db folder
+my $MLST_DBDIR = path($ENV{MLST_DBDIR} || "$FindBin::RealBin/../db")->realpath;
 
 # internal symbols
 my $SEP = '/';
@@ -71,6 +74,8 @@ if ($fofn) {
 }
 
 ($label && @ARGV > 1) and err("Using --label when scanning multiple files does not make sense");
+
+-d $MLST_DBDIR or err("Database directory does not exist: $MLST_DBDIR");
 
 
 $legacy && ! $scheme and err("Must specify a --scheme for --legacy output mode");
@@ -463,8 +468,8 @@ sub setOptions {
     {OPT=>"mincov=f",   VAR=>\$mincov,   DEFAULT=>50, DESC=>"DNA %cov to report partial/'?' allele"},
     {OPT=>"minscore=f", VAR=>\$minscore, DEFAULT=>50, DESC=>"Minumum score out of 100 to match a scheme (when auto --scheme)"},
     "DATABASE",
-    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>path("$FindBin::RealBin/../db/blast/mlst.fa")->realpath, DESC=>"BLAST database prefix"},
-    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>path("$FindBin::RealBin/../db/pubmlst")->realpath, DESC=>"PubMLST data folders"},
+    {OPT=>"blastdb=s",  VAR=>\$blastdb,  DEFAULT=>path("$MLST_DBDIR/blast/mlst.fa")->realpath, DESC=>"BLAST database prefix [default via MLST_DBDIR/blast/mlst.fa; --blastdb overrides]"},
+    {OPT=>"datadir=s",  VAR=>\$datadir,  DEFAULT=>path("$MLST_DBDIR/pubmlst")->realpath, DESC=>"PubMLST data folders [default via MLST_DBDIR/pubmlst; --datadir overrides]"},
   );
   GetOptions(map {$_->{OPT}, $_->{VAR}} grep { ref }  @Options)
     or exit(1);
