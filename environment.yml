@@ -3,7 +3,6 @@ channels:
   - bioconda
 dependencies:
   - perl >=5.32
-  - perl-bioperl >=1.7.2
   - perl-file-which
   - perl-json
   - perl-list-moreutils
